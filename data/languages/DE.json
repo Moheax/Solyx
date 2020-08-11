@@ -1,0 +1,509 @@
+{
+	"general": {
+		"embedpermissions": {
+			"translation": "<:Solyx:560809141766193152> | Bitte erteile mir die Erlaubnis, eingebettete Nachrichten zu senden."
+		},
+		"begin": {
+			"translation": "<:Solyx:560809141766193152> | Bitte erstelle deinen Charakter mit `{}begin`"
+		},
+		"itemnotexist": {
+			"translation": "<:Solyx:560809141766193152> **| Dieser Gegenstand existiert nicht!**"
+		},
+		"editmsgfail": {
+			"translation": "<:Solyx:560809141766193152> **| Bitte stelle sicher, dass meine Nachrichten nicht gelöscht werden!**"
+		},
+		"fullinv": {
+			"translation": "<:Solyx:560809141766193152> **| Dein Inventar ist voll!**"
+		}
+	},
+	"rpg": {
+		"restart": {
+			"translation": "<:Solyx:560809141766193152> **| Bist du sicher, dass du neu starten möchtest {}?**"
+		},
+		"yesrestart": {
+			"translation": "<:Solyx:560809141766193152> **| Du wurdest zurückgesetzt!**\nDu kannst nun `{}begin` wieder verwenden!"
+		},
+		"norestart": {
+			"translation": "<:Solyx:560809141766193152> **| Ok dann...**"
+		},
+		"raceselection": {
+			"title": {
+				"translation": "Willkommen bei Solyx!"
+			},
+			"description": {
+				"translation": "Darf ich dich fragen, welche Rasse du sein willst?"
+			},
+			"demon": {
+				"translation": "Böse Kreaturen, gemacht aus reinem Zorn"
+			},
+			"elf": {
+				"translation": "Mystische und süße Kreaturen, die den Scheiß aus allem raus schlagen werden"
+			},
+			"human": {
+				"translation": "Kluge, schnelle und ultimative Taktiker"
+			},
+			"orc": {
+				"translation": "Barbarische Kreaturen, gemacht aus reiner Stärke"
+			}
+		},
+		"classselection": {
+			"title": {
+				"translation": "Welche Klasse bist du?"
+			},
+			"archer": {
+				"translation": "Präziser und weitreichender Distanzschaden, Chance auf kritischen Schlag"
+			},
+			"knight": {
+				"translation": "Tanky Klasse mit Reduzierung des Nahkampfschadens"
+			},
+			"mage": {
+				"translation": "Klasse mit durchschnittlichem Schaden auf langer Distanz mit epischen Gegenständen"
+			},
+			"thief": {
+				"translation": "Die riskanteste Klasse mit hohem Nahkampfschaden"
+			}
+		},
+		"setupdone": {
+			"title": {
+				"translation": "Großartig, genieße deinen Aufenthalt!"
+			},
+			"footer": {
+				"translation": "Verwende {}Tutorial, wenn du nicht mehr weiter weißt."
+			}
+		},
+		"travel": {
+			"author": {
+				"translation": "Wohin möchtest du reisen?"
+			},
+			"title": {
+				"translation": "Gib eine Ortsnummer im Chat an."
+			},
+			"footer": {
+				"translation": "Du kannst neue Standorte freischalten, indem du aufsteigst!"
+			},
+			"alreadyat": {
+				"translation": "Du bist bereits an {}!"
+			},
+			"traveling": {
+				"translation": "Reise zu {}..."
+			},
+			"arrived": {
+				"translation": "Du bist an {} angekommen"
+			}
+		},
+		"crate": {
+			"nocrates": {
+				"translation": "<:Crate:639425690072252426> Du hast keine Kisten!"
+			},
+			"nokeys": {
+				"translation": "<:Key:573780034355986432> Du hast keine Schlüssel!"
+			},
+			"opening": {
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} öffnet eine Kiste..."
+			},
+			"legendary": {
+				"title": {
+					"translation": ":sparkles: LEGENDÄR! :sparkles:"
+				},
+				"description": {
+					"translation": "Du hast den **legendären {}!** gefunden"
+				}
+			},
+			"rare": {
+				"title": {
+					"translation": ":sparkles: SELTEN! :sparkles:"
+				},
+				"description": {
+					"translation": "Du hast den **seltenen {}!** gefunden"
+				}
+			},
+			"uncommon": {
+				"title": {
+					"translation": ":sparkles: UNGEWÖHNLICH! :sparkles:"
+				},
+				"description": {
+					"translation": "Du hast den **ungewöhnlichen {}!** gefunden"
+				}
+			},
+			"common": {
+				"title": {
+					"translation": ":sparkles: GEWÖHNLICH! :sparkles:"
+				},
+				"description": {
+					"translation": "Du hast den **gewöhnlichen {}!** gefunden"
+				}
+			}
+		},
+		"equip": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| Dieser Gegenstand existiert nicht!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| Kein Gegenstand in diesem Slot...**"
+			},
+			"cantsword": {
+				"translation": "Die {} Klasse kann keine Schwerter ausrüsten."
+			},
+			"cantbow": {
+				"translation": "Die Klasse {} kann keine Bögen ausrüsten."
+			},
+			"cantstaff": {
+				"translation": "Die {} Klasse kann keine Stäbe ausrüsten."
+			},
+			"cantmace": {
+				"translation": "Die {} Klasse kann keine Keulen ausrüsten."
+			},
+			"cantdagger": {
+				"translation": "Die Klasse {} kann keine Dolche ausrüsten."
+			},
+			"cantgun": {
+				"translation": "Die {} Klasse kann keine Schusswaffen ausrüsten."
+			},
+			"equipped": {
+				"translation": "Ausgerüsteter Gegenstand:"
+			}
+		},
+		"reforge": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| Dieser Gegenstand existiert nicht!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| Kein Gegenstand in diesem Slot...**"
+			},
+			"confirmation": {
+				"title": {
+					"translation": "Bist du sicher, dass du diesen Gegenstand neu schmieden möchtest?"
+				},
+				"description": {
+					"translation": "**Name:** {}\n**Seltenheit:** {}\n**Verfeinerung:** {}\n**Typ:** {}\n**Statistik:** {}-{}\n**Dies kostet {}**<:Gold:63948698099301>"
+				}
+			}
+		},
+		"checkin": {
+			"success": {
+				"title": {
+					"translation": "Tägliches Gold"
+				}
+			},
+			"failed": {
+				"title": {
+					"translation": "Du kannst deine tägliche Belohnung noch nicht einfordern!"
+				},
+				"description": {
+					"translation": ":clock1: verbleibende Zeit:\n{} Stunden, {} Minuten, und {} Sekunden"
+				}
+			}
+		},
+		"vote": {
+			"reminder": {
+				"translation": "Reagiere mit ⏰ um eine Vote-Erinnerung zu bekommen!"
+			},
+			"canvote": {
+				"title": {
+					"translation": "Vote für Solyx!"
+				},
+				"description": {
+					"translation": "Du kannst für mich voten, indem du auf [here](https://top.gg/bot/495928914045304847/vote) klickst!"
+				},
+				"footer": {
+					"translation": "Verwende {}vote erneut, um deine Belohnung zu einzufordern."
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": "Du kannst noch nicht voten!"
+				},
+				"description": {
+					"translation": ":clock1: verbleibende Zeit:\n{} Stunden, {} Minuten, und {} Sekunden"
+				}
+			}
+		},
+		"heal": {
+			"inbattle": {
+				"translation": "<:Solyx:560809141766193152> | Du kannst dich nicht in einem Kampf heilen!"
+			},
+			"fullhp": {
+				"translation": "<:Solyx:560809141766193152> | Du hast bereits 100 HP!"
+			},
+			"healed": {
+				"translation": "Du hast einen Heiltrank benutzt"
+			},
+			"nopotions": {
+				"translation": "<:Solyx:560809141766193152> | Du hast keine Heiltränke!"
+			}
+		},
+		"health": {
+			"author": {
+				"translation": "{}s Gesundheit"
+			},
+			"footer": {
+				"translation": "Verwende '{}hp Buy' um Heiltränke zu kaufen"
+			},
+			"negative": {
+				"translation": "Du kannst keine negativen Mengen kaufen!"
+			},
+			"needgold": {
+				"translation": "Du benötigst {} mehr <:Gold:6394869809930251> für {}<:HealingPotion:573577125064605706>"
+			},
+			"bought": {
+				"translation": "Du hast {}<:HealingPotion:573577125064605706> für {}<:Gold:6394848698099301> gekauft"
+			}
+		},
+		"title": {
+			"notitles": {
+				"translation": "Du hast keine Titel!"
+			},
+			"select": {
+				"title": {
+					"translation": "Welchen Titel möchtest du auswählen?"
+				},
+				"footer": {
+					"translation": "Groß- und Kleinschreibung ist wichtig."
+				}
+			},
+			"selected": {
+				"translation": "Ausgewählter Titel:"
+			}
+		},
+		"sell": {
+			"wood": {
+				"sold": {
+					"title": {
+						"translation": "Verkauft!"
+					},
+					"description": {
+						"translation": "Du hast {}<:Wood:573574660185260042> für {}<:Gold:639484869809930251> verkauft!"
+					}
+				},
+				"notenough": {
+					"translation": "Du hast nicht genug <:Wood:573574660185260042>!"
+				}
+			},
+			"stone": {
+				"sold": {
+					"title": {
+						"translation": "Verkauft!"
+					},
+					"description": {
+						"translation": "Du hast {}<:Stone:5735746625550593> für {}<:Gold:6394848698099301> verkauft!"
+					}
+				},
+				"notenough": {
+					"translation": "Du hast nicht genug <:Stone:5735746625550593>!"
+				}
+			},
+			"metal": {
+				"sold": {
+					"title": {
+						"translation": "Verkauft!"
+					},
+					"description": {
+						"translation": "Du hast {}<:Metal:573574661108006915> für {}<:Gold:639484869809930251> verkauft!"
+					}
+				},
+				"notenough": {
+					"translation": "Du hast nicht genug <:Metal:573574661108006915>!"
+				}
+			}
+		},
+		"tutorial": {
+			"author": {
+				"translation": "Willkommen bei Solyx!"
+			},
+			"description": {
+				"translation": "• Um mit dem Spiel zu beginnen, benutze `{0}begin`. Der Bot wird dir einige sehr wichtige Fragen stellen, die den Rest deiner Reise beeinflussen werden. Du kannst diesen Befehl erneut verwenden, wenn du jemals neu starten möchtest.\n\n• Gib `{0}fight` ein, um deinen ersten Kampf zu starten. Du hast nur eine Fähigkeit, mit der du beginnen kannst. Du lernst mehr Fähigkeiten, während du aufsteigst.\n\n• Wenn du wenig Lebenspunkte hast benutze `{0}rest` um ein bisschen Gesundheit zu erhalten oder `{0}heal` um einen Heiltrank zu verbrauchen.\n\n• Um Artikel zu kaufen und zu verkaufen, gib `{0}market` ein. Du kannst dort alle Arten von Gegenständen kaufen. Du kannst Heiltränke mit `{0}buy hp` kaufen."
+			},
+			"footer": {
+				"translation": "Viel Spaß!"
+			}
+		}
+	},
+	"fight": {
+		"nohp": {
+			"translation": "<:Solyx:560809141766193152> | Du kannst nicht mit 0 HP kämpfen!"
+		},
+		"wander": {
+			"title": {
+				"translation": "Du wanderst durch {} und findest\n{}"
+			},
+			"description": {
+				"translation": "Möchtest du es bekämpfen?"
+			},
+			"run": {
+				"run1": {
+					"translation": ":runner: **| Feigling!**"
+				},
+				"run2": {
+					"translation": ":runner: **| Du fliehst, als du mit Angst überschwemmt wirst...**"
+				},
+				"run3": {
+					"translation": ":runner: **| Warum läuftst du?**"
+				},
+				"run4": {
+					"translation": ":runner: **| Vielleicht das nächste Mal.**"
+				},
+				"run5": {
+					"translation": ":runner: **| Hast du deine Waffe vergessen?**"
+				}
+			}
+		},
+		"skill": {
+			"author": {
+				"translation": "Welche Fähigkeit möchtest du nutzen?"
+			},
+			"title": {
+				"translation": "Wähle eine:"
+			}
+		},
+		"fight": {
+			"fightmsg1": {
+				"translation": "{} hat {} HP\n{} hat {} HP"
+			},
+			"fightmsg2": {
+				"translation": "{} hat {} HP\n{} hat {} HP\n\n**{} trifft {} und fügt ihm {} Schaden zu**\n"
+			},
+			"fightmsg3": {
+				"translation": "{} hat {} HP\n{} hat {} HP\n\n**{} trifft {} und fügt ihm {} Schaden zu**\n**{} verwendet {} und trifft mit {} Schaden**"
+			},
+			"fightmsg4": {
+				"translation": "{} hat {} HP\n{} hat {} HP\n\n**{} trifft {} und fügt ihm {} Schaden zu**\n**{} verwendet {} und trifft mit {} Schaden**\n\n{} hat {} HP\n{} hat {} HP"
+			}
+		},
+		"bothdied": {
+			"translation": ":skull: Ihr seid beide gestorben!\n<:Gold:639484869809930251> {} verliert {} Gold."
+		},
+		"playerdied": {
+			"translation": ":skull: {} tötete {}\n<:Gold:639484869809930251> {} verlor {} Gold"
+		},
+		"enemydied": {
+			"translation": ":dagger: {} tötete {}\n<:Gold:639484869809930251> {} erhielt {} Gold\n:sparkles: {} Erfahrung"
+		},
+		"crate": {
+			"translation": "<:Crate:639425690072252426> **{} hat eine Kiste erhalten!**"
+		},
+		"key": {
+			"translation": "<:Key:573780034355986432> **{} hat einen Schlüssel erhalten!**"
+		},
+		"battle": {
+			"iets": {
+				"translation": ""
+			}
+		}
+	},
+	"market": {
+		"sell": {
+			"noitem": {
+				"translation": "<:Solyx:560809141766193152> **| Kein Gegenstand in diesem Slot...**"
+			},
+			"pricecheck": {
+				"basicmin": {
+					"translation": "<:Solyx:560809141766193152> **| Der Mindestpreis für grundlegende Gegenstände ist 1000<:Gold:6394869809930251>.**"
+				},
+				"basicmax": {
+					"translation": "<:Solyx:560809141766193152> **| Der Höhstpreis für grundlegende Gegenstände ist 5000<:Gold:639484869809930251>.**"
+				},
+				"commonmin": {
+					"translation": "<:Solyx:560809141766193152> **| Der Mindestpreis gewöhnliche Gegenstände ist 1000<:Gold:6394869809930251>.**"
+				},
+				"commonmax": {
+					"translation": "<:Solyx:560809141766193152> **| Der Höhstpreis für gewöhnliche Gegenstände ist 10000<:Gold:6394869809930251>.**"
+				},
+				"raremin": {
+					"translation": "<:Solyx:560809141766193152> **| Der Mindestpreis für seltene Gegenstände ist 5000<:Gold:6394869809930251>.**"
+				},
+				"raremax": {
+					"translation": "<:Solyx:560809141766193152> **| Der Höchstpreis für seltene Gegenstände ist 50000<:Gold:6394869809930251>.**"
+				},
+				"legendarymin": {
+					"translation": "<:Solyx:560809141766193152> **| Der Mindestpreis für legendäre Gegenstände ist 10000<:Gold:6394869809930251>.**"
+				},
+				"legendarymax": {
+					"translation": "<:Solyx:560809141766193152> **| Der Höchstpreis für legendäre Gegenstände ist 500000<:Gold:6394869809930251>.**"
+				},
+				"mythical": {
+					"translation": "<:Solyx:560809141766193152> **| Mystische Artikel können nicht verkauft werden.**"
+				}
+			},
+			"alreadylisted": {
+				"title": {
+					"translation": "Sie haben bereits einen Gegenstand gelistet"
+				},
+				"description": {
+					"translation": "Wenn du einen neuen Artikel auflistest, wirst du den aktuell zum Verkauf stehenden Artikel löschen.\nMöchtest du fortfahren?"
+				},
+				"value": {
+					"translation": "{} {} ({}) für {}<:Gold:6394869809930251>"
+				},
+				"footer": {
+					"translation": "Sag ja/nein"
+				}
+			},
+			"listed": {
+				"title": {
+					"translation": "Gelisteter Artikel:"
+				},
+				"description": {
+					"translation": "{} {} ({}) für {} <:Gold:6394869809930251>"
+				}
+			},
+			"notselling": {
+				"translation": "<:Solyx:560809141766193152> | Okay, ich halte deinen Artikel zum Verkauf!"
+			}
+		}
+	},
+	"gather": {
+		"fish": {
+			"success": {
+				"translation": ":fishing_pole_and_fish: **| {}, du hast {}!** +{}<:Gold:63948698099301> gefangen"
+			},
+			"notenoughgold": {
+				"translation": "<:Solyx:560809141766193152> | Du hast nicht genug Gold, um zu fischen..."
+			},
+			"fail1": {
+				"translation": ":fishing_pole_and_fish: **| {}, deine Leine ist gerissen, als du {}!** -{}<:Gold:63948698099301> gefangen hast"
+			},
+			"fail2": {
+				"translation": ":fishing_pole_and_fish: **| {}, du hast {} gefangen, aber sie hat deine Nase geschnappt!** -{}<:Gold:6394869809930251>"
+			},
+			"fail3": {
+				"translation": ":fishing_pole_and_fish: **| Oh-oh! {} konnte nichts fangen!**"
+			}
+		},
+		"mine": {
+			"success": {
+				"title": {
+					"translation": "<:Pickaxe:573574740640530471> Du hast einen Stein abgebaut!"
+				},
+				"description": {
+					"translation": "+{} Stein <:Stone:5735746625550593>\n+{} Metall <:Metal:573574661108006915>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: Du kannst noch nicht abbauen!"
+				},
+				"description": {
+					"translation": "{} Minuten und {} Sekunden"
+				}
+			}
+		},
+		"chop": {
+			"success": {
+				"title": {
+					"translation": "<:Axe:573574740220969007> Du hast einen Baum gehackt!"
+				},
+				"description": {
+					"translation": "+{} Holz <:Wood:573574660185260042>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: Du kannst noch keinen Baum hacken!"
+				},
+				"description": {
+					"translation": "{} Minuten und {} Sekunden"
+				}
+			}
+		}
+	}
+}

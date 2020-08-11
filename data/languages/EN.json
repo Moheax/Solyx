@@ -1,0 +1,509 @@
+{
+	"general": {
+		"embedpermissions": {
+			"translation": "<:Solyx:560809141766193152> | Please give me permissions to send embeded messages."
+		},
+		"begin": {
+			"translation": "<:Solyx:560809141766193152> | Please start your character using `{}begin`"
+		},
+		"itemnotexist": {
+			"translation": "<:Solyx:560809141766193152> **| That item doesn't exist!**"
+		},
+		"editmsgfail": {
+			"translation": "<:Solyx:560809141766193152> **| Please make sure my messages don't get deleted!**"
+		},
+		"fullinv": {
+			"translation": "<:Solyx:560809141766193152> **| Your inventory is full!**"
+		}
+	},
+	"rpg": {
+		"restart": {
+			"translation": "<:Solyx:560809141766193152> **| Are you sure you want to restart, {}?**"
+		},
+		"yesrestart": {
+			"translation": "<:Solyx:560809141766193152> **| You have been reset!**\nYou can now use `{}begin` again!"
+		},
+		"norestart": {
+			"translation": "<:Solyx:560809141766193152> **| Ok then...**"
+		},
+		"raceselection": {
+			"title": {
+				"translation": "Welcome to Solyx!"
+			},
+			"description": {
+				"translation": "May I ask you what race you want to be?"
+			},
+			"demon": {
+				"translation": "Evil creatures made out of pure anger"
+			},
+			"elf": {
+				"translation": "Mythical and cute creatures who will beat the shit out of anything"
+			},
+			"human": {
+				"translation": "Smart, quick and ultimate tacticians"
+			},
+			"orc": {
+				"translation": "Barbarian creatures made out of pure strength"
+			}
+		},
+		"classselection": {
+			"title": {
+				"translation": "What class are you?"
+			},
+			"archer": {
+				"translation": "Precise and long ranged damage, chance on critical strike"
+			},
+			"knight": {
+				"translation": "Tanky class with close combat damage reduction"
+			},
+			"mage": {
+				"translation": "Long ranged average damage class with epic items"
+			},
+			"thief": {
+				"translation": "The most risky class with close ranged high damage"
+			}
+		},
+		"setupdone": {
+			"title": {
+				"translation": "Great, enjoy your stay!"
+			},
+			"footer": {
+				"translation": "Use {}tutorial if you feel lost."
+			}
+		},
+		"travel": {
+			"author": {
+				"translation": "Where would you like to travel?"
+			},
+			"title": {
+				"translation": "Type a location number in the chat."
+			},
+			"footer": {
+				"translation": "You can unlock new locations by leveling up!"
+			},
+			"alreadyat": {
+				"translation": "You're already at {}!"
+			},
+			"traveling": {
+				"translation": "Traveling to {}..."
+			},
+			"arrived": {
+				"translation": "You have arrived at {}"
+			}
+		},
+		"crate": {
+			"nocrates": {
+				"translation": "<:Crate:639425690072252426> You don't have any crates!"
+			},
+			"nokeys": {
+				"translation": "<:Key:573780034355986432> You don't have any keys!"
+			},
+			"opening": {
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} opens a crate..."
+			},
+			"legendary": {
+				"title": {
+					"translation": ":sparkles: LEGENDARY! :sparkles:"
+				},
+				"description": {
+					"translation": "You found the **legendary {}!**"
+				}
+			},
+			"rare": {
+				"title": {
+					"translation": ":sparkles: RARE! :sparkles:"
+				},
+				"description": {
+					"translation": "You found the **rare {}!**"
+				}
+			},
+			"uncommon": {
+				"title": {
+					"translation": ":sparkles: UNCOMMON! :sparkles:"
+				},
+				"description": {
+					"translation": "You found the **uncommon {}!**"
+				}
+			},
+			"common": {
+				"title": {
+					"translation": ":sparkles: COMMON! :sparkles:"
+				},
+				"description": {
+					"translation": "You found the **common {}!**"
+				}
+			}
+		},
+		"equip": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| That item doesn't exist!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| No item in this slot...**"
+			},
+			"cantsword": {
+				"translation": "The {} class can't equip swords."
+			},
+			"cantbow": {
+				"translation": "The {} class can't equip bows."
+			},
+			"cantstaff": {
+				"translation": "The {} class can't equip staffs."
+			},
+			"cantmace": {
+				"translation": "The {} class can't equip maces."
+			},
+			"cantdagger": {
+				"translation": "The {} class can't equip daggers."
+			},
+			"cantgun": {
+				"translation": "The {} class can't equip guns."
+			},
+			"equipped": {
+				"translation": "Item Equipped:"
+			}
+		},
+		"reforge": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| That item doesn't exist!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| No item in this slot...**"
+			},
+			"confirmation": {
+				"title": {
+					"translation": "Are you sure you want to reforge this item?"
+				},
+				"description": {
+					"translation": "**Name:** {}\n**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n**This will cost {}**<:Gold:639484869809930251>"
+				}
+			}
+		},
+		"checkin": {
+			"success": {
+				"title": {
+					"translation": "Daily Gold"
+				}
+			},
+			"failed": {
+				"title": {
+					"translation": "You can't claim your daily reward yet!"
+				},
+				"description": {
+					"translation": ":clock1: Time left:\n{} Hours, {} Minutes, and {} Seconds"
+				}
+			}
+		},
+		"vote": {
+			"reminder": {
+				"translation": "React ⏰ to set a vote reminder!"
+			},
+			"canvote": {
+				"title": {
+					"translation": "Vote for Solyx!"
+				},
+				"description": {
+					"translation": "You can vote for me by clicking [here](https://top.gg/bot/495928914045304847/vote)!"
+				},
+				"footer": {
+					"translation": "Use {}vote again to claim your reward."
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": "You can't vote yet!"
+				},
+				"description": {
+					"translation": ":clock1: Time left:\n{} Hours, {} Minutes, and {} Seconds"
+				}
+			}
+		},
+		"heal": {
+			"inbattle": {
+				"translation": "<:Solyx:560809141766193152> | You can't heal in battle!"
+			},
+			"fullhp": {
+				"translation": "<:Solyx:560809141766193152> | You already have 100 HP!"
+			},
+			"healed": {
+				"translation": "You used a health potion"
+			},
+			"nopotions": {
+				"translation": "<:Solyx:560809141766193152> | You don't have any healing potions!"
+			}
+		},
+		"health": {
+			"author": {
+				"translation": "{}'s Health"
+			},
+			"footer": {
+				"translation": "Use '{}hp buy' to buy healing potions"
+			},
+			"negative": {
+				"translation": "You can't buy negative amounts!"
+			},
+			"needgold": {
+				"translation": "You need {} more <:Gold:639484869809930251> for {}<:HealingPotion:573577125064605706>"
+			},
+			"bought": {
+				"translation": "You bought {}<:HealingPotion:573577125064605706> for {}<:Gold:639484869809930251>"
+			}
+		},
+		"title": {
+			"notitles": {
+				"translation": "You don't have any titles!"
+			},
+			"select": {
+				"title": {
+					"translation": "What title you like to select?"
+				},
+				"footer": {
+					"translation": "This is case sensitive."
+				}
+			},
+			"selected": {
+				"translation": "Title selected:"
+			}
+		},
+		"sell": {
+			"wood": {
+				"sold": {
+					"title": {
+						"translation": "Sold!"
+					},
+					"description": {
+						"translation": "You sold {}<:Wood:573574660185260042> for {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "You don't have enough <:Wood:573574660185260042>!"
+				}
+			},
+			"stone": {
+				"sold": {
+					"title": {
+						"translation": "Sold!"
+					},
+					"description": {
+						"translation": "You sold {}<:Stone:573574662525550593> for {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "You don't have enough <:Stone:573574662525550593>!"
+				}
+			},
+			"metal": {
+				"sold": {
+					"title": {
+						"translation": "Sold!"
+					},
+					"description": {
+						"translation": "You sold {}<:Metal:573574661108006915> for {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "You don't have enough <:Metal:573574661108006915>!"
+				}
+			}
+		},
+		"tutorial": {
+			"author": {
+				"translation": "Welcome to Solyx!"
+			},
+			"description": {
+				"translation": "• To start playing, use `{0}begin`. The bot will ask you a few very important questions that will influence the rest of your journey. You can use this command again if you ever want to restart.\n\n• Type `{0}fight` to start your first fight. You will only have one skill to begin with. You learn more skills as you level up.\n\n• If you are low on health, use `{0}rest` to gain a bit of health or `{0}heal` to consume a healing potion.\n\n• To buy and sell items, type `{0}market`. You can buy all kinds of items there. You can buy health potions using `{0}buy hp`."
+			},
+			"footer": {
+				"translation": "Enjoy!"
+			}
+		}
+	},
+	"fight": {
+		"nohp": {
+			"translation": "<:Solyx:560809141766193152> | You can't fight with 0 HP!"
+		},
+		"wander": {
+			"title": {
+				"translation": "You wandered around {} and found\n{}"
+			},
+			"description": {
+				"translation": "Would you like to fight it?"
+			},
+			"run": {
+				"run1": {
+					"translation": ":runner: **| Coward!**"
+				},
+				"run2": {
+					"translation": ":runner: **| You flee as you cower in fear...**"
+				},
+				"run3": {
+					"translation": ":runner: **| Why are you running?**"
+				},
+				"run4": {
+					"translation": ":runner: **| Maybe next time.**"
+				},
+				"run5": {
+					"translation": ":runner: **| Did you forget your weapon?**"
+				}
+			}
+		},
+		"skill": {
+			"author": {
+				"translation": "What skill would you like to use?"
+			},
+			"title": {
+				"translation": "Choose one:"
+			}
+		},
+		"fight": {
+			"fightmsg1": {
+				"translation": "{} has {} HP\n{} has {} HP"
+			},
+			"fightmsg2": {
+				"translation": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n"
+			},
+			"fightmsg3": {
+				"translation": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**"
+			},
+			"fightmsg4": {
+				"translation": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left"
+			}
+		},
+		"bothdied": {
+			"translation": ":skull: You both died!\n<:Gold:639484869809930251> {} lost {} gold."
+		},
+		"playerdied": {
+			"translation": ":skull: {} killed {}\n<:Gold:639484869809930251> {} lost {} gold"
+		},
+		"enemydied": {
+			"translation": ":dagger: {} killed the {}\n<:Gold:639484869809930251> {} gained {} gold\n:sparkles: {} gained {} experience"
+		},
+		"crate": {
+			"translation": "<:Crate:639425690072252426> **{} obtained a crate!**"
+		},
+		"key": {
+			"translation": "<:Key:573780034355986432> **{} obtained a key!**"
+		},
+		"battle": {
+			"iets": {
+				"translation": ""
+			}
+		}
+	},
+	"market": {
+		"sell": {
+			"noitem": {
+				"translation": "<:Solyx:560809141766193152> **| No item in this slot...**"
+			},
+			"pricecheck": {
+				"basicmin": {
+					"translation": "<:Solyx:560809141766193152> **| The minimum price for basic items is 1000<:Gold:639484869809930251>.**"
+				},
+				"basicmax": {
+					"translation": "<:Solyx:560809141766193152> **| The maximum price for basic items is 5000<:Gold:639484869809930251>.**"
+				},
+				"commonmin": {
+					"translation": "<:Solyx:560809141766193152> **| The minimum price for common items is 1000<:Gold:639484869809930251>.**"
+				},
+				"commonmax": {
+					"translation": "<:Solyx:560809141766193152> **| The maximum price for common items is 10000<:Gold:639484869809930251>.**"
+				},
+				"raremin": {
+					"translation": "<:Solyx:560809141766193152> **| The minimum price for rare items is 5000<:Gold:639484869809930251>.**"
+				},
+				"raremax": {
+					"translation": "<:Solyx:560809141766193152> **| The maximum price for rare items is 50000<:Gold:639484869809930251>.**"
+				},
+				"legendarymin": {
+					"translation": "<:Solyx:560809141766193152> **| The minimum price for legendary items is 10000<:Gold:639484869809930251>.**"
+				},
+				"legendarymax": {
+					"translation": "<:Solyx:560809141766193152> **| The maximum price for legendary items is 500000<:Gold:639484869809930251>.**"
+				},
+				"mythical": {
+					"translation": "<:Solyx:560809141766193152> **| Mythical items can't be sold.**"
+				}
+			},
+			"alreadylisted": {
+				"title": {
+					"translation": "You already have an item listed"
+				},
+				"description": {
+					"translation": "By listing a new item you will delete the current item you have up for sale.\nDo you want to continue?"
+				},
+				"value": {
+					"translation": "{} {} ({}) for {}<:Gold:639484869809930251>"
+				},
+				"footer": {
+					"translation": "Say yes/no"
+				}
+			},
+			"listed": {
+				"title": {
+					"translation": "Item listed:"
+				},
+				"description": {
+					"translation": "{} {} ({}) for {} <:Gold:639484869809930251>"
+				}
+			},
+			"notselling": {
+				"translation": "<:Solyx:560809141766193152>  | Alright, I will keep your item up for sale!"
+			}
+		}
+	},
+	"gather": {
+		"fish": {
+			"success": {
+				"translation": ":fishing_pole_and_fish: **| {}, you caught {}!**  +{}<:Gold:639484869809930251>"
+			},
+			"notenoughgold": {
+				"translation": "<:Solyx:560809141766193152> | You don't have enough gold to start fishing..."
+			},
+			"fail1": {
+				"translation": ":fishing_pole_and_fish: **| {}, your line broke when you caught {}!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail2": {
+				"translation": ":fishing_pole_and_fish: **| {}, you caught {} but it pinched your nose!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail3": {
+				"translation": ":fishing_pole_and_fish: **| Uh-oh! {} failed to catch anything!**"
+			}
+		},
+		"mine": {
+			"success": {
+				"title": {
+					"translation": "<:Pickaxe:573574740640530471> You mined a rock!"
+				},
+				"description": {
+					"translation": "+{} Stone <:Stone:573574662525550593>\n+{} Metal <:Metal:573574661108006915>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: You can't mine yet!"
+				},
+				"description": {
+					"translation": "{} Minutes and {} seconds"
+				}
+			}
+		},
+		"chop": {
+			"success": {
+				"title": {
+					"translation": "<:Axe:573574740220969007> You chopped a tree!"
+				},
+				"description": {
+					"translation": "+{} Wood <:Wood:573574660185260042>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: You can't chop yet!"
+				},
+				"description": {
+					"translation": "{} Minutes and {} seconds"
+				}
+			}
+		}
+	}
+}

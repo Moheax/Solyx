@@ -1,0 +1,509 @@
+{
+	"general": {
+		"embedpermissions": {
+			"translation": "<:Solyx:560809141766193152> | Embeded Link를 사용할 권한을 주세요."
+		},
+		"begin": {
+			"translation": "<:Solyx:560809141766193152> | `{}begin`을(를) 사용하여 캐릭터를 시작하십시오"
+		},
+		"itemnotexist": {
+			"translation": "<:Solyx:560809141766193152> **| 그 물건은 존재하지 않는다!**"
+		},
+		"editmsgfail": {
+			"translation": "<:Solyx:560809141766193152> **| 내 메시지가 삭제되지 않도록 해 주세요!"
+		},
+		"fullinv": {
+			"translation": "<:Solyx:560809141766193152> **| 네 재고가 꽉 찼어!**"
+		}
+	},
+	"rpg": {
+		"restart": {
+			"translation": "<:Solyx:560809141766193152> **| 다시 시작하시겠습니까, {}?**"
+		},
+		"yesrestart": {
+			"translation": "<:Solyx:560809141766193152> **| 다시 설정되었어!**\n이제 `{}begin`를 다시 사용할 수 있습니다!"
+		},
+		"norestart": {
+			"translation": "<:Solyx:560809141766193152> **| 좋아, 그럼...**"
+		},
+		"raceselection": {
+			"title": {
+				"translation": "Solyx에 오신것을 환영합니다!"
+			},
+			"description": {
+				"translation": "어떤 종족이 되고 싶은지 물어봐도 될까?"
+			},
+			"demon": {
+				"translation": "순수한 분노로 만들어진 사악한 생물들"
+			},
+			"elf": {
+				"translation": "무엇이든 때려 부수어 버릴 신비로우면서도 귀여운 생물들"
+			},
+			"human": {
+				"translation": "똑똑하고, 빠르고, 궁극적인 촉각가"
+			},
+			"orc": {
+				"translation": "순수한 힘으로 만든 바바리아 생물"
+			}
+		},
+		"classselection": {
+			"title": {
+				"translation": "당신은 몇 반입니까?"
+			},
+			"archer": {
+				"translation": "정밀하고 긴 범위 손상, 치명적 타격 가능성"
+			},
+			"knight": {
+				"translation": "근접 전투 및 피해 감소 기능이 있는 탱키 클래스"
+			},
+			"mage": {
+				"translation": "서사시 아이템이 있는 장기 평균 손상 클래스"
+			},
+			"thief": {
+				"translation": "가장 위험도가 높은 등급으로 피해 범위가 매우 높음"
+			}
+		},
+		"setupdone": {
+			"title": {
+				"translation": "좋아, 즐거운 시간 보내!"
+			},
+			"footer": {
+				"translation": "길을 잃었다고 생각되면 {}tutorial를 사용하십시오."
+			}
+		},
+		"travel": {
+			"author": {
+				"translation": "어디로 여행하고 싶으세요?"
+			},
+			"title": {
+				"translation": "채팅에 위치 번호를 입력하십시오."
+			},
+			"footer": {
+				"translation": "수평을 높이면 새로운 위치를 열 수 있다!"
+			},
+			"alreadyat": {
+				"translation": "벌써 {} 에 왔구나!"
+			},
+			"traveling": {
+				"translation": "너는 지금 {} 로 여행중이야..."
+			},
+			"arrived": {
+				"translation": "{} 에 도착하셨습니다..."
+			}
+		},
+		"crate": {
+			"nocrates": {
+				"translation": "<:Crate:639425690072252426> 넌 상자도 없어!"
+			},
+			"nokeys": {
+				"translation": "<:Key:573780034355986432> 넌 열쇠가 없어!"
+			},
+			"opening": {
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} 가 상자를 열고 있다..."
+			},
+			"legendary": {
+				"title": {
+					"translation": ":sparkles: 전설적인! :sparkles:"
+				},
+				"description": {
+					"translation": "** {}! 전설적인**를 찾으셨습니다"
+				}
+			},
+			"rare": {
+				"title": {
+					"translation": ":sparkles: 드물다!:sparkles:"
+				},
+				"description": {
+					"translation": "** {}! 드물다**를 찾으셨습니다"
+				}
+			},
+			"uncommon": {
+				"title": {
+					"translation": ":sparkles:비범한!:sparkles:"
+				},
+				"description": {
+					"translation": "** {}! 비범한**를 찾으셨습니다"
+				}
+			},
+			"common": {
+				"title": {
+					"translation": ":sparkles:흔하다!:sparkles:"
+				},
+				"description": {
+					"translation": "** {}! 흔하다**를 찾으셨습니다"
+				}
+			}
+		},
+		"equip": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| 그 물건은 존재하지 않는다!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| 이 슬롯에 항목이 없다...**"
+			},
+			"cantsword": {
+				"translation": "이 {} 카테고리는 검을 장착할 수 없다."
+			},
+			"cantbow": {
+				"translation": "이 {} 카테고리는 활을 장착할 수 없다."
+			},
+			"cantstaff": {
+				"translation": "이 {} 범주는 지팡이를 장착할 수 없다."
+			},
+			"cantmace": {
+				"translation": "이 {} 범주는 무거운 막대기를 장착할 수 없다."
+			},
+			"cantdagger": {
+				"translation": "이 {} 카테고리는 단검을 장착할 수 없다."
+			},
+			"cantgun": {
+				"translation": "이 {} 범주는 총을 장착할 수 없다."
+			},
+			"equipped": {
+				"translation": "장착된 항목:"
+			}
+		},
+		"reforge": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| 그 물건은 존재하지 않는다!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| 이 슬롯에 항목이 없다...**"
+			},
+			"confirmation": {
+				"title": {
+					"translation": "이 품목에 재충전하시겠습니까?"
+				},
+				"description": {
+					"translation": "** 이름:** {}\n** 희귀성:** {}\n** 정제:** {}\n** 유형:** {}\n** 통계:** {}-{}\n**이것은 {}**<:Gold:639484869809930251> 달러일 것이다"
+				}
+			}
+		},
+		"checkin": {
+			"success": {
+				"title": {
+					"translation": "데일리 골드"
+				}
+			},
+			"failed": {
+				"title": {
+					"translation": "아직 일상의 보상을 청구할 수는 없다!"
+				},
+				"description": {
+					"translation": ":clock1: 대기시간:\n{} 시간, {} 분, and {} 초"
+				}
+			}
+		},
+		"vote": {
+			"reminder": {
+				"translation": "⏰에 응답하여 투표 알림 설정!"
+			},
+			"canvote": {
+				"title": {
+					"translation": "Solyx 투표하십시오!"
+				},
+				"description": {
+					"translation": " [here](https://solyx.xyz/vote)를 클릭하면 나에게 투표할 수 있다!"
+				},
+				"footer": {
+					"translation": "{}vote을 다시 사용하여 보상을 청구하십시오."
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": "너는 아직 투표할 수 없어!"
+				},
+				"description": {
+					"translation": ":clock1: 대기시간:\n{} 시간, {} 분, and {} 초"
+				}
+			}
+		},
+		"heal": {
+			"inbattle": {
+				"translation": "<:Solyx:560809141766193152> | 전투에서는 치유할 수 없다!"
+			},
+			"fullhp": {
+				"translation": "<:Solyx:560809141766193152> | 당신은 이미 100개의 HP를 가지고 있습니다!"
+			},
+			"healed": {
+				"translation": "너는 건강약을 사용했어."
+			},
+			"nopotions": {
+				"translation": "<:Solyx:560809141766193152> | 당신은 치유 물약이 없어요!"
+			}
+		},
+		"health": {
+			"author": {
+				"translation": "{} 헬스"
+			},
+			"footer": {
+				"translation": "'{}hp buy'을 사용하여 치유 물약이을 구매"
+			},
+			"negative": {
+				"translation": "여러분은 부정적인 양을 살 수 없어!"
+			},
+			"needgold": {
+				"translation": "<:HealingPotion:573577125064605706>를 사려면 {}개가 <:Gold:639484869809930251> {} 더 필요하다."
+			},
+			"bought": {
+				"translation": "당신은 {}<:HealingPotion:573577125064605706>를 {}<:Gold:639484869809930251>달러에 샀다."
+			}
+		},
+		"title": {
+			"notitles": {
+				"translation": "당신은 아무런 직함도 없어요!"
+			},
+			"select": {
+				"title": {
+					"translation": "선택할 무엇 라벨을 좋아하니?"
+				},
+				"footer": {
+					"translation": "이것은 대소문자를 구분합니다."
+				}
+			},
+			"selected": {
+				"translation": "선택한 제목:"
+			}
+		},
+		"sell": {
+			"wood": {
+				"sold": {
+					"title": {
+						"translation": "품목이 팔렸다!"
+					},
+					"description": {
+						"translation": "{}<:Wood:573574660185260042> 를 {}<:Gold:639484869809930251>달러에 팔았구나!"
+					}
+				},
+				"notenough": {
+					"translation": "넌 <:Wood:573574660185260042>이 부족해!"
+				}
+			},
+			"stone": {
+				"sold": {
+					"title": {
+						"translation": "품목이 팔렸다!"
+					},
+					"description": {
+						"translation": "{}<:Stone:573574662525550593>를 {}<:Gold:639484869809930251>달러에 팔았구나!"
+					}
+				},
+				"notenough": {
+					"translation": "넌 <:Stone:573574662525550593>이 부족해!"
+				}
+			},
+			"metal": {
+				"sold": {
+					"title": {
+						"translation": "품목이 팔렸다!"
+					},
+					"description": {
+						"translation": "{}<:Metal:573574661108006915>를 {}<:Gold:639484869809930251>달러에 팔았구나!"
+					}
+				},
+				"notenough": {
+					"translation": "넌 <:Metal:573574661108006915>이 부족해!"
+				}
+			}
+		},
+		"tutorial": {
+			"author": {
+				"translation": "Solyx에 온 것을 환영한다!"
+			},
+			"description": {
+				"translation": "• 게임 시작을 위해서  `{0}begin` 커맨드를 입력해주세요. 곧 솔릭스 봇이 본인의 여정에 영향을 미칠 굉장히 중요한 질문을 할 것입니다. 이 과정을 새롭게 다시 시작하시고 싶으시면 `{0}begin` 커맨드로 재시작해주시면 됩니다.\n\n•  `{0}fight` 커맨드를 입력하셔서 첫 전투를 시작해보세요. 여정은 하나의 스킬만 가지고 시작합니다. 새로운 스킬은 렙업을 통해서 배울 수 있습니다.\n\n• 체력이 매우 낮다면 `{0}rest` 커맨드를 활용하여 잠깐의 휴식을 취하시거나,  `{0}heal` 커맨드를 입력하시고 힐링 포션을 사용해주세요.\n\n• 아이템을 사고 팔기 위해선 `{0}market` 커맨드를 입력하세요. Market(마켓)에서 여러 가지 물품을 구매하거나 판매하실 수 있습니다. 힐링 포션을 구매하시려면  `{0}buy hp` 커맨드를 활용하세요"
+			},
+			"footer": {
+				"translation": "자 드세요!"
+			}
+		}
+	},
+	"fight": {
+		"nohp": {
+			"translation": "<:Solyx:560809141766193152> | HP가 0이면 싸울 수 없다."
+		},
+		"wander": {
+			"title": {
+				"translation": "{} 주변을 배회하다가 \n{} 을 찾으셨습니다."
+			},
+			"description": {
+				"translation": "이것과 싸우시겠습니까?"
+			},
+			"run": {
+				"run1": {
+					"translation": ":runner: **| 겁쟁이!**"
+				},
+				"run2": {
+					"translation": ":runner: **| 두려움에 움츠러들면서 도망치는구나...**"
+				},
+				"run3": {
+					"translation": ":runner: **| 왜 뛰는 거예요?**"
+				},
+				"run4": {
+					"translation": ":runner: **| 아마도 다음번에.**"
+				},
+				"run5": {
+					"translation": ":runner: **| 무기를 잊어버렸니?**"
+				}
+			}
+		},
+		"skill": {
+			"author": {
+				"translation": "어떤 능력을 사용하고 싶으세요?"
+			},
+			"title": {
+				"translation": "하나를 선택합니다:"
+			}
+		},
+		"fight": {
+			"fightmsg1": {
+				"translation": "{} 는 {} 개의 HP를 가지고 있다\n{} 는 {} 개의 HP를 가지고 있다"
+			},
+			"fightmsg2": {
+				"translation": "{} 는 {} 개의 HP를 가지고 있다\n{} 는 {} 개의 HP를 가지고 있다\n\n**{} 가 {} 에 {} 피해를 입히다**\n"
+			},
+			"fightmsg3": {
+				"translation": "{} 는 {} 개의 HP를 가지고 있다\n{} 는 {} 개의 HP를 가지고 있다\n\n**{} 가 {} 에 {} 피해를 입히다**\n**{} 는 {} 를 사용하고, {} 에 {} 피해를 입힌다**"
+			},
+			"fightmsg4": {
+				"translation": "{} 는 {} 개의 HP를 가지고 있다\n{} 는 {} 개의 HP를 가지고 있다\n\n**{} 가 {} 에 {} 피해를 입히다**\n**{} 는 {} 를 사용하고, {} 에 {} 피해를 입힌다**\n\n{} 에 HP가 {} 개 남음\n{} 에 HP가 {} 개 남음"
+			}
+		},
+		"bothdied": {
+			"translation": ":skull: 너희 둘 다 죽었어!\n<:Gold:639484869809930251> {}가 {} gold 를 잃었다"
+		},
+		"playerdied": {
+			"translation": ":skull: {}가 {} 을 죽였다.\n<:Gold:639484869809930251> {}가 {} gold 를 잃었다"
+		},
+		"enemydied": {
+			"translation": ":dagger: {}가 {} 을 죽였다\n<:Gold:639484869809930251> {} 는 {} gold 를 얻었다.\n:sparkles: {} 는 {} 개의 경험을 쌓았다"
+		},
+		"crate": {
+			"translation": "<:Crate:639425690072252426> **{} 가 상자를 받았다!**"
+		},
+		"key": {
+			"translation": "<:Key:573780034355986432> **{}가 열쇠 하나를 얻었어!**"
+		},
+		"battle": {
+			"iets": {
+				"translation": ""
+			}
+		}
+	},
+	"market": {
+		"sell": {
+			"noitem": {
+				"translation": "<:Solyx:560809141766193152> **| 이 슬롯에 항목이 없다...**"
+			},
+			"pricecheck": {
+				"basicmin": {
+					"translation": "<:Solyx:560809141766193152> **| 기본 품목의 최소 가격은 1000이다>.**"
+				},
+				"basicmax": {
+					"translation": "<:Solyx:560809141766193152> **| 기본 품목의 최대 가격은 5000이다<:Gold:639484869809930251>.**"
+				},
+				"commonmin": {
+					"translation": "<:Solyx:560809141766193152> **| 기본 품목의 최소 가격은 1000이다>.**"
+				},
+				"commonmax": {
+					"translation": "<:Solyx:560809141766193152> **| 기본 품목의 최소 가격은 10000이다>.**"
+				},
+				"raremin": {
+					"translation": "<:Solyx:560809141766193152> **| 희귀한 물건의 최저가격은 5000이다<:Gold:639484869809930251>.**"
+				},
+				"raremax": {
+					"translation": "<:Solyx:560809141766193152> **| 희귀한 물건의 최대 가격은 50000이다<:Gold:639484869809930251>.**"
+				},
+				"legendarymin": {
+					"translation": "<:Solyx:560809141766193152> **| 전설적인 아이템의 최저가격은 10000이다<:Gold:639484869809930251>.**"
+				},
+				"legendarymax": {
+					"translation": "<:Solyx:560809141766193152> **| 전설적인 아이템의 최고 가격은 500000이다<:Gold:639484869809930251>.**"
+				},
+				"mythical": {
+					"translation": "<:Solyx:560809141766193152> **| 신화적인 물건은 팔 수 없다.**"
+				}
+			},
+			"alreadylisted": {
+				"title": {
+					"translation": "이미 나열된 항목이 하나 있음"
+				},
+				"description": {
+					"translation": "새 항목을 나열하면 현재 판매 중인 항목을 삭제할 수 있다.\n계속하시겠습니까?"
+				},
+				"value": {
+					"translation": "{} {} ({}) 위한<:Gold:639484869809930251>"
+				},
+				"footer": {
+					"translation": "예/아니오라고 말하라."
+				}
+			},
+			"listed": {
+				"title": {
+					"translation": "나열된 항목:"
+				},
+				"description": {
+					"translation": "{} {} ({}) 위한 {} <:Gold:639484869809930251>"
+				}
+			},
+			"notselling": {
+				"translation": "<:Solyx:560809141766193152>  | 좋아, 이 물건은 팔려고 보관할게!"
+			}
+		}
+	},
+	"gather": {
+		"fish": {
+			"success": {
+				"translation": ":fishing_pole_and_fish: **| {}, 당신은 {}를 잡는다!** +{}<:Gold:639484869809930251>"
+			},
+			"notenoughgold": {
+				"translation": "<:Solyx:560809141766193152> | 낚시를 시작하기에 충분한 금이 없구나..."
+			},
+			"fail1": {
+				"translation": ":fishing_pole_and_fish: **|{}, {} 잡았을 때 낚싯줄을 부러뜨렸잖아!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail2": {
+				"translation": ":fishing_pole_and_fish: **| {}, {} 잡았는데 물고기가 코를 깨물었어!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail3": {
+				"translation": ":fishing_pole_and_fish: **| 어머 {} 아무것도 못 잡았어!**"
+			}
+		},
+		"mine": {
+			"success": {
+				"title": {
+					"translation": "<:Pickaxe:573574740640530471> 너는 바위를 채굴했어!"
+				},
+				"description": {
+					"translation": "+{} 돌 <:Stone:573574662525550593>\n+{} 금속 <:Metal:573574661108006915>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: 너는 지금 바위를 채굴할 수 없다!"
+				},
+				"description": {
+					"translation": "{} 분 {} 초"
+				}
+			}
+		},
+		"chop": {
+			"success": {
+				"title": {
+					"translation": "<:Axe:573574740220969007> 네가 나무를 잘랐구나!"
+				},
+				"description": {
+					"translation": "+{} 목재 <:Wood:573574660185260042>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: 너는 지금 나무를 자를 수 없어!"
+				},
+				"description": {
+					"translation": "{} 분 {} 초"
+				}
+			}
+		}
+	}
+}

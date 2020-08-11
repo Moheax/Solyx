@@ -1,0 +1,784 @@
+{
+	"general": {
+		"embedpermissions": {
+			"EN": "<:Solyx:560809141766193152> | Please give me permissions to send embeded messages.",
+			"translation": "<:Solyx:560809141766193152> | Geef mij permissies om embeds te sturen.",
+			"LC": "<:Solyx:560809141766193152> | PLZ GIMIE PERMISHUNS 2 SEND EMBEDD MESAGEZ."
+		},
+		"begin": {
+			"EN": "<:Solyx:560809141766193152> | Please start your character using `{}begin`",
+			"translation": "<:Solyx:560809141766193152> | Start je karakter door `{}begin` te typen",
+			"LC": "<:Solyx:560809141766193152> | PLZ START UR CHARACTR USIN `{}BEGIN`"
+		},
+		"itemnotexist": {
+			"EN": "<:Solyx:560809141766193152> **| That item doesn't exist!**",
+			"translation": "<:Solyx:560809141766193152> **| Item bestaat niet!**",
+			"LC": "<:Solyx:560809141766193152> **| DAT ITEM DOESNT EXIST!**"
+		},
+		"editmsgfail": {
+			"EN": "<:Solyx:560809141766193152> **| Please make sure my messages don't get deleted!**",
+			"translation": "<:Solyx:560809141766193152> **| Zorg er voor dat mijn berichten niet worden verwijderd!**",
+			"LC": "<:Solyx:560809141766193152> **| PLZ MAK SURE MAH MESAGEZ DOAN GIT DELETD!**"
+		},
+		"fullinv": {
+			"EN": "<:Solyx:560809141766193152> **| Your inventory is full!**",
+			"translation": "<:Solyx:560809141766193152> **| Je inventory is vol!**",
+			"LC": "<:Solyx:560809141766193152> **| UR INVENTORY IZ FULL!**"
+		}
+	},
+	"rpg": {
+		"restart": {
+			"EN": "<:Solyx:560809141766193152> **| Are you sure you want to restart, {}?**",
+			"translation": "<:Solyx:560809141766193152> **| Ben je zeker dat je wilt herbeginnen, {}?**",
+			"LC": "<:Solyx:560809141766193152> **| R U SURE U WANTS 2 RESTART, {}?**"
+		},
+		"yesrestart": {
+			"EN": "<:Solyx:560809141766193152> **| You have been reset!**\nYou can now use `{}begin` again!",
+			"translation": "<:Solyx:560809141766193152> **| Je bent gereset!**\nJe kan nu `{}begin` opnieuw gebruiken!",
+			"LC": "<:Solyx:560809141766193152> **| U HAS BEEN RESET!**\nU CAN NAO USE `{}BEGIN` AGAIN!"
+		},
+		"norestart": {
+			"EN": "<:Solyx:560809141766193152> **| Ok then...**",
+			"translation": "<:Solyx:560809141766193152> **| Ok, dan niet...**",
+			"LC": "<:Solyx:560809141766193152> **| K DEN...**"
+		},
+		"raceselection": {
+			"title": {
+				"EN": "Welcome to Solyx!",
+				"translation": "Welkom bij Solyx!",
+				"LC": "WELCOM 2 SOLYX!"
+			},
+			"description": {
+				"EN": "May I ask you what race you want to be?",
+				"translation": "Als welk ras wil je spelen?",
+				"LC": "I CAN ASK U WUT RACE U WANTS 2 BE?"
+			},
+			"demon": {
+				"EN": "Evil creatures made out of pure anger",
+				"translation": "Slechte wezens gemaakt uit pure woede",
+				"LC": "EVIL CREATUREZ MADE OUT OV PURE ANGR"
+			},
+			"elf": {
+				"EN": "Mythical and cute creatures who will beat the shit out of anything",
+				"translation": "Mythische en schattige wezens die alles kappot slaan",
+				"LC": "MYTHICAL AN CUTE CREATUREZ HOO WILL BEAT TEH  OUT OV ANYTHIN"
+			},
+			"human": {
+				"EN": "Smart, quick and ultimate tacticians",
+				"translation": "Slim, snel en de ultieme tactici",
+				"LC": "SMART, QUICK AN ULTIMATE TACTICIANZ"
+			},
+			"orc": {
+				"EN": "Barbarian creatures made out of pure strength",
+				"translation": "Barbaarse wezens gemaakt uit pure kracht",
+				"LC": "BARBARIAN CREATUREZ MADE OUT OV PURE STRENGTH"
+			}
+		},
+		"classselection": {
+			"title": {
+				"EN": "What class are you?",
+				"translation": "Welke class wil je spelen?",
+				"LC": "WUT CLAS R U?"
+			},
+			"archer": {
+				"EN": "Precise and long ranged damage, chance on critical strike",
+				"translation": "Precizie en lange afstand, veel kans op critical strike",
+				"LC": "PRECIZE AN LONG RANGD DAMAGE, CHANCE ON CRITICAL STRIKE"
+			},
+			"knight": {
+				"EN": "Tanky class with close combat damage reduction",
+				"translation": "Tanky class met korte afstand damage vermindering",
+				"LC": "TANKY CLAS WIF CLOSE COMBAT DAMAGE REDUCSHUN"
+			},
+			"mage": {
+				"EN": "Long ranged average damage class with epic items",
+				"translation": "Normale lange afstands class met epische items",
+				"LC": "LONG RANGD AVERAGE DAMAGE CLAS WIF EPIC ITEMS"
+			},
+			"thief": {
+				"EN": "The most risky class with close ranged high damage",
+				"translation": "De meest risico volle class met hoge korte afstand damage",
+				"LC": "TEH MOST RISKY CLAS WIF CLOSE RANGD HIGH DAMAGE"
+			}
+		},
+		"setupdone": {
+			"title": {
+				"EN": "Great, enjoy your stay!",
+				"translation": "Geweldig, veel prezier verder!",
+				"LC": "GR8, ENJOY UR STAY!"
+			},
+			"footer": {
+				"EN": "Use {}tutorial if you feel lost.",
+				"translation": "Gebruik {}tutorial als je niet weet wat te doen.",
+				"LC": "USE {}TUTORIAL IF U FEELZ LOST."
+			}
+		},
+		"travel": {
+			"author": {
+				"EN": "Where would you like to travel?",
+				"translation": "Waar wil je naar toe reizen?",
+				"LC": "WER WUD U LIEK 2 TRAVEL?"
+			},
+			"title": {
+				"EN": "Type a location number in the chat.",
+				"translation": "Typ het nummer van de locatie in de chat.",
+				"LC": "TYPE LOCASHUN NUMBR IN DA CHAT."
+			},
+			"footer": {
+				"EN": "You can unlock new locations by leveling up!",
+				"translation": "Je kan nieuwe locaties ontdekken als je een hoger level hebt!",
+				"LC": "U CAN UtranslationOCK NEW LOCASHUNS BY LEVELIN UP!"
+			},
+			"alreadyat": {
+				"EN": "You're already at {}!",
+				"translation": "Je bent al in {}!",
+				"LC": "URE ALREADY AT {}!"
+			},
+			"traveling": {
+				"EN": "Traveling to {}...",
+				"translation": "Aan het reizen naar {}...",
+				"LC": "TRAVELIN 2 {}..."
+			},
+			"arrived": {
+				"EN": "You have arrived at {}",
+				"translation": "Je bent aangekomen in {}",
+				"LC": "U HAS ARRIVD AT {}"
+			}
+		},
+		"crate": {
+			"nocrates": {
+				"EN": "<:Crate:639425690072252426> You don't have any crates!",
+				"translation": "<:Crate:639425690072252426> Je hebt geen crates!",
+				"LC": "<:Crate:639425690072252426> U DOAN HAS ANY CRATEZ!"
+			},
+			"nokeys": {
+				"EN": "<:Key:573780034355986432> You don't have any keys!",
+				"translation": "<:Key:573780034355986432> Je hebt geen keys!",
+				"LC": "<:Key:573780034355986432> U DOAN HAS ANY KEYS!"
+			},
+			"opening": {
+				"EN": "<:Crate:639425690072252426><:Key:573780034355986432> {} opens a crate...",
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} opent een crate...",
+				"LC": "<:Crate:639425690072252426><:Key:573780034355986432> {} OPENS CRATE..."
+			},
+			"legendary": {
+				"title": {
+					"EN": ":sparkles: LEGENDARY! :sparkles:",
+					"translation": ":sparkles: LEGENDARY! :sparkles:",
+					"LC": ":sparkles: LEGENDARY! :sparkles:"
+				},
+				"description": {
+					"EN": "You found the **legendary {}!**",
+					"translation": "Je hebt en **legendary {}** gevonden!",
+					"LC": "U FINDZ TEH **LEGENDARY {}!**"
+				}
+			},
+			"rare": {
+				"title": {
+					"EN": ":sparkles: RARE! :sparkles:",
+					"translation": ":sparkles: RARE! :sparkles:",
+					"LC": ":sparkles: RARE! :sparkles:"
+				},
+				"description": {
+					"EN": "You found the **rare {}!**",
+					"translation": "Je hebt en **rare {}** gevonden!",
+					"LC": "U FINDZ TEH **RARE {}!**"
+				}	
+			},
+			"uncommon": {
+				"title": {
+					"EN": ":sparkles: UNCOMMON! :sparkles:",
+					"translation": ":sparkles: UNCOMMON! :sparkles:",
+					"LC": ":sparkles: UNCOMMON! :sparkles:"
+				},
+				"description": {
+					"EN": "You found the **uncommon {}!**",
+					"translation": "Je hebt en **uncommon {}** gevonden!",
+					"LC": "U FINDZ TEH **UNCOMMON {}!**"
+				}	
+			},
+			"common": {
+				"title": {
+					"EN": ":sparkles: COMMON! :sparkles:",
+					"translation": ":sparkles: COMMON! :sparkles:",
+					"LC": ":sparkles: COMMON! :sparkles:"
+				},
+				"description": {
+					"EN": "You found the **common {}!**",
+					"translation": "Je hebt en **common {}** gevonden!",
+					"LC": "U FINDZ TEH **COMMON {}!**"
+				}	
+			}
+		},
+		"equip": {
+			"itemnotexist": {
+				"EN": "<:Solyx:560809141766193152> **| That item doesn't exist!**",
+				"translation": "<:Solyx:560809141766193152> **| Item bestaat niet!**",
+				"LC": "<:Solyx:560809141766193152> **| DAT ITEM DOESNT EXIST!**"
+			},
+			"noiteminslot": {
+				"EN": "<:Solyx:560809141766193152> **| No item in this slot...**",
+				"translation": "<:Solyx:560809141766193152> **| Je hebt geen item in dit nummber...**",
+				"LC": "<:Solyx:560809141766193152> **| NO ITEM IN DIS SLOT...**"
+			},
+			"cantsword": {
+				"EN": "The {} class can't equip swords.",
+				"translation": "De {} class kan geen zwaarden gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP SWORDZ."
+			},
+			"cantbow": {
+				"EN": "The {} class can't equip bows.",
+				"translation": "De {} class kan geen bogen gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP BOWS."
+			},
+			"cantstaff": {
+				"EN": "The {} class can't equip staffs.",
+				"translation": "De {} class kan geen staffen gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP STAFFS."
+			},
+			"cantmace": {
+				"EN": "The {} class can't equip maces.",
+				"translation": "De {} class kan geen maces gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP MACEZ."
+			},
+			"cantdagger": {
+				"EN": "The {} class can't equip daggers.",
+				"translation": "De {} class kan geen daggers gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP DAGGERS."
+			},
+			"cantgun": {
+				"EN": "The {} class can't equip guns.",
+				"translation": "De {} class kan geen geweren gebruiken.",
+				"LC": "TEH {} CLAS CANT EQUIP GUNS."
+			},
+			"equipped": {
+				"EN": "Item Equipped:",
+				"translation": "Item geselecteerd:",
+				"LC": "ITEM EQUIPPD:"
+			}
+		},
+		"reforge": {
+			"itemnotexist": {
+				"EN": "<:Solyx:560809141766193152> **| That item doesn't exist!**",
+				"translation": "<:Solyx:560809141766193152> **| Item bestaat niet!**",
+				"LC": "<:Solyx:560809141766193152> **| DAT ITEM DOESNT EXIST!**"
+			},
+			"noiteminslot": {
+				"EN": "<:Solyx:560809141766193152> **| No item in this slot...**",
+				"translation": "<:Solyx:560809141766193152> **| Je hebt geen item in dit nummber...**",
+				"LC": "<:Solyx:560809141766193152> **| NO ITEM IN DIS SLOT...**"
+			},
+			"confirmation": {
+				"title": {
+					"EN": "Are you sure you want to reforge this item?",
+					"translation": "Ben je zeker dat je wilt reforgen?",
+					"LC": "R U SURE U WANTS 2 REFORGE DIS ITEM?"
+				},
+				"description": {
+					"EN": "**Name:** {}\n**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n**This will cost {}**<:Gold:639484869809930251>",
+					"translation": "**Naam:** {}\n**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n**Dit zal {}<:Gold:639484869809930251> kosten**",
+					"LC": "**NAYM:** {}\n**RARITIE:** {}\n**REFINEMNT:** {}\n**TYPE:** {}\n**STATZ:** {}-{}\n**THIZ WIL COSTED {}**<:Gold:639484869809930251>"
+				}
+			}
+		},
+		"checkin": {
+			"success": {
+				"title": {
+					"EN": "Daily Gold",
+					"translation": "Dagelijkse Gold",
+					"LC": "DAILEH GOLD"
+				}
+			},
+			"failed": {
+				"title": {
+					"EN": "You can't claim your daily reward yet!",
+					"translation": "Je kan je dagelijkse beloning not niet claimen!",
+					"LC": "U CANT CLAIM UR DAILEH REWARD YET!"
+				},
+				"description": {
+					"EN": ":clock1: Time left:\n{} Hours, {} Minutes, and {} Seconds",
+					"translation": ":clock1: Tijd over:\n{} Uur, {} Minuten, en {} Seconden",
+					"LC": ":clock1: TIME LEVED:\n{} HOURZ, {} MINUTEZ, en {} SECNDZ"
+				}
+			}
+		},
+		"vote": {
+			"reminder": {
+				"EN": "React ⏰ to set a vote reminder!",
+				"translation": "Reageer ⏰ om een vote herinnering te zetten!",
+				"LC": "REECT ⏰ TO SYT VOTE REMINDR!"
+			},
+			"canvote": {
+				"title": {
+					"EN": "Vote for Solyx!",
+					"translation": "Vote voor Solyx!",
+					"LC": "VOTE FR SOLYX!"
+				},
+				"description": {
+					"EN": "You can vote for me by clicking [here](https://solyx.xyz/vote)!",
+					"translation": "Je kan voten door [hier](https://solyx.xyz/vote) te klikken!",
+					"LC": "U CAN VOTE FR ME BY CLICKN [HER](https://solyx.xyz/vote)!"
+				},
+				"footer": {
+					"EN": "Use {}vote again to claim your reward.",
+					"translation": "Gebruik {}vote opnieuw om je reward te claimen.",
+					"LC": "US {}VOTE AGN TO CLAIM UR REWRD."
+				}
+			},
+			"cooldown": {
+				"title": {
+					"EN": "You can't vote yet!",
+					"translation": "Je kan nog niet voten!",
+					"LC": "YOU CANT VOTE YET"
+					},
+				"description": {
+					"EN": ":clock1: Time left:\n{} Hours, {} Minutes, and {} Seconds",
+					"translation": ":clock1: Tijd over:\n{} Uur, {} Minuten, and {} Seconden",
+					"LC": ":clock1: TIME LEVED:\n{} HOURZ, {} MINUTEZ, en {} SECNDZ"
+				}
+			}
+		},
+		"heal": {
+			"inbattle": {
+				"EN": "<:Solyx:560809141766193152> | You can't heal in battle!",
+				"translation": "<:Solyx:560809141766193152> | Je kan niet healen terwijl je in battle bent!",
+				"LC": "<:Solyx:560809141766193152> | U CANT HEEL IN BATTI!"
+			},
+			"fullhp": {
+				"EN": "<:Solyx:560809141766193152> | You already have 100 HP!",
+				"translation": "<:Solyx:560809141766193152> | Je hebt al 100 HP!",
+				"LC": "<:Solyx:560809141766193152> | U ALREEDY HAZ 100 HP!"
+			},
+			"healed": {
+				"EN": "You used a health potion",
+				"translation": "Je hebt een healing potion gebruikt",
+				"LC": "U USD HEELTH POSHUN"
+			},
+			"nopotions": {
+				"EN": "<:Solyx:560809141766193152> | You don't have any healing potions!",
+				"translation": "<:Solyx:560809141766193152> | Je hebt geen healing potions!",
+				"LC": "<:Solyx:560809141766193152> | U DONT HAZ ANY HEELIN POTIONZ!"
+			}
+		},
+		"health": {
+			"author": {
+				"EN": "{}'s Health",
+				"translation": "{}'s Levens",
+				"LC": "{}'s HEELTH"
+			},
+			"footer": {
+				"EN": "Use '{}hp buy' to buy healing potions",
+				"translation": "Gebruik '{}hp buy' om healing potions te kopen",
+				"LC": "US '{}HP BUY' TO BUY HEELIN POTIONZ"
+			},
+			"negative": {
+				"EN": "You can't buy negative amounts!",
+				"translation": "Je kan geen negatieve hoeveelheden kopen!",
+				"LC": "U CANT BUY NEGATIF IMOUNTZ!"
+			},
+			"needgold": {
+				"EN": "You need {} more <:Gold:639484869809930251> for {}<:HealingPotion:573577125064605706>",
+				"translation": "Je hebt {} extra <:Gold:639484869809930251> nodig voor {}<:HealingPotion:573577125064605706>",
+				"LC": "U ND {} EXTRA <:Gold:639484869809930251> FR {}<:HealingPotion:573577125064605706>"
+			},
+			"bought": {
+				"EN": "You bought {}<:HealingPotion:573577125064605706> for {}<:Gold:639484869809930251>",
+				"translation": "Je hebt {}<:HealingPotion:573577125064605706> gekocht voor {}<:Gold:639484869809930251>",
+				"LC": "U BUYED {}<:HealingPotion:573577125064605706> FR {}<:Gold:639484869809930251>"
+			}
+		},
+		"title": {
+			"notitles": {
+				"EN": "You don't have any titles!",
+				"translation": "Je hebt geen titles!",
+				"LC": "U DONT HAZ ANY TITLEZ!"
+			},
+			"select": {
+				"title": {
+					"EN": "What title you like to select?",
+					"translation": "Welke title wil je selecteren?",
+					"LC": "WAT TITL U LIEK TO SELECT?"
+				},
+				"footer": {
+					"EN": "This is case sensitive.",
+					"translation": "Dit is hoofdlettergevoelig.",
+					"LC": "THIZ R CASE SENSITIF."
+				}
+			},
+			"selected": {
+				"EN": "Title selected:",
+				"translation": "Titel geselecteerd:",
+				"LC": "TITL SELECTD:"
+			}
+		},
+		"sell": {
+			"wood": {
+				"sold": {
+					"title": {
+						"EN": "Sold!",
+						"translation": "Verkocht!",
+						"LC": "SELLED!"
+					},
+					"description": {
+						"EN": "You sold {}<:Wood:573574660185260042> for {}<:Gold:639484869809930251>!",
+						"translation": "Je hebt {}<:Wood:573574660185260042> verkocht voor {}<:Gold:639484869809930251>!",
+						"LC": "U SELLED {}<:Wood:573574660185260042> FR {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"EN": "You don't have enough <:Wood:573574660185260042>!",
+					"translation": "Je hebt niet genoeg <:Wood:573574660185260042>!",
+					"LC": "U DONT HAZ INOO <:Wood:573574660185260042>!"
+				}
+			},
+			"stone": {
+				"sold": {
+					"title": {
+						"EN": "Sold!",
+						"translation": "Verkocht!",
+						"LC": "SELLED!"
+					},
+					"description": {
+						"EN": "You sold {}<:Stone:573574662525550593> for {}<:Gold:639484869809930251>!",
+						"translation": "Je hebt {}<:Stone:573574662525550593> verkocht voor {}<:Gold:639484869809930251>!",
+						"LC": "U SELLED {}<:Stone:573574662525550593> FR {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"EN": "You don't have enough <:Stone:573574662525550593>!",
+					"translation": "Je hebt niet genoeg <:Stone:573574662525550593>!",
+					"LC": "U DONT HAZ INOO <:Stone:573574662525550593>!"
+				}
+			},
+			"metal": {
+				"sold": {
+					"title": {
+						"EN": "Sold!",
+						"translation": "Verkocht!",
+						"LC": "SELLED!"
+					},
+					"description": {
+						"EN": "You sold {}<:Metal:573574661108006915> for {}<:Gold:639484869809930251>!",
+						"translation": "Je hebt {}<:Metal:573574661108006915> verkocht voor {}<:Gold:639484869809930251>!",
+						"LC": "U SELLED {}<:Metal:573574661108006915> FR {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"EN": "You don't have enough <:Metal:573574661108006915>!",
+					"translation": "Je hebt niet genoeg <:Metal:573574661108006915>!",
+					"LC": "U DONT HAZ INOO <:Metal:573574661108006915>!"
+				}
+			}
+		},
+		"tutorial": {
+			"author": {
+				"EN": "Welcome to Solyx!",
+				"translation": "Welkom bij Solyx!",
+				"translation": "WELCOME TO SOLYX!"
+			},
+			"description": {
+				"EN": "• To start playing, use `{0}begin`. The bot will ask you a few very important questions that will influence the rest of your journey. You can use this command again if you ever want to restart.\n\n• Type `{0}fight` to start your first fight. You will only have one skill to begin with. You learn more skills as you level up.\n\n• If you are low on health, use `{0}rest` to gain a bit of health or `{0}heal` to consume a healing potion.\n\n• To buy and sell items, type `{0}market`. You can buy all kinds of items there. You can buy health potions using `{0}buy hp`.",
+				"translation": "• Gebruik `{0}begin` om te starten met spelen. De bot zal je een paar heel belangrijke vragen stellen die de rest van je spel zullen beïnvloeden. Je kan dit command altijd opnieuw gebruiken als je wilt herbeginnen.\n\n• Typ `{0}fight` om je eerste gevecht te starten. Je zal maar een skill hebben om mee te beginnen. Je leert meer skills als je een hoger level bent.\n\n• Als je weinig HP hebt kan je `{0}rest` om een beetje HP terug te krijgen of je kan `{0}heal` gebruiken om een healing potion te gebruiken.\n\n• Je kan items kopen en verkopen door de `{0}market` command. Je kan allerlij items kopen daar. Je kan healing potions kopen door `{0}buy hp` te gebruiken.",
+				"LC": "• To start playing, use `{0}begin`. The bot will ask you a few very important questions that will influence the rest of your journey. You can use this command again if you ever want to restart.\n\n• Type `{0}fight` to start your first fight. You will only have one skill to begin with. You learn more skills as you level up.\n\n• If you are low on health, use `{0}rest` to gain a bit of health or `{0}heal` to consume a healing potion.\n\n• To buy and sell items, type `{0}market`. You can buy all kinds of items there. You can buy health potions using `{0}buy hp`."
+			},
+			"footer": {
+				"EN": "Enjoy!",
+				"translation": "Veel prezier!",
+				"LC": "INJOI!"
+			}
+		}
+	},
+	"fight": {
+		"nohp": {
+			"EN": "<:Solyx:560809141766193152> | You can't fight with 0 HP!",
+			"translation": "<:Solyx:560809141766193152> | Je kan niet vechten met 0 HP!",
+			"LC": "<:Solyx:560809141766193152> | U CANT FITE WIF 0 HP!"
+		},
+		"wander": {
+			"title": {
+				"EN": "You wandered around {} and found\n{}",
+				"translation": "Je liep ron in {} en vond\n{}",
+				"LC": "U WANDERD AROUN {} AN FINDED\n{}"
+			},
+			"description": {
+				"EN": "Would you like to fight it?",
+				"translation": "Wil je er tegen vechten?",
+				"LC": "WOULD U LIEK TO FITE IT?"
+			},
+			"run": {
+				"run1": {
+					"EN": ":runner: **| Coward!**",
+					"translation": ":runner: **| Watje!**",
+					"LC": ":runner: **| COWARD!**"
+				},
+				"run2": {
+					"EN": ":runner: **| You flee as you cower in fear...**",
+					"translation": ":runner: **| Je rent weg en verkrimpt van angst...**",
+					"LC": ":runner: **| U FL AZ U COWR IN FER...**"
+				},
+				"run3": {
+					"EN": ":runner: **| Why are you running?**",
+					"translation": ":runner: **| Waarom ben je weg aan het rennen?**",
+					"LC": ":runner: **| U IZ U RUNNIN?**"
+				},
+				"run4": {
+					"EN": ":runner: **| Maybe next time.**",
+					"translation": ":runner: **| Misschien de volgene keer.**",
+					"LC": ":runner: **| MAYB NEXT TIEM.**"
+				},
+				"run5": {
+					"EN": ":runner: **| Did you forget your weapon?**",
+					"translation": ":runner: **| Ben je je wapen vergeten?**",
+					"LC": ":runner: **| DOED U FORGET UR WEEPON?**"
+				}
+			}
+		},
+		"skill": {
+			"author": {
+				"EN": "What skill would you like to use?",
+				"translation": "Welke skill wil je gebruiken?",
+				"LC": "WAT SKIL WOULD U LIEK TO US?"
+			},
+			"title": {
+				"EN": "Choose one:",
+				"translation": "Kies er een:",
+				"LC": "CHOOSED ONE:"
+			}
+		},
+		"fight": {
+			"fightmsg1" : {
+				"EN": "{} has {} HP\n{} has {} HP",
+				"translation": "{} heeft {} HP\n{} heeft {} HP",
+				"LC": "{} HWZ {} HP\n{} HAZ {} HP"
+			},
+			"fightmsg2" : {
+				"EN": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n",
+				"translation": "{} heeft {} HP\n{} heeft {} HP\n\n**{} raakt {} voor {} damage**\n",
+				"LC": "{} HAZ {} HP\n{} HAZ {} HP\n\n**{} HITZ {} FR {} DAMAGE**\n"
+			},
+			"fightmsg3" : {
+				"EN": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**",
+				"translation": "{} heeft {} HP\n{} heeft {} HP\n\n**{} raakt {} voor {} damage**\n**{} gebruikt {} en raakt voor {} damage**",
+				"LC": "{} HAZ {} HP\n{} HAZ {} HP\n\n**{} HITZ {} FR {} DAMAGE**\n**{} USZ {} AN HITZ FR {} DAMAGE**"
+			},
+			"fightmsg4" : {
+				"EN": "{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left",
+				"translation": "{} heeft {} HP\n{} heeft {} HP\n\n**{} raakt {} voor {} damage**\n**{} gebruikt {} en raakt voor {} damage**\n\n{} heeft {} HP over\n{} heeft {} HP over",
+				"LC": "{} HAZ {} HP\n{} HAZ {} HP\n\n**{} HITZ {} FR {} DAMAGE**\n**{} USZ {} AN HITZ FR {} DAMAGE**\n\n{} HAZ {} HP LEF\n{} HAZ {} HP LEF"
+			}
+		},
+		"bothdied": {
+			"EN": ":skull: You both died!\n<:Gold:639484869809930251> {} lost {} gold.",
+			"translation": ":skull: Jullie zijn beide dood gegaan!\n<:Gold:639484869809930251> {} is {} gold verloren.",
+			"LC": ":skull: U BOTH DIEDED!\n<:Gold:639484869809930251> {} LOSS {} GOLD."
+		},
+		"playerdied": {
+			"EN": ":skull: {} killed {}\n<:Gold:639484869809930251> {} lost {} gold",
+			"translation": ":skull: {} heeft {} gedood\n<:Gold:639484869809930251> {} is {} gold verloren",
+			"LC": ":skull: {} HAZ KILLEDED {}\n<:Gold:639484869809930251> {} LOSS {} GOLD"
+		},
+		"enemydied": {
+			"EN": ":dagger: {} killed the {}\n<:Gold:639484869809930251> {} gained {} gold\n:sparkles: {} gained {} experience",
+			"translation": ":dagger: {} heeft de {} gedood\n<:Gold:639484869809930251> {} heeft {} gold gekregen\n:sparkles: {} heeft {} experience gekregen",
+			"LC": ":dagger: {} KILLEDED THE {}\n<:Gold:639484869809930251> {} GAINEDED {} GOLD\n:sparkles: {} GAINEDED {} EXPERIENS"
+		},
+		"crate": {
+			"EN": "<:Crate:639425690072252426> **{} obtained a crate!**",
+			"translation": "<:Crate:639425690072252426> **{} heeft een crate gevonden!**",
+			"LC": "<:Crate:639425690072252426> **{} OBTAIN CRATE!**"
+		},
+		"key": {
+			"EN": "<:Key:573780034355986432> **{} obtained a key!**",
+			"translation": "<:Key:573780034355986432> **{} heeft een key gevonden!**",
+			"LC": "<:Key:573780034355986432> **{} OBTAN KEI!**"
+		},
+		"battle": {
+			"iets": {
+				"EN": "",
+				"translation": "",
+				"LC": ""
+			},
+			"iets": {
+				"EN": "",
+				"translation": "",
+				"LC": ""
+			}
+		}
+	},
+	"market": {
+		"sell": {
+			"noitem": {
+				"EN": "<:Solyx:560809141766193152> **| No item in this slot...**",
+				"translation": "<:Solyx:560809141766193152> **| Geen item in deze slot...**",
+				"LC": "<:Solyx:560809141766193152> **| NO ITEM IN THIZ SLOT...**"
+			},
+			"pricecheck": {
+				"basicmin": {
+					"EN": "<:Solyx:560809141766193152> **| The minimum price for basic items is 1000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De minimum prijs voor basic items is 1000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MINIMUM PRIS FR BASIC ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"basicmax": {
+					"EN": "<:Solyx:560809141766193152> **| The maximum price for basic items is 5000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De maximum prijs voor basic items is 5000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MAXIMUM PRIS FR BASIC ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"commonmin": {
+					"EN": "<:Solyx:560809141766193152> **| The minimum price for common items is 1000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De minimum prijs voor common items is 1000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MINIMUM PRIS FR COMMON ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"commonmax": {
+					"EN": "<:Solyx:560809141766193152> **| The maximum price for common items is 10000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De maximum prijs voor common items is 10000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MAXIMUM PRIS FR COMMON ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"raremin": {
+					"EN": "<:Solyx:560809141766193152> **| The minimum price for rare items is 5000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De minimum prijs voor rare items is 5000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MINIMUM PRIS FR RARE ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"raremax": {
+					"EN": "<:Solyx:560809141766193152> **| The maximum price for rare items is 50000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De maximum prijs voor rare items is 50000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MAXIMUM PRIS FR RARE ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"legendarymin": {
+					"EN": "<:Solyx:560809141766193152> **| The minimum price for legendary items is 10000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De minimum prijs voor legendary items is 10000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MINIMUM PRIS FR LEGENDARY ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"legendarymax": {
+					"EN": "<:Solyx:560809141766193152> **| The maximum price for legendary items is 500000<:Gold:639484869809930251>.**",
+					"translation": "<:Solyx:560809141766193152> **| De maximum prijs voor legendary items is 500000<:Gold:639484869809930251>.**",
+					"LC": "<:Solyx:560809141766193152> **| TEH MAXIMUM PRIS FR LEGENDARY ITEMZ R 1000<:Gold:639484869809930251>.**"
+				},
+				"mythical": {
+					"EN": "<:Solyx:560809141766193152> **| Mythical items can't be sold.**",
+					"translation": "<:Solyx:560809141766193152> **| Mythical items kunnen niet verkocht worden.**",
+					"LC": "<:Solyx:560809141766193152> **| MYTHICAL ITEMZ CANT BE SOLLED.**"
+				}
+			},
+			"alreadylisted": {
+				"title": {
+					"EN": "You already have an item listed",
+					"translation": "Je bent al een item aan het verkopen",
+					"LC": "U ALREEDY HAZ AN ITEM LISTED"
+				},
+				"description": {
+					"EN": "By listing a new item you will delete the current item you have up for sale.\nDo you want to continue?",
+					"translation": "Door een nieuwe item te verkopen zal het item dat je nu aan het verkopen bent verwijderd worden.\nWill je verder gaan?",
+					"lc": "BY LISTIN NEW ITEM U WILL DEELETE TEH CURRNT ITEM U HAZ FR SAL\nU WANT TO CONTINUE?"
+				},
+				"value": {
+					"EN": "{} {} ({}) for {}<:Gold:639484869809930251>",
+					"translation": "{} {} ({}) voor {}<:Gold:639484869809930251>",
+					"LC": "{} {} ({}) FR {}<:Gold:639484869809930251>"
+				},
+				"footer": {
+					"EN": "Say yes/no",
+					"translation": "Zeg ja/nee",
+					"LC": "SAI YES/NO"
+				}
+			},
+			"listed": {
+				"title": {
+					"EN": "Item listed:",
+					"translation": "Item tekoop gezet:",
+					"LC": "ITEM LISTD:"
+				},
+				"description": {
+					"EN": "{} {} ({}) for {} <:Gold:639484869809930251>",
+					"translation": "{} {} ({}) voor {} <:Gold:639484869809930251>",
+					"LC": "{} {} ({}) FR {} <:Gold:639484869809930251>"
+				}
+			},
+			"notselling": {
+				"EN": "<:Solyx:560809141766193152>  | Alright, I will keep your item up for sale!",
+				"translation": "<:Solyx:560809141766193152>  | Ok, Ik zal je item tekoop laten staan!",
+				"LC": "<:Solyx:560809141766193152>  | ALRIGHT I WIL KEP UR ITEM UP FR SAL!"
+			}
+		}
+	},
+	"gather": {
+		"fish": {
+			"success": {
+				"EN": ":fishing_pole_and_fish: **| {}, you caught {}!**  +{}<:Gold:639484869809930251>",
+				"translation": ":fishing_pole_and_fish: **| {}, je hebt {} gevangen!**  +{}<:Gold:639484869809930251>",
+				"LC": ":fishing_pole_and_fish: **| {}, U CATCHED {}!**  +{}<:Gold:639484869809930251>"
+			},
+			"notenoughgold": {
+				"EN": "<:Solyx:560809141766193152> | You don't have enough gold to start fishing...",
+				"translation": "<:Solyx:560809141766193152> | Je hebt niet genoeg gold om te starten met vissen...",
+				"LC": "<:Solyx:560809141766193152> | U DONT HAZ INOO GOLD TO START FISHIN..."
+			},
+			"fail1": {
+				"EN": ":fishing_pole_and_fish: **| {}, your line broke when you caught {}!**  -{}<:Gold:639484869809930251>",
+				"translation": ":fishing_pole_and_fish: **| {}, je lijn is gebroken toen je {} ving!**  -{}<:Gold:639484869809930251>",
+				"LC": ":fishing_pole_and_fish: **| {}, UR LINE BREAKED WIN U CATCHED {}!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail2": {
+				"EN": ":fishing_pole_and_fish: **| {}, you caught {} but it pinched your nose!**  -{}<:Gold:639484869809930251>",
+				"translation": ":fishing_pole_and_fish: **| {}, je ving {} maar het heeft in je neus geknepen!**  -{}<:Gold:639484869809930251>",
+				"LC": ":fishing_pole_and_fish: **| {}, U CATCHED {} BUT IT PINCHD UR NOS!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail3": {
+				"EN": ":fishing_pole_and_fish: **| Uh-oh! {} failed to catch anything!**",
+				"translation": ":fishing_pole_and_fish: **| Uh-oh! {} je hebt niets kunnen vangen!**",
+				"LC": ":fishing_pole_and_fish: **| Uh-oh! {} FAILD TO CACH ANYFIN!**"
+			}
+		},
+		"mine": {
+			"success": {
+				"title": {
+					"EN": "<:Pickaxe:573574740640530471> You mined a rock!",
+					"translation": "<:Pickaxe:573574740640530471> Je hebt een steen gemijnd!",
+					"LC": "<:Pickaxe:573574740640530471> U MIND ROK!"
+				},
+				"description": {
+					"EN": "+{} Stone <:Stone:573574662525550593>\n+{} Metal <:Metal:573574661108006915>",
+					"translation": "+{} Stone <:Stone:573574662525550593>\n+{} Metal <:Metal:573574661108006915>",
+					"LC": "+{} ROK <:Stone:573574662525550593>\n+{} METL <:Metal:573574661108006915>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"EN": ":hourglass: You can't mine yet!",
+					"translation": ":hourglass: Je kan nog niet mijnen!",
+					"LC": ":hourglass: U CANT MINE YET!"
+				},
+				"description": {
+					"EN": "{} Minutes and {} seconds",
+					"translation": "{} Minuten and {} seconden",
+					"LC": "{} MINUTEZ AN {} SECONDZ"
+				}
+			}
+		},
+		"chop": {
+			"success": {
+				"title": {
+					"EN": "<:Axe:573574740220969007> You chopped a tree!",
+					"translation": "<:Axe:573574740220969007> Je hebt een boom omgehakt!",
+					"LC": "<:Axe:573574740220969007> U CHOPPD TRE!"
+				},
+				"description": {
+					"EN": "+{} Wood <:Wood:573574660185260042>",
+					"translation": "+{} Wood <:Wood:573574660185260042>",
+					"LC": "+{} WOD <:Wood:573574660185260042>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"EN": ":hourglass: You can't chop yet!",
+					"translation": ":hourglass: Je kan nog niet hakken!",
+					"LC": ":hourglass: U CANT CHOP YET!"
+				},
+				"description": {
+					"EN": "{} Minutes and {} seconds",
+					"translation": "{} Minuten and {} seconden",
+					"LC": "{} MINUTEZ AN {} SECONDZ"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,509 @@
+{
+	"general": {
+		"embedpermissions": {
+			"translation": "<:Solyx:560809141766193152> | Tolong beri kami izin untuk mengirimkan pesan tersemat."
+		},
+		"begin": {
+			"translation": "<:Solyx:560809141766193152> | Silahkan memulai karakter kamu dengan menggunakan `{}begin`"
+		},
+		"itemnotexist": {
+			"translation": "<:Solyx:560809141766193152> **| Item itu tidak ada!**"
+		},
+		"editmsgfail": {
+			"translation": "<:Solyx:560809141766193152> **| Tolong pastikan pesan kami tidak terhapus!**"
+		},
+		"fullinv": {
+			"translation": "<:Solyx:560809141766193152> **| Inventory kamu penuh!**"
+		}
+	},
+	"rpg": {
+		"restart": {
+			"translation": "<:Solyx:560809141766193152> **| Apakah kamu yakin kamu ingin mengulang dari awal, {}?**"
+		},
+		"yesrestart": {
+			"translation": "<:Solyx:560809141766193152> **| Kamu telah diatur ulang!**\nKamu sekarang dapat menggunakan `{}begin` lagi!"
+		},
+		"norestart": {
+			"translation": "<:Solyx:560809141766193152> **| Baiklah kalau begitu...**"
+		},
+		"raceselection": {
+			"title": {
+				"translation": "Selamat datang di Solyx!"
+			},
+			"description": {
+				"translation": "Bolehkah kami bertanya kamu ingin menjadi ras apa?"
+			},
+			"demon": {
+				"translation": "Makhluk jahat yang terbuat dari amarah murni"
+			},
+			"elf": {
+				"translation": "Makhluk mitos imut yang akan mengalahkan apa pun"
+			},
+			"human": {
+				"translation": "Ahli taktik yang cerdas, cepat, dan ulung"
+			},
+			"orc": {
+				"translation": "Makhluk barbar yang terbuat dari kekuatan murni"
+			}
+		},
+		"classselection": {
+			"title": {
+				"translation": "Kelas apakah kamu?"
+			},
+			"archer": {
+				"translation": "Damage yang tepat dalam jarah jauh, kesempatan untuk serangan kritis"
+			},
+			"knight": {
+				"translation": "Kelas tank dengan pengurangan damage untuk pertempuran jarak dekat"
+			},
+			"mage": {
+				"translation": "Kelas pertempuran jarak jauh dengan damage rata-rata dan item yang bagus"
+			},
+			"thief": {
+				"translation": "Kelas pertempuran jarak dekat yang paling berisiko dengan damage yang tinggi"
+			}
+		},
+		"setupdone": {
+			"title": {
+				"translation": "Bagus, semoga kamu menikmati permainan inii!"
+			},
+			"footer": {
+				"translation": "Gunakan {}tutorial jika kamu merasa tersesat."
+			}
+		},
+		"travel": {
+			"author": {
+				"translation": "Ke manakah kamu ingin berpergian?"
+			},
+			"title": {
+				"translation": "Ketikkan nomor lokasi dalam chat."
+			},
+			"footer": {
+				"translation": "Kamu dapat membuka lokasi baru dengan cara naik level!"
+			},
+			"alreadyat": {
+				"translation": "Kamu sudah berada di {}!"
+			},
+			"traveling": {
+				"translation": "Berpergian ke {}..."
+			},
+			"arrived": {
+				"translation": "Kamu telah sampai di {}"
+			}
+		},
+		"crate": {
+			"nocrates": {
+				"translation": "<:Crate:639425690072252426> Kamu tidak memiliki crate!"
+			},
+			"nokeys": {
+				"translation": "<:Key:573780034355986432> Kamu tidak memiliki key!"
+			},
+			"opening": {
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} sedang membuka crate..."
+			},
+			"legendary": {
+				"title": {
+					"translation": ":sparkles: LEGENDARY! :sparkles:"
+				},
+				"description": {
+					"translation": "Kamu menemukan **legendary {}!**"
+				}
+			},
+			"rare": {
+				"title": {
+					"translation": ":sparkles: RARE! :sparkles:"
+				},
+				"description": {
+					"translation": "Kamu menemukan **rare {}!**"
+				}
+			},
+			"uncommon": {
+				"title": {
+					"translation": ":sparkles: UNCOMMON! :sparkles:"
+				},
+				"description": {
+					"translation": "Kamu menemukan **uncommon {}!**"
+				}
+			},
+			"common": {
+				"title": {
+					"translation": ":sparkles: COMMON! :sparkles:"
+				},
+				"description": {
+					"translation": "Kamu menemukan **common {}!**"
+				}
+			}
+		},
+		"equip": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| Item itu tidak ada!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| Tidak ada item di slot ini...**"
+			},
+			"cantsword": {
+				"translation": "Kelas {} tidak dapat menggunakan swords."
+			},
+			"cantbow": {
+				"translation": "Kelas {} tidak dapat menggunakan bows."
+			},
+			"cantstaff": {
+				"translation": "Kelas {} tidak dapat menggunakan staffs."
+			},
+			"cantmace": {
+				"translation": "Kelas {} tidak dapat menggunakan maces."
+			},
+			"cantdagger": {
+				"translation": "Kelas {} tidak dapat menggunakan daggers."
+			},
+			"cantgun": {
+				"translation": "Kelas {} tidak dapat menggunakan guns."
+			},
+			"equipped": {
+				"translation": "Item Telah Terpasang:"
+			}
+		},
+		"reforge": {
+			"itemnotexist": {
+				"translation": "<:Solyx:560809141766193152> **| Item itu tidak ada!**"
+			},
+			"noiteminslot": {
+				"translation": "<:Solyx:560809141766193152> **| Tidak ada item di slot ini...**"
+			},
+			"confirmation": {
+				"title": {
+					"translation": "Apakah kamu yakin ingin membuat ulang item ini?"
+				},
+				"description": {
+					"translation": "**Nama:** {}\n**Rarity:** {}\n**Refinement:** {}\n**Tipe:** {}\n**Statistik:** {}-{}\n**Ini akan dikenakan biaya sebesar {}**<:Gold:639484869809930251>"
+				}
+			}
+		},
+		"checkin": {
+			"success": {
+				"title": {
+					"translation": "Gold Harian"
+				}
+			},
+			"failed": {
+				"title": {
+					"translation": "Kamu belum bisa mengklaim hadiah harian kamu!"
+				},
+				"description": {
+					"translation": ":clock1: Waktu yang tersisa:\n{} jam, {} menit, and {} detik"
+				}
+			}
+		},
+		"vote": {
+			"reminder": {
+				"translation": "Klik ⏰ untuk mengatur reminder!"
+			},
+			"canvote": {
+				"title": {
+					"translation": "Vote untuk Solyx!"
+				},
+				"description": {
+					"translation": "Kamu dapat vote untuk kami dengan cara mengklik [here](https://top.gg/bot/495928914045304847/vote)!"
+				},
+				"footer": {
+					"translation": "Gunakan {}vote lagi untuk mengklaim hadiah kamu."
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": "Kamu belum dapat vote sekarang!"
+				},
+				"description": {
+					"translation": ":clock1: Waktu yang tersisa:\n{} jam, {} menit, and {} detik"
+				}
+			}
+		},
+		"heal": {
+			"inbattle": {
+				"translation": "<:Solyx:560809141766193152> | Kamu tidak dapat menggunakan heal ketika sedang dalam battle!"
+			},
+			"fullhp": {
+				"translation": "<:Solyx:560809141766193152> | Kamu sudah memiliki 100 HP!"
+			},
+			"healed": {
+				"translation": "Kamu menggunakan sebuah health potion"
+			},
+			"nopotions": {
+				"translation": "<:Solyx:560809141766193152> | Kamu tidak memiliki healing potions!"
+			}
+		},
+		"health": {
+			"author": {
+				"translation": "{}'s Health"
+			},
+			"footer": {
+				"translation": "Gunakan '{}hp buy' untuk membeli healing potions"
+			},
+			"negative": {
+				"translation": "Kamu tidak dapat membeli dengan jumlah negatif!"
+			},
+			"needgold": {
+				"translation": "Kamu membutuhkan {} <:Gold:639484869809930251> lagi untuk {}<:HealingPotion:573577125064605706>"
+			},
+			"bought": {
+				"translation": "Kamu telah membeli {}<:HealingPotion:573577125064605706> dengan menggunakan {}<:Gold:639484869809930251>"
+			}
+		},
+		"title": {
+			"notitles": {
+				"translation": "Kamu tidak memiliki titles!"
+			},
+			"select": {
+				"title": {
+					"translation": "Title apa yang ingin kamu pilih?"
+				},
+				"footer": {
+					"translation": "This is case sensitive."
+				}
+			},
+			"selected": {
+				"translation": "Title yang terpilih:"
+			}
+		},
+		"sell": {
+			"wood": {
+				"sold": {
+					"title": {
+						"translation": "Terjual!"
+					},
+					"description": {
+						"translation": "Kamu menjual {}<:Wood:573574660185260042> untuk {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "Kamu tidak memiliki cukup <:Wood:573574660185260042>!"
+				}
+			},
+			"stone": {
+				"sold": {
+					"title": {
+						"translation": "Terjual!"
+					},
+					"description": {
+						"translation": "Kamu menjual {}<:Stone:573574662525550593> untuk {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "Kamu tidak memiliki cukup <:Stone:573574662525550593>!"
+				}
+			},
+			"metal": {
+				"sold": {
+					"title": {
+						"translation": "Terjual!"
+					},
+					"description": {
+						"translation": "Kamu menjual {}<:Metal:573574661108006915> untuk {}<:Gold:639484869809930251>!"
+					}
+				},
+				"notenough": {
+					"translation": "Kamu tidak memiliki cukup <:Metal:573574661108006915>!"
+				}
+			}
+		},
+		"tutorial": {
+			"author": {
+				"translation": "Selamat datang di Solyx!"
+			},
+			"description": {
+				"translation": "• Untuk mulai bermain, gunakan `{0} begin`. Bot akan menanyakan beberapa pertanyaan yang sangat penting yang akan mempengaruhi sisa perjalanan kamu. Kamu dapat menggunakan perintah ini lagi jika kamu ingin memulai kembali.\n\n• Ketik `{0}fight` untuk memulai pertarungan pertama kamu. Kamu hanya akan memiliki satu skill untuk memulai. Kamu dapat belajar lebih banyak skill tiap kali kamu naik level.\n\n• Jika health kamu rendah, gunakan `{0}rest` untuk mendapatkan sedikit health atau `{0}heal` untuk mengkonsumsi healing potion.\n\n• Untuk membeli dan menjual items, ketik `{0}market`. Kamu dapat membeli semua jenis barang di sana. Kamu dapat membeli ramuan kesehatan menggunakan `{0}buy hp`."
+			},
+			"footer": {
+				"translation": "Selamat menikmati!"
+			}
+		}
+	},
+	"fight": {
+		"nohp": {
+			"translation": "<:Solyx:560809141766193152> | Kamu tidak dapat bertarung dengan 0 HP!"
+		},
+		"wander": {
+			"title": {
+				"translation": "Kamu berkeliaran di sekitar {} dan menemukan\n{}"
+			},
+			"description": {
+				"translation": "Apakah kamu ingin melawannya?"
+			},
+			"run": {
+				"run1": {
+					"translation": ":runner: **| Pengecut!**"
+				},
+				"run2": {
+					"translation": ":runner: **| Kamu melarikan diri sambil meringkuk dalam ketakutan...**"
+				},
+				"run3": {
+					"translation": ":runner: **| Kenapa kamu lari?**"
+				},
+				"run4": {
+					"translation": ":runner: **| Mungkin lain kali.**"
+				},
+				"run5": {
+					"translation": ":runner: **| Apakah kamu melupakan weapon kamu?**"
+				}
+			}
+		},
+		"skill": {
+			"author": {
+				"translation": "Skill apa yang ingin kamu gunakan?"
+			},
+			"title": {
+				"translation": "Pilih satu:"
+			}
+		},
+		"fight": {
+			"fightmsg1": {
+				"translation": "{} mempunyai {} HP\n{} mempunyai {} HP"
+			},
+			"fightmsg2": {
+				"translation": "{} mempunyai {} HP\n{} mempunyai {} HP\n\n**{} melawan {} untuk {} damage**\n"
+			},
+			"fightmsg3": {
+				"translation": "{} mempunyai {} HP\n{} mempunyai {} HP\n\n**{} melawan {} untuk {} damage**\n**{} menggunakan {} and melawan for {} damage**"
+			},
+			"fightmsg4": {
+				"translation": "{} memiliki {} HP\n{} memiliki {} HP\n\n** {} hits {} untuk {} damage **\n** {} menggunakan {} dan hits untuk {} damage**\n\n{} memiliki {} HP yang tersisa\n{} memiliki {} HP yang tersisa"
+			}
+		},
+		"bothdied": {
+			"translation": ":skull: Anda berdua mati!\n<:Gold:639484869809930251> {} kehilangan {} gold."
+		},
+		"playerdied": {
+			"translation": ":skull: {} membunuh {}\n<:Gold:639484869809930251> {} kehilangan {} gold"
+		},
+		"enemydied": {
+			"translation": ":dagger: {} membunuh {}\n<:Gold:639484869809930251> {} memperoleh {} gold\n:sparkles: {} memperoleh {} exp"
+		},
+		"crate": {
+			"translation": "<:Crate:639425690072252426> **{} memperoleh sebuah crate!**"
+		},
+		"key": {
+			"translation": "<:Key:573780034355986432> **{} memperoleh sebuah key!**"
+		},
+		"battle": {
+			"iets": {
+				"translation": ""
+			}
+		}
+	},
+	"market": {
+		"sell": {
+			"noitem": {
+				"translation": "<:Solyx:560809141766193152> **| Tidak ada item di slot ini...**"
+			},
+			"pricecheck": {
+				"basicmin": {
+					"translation": "<:Solyx:560809141766193152> **| Harga minimum untuk basic items adalah 1000<:Gold:639484869809930251>.**"
+				},
+				"basicmax": {
+					"translation": "<:Solyx:560809141766193152> **| Harga maksimum untuk basic items adalah 5000<:Gold:639484869809930251>.**"
+				},
+				"commonmin": {
+					"translation": "<:Solyx:560809141766193152> **| Harga minimum untuk common items adalah 1000<:Gold:639484869809930251>.**"
+				},
+				"commonmax": {
+					"translation": "<:Solyx:560809141766193152> **| Harga maksimum untuk common items adalah 10000<:Gold:639484869809930251>.**"
+				},
+				"raremin": {
+					"translation": "<:Solyx:560809141766193152> **| Harga minimum untuk rare items adalah 5000<:Gold:639484869809930251>.**"
+				},
+				"raremax": {
+					"translation": "<:Solyx:560809141766193152> **| Harga maksimum untuk rare items adalah 50000<:Gold:639484869809930251>.**"
+				},
+				"legendarymin": {
+					"translation": "<:Solyx:560809141766193152> **| Harga minimum untuk legendary items adalah 10000<:Gold:639484869809930251>.**"
+				},
+				"legendarymax": {
+					"translation": "<:Solyx:560809141766193152> **| Harga maksimum untuk legendary items adalah 500000<:Gold:639484869809930251>.**"
+				},
+				"mythical": {
+					"translation": "<:Solyx:560809141766193152> **| Mythical items tidak dapat dijual.**"
+				}
+			},
+			"alreadylisted": {
+				"title": {
+					"translation": "Kamu sudah memiliki satu item yang terdaftar untuk dijual"
+				},
+				"description": {
+					"translation": "Dengan mencantumkan item baru, kamu akan menghapus item saat ini yang kamu miliki untuk dijual.\nApakah kamu ingin melanjutkan?"
+				},
+				"value": {
+					"translation": "{} {} ({}) untuk {}<:Gold:639484869809930251>"
+				},
+				"footer": {
+					"translation": "Katakan ya/tidak"
+				}
+			},
+			"listed": {
+				"title": {
+					"translation": "Item terdaftar:"
+				},
+				"description": {
+					"translation": "{} {} ({}) untuk {} <:Gold:639484869809930251>"
+				}
+			},
+			"notselling": {
+				"translation": "<:Solyx:560809141766193152>  | Baiklah, kami akan menyimpan item kamu untuk dijual!"
+			}
+		}
+	},
+	"gather": {
+		"fish": {
+			"success": {
+				"translation": ":fishing_pole_and_fish: **| {}, kamu menangkap {}!**  +{}<:Gold:639484869809930251>"
+			},
+			"notenoughgold": {
+				"translation": "<:Solyx:560809141766193152> | Kamu tidak memiliki gold yang cukup untuk mulai memancing..."
+			},
+			"fail1": {
+				"translation": ":fishing_pole_and_fish: **| {}, kamu memutuskan tali pancing ketika menangkap {}!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail2": {
+				"translation": ":fishing_pole_and_fish: **| {}, kamu menangkap {} tetapi ikan itu mencubit hidung kamu!**  -{}<:Gold:639484869809930251>"
+			},
+			"fail3": {
+				"translation": ":fishing_pole_and_fish: **| Uh-oh! {} gagal untuk menangkap apa pun!**"
+			}
+		},
+		"mine": {
+			"success": {
+				"title": {
+					"translation": "<:Pickaxe:573574740640530471> You menambang sebuah rock!"
+				},
+				"description": {
+					"translation": "+{} Stone <:Stone:573574662525550593>\n+{} Metal <:Metal:573574661108006915>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: You belum bisa menambang sekarang!"
+				},
+				"description": {
+					"translation": "{} menit dan {} detik"
+				}
+			}
+		},
+		"chop": {
+			"success": {
+				"title": {
+					"translation": "<:Axe:573574740220969007> Kamu menebang sebuah pohon!"
+				},
+				"description": {
+					"translation": "+{} Wood <:Wood:573574660185260042>"
+				}
+			},
+			"cooldown": {
+				"title": {
+					"translation": ":hourglass: You belum bisa menebang sekarang!"
+				},
+				"description": {
+					"translation": "{} menit dan {} detik"
+				}
+			}
+		}
+	}
+}
