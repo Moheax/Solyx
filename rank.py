@@ -1,26 +1,24 @@
 import discord
-import platform, asyncio, string, operator, textwrap
-import random
-import os, re, aiohttp
-from random import choice as randchoice
 from discord.ext import commands
-from cogs.rpgutils.db import db
-from cogs.rpgutils.defaults import serverdata, userdata
-from cogs.utils import checks
-from cogs.utils.chat_formatting import pagify
-from cogs.utils.dataIO import fileIO
-try:
-	from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
-except:
-	raise RuntimeError("Can't load pillow. Do 'pip3 install pillow'.")
-try:
-	import scipy
-	import scipy.misc
-	import scipy.cluster
-except:
-	pass
 
-class rank:
+
+import string
+import aiohttp
+import datetime
+import asyncio
+import random
+import operator
+from requests import Request, Session
+from random import choice as randchoice
+from time import time
+
+from utils.dataIO import fileIO
+from utils.db import db
+from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
+
+from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
+
+class rank(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 		self.session = aiohttp.ClientSession(loop=self.bot.loop)
@@ -38,13 +36,14 @@ class rank:
 			return
 		await self.draw_profile(user)
 		try:
-			await self.bot.send_typing(channel)
+			await ctx.trigger_typing()
 		except discord.HTTPException:
 			pass
 		try:
-			await self.bot.send_file(channel, 'data/RPG/{}_rank.png'.format(user.id), content='<:Solyx:560809141766193152> **| rank card for {}**'.format(user.mention), filename="Solyx.png")
+			#await self.bot.send_file(channel, 'data/RPGR/{}_rank.png'.format(user.id), content='<:Solyx:560809141766193152> **| rank card for {}**'.format(user.mention), filename="Solyx.png")
+			await channel.send(content='<:Solyx:560809141766193152> **| rank card for {}**'.format(user.mention),file=discord.File('data/RPGR/{}_rank.png'.format(user.id)))
 			try:
-				os.remove('data/RPG/{}_rank.png'.format(user.id))
+				os.remove('data/RPGR/{}_rank.png'.format(user.id))
 			except:
 				await self.bot.say("**ERROR | I can't send images here!**")
 			return
@@ -81,9 +80,9 @@ class rank:
 
 		async with self.session.get(bg_url) as r:
 			image = await r.content.read()
-		with open('data/RPG/{}_temp_rank_bg.png'.format(user.id),'wb') as f:
+		with open('data/RPGR/{}_temp_rank_bg.png'.format(user.id),'wb') as f:
 			f.write(image)
-		bg_image = Image.open('data/RPG/{}_temp_rank_bg.png'.format(user.id)).convert('RGBA')
+		bg_image = Image.open('data/RPGR/{}_temp_rank_bg.png'.format(user.id)).convert('RGBA')
 
 		# Canvas
 		bg_color = (255,255,255,0)
@@ -108,15 +107,15 @@ class rank:
 		whitefuq = "https://i.imgur.com/hmT9MoI.png"
 		async with self.session.get(whitefuq) as r:
 			image = await r.content.read()
-		with open('data/RPG/{}_temp_white.png'.format(user.id),'wb') as f:
+		with open('data/RPGR/{}_temp_white.png'.format(user.id),'wb') as f:
 			f.write(image)
-		whiteboy = Image.open('data/RPG/{}_temp_white.png'.format(user.id)).convert('RGBA')
+		whiteboy = Image.open('data/RPGR/{}_temp_white.png'.format(user.id)).convert('RGBA')
 		whiteboy = whiteboy.resize((900, 250), Image.ANTIALIAS)
 		whiteboy = self._add_corners(whiteboy, 20)
 
 		# EXP bar
 		barthiccness = 15
-		expbar = Image.open('data/RPG/{}_temp_white.png'.format(user.id)).convert('RGBA')
+		expbar = Image.open('data/RPGR/{}_temp_white.png'.format(user.id)).convert('RGBA')
 		expbar = expbar.resize((880, barthiccness), Image.ANTIALIAS)
 		if not userinfo["exp"] == 0 and not userinfo["lvl"] == 0:
 			expamt = int(880 * (userinfo["exp"]/((userinfo["lvl"] + 1) * 165)))
@@ -166,19 +165,19 @@ class rank:
 
 		# Final image
 		result = Image.alpha_composite(result, process)
-		result.save('data/RPG/{}_rank.png'.format(user.id),'PNG', quality=100)
+		result.save('data/RPGR/{}_rank.png'.format(user.id),'PNG', quality=100)
 
 		# Remove temp images
 		try:
-			os.remove('data/RPG/{}_temp_rank_bg.png'.format(user.id))
+			os.remove('data/RPGR/{}_temp_rank_bg.png'.format(user.id))
 		except:
 			pass
 		try:
-			os.remove('data/RPG/{}_temp_profile_profile.png'.format(user.id))
+			os.remove('data/RPGR/{}_temp_profile_profile.png'.format(user.id))
 		except:
 			pass
 		try:
-			os.remove('data/RPG/{}_temp_white.png'.format(user.id))
+			os.remove('data/RPGR/{}_temp_white.png'.format(user.id))
 		except:
 			pass
 
@@ -228,15 +227,15 @@ class rank:
 
 		for userinfo in db.users.find({}):
 			try:
-				userid = userinfo["_id"]
-				users.append((userid, userinfo["lvl"]))
-			except KeyError:
+				users.append((userinfo["_id"], userinfo["exp"]))
+			except:
 				pass
+
 		sorted_list = sorted(users, key=operator.itemgetter(1), reverse=True)
 
 		rank = 1
-		for stats in sorted_list:
-			if stats[0] == user.id:
+		for userdoc in sorted_list:
+			if userdoc[0] == user.id:
 				return rank
 			rank+=1
 
