@@ -7,7 +7,7 @@ import aiohttp
 import datetime
 import asyncio
 import random
-import operator
+
 from requests import Request, Session
 from random import choice as randchoice
 from time import time
@@ -50,6 +50,8 @@ class rank(commands.Cog):
 		except:
 			return
 		await asyncio.sleep(10)
+
+		print(user.name+"#"+user.discriminator,"checked their Rank")
 
 	async def draw_profile(self, user):
 
@@ -231,7 +233,7 @@ class rank(commands.Cog):
 			except:
 				pass
 
-		sorted_list = sorted(users, key=operator.itemgetter(1), reverse=True)
+		sorted_list = sorted(users,reverse=True)
 
 		rank = 1
 		for userdoc in sorted_list:
