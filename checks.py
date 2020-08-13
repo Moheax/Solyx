@@ -1,59 +1,89 @@
-import discord
-from discord.ext import commands, tasks
-from utils.db import db
-from utils.defaults import userdata
+from discord.ext import commands
+import discord.utils
+from __main__ import settings
 
-def staff(ctx):
-	userinfo = db.users.find_one({ "_id": ctx.author.id })
-	if not userinfo:
-			data = userdata(ctx.author.id)
-			db.users.insert_one(data)
-			return
-	return userinfo["role"] in ["Owner", "Developer", "Staff"]
+#
+# This is a modified version of checks.py, originally made by Rapptz
+#
+#				 https://github.com/Rapptz
+#		  https://github.com/Rapptz/RoboDanny/tree/async
+#
 
-def developer(ctx):
-	userinfo = db.users.find_one({ "_id": ctx.author.id })
-	if not userinfo:
-			data = userdata(ctx.author.id)
-			db.users.insert_one(data)
-			return
-	return userinfo["role"] in ["Owner", "Developer"]
+def is_owner_check(ctx):
+	_id = ctx.message.author.id
+	return _id == settings.owner or _id in ctx.bot.settings.co_owners
 
-def owner(ctx):
-	return ctx.author.id == 123468845749895170
+def is_owner():
+	return commands.check(is_owner_check)
 
-"""@commands.check(developer)
-# Check against your own function that returns those able to use your command
+# The permission system of the bot is based on a "just works" basis
+# You have permissions and the bot has permissions. If you meet the permissions
+# required to execute the command (and the bot does as well) then it goes through
+# and you can execute the command.
+# If these checks fail, then there are two fallbacks.
+# A role with the name of Bot Mod and a role with the name of Bot Admin.
+# Having these roles provides you access to certain commands without actually having
+# the permissions required for them.
+# Of course, the owner will always be able to execute commands.
 
-@commands.has_role("name") 
-# Check if member has a role with the name "name"
+def check_permissions(ctx, perms):
+	if is_owner_check(ctx):
+		return True
+	elif not perms:
+		return False
 
-@commands.bot_has_role("name") 
-# As above, but for the bot itself.
+	ch = ctx.message.channel
+	author = ctx.message.author
+	resolved = ch.permissions_for(author)
+	return all(getattr(resolved, name, None) == value for name, value in perms.items())
 
-@commands.has_any_role("role1","foo","bar") 
-# Check if user has any of the roles with the names "role1", "foo", or "bar"
+def role_or_permissions(ctx, check, **perms):
+	if check_permissions(ctx, perms):
+		return True
 
-@commands.bot_has_any_role("role1","foo","bar") 
-# As above, but for the bot itself
+	ch = ctx.message.channel
+	author = ctx.message.author
+	if ch.is_private:
+		return False # can't have roles in PMs
 
-@commands.has_permissions(**perms) 
-# Check if user has any of a list of passed permissions 
-#  e.g. ban_members=True administrator=True
+	role = discord.utils.find(check, author.roles)
+	return role is not None
 
-@commands.bot_has_permissions(**perms)
-# As above, but for the bot itself.
+def mod_or_permissions(**perms):
+	def predicate(ctx):
+		server = ctx.message.server
+		mod_role = settings.get_server_mod(server).lower()
+		admin_role = settings.get_server_admin(server).lower()
+		return role_or_permissions(ctx, lambda r: r.name.lower() in (mod_role,admin_role), **perms)
 
-from discord.ext.commands.cooldowns import BucketType
-@commands.cooldown(rate,per,BucketType) 
-# Limit how often a command can be used, (num per, seconds, BucketType)
-# BucketType can be BucketType.default, user, server, or channel
+	return commands.check(predicate)
 
-@commands.guild_only()
-# Rewrite Only: Command cannot be used in private messages. (Replaces no_pm=True)
+def admin_or_permissions(**perms):
+	def predicate(ctx):
+		server = ctx.message.server
+		admin_role = settings.get_server_admin(server)
+		return role_or_permissions(ctx, lambda r: r.name.lower() == admin_role.lower(), **perms)
 
-@commands.is_owner()
-# Rewrite Only: Command can only be used by the bot owner.
+	return commands.check(predicate)
 
-@commands.is_nsfw()
-# Rewrite Only: Command can only be used in NSFW channels"""
+def serverowner_or_permissions(**perms):
+	def predicate(ctx):
+		if ctx.message.server is None:
+			return False
+		server = ctx.message.server
+		owner = server.owner
+
+		if ctx.message.author.id == owner.id:
+			return True
+
+		return check_permissions(ctx,perms)
+	return commands.check(predicate)
+
+def serverowner():
+	return serverowner_or_permissions()
+
+def admin():
+	return admin_or_permissions()
+
+def mod():
+	return mod_or_permissions()
