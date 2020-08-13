@@ -51,7 +51,11 @@ class rank(commands.Cog):
 			return
 		await asyncio.sleep(10)
 
-		print(user.name+"#"+user.discriminator,"checked their Rank")
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"checked their Rank")
 
 	async def draw_profile(self, user):
 

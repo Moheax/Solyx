@@ -21,7 +21,7 @@ class vote(commands.Cog):
 		self.check_reminders.start()
 		self.reminders = fileIO("data/reminders/reminders.json", "load")
 
-# - - - Vote - - - its doing a big dumb and idk why pls help ;-;
+# - - - Vote - - - its doing a big dumb and idk why pls help ;-;	
 
 	@commands.group(no_pm=True, aliases=["claim"], invoke_without_command=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -33,7 +33,11 @@ class vote(commands.Cog):
 
 		user = ctx.message.author
 
-		print(user.name+"#"+user.discriminator,"Has tried to vote")
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has tried to vote")
 
 		server = ctx.guild
 		channel = ctx.channel

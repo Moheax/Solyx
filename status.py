@@ -26,7 +26,11 @@ class status(commands.Cog):
 
 		user = ctx.message.author
 
-		print(user.name+"#"+user.discriminator,"Has Checked their status")
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has Checked their status")
 
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })

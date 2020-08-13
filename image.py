@@ -7,6 +7,7 @@ import aiohttp
 import datetime
 import asyncio
 import random
+import operator
 from requests import Request, Session
 from random import choice as randchoice
 from time import time
@@ -48,7 +49,12 @@ class image(commands.Cog):
 			return
 		await asyncio.sleep(10)
 		
-		print(user.name+"#"+user.discriminator,"checked their profile")
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"checked their profile")
 	async def draw_profile(self, user):
 
 		default_avatar_url = str(user.avatar_url)
@@ -520,7 +526,7 @@ class image(commands.Cog):
 				users.append((userid, userinfo["lvl"]))
 			except KeyError:
 				pass
-		sorted_list = sorted(users, reverse=True)
+		sorted_list = sorted(users, key=operator.itemgetter(1), reverse=True)
 
 		rank = 1
 		for stats in sorted_list:

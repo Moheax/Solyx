@@ -50,6 +50,14 @@ class leaderboard(commands.Cog):
 	@commands.cooldown(2, 12, commands.BucketType.user)
 	async def playerslb(self, ctx, *options):
 		"""See the Solyx players leaderboard"""
+
+		user = ctx.message.author
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
+
 		users = []
 		user_stat = None
 		title = "Players Leaderboard\n"
@@ -92,7 +100,7 @@ class leaderboard(commands.Cog):
 				msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[1],20), str(single_user[2]))
 				rank += 1
 			else:
-				guildinfo = db.guilds.find_one({ "_id": "{}".format(single_user[0]) })
+				guildinfo = db.servers.find_one({ "_id": "{}".format(single_user[1]) })
 				guildtag = guildinfo["tag"]
 				if not 'None' in guildinfo["tag"]:
 					msg += u'{:<2}{:<2}|   [{}] **{:<22}** `Level: {}`\n'.format(rank, label, guildtag, self._truncate_text(single_user[1],20), str(single_user[2]))
@@ -134,6 +142,13 @@ class leaderboard(commands.Cog):
 	@leaderboard.command(name="guilds", aliases=["guild"])
 	@commands.cooldown(2, 12, commands.BucketType.user)
 	async def guildslb(self, ctx, *options):
+
+		user = ctx.message.author
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
 		"""See the Solyx guilds/guilds leaderboard"""
 		guilds = []
 		guild_exps = []

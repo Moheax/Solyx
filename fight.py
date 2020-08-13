@@ -139,7 +139,15 @@ class fight(commands.Cog):
 			except Exception as e:
 				print(e)
 				return
-		print(user.name+"#"+user.discriminator,"Has created a new charater")
+
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.namee+"#"+user.discriminator,"Has created a new charater")
+
+
 	async def check_answer(self, ctx, valid_options):
 		def pred(m):
 			return m.author == ctx.author and m.channel == ctx.channel
@@ -297,7 +305,16 @@ class fight(commands.Cog):
 
 		guild = ctx.guild
 		guildinfo = db.servers.find_one({ "_id": guild.id })
-		print(user.name+"#"+user.discriminator,"Started a fight")
+
+		
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Started a fight")
+
+
+
 		#IF PLAYER ISNT FIGHTING AN ENEMY, CHOOSE ONE BASED ON LOCATION
 		if userinfo["selected_enemy"] == "None":
 			if userinfo["location"] == "Golden Temple":

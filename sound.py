@@ -41,6 +41,12 @@ class sound(commands.Cog): # Make sure you have the sound stuff installed! pip i
 
 		user = ctx.author
 		userinfo = db.users.find_one({ "_id": user.id })
+			
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.namee+"#"+user.discriminator,"started listening to the radio!")
 		# Account check
 		#if userinfo["class"] == "None" and userinfo["race"] == "None":
 		#	await ctx.send("Start playing using {} kthx".format(ctx.prefix))

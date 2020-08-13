@@ -30,7 +30,12 @@ class travel(commands.Cog):
 		channel = ctx.message.channel
 		user  = ctx.message.author
 
-		print(user.name+"#"+user.discriminator,"Has Traveled")
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has Traveled")
 
 		userinfo = db.users.find_one({ "_id": user.id })
 

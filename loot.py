@@ -25,8 +25,12 @@ class loot(commands.Cog):
 	async def crate(self, ctx):
 
 		user = ctx.message.author
+						
+		now = datetime.datetime.now()
 
-		print(user.name+"#"+user.discriminator,"has tried opening a crate")
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has tried opening a crate")
 
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })

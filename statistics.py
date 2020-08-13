@@ -57,12 +57,18 @@ class statistics(commands.Cog):
 		"""Bot information"""
 		user = ctx.author
 		user = ctx.message.author
+				
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has opened info")
 
 		embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		embed.set_author(name="Solyx Info", icon_url=avatar)
 		embed.add_field(name="Developers", value="`Maxie#1212`", inline=False)
-		embed.add_field(name="Creator", value="`@Quintenvw#1337`", inline=False)
+		embed.add_field(name="Creator", value="`Quintenvw#1337`", inline=False)
 		embed.add_field(name="Library", value="Discord.py", inline=False)
 		try:
 			await ctx.send(embed=embed)
@@ -80,8 +86,12 @@ class statistics(commands.Cog):
 		user = ctx.message.author
 		message2 = await self.embed_statistics()
 		await ctx.send(embed=message2)
+		
+		now = datetime.datetime.now()
 
-		print(user.name+"#"+user.discriminator,"stared at statistics")
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"stared at statistics")
 
 	async def embed_statistics(self):
 		stats = self.retrieve_statistics()

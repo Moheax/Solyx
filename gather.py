@@ -1,6 +1,7 @@
 import discord
 import random
 import time
+import datetime
 from discord.ext import commands
 from random import choice as randchoice
 # from cogs.economy import NoAccount
@@ -50,11 +51,19 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def fish(self, ctx):
 
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
 		
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
-		
-		print(user.name+"#"+user.discriminator,"Has fished")
+	
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has fished")
+
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
@@ -88,7 +97,12 @@ class gather(commands.Cog):
 		user = ctx.message.author
 		guild = ctx.message.guild
 
-		print(user.name+"#"+user.discriminator,"Has mined")
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has mined")
 
 		mined_metal = random.randint(0, 2)
 		mined_rock = random.randint(1, 5)
@@ -133,7 +147,12 @@ class gather(commands.Cog):
 		user = ctx.message.author
 		guild = ctx.message.guild
 		
-		print(user.name+"#"+user.discriminator,"Has chopped wood")
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has chopped wood")
 
 		chopped = random.randint(1, 5)
 		userinfo = db.users.find_one({ "_id": user.id })

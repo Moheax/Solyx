@@ -234,6 +234,11 @@ class tutorial(commands.Cog):
 														return
 												return
 
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has done the tutorial")
 	async def check_tutorial_answer(self, user, channel, valid_options, time):
 		return
 

@@ -56,6 +56,13 @@ class general(commands.Cog):
 				await ctx.author.send(embed=em)
 			except:
 				return
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for help")
 
 	@commands.command()
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -70,6 +77,13 @@ class general(commands.Cog):
 				await ctx.author.send(embed=embed)
 			except:
 				return
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has checked the ping! pong!")
 
 	@commands.command()
 	@commands.check(owner)
@@ -90,6 +104,14 @@ class general(commands.Cog):
 				result = await result
 			await ctx.send('Result:\n```py\n{}\n```'.format(result))
 
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has checked python")
+
 	@commands.command()
 	@commands.check(developer)
 	async def sudo(self, ctx, user: discord.Member, *, command):
@@ -99,6 +121,14 @@ class general(commands.Cog):
 		new_msg.content = "-" + command
 		await self.bot.process_commands(new_msg)
 
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has TAKEN OVER A USER AAAH")
+
 	@commands.command()
 	@commands.guild_only()
 	@commands.check(owner)
@@ -106,6 +136,14 @@ class general(commands.Cog):
 		"""Leaves server"""
 		await ctx.send(":wave: Bye!")
 		await ctx.guild.leave()
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"has made the bot leave ;-;")
 
 	@commands.command(name="prefix")
 	@commands.guild_only()
@@ -156,6 +194,8 @@ class general(commands.Cog):
 		else:
 			await self.bot.change_presence(activity=None, status=current_status, afk=False)
 		await ctx.send(":pencil2: | Yes, I'm a streamer!")
+
+
 
 	@commands.group()
 	@commands.cooldown(1, 5, commands.BucketType.user)

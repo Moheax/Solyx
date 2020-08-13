@@ -38,7 +38,7 @@ class guild(commands.Cog):
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-
+			
 		msg = ""
 		if ctx.invoked_subcommand is None:
 			for x in ctx.command.all_commands:
