@@ -1,4 +1,5 @@
 import discord
+import datetime
 from discord.ext import commands
 
 import asyncio
@@ -15,7 +16,12 @@ class command(commands.Cog):
 
 
 		user = ctx.message.author
-		print(user.name+"#"+user.discriminator,"looked at commands")
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"looked at commands")
 
 		em = embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
 		em = embed.set_author(name="Solyx Commands:", icon_url=ctx.message.author.avatar_url)
