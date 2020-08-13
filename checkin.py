@@ -27,6 +27,14 @@ class checkin(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
+		
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+user.name+"#"+user.discriminator,"Has checked in")
+
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
