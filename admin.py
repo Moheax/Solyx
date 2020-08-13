@@ -70,8 +70,13 @@ class admin(commands.Cog):
 			await self.bot.send_message(channel, tosend)
 		except:
 			return
+		user = ctx.message.author
+		
+		now = datetime.datetime.now()
 
+		current_time = now.strftime("%H:%M:%S")
 
+		print(current_time+" | "+user.name+"#"+user.discriminator+"Has made me say something"+text)
 
 	@commands.command(pass_context=True, hidden=True)
 	@commands.check(developer)
