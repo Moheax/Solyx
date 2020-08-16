@@ -50,16 +50,19 @@ class equip(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _equip_weapon(self, ctx, number:int):
 
-
 		user = ctx.message.author
-		userinfo = db.users.find_one({ "_id": user.id })
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		userinfo = db.users.find_one({ "_id": user.id })
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has tried to equip a weapon!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip a weapon!")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -143,13 +146,20 @@ class equip(commands.Cog):
 		language = languageinfo["language"]
 
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -192,16 +202,20 @@ class equip(commands.Cog):
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def reforge(self, ctx, number:int):
-	
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
 
 		user = ctx.message.author
-		userinfo = db.users.find_one({ "_id": user.id })
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has reforged a item")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has reforged a item")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))

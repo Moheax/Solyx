@@ -56,14 +56,22 @@ class titles(commands.Cog):
 
 
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
+
 		titlesinfo = db.titles.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has tried to select a Title")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to select a Title")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -143,11 +151,17 @@ class titles(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has looked at the title list")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to select a Title")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))

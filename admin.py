@@ -67,16 +67,21 @@ class admin(commands.Cog):
 		channel = ctx.message.channel
 		tosend = "<:Solyx:560809141766193152> | " + text
 		try:
-			await self.bot.send_message(channel, tosend)
+			await ctx.send(channel, tosend)
 		except:
 			return
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-		
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator+"Has made me say something"+text)
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator+"Has made me say something"+text)
 
 	@commands.command(pass_context=True, hidden=True)
 	@commands.check(developer)

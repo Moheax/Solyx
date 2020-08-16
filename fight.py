@@ -141,11 +141,17 @@ class fight(commands.Cog):
 				return
 
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.namee+"#"+user.discriminator,"Has created a new charater")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has created a new charater")
 
 
 	async def check_answer(self, ctx, valid_options):
@@ -302,16 +308,20 @@ class fight(commands.Cog):
 		if userinfo["health"] <= 0:
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["fight"]["nohp"]["translation"])
 			return
-
 		guild = ctx.guild
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
-		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Started a fight")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Started a fight")
 
 
 

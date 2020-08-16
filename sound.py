@@ -10,6 +10,7 @@ import io
 import subprocess
 import nacl
 import logging
+import datetime
 
 from utils.dataIO import fileIO
 from utils.db import db
@@ -38,15 +39,19 @@ class sound(commands.Cog): # Make sure you have the sound stuff installed! pip i
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def radio(self, ctx):
 
-
-		user = ctx.author
-		userinfo = db.users.find_one({ "_id": user.id })
+		user = ctx.message.author
 			
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.namee+"#"+user.discriminator,"started listening to the radio!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"started listening to the radio!")
 		# Account check
 		#if userinfo["class"] == "None" and userinfo["race"] == "None":
 		#	await ctx.send("Start playing using {} kthx".format(ctx.prefix))
@@ -97,7 +102,7 @@ class sound(commands.Cog): # Make sure you have the sound stuff installed! pip i
 							return
 
 	async def radioplayer(self, ctx):
-		sound = randchoice(["data/music/BarovianCastle.mp3", "data/music/BeforeTheStorm.mp3", "data/music/CountryVillage.mp3", "data/music/CryHavoc.mp3", "data/music/MedievalFair.mp3", "data/music/MillTown.mp3", "data/music/RiverTown.mp3", "data/music/RoyalCourt.mp3", "data/music/Waterkeep.mp3", "data/music/WizardsTower.mp3"])
+		sound = randchoice(['data/music/BarovianCastle.mp3', 'data/music/BeforeTheStorm.mp3', 'data/music/CountryVillage.mp3', 'data/music/CryHavoc.mp3', 'data/music/MedievalFair.mp3', 'data/music/MillTown.mp3', 'data/music/RiverTown.mp3', 'data/music/RoyalCourt.mp3', 'data/music/Waterkeep.mp3', 'data/music/WizardsTower.mp3'])
 		guild = ctx.guild
 		if ctx.author.voice and ctx.author.voice.channel:
 			authorvc = ctx.author.voice.channel
@@ -124,7 +129,7 @@ class sound(commands.Cog): # Make sure you have the sound stuff installed! pip i
 					return
 			if not vc.is_playing():
 				try:
-					vc.play(discord.FFmpegPCMAudio(sound))
+					vc.play(discord.FFmpegPCMAudio('data/music/BarovianCastle.mp3'))
 					await asyncio.sleep(600)
 					vc.stop()
 					await self.radioplayer(ctx)

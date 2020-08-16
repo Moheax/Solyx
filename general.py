@@ -56,17 +56,36 @@ class general(commands.Cog):
 				await ctx.author.send(embed=em)
 			except:
 				return
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for help")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for help")
 
 	@commands.command()
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def ping(self, ctx):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has checked the ping! pong!")
+
+
 		embed = discord.Embed(description='{}ms'.format(round(self.bot.latency * 1000)), colour=0xfffffc)
 		embed.set_author(name="Pong!", icon_url=ctx.bot.user.avatar_url, url="https://solyx.xyz")
 		#embed.set_footer(text="Enjoy!")
@@ -77,13 +96,8 @@ class general(commands.Cog):
 				await ctx.author.send(embed=embed)
 			except:
 				return
-		user = ctx.message.author
 
-		now = datetime.datetime.now()
 
-		current_time = now.strftime("%H:%M:%S")
-
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has checked the ping! pong!")
 
 	@commands.command()
 	@commands.check(owner)
@@ -104,13 +118,17 @@ class general(commands.Cog):
 				result = await result
 			await ctx.send('Result:\n```py\n{}\n```'.format(result))
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has checked python")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has checked python")
 
 	@commands.command()
 	@commands.check(developer)
@@ -121,13 +139,17 @@ class general(commands.Cog):
 		new_msg.content = "-" + command
 		await self.bot.process_commands(new_msg)
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has TAKEN OVER A USER AAAH")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has TAKEN OVER A USER AAAH")
 
 	@commands.command()
 	@commands.guild_only()
@@ -137,13 +159,17 @@ class general(commands.Cog):
 		await ctx.send(":wave: Bye!")
 		await ctx.guild.leave()
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has made the bot leave ;-;")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has made the bot leave ;-;")
 
 	@commands.command(name="prefix")
 	@commands.guild_only()

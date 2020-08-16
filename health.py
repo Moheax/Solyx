@@ -24,16 +24,19 @@ class health(commands.Cog):
 	@commands.cooldown(1, 2, commands.BucketType.user)
 	async def heal(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
 
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
-						
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has healed")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has healed")
 
 
 		battleinfo = db.battles.find_one({ "_id": user.id })
@@ -77,15 +80,20 @@ class health(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def health(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
 
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has checked their health")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has checked their health")
+
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -105,16 +113,20 @@ class health(commands.Cog):
 	@health.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def buy(self, ctx, *, amount : int):
-
-
+		
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has tried to buy some healthpods")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has tried to buy some healthpods")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))

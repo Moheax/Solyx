@@ -14,6 +14,9 @@ class command(commands.Cog):
 	async def _commands(self, ctx):
 		"""Commands list"""
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
 
 		user = ctx.message.author
 
@@ -21,7 +24,7 @@ class command(commands.Cog):
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"looked at commands")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"looked at commands")
 
 		em = embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
 		em = embed.set_author(name="Solyx Commands:", icon_url=ctx.message.author.avatar_url)

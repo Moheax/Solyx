@@ -53,16 +53,20 @@ class gather(commands.Cog):
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-		
+
 		user = ctx.message.author
+		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		userinfo = db.users.find_one({ "_id": user.id })
-	
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has fished")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has fished")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -94,15 +98,17 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def mine(self, ctx):
 
-		user = ctx.message.author
-		guild = ctx.message.guild
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has mined")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has mined")
 
 		mined_metal = random.randint(0, 2)
 		mined_rock = random.randint(1, 5)
@@ -144,15 +150,18 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def chop(self, ctx):
 		
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-		guild = ctx.message.guild
-		
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has chopped wood")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has chopped wood")
 
 		chopped = random.randint(1, 5)
 		userinfo = db.users.find_one({ "_id": user.id })

@@ -51,12 +51,19 @@ class leaderboard(commands.Cog):
 	async def playerslb(self, ctx, *options):
 		"""See the Solyx players leaderboard"""
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
 
 		users = []
 		user_stat = None
@@ -143,12 +150,17 @@ class leaderboard(commands.Cog):
 	@commands.cooldown(2, 12, commands.BucketType.user)
 	async def guildslb(self, ctx, *options):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
 		"""See the Solyx guilds/guilds leaderboard"""
 		guilds = []
 		guild_exps = []

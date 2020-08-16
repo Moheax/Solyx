@@ -54,11 +54,17 @@ class sell(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell some wood")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell some wood")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -98,11 +104,17 @@ class sell(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell all wood")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell all wood")
 
 		amount = userinfo["wood"]
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -145,11 +157,17 @@ class sell(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell some stone")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell some stone")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -190,12 +208,17 @@ class sell(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
-						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell all stone")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell all stone")
 
 		amount = userinfo["stone"]
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -234,16 +257,21 @@ class sell(commands.Cog):
 	async def sell_metal(self, ctx, amount: int):
 		"""Sell an amount of metal or 'all'"""
 
-
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
-						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell some metal")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell some metal")
 
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -280,16 +308,23 @@ class sell(commands.Cog):
 	@sell_metal.command(name="all", pass_context=True, no_pm=True)
 	async def sell_all_metal(self, ctx):
 
+		guild = ctx.guild
 
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
 						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell all metal")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell all metal")
 
 
 		amount = userinfo["metal"]
@@ -329,16 +364,21 @@ class sell(commands.Cog):
 	async def item(self, ctx, number:int, price:int):
 		"""Sell one of your items."""
 
-
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
-						
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"tried to sell a item")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"tried to sell a item")
 
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):

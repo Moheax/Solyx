@@ -24,13 +24,17 @@ class loot(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def crate(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-						
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has tried opening a crate")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has tried opening a crate")
 
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })

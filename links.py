@@ -24,13 +24,17 @@ class links(commands.Cog):
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def _invite(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-						
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for the invite!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the invite!")
 
 		#Invite me to your guild
 		color = 0xffffff
@@ -59,13 +63,17 @@ class links(commands.Cog):
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def _website(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-						
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for the website!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the website!")
 
 		#Website
 		color = 0xffffff
@@ -80,13 +88,18 @@ class links(commands.Cog):
 	@commands.command(pass_context=True, name="botstatus")
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def _botstatus(self, ctx):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-						
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for the botstauts")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the botstatus")
 		
 		#Bot status page
 		color = 0xffffff
@@ -101,13 +114,18 @@ class links(commands.Cog):
 	@commands.command(pass_context=True, name="support")
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def _support(self, ctx):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-						
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has asked for support!")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for support!")
 		
 		
 		#Support

@@ -55,14 +55,18 @@ class statistics(commands.Cog):
 	@commands.cooldown(1, 12, commands.BucketType.user)
 	async def information(self, ctx):
 		"""Bot information"""
-		user = ctx.author
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
-				
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"has opened info")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has opened info")
 
 		embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
@@ -83,15 +87,22 @@ class statistics(commands.Cog):
 	@commands.command()
 	@commands.check(developer)
 	async def statistics(self, ctx):
-		user = ctx.message.author
+
 		message2 = await self.embed_statistics()
+
 		await ctx.send(embed=message2)
-		
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"stared at statistics")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+user.discriminator,"stared at statistics")
 
 	async def embed_statistics(self):
 		stats = self.retrieve_statistics()

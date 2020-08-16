@@ -24,13 +24,17 @@ class status(commands.Cog):
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def status(self, ctx):
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has Checked their status")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has Checked their status")
 
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })

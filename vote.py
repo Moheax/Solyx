@@ -9,10 +9,17 @@ import os, re, aiohttp
 import time
 import subprocess
 from random import choice as randchoice
-
+from dataIO import js
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import guilddata, userdata
+
+
+from quart import Quart, g, request, abort, render_template, session, redirect, url_for, flash, jsonify, send_file
+from requests_oauthlib import OAuth2Session
+from pymongo import MongoClient
+import requests
+
 
 class vote(commands.Cog):
 	def __init__(self, bot):
@@ -31,13 +38,17 @@ class vote(commands.Cog):
 		language = languageinfo["language"]
 
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		user = ctx.message.author
 
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"Has tried to vote")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to vote")
 
 		server = ctx.guild
 		channel = ctx.channel
@@ -148,7 +159,7 @@ class vote(commands.Cog):
 		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
 		if not authorinfo["role"] in ["Developer", "Staff"]:
 			return
-		subprocess.Popen([r'C:\Users\Quinten\Documents\Bots\Solyx\webhooklistener.bat'], creationflags=subprocess.CREATE_NEW_CONSOLE)
+		subprocess.Popen([r'C:\Users\Gebruiker\Documents\Nova\Solyx\rewrite\webhooklistener.bat'], creationflags=subprocess.CREATE_NEW_CONSOLE)
 		await ctx.send("<:Solyx:560809141766193152> | Started the webhook listener!")
 
 	async def vote_reminder(self, ctx, message, user):
@@ -212,6 +223,39 @@ class vote(commands.Cog):
 			self.reminders.remove(reminder)
 		if to_remove:
 			fileIO("data/reminders/reminders.json", "save", self.reminders)
+
+
+
+settings = js.load(config)
+
+app = Quart(__name__)
+
+
+@app.route('/', methods=["POST", "GET"])
+async def votes_webhook():
+    if request.method == 'GET':
+        return abort(400)
+    if request.method == 'POST':
+        if not request.headers.get('authorization') == "387317544228487168":
+            return
+        data = (await request.json)
+        print("VOTE: {}".format(data["user"]))
+
+        userinfo = db.users.find_one({"_id": int(data['user'])})
+        if not userinfo:
+            return 
+
+        userinfo["vote_info"] = True
+        db.users.replace_one({"_id": int(data['user'])}, userinfo, upsert=True)
+
+        return 
+
+    else:
+        return abort(400)
+
+
+if __name__ == "__main__":
+    app.run(host="83.82.139.228", port=int(8084), debug=False)
 
 def setup(bot):
 	global logger
