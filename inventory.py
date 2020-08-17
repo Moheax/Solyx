@@ -25,7 +25,17 @@ class inventory(commands.Cog):
 	@commands.cooldown(1, 12, commands.BucketType.user)
 	async def inv(self, ctx, *, user : discord.Member=None):
 				
-		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"opened their inventory")
 
 		if user == None:
 			user = ctx.message.author
@@ -50,14 +60,15 @@ class inventory(commands.Cog):
 				return
 			except:
 				return
-		print(user.name+"#"+user.discriminator,"opened their inventory")
 
 
-		await self.item_list_menu(user, ctx.message.channel, ctx.message.guild, ctx.message.author)
+	
+		await self.item_list_menu(user, channel, guild, user)
 
+		
 	async def item_list_menu(self, ctx, user, channel, guild):
 		userinfo = db.users.find_one({'_id':user.id})
-		inventory = userinfo["inventory"]
+		inventory =	["inventory"]
 		list1 = ""
 		for i, x in enumerate(range(12)):
 			try:
@@ -65,27 +76,35 @@ class inventory(commands.Cog):
 				list1 += "**{}** > **{} {}** - **{}** {} - **{}-{}**:crossed_swords:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 			except:
 				pass
-			msg += "{} >\n".format(i + 1)
+			#msg += "{} >\n".format(i + 1)
 		embed = discord.Embed(description=list1, color=discord.Colour(0xffffff))
-		embed.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name), icon_url=user.avatar_url)
+		embed.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
 		embed.set_footer(text="Use the reactions to scroll between pages!")
 		try:
-			msg = await ctx.send(channel, embed=embed)
+			msg = await ctx.send(embed=embed)
 		except:
-			await ctx.send(channel, ":x: **| Please give me permissions to send embeds!**")
+			await ctx.send( ":x: **| Please give me permissions to send embeds!**")
 			return
 		try:
 			await msg.add_reaction(u"\u25C0")
 			await msg.add_reaction(u"\u25B6")
 		except:
 			return
-		await self.item_list_menu_check(user, msg, channel, guild, user)
+		await self.item_list_menu_check(user, channel, guild)
 		return
 	
-	async def item_list_menu_check(self, user, msg, channel, guild):
+	async def item_list_menu_check(self, user, channel, guild):
 		while True:
 
-			response = await self.bot.wait_for_reaction(emoji=[u"\u25C0", u"\u25B6"], user=user, message=msg, timeout=20)
+			try:
+				await msg.add_reaction(u"\u25C0")
+				await msg.add_reaction(u"\u25B6")
+			except:
+				return
+		
+			await asyncio.sleep(.2)
+
+			reaction = await self.bot.wait_for("reaction_add")
 			await asyncio.sleep(0.1)
 
 			userinfo = db.users.find_one({'_id':user.id})
@@ -115,7 +134,7 @@ class inventory(commands.Cog):
 				return
 
 
-			if response.reaction.emoji == u"\u25C0":
+			if reaction.emoji == u"\u25C0":
 				if msg.content == '⠀⠀':
 					em = discord.Embed(title="Page 2/2", description=list2, color=discord.Colour(0xffffff))
 					em.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name), icon_url=user.avatar_url)
@@ -131,7 +150,7 @@ class inventory(commands.Cog):
 					await self.bot.edit_message(msg, embed=em)
 
 
-			elif response.reaction.emoji == u"\u25B6":
+			elif reaction.emoji ==  u"\u25B6":
 				if msg.content == '':
 					em = discord.Embed(title="Page 2/2", description=list2, color=discord.Colour(0xffffff))
 					em.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name), icon_url=user.avatar_url)
