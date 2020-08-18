@@ -61,12 +61,14 @@ class inventory(commands.Cog):
 			except:
 				return
 
+		guild = ctx.guild
 
+		channel = ctx.message.channel
 	
 		await self.item_list_menu(user, channel, guild, user)
 
 		
-	async def item_list_menu(self, ctx, user, channel, guild):
+	async def item_list_menu(self, ctx, channel, guild, user):
 		userinfo = db.users.find_one({'_id':user.id})
 		inventory =	["inventory"]
 		list1 = ""
@@ -77,23 +79,26 @@ class inventory(commands.Cog):
 			except:
 				pass
 			#msg += "{} >\n".format(i + 1)
-		embed = discord.Embed(description=list1, color=discord.Colour(0xffffff))
-		embed.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
-		embed.set_footer(text="Use the reactions to scroll between pages!")
+		em = embed = discord.Embed(description=list1, color=discord.Colour(0xffffff))
+		em = embed.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
+		em = embed.set_footer(text="Use the reactions to scroll between pages!")
 		try:
-			msg = await ctx.send(embed=embed)
+			msg = await ctx.send(embed=em)
 		except:
-			await ctx.send( ":x: **| Please give me permissions to send embeds!**")
+			try:
+				await ctx.send("I cound't send the message.")
+			except:
+				return
 			return
 		try:
 			await msg.add_reaction(u"\u25C0")
 			await msg.add_reaction(u"\u25B6")
 		except:
 			return
-		await self.item_list_menu_check(user, channel, guild)
+		await self.item_list_menu_check(user)
 		return
 	
-	async def item_list_menu_check(self, user, channel, guild):
+	async def item_list_menu_check(self, user):
 		while True:
 
 			try:
@@ -126,7 +131,7 @@ class inventory(commands.Cog):
 					pass
 					msg += "{} >\n".format(i + 1)
 
-			if not response:
+			if not reaction:
 				try:
 					await self.bot.clear_reactions(msg)
 				except:
