@@ -64,11 +64,16 @@ class inventory(commands.Cog):
 		guild = ctx.guild
 
 		channel = ctx.message.channel
-	
-		await self.item_list_menu(user, channel, guild, user)
 
 		
-	async def item_list_menu(self, ctx, channel, guild, user):
+	
+		await self.item_list_menu(user, message ,channel, guild, user)
+
+		
+	async def item_list_menu(self, ctx, message, channel, guild, user):
+
+		channel = ctx.message.channel
+	
 		userinfo = db.users.find_one({'_id':user.id})
 		inventory =	["inventory"]
 		list1 = ""
@@ -83,10 +88,10 @@ class inventory(commands.Cog):
 		em = embed.set_author(name="{}'s item list:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
 		em = embed.set_footer(text="Use the reactions to scroll between pages!")
 		try:
-			msg = await ctx.send(embed=em)
+			msg = await ctx.channel.send(embed=em)
 		except:
 			try:
-				await ctx.send("I cound't send the message.")
+				await ctx.channel.send("I cound't send the message.")
 			except:
 				return
 			return
