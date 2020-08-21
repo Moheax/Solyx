@@ -45,7 +45,7 @@ class botstats(commands.Cog):
 	async def toggle(self, ctx):
 		"""Turn BotStatus on and off, like a boss"""
 		
-		servers = str(len(self.bot.guild))
+		servers = str(len(self.bot.guilds))
 		users = str(len(set(self.bot.get_all_members())))
 		if self.imagenius["TOGGLE"] is False:
 			self.imagenius["TOGGLE"] = True
@@ -126,8 +126,8 @@ class botstats(commands.Cog):
 				botstatus = self.imagenius["MESSAGE"]
 				prefix = self.imagenius["MAINPREFIX"]
 				message = botstatus.format(prefix, servers, users)
-				game = discord.Game(name=message)
-				await self.bot.change_presence(game=game, status=status)
+				activity = discord.Game(name=message)
+				await self.bot.change_presence(status=discord.Status.online, activity=activity)
 				await asyncio.sleep(self.imagenius["SECONDS2LIVE"])
 			else:
 				pass
