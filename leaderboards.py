@@ -59,6 +59,8 @@ class leaderboard(commands.Cog):
 
 		userinfo = db.users.find_one({ "_id": user.id })
 
+		guildinfo = db.servers.find_one({ "_id": guild.id })
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
@@ -103,11 +105,11 @@ class leaderboard(commands.Cog):
 			else:
 				label = default_label
 
-			if 'None' in single_user[0]:
-				msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[1],20), str(single_user[2]))
+			if 'None' in single_user[1]:
+				msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[1],20), str(single_user[0]))
 				rank += 1
 			else:
-				guildinfo = db.servers.find_one({ "_id": "{}".format(single_user[1]) })
+				
 				guildtag = guildinfo["tag"]
 				if not 'None' in guildinfo["tag"]:
 					msg += u'{:<2}{:<2}|   [{}] **{:<22}** `Level: {}`\n'.format(rank, label, guildtag, self._truncate_text(single_user[1],20), str(single_user[2]))
