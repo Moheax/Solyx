@@ -89,7 +89,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} ({})".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -114,7 +114,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} ({})".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -139,7 +139,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} ({})".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -162,7 +162,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} ({})".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -184,7 +184,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} ({})".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Role given: {}".format(role), description="{} ({}) got the {} role from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -208,7 +208,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Crates given: {}".format(amount), description="{} ({}) got {} crates from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Crates given: {}".format(amount), description="{} ({}) got {} crates from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -232,7 +232,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Gold given: {}".format(amount), description="{} ({}) got {} gold from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Gold given: {}".format(amount), description="{} ({}) got {} gold from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -256,7 +256,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Keys given: {}".format(amount), description="{} ({}) got {} keys from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Keys given: {}".format(amount), description="{} ({}) got {} keys from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -280,7 +280,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Wood given: {}".format(amount), description="{} ({}) got {} wood from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Wood given: {}".format(amount), description="{} ({}) got {} wood from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -304,7 +304,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Stone given: {}".format(amount), description="{} ({}) got {} stone from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Stone given: {}".format(amount), description="{} ({}) got {} stone from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -328,7 +328,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Metal given: {}".format(amount), description="{} ({}) got {} metal from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Metal given: {}".format(amount), description="{} ({}) got {} metal from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -352,7 +352,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Healing Potions given: {}".format(amount), description="{} ({}) got {} healing potions from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Healing Potions given: {}".format(amount), description="{} ({}) got {} healing potions from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -376,7 +376,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Levels given: {}".format(amount), description="{} ({}) got {} levels from {} ({})!".format(user, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Levels given: {}".format(amount), description="{} ({}) got {} levels from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
@@ -420,7 +420,7 @@ class give(commands.Cog):
 		if not authorinfo["role"] == "Developer":
 			return
 
-		em = discord.Embed(title="Give someone a new race", description="human / elf / orc", color=discord.Colour(0xffffff))
+		em = discord.Embed(title="Give someone a new race", description="human / elf / orc / Demon", color=discord.Colour(0xffffff))
 		em.set_footer(text="-give race [race] [user]")
 		await ctx.send(embed=em)
 
@@ -487,5 +487,25 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
+	
+	@_set_race.command(name="demon", pass_context=True)
+	@commands.check(developer)
+	async def set_race_demon(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		authorinfo = db.users.find_one({ "_id": author.id })
+		if not authorinfo["role"] == "Developer":
+			return
+
+		userinfo = db.users.find_one({ "_id": user.id })
+		race = "Demon"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["race"] = race
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s race to {}.".format(user.mention, race), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} | {}".format(user.name, user.id))
+			await ctx.send(embed=em)
 def setup(bot):
 	bot.add_cog(give(bot))
