@@ -32,7 +32,7 @@ class rank(commands.Cog):
 		channel = ctx.message.channel
 		userinfo = db.users.find_one({ "_id": user.id })
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
-			await self.bot.say("<:Solyx:560809141766193152> | Please start your character using `-begin`")
+			await ctx.send("<:Solyx:560809141766193152> | Please start your character using `-begin`")
 			return
 		await self.draw_profile(user)
 		try:
@@ -45,7 +45,7 @@ class rank(commands.Cog):
 			try:
 				os.remove('data/RPGR/{}_rank.png'.format(user.id))
 			except:
-				await self.bot.say("**ERROR | I can't send images here!**")
+				await ctx.send("**ERROR | I can't send images here!**")
 			return
 		except:
 			return
