@@ -10,6 +10,7 @@ from utils import checks
 from utils.chat_formatting import pagify
 from utils.dataIO import fileIO
 import math
+from utils.checks import staff, developer, owner
 try:
 	from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
 except:
