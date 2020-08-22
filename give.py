@@ -55,8 +55,9 @@ class give(commands.Cog):
 				return
 		return
 
-	@commands.check(developer)
+	
 	@_give.group(name="role", pass_context=True, no_pm=True)
+	@commands.check(developer)
 	async def _set_role(self, ctx):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -67,8 +68,9 @@ class give(commands.Cog):
 		em.set_footer(text="-give role [role] [user]")
 		await ctx.send(embed=em)
 
-	@commands.check(developer)
+	
 	@_set_role.command(name="player", pass_context=True)
+	@commands.check(developer)
 	async def set_role_player(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -91,8 +93,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_set_role.command(name="donator", pass_context=True)
+	@commands.check(developer)
 	async def set_role_donator(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -115,8 +118,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_set_role.command(name="subscriber", pass_context=True)
+	@commands.check(developer)
 	async def set_role_subscriber(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -139,8 +143,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_set_role.command(name="developer", pass_context=True)
+	@commands.check(developer)
 	
 	async def set_role_developer(self, ctx, user: discord.Member):
 		author = ctx.message.author
@@ -183,8 +188,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="crate", pass_context=True)
+	@commands.check(developer)
 	async def give_crate(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -206,8 +212,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="gold", pass_context=True, aliases=["money"])
+	@commands.check(developer)
 	async def give_gold(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -229,8 +236,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="key", pass_context=True, aliases=["keys"])
+	@commands.check(developer)
 	async def give_key(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -252,8 +260,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="wood", pass_context=True)
+	@commands.check(developer)
 	async def give_wood(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -275,8 +284,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="stone", pass_context=True)
+	@commands.check(developer)
 	async def give_stone(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -298,8 +308,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="metal", pass_context=True)
+	@commands.check(developer)
 	async def give_metal(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -321,8 +332,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="hp", pass_context=True, aliases=["potion"])
+	@commands.check(developer)
 	async def give_hp(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -344,8 +356,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="level", pass_context=True, aliases=["lvl"])
+	@commands.check(developer)
 	async def give_lvl(self, ctx, user: discord.Member, amount: int):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -367,8 +380,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.command(name="title", pass_context=True)
+	@commands.check(developer)
 	async def give_title(self, ctx, user: discord.Member, *, title):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -397,8 +411,9 @@ class give(commands.Cog):
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 
-	@commands.check(developer)
+	
 	@_give.group(name="race", pass_context=True, no_pm=True)
+	@commands.check(developer)
 	async def _set_race(self, ctx):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -409,8 +424,9 @@ class give(commands.Cog):
 		em.set_footer(text="-give race [race] [user]")
 		await ctx.send(embed=em)
 
-	@commands.check(developer)
+	
 	@_set_race.command(name="human", pass_context=True)
+	@commands.check(developer)
 	async def set_race_human(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -429,8 +445,9 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-	@commands.check(developer)
+	
 	@_set_race.command(name="elf", pass_context=True)
+	@commands.check(developer)
 	async def set_race_elf(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
@@ -449,8 +466,9 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-	@commands.check(developer)
+	
 	@_set_race.command(name="orc", pass_context=True)
+	@commands.check(developer)
 	async def set_race_orc(self, ctx, user: discord.Member):
 		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": author.id })
