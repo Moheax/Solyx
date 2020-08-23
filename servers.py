@@ -33,7 +33,7 @@ class guilds(commands.Cog):
 			em.add_field(name="Need help?", value="Join the [support guild](https://discord.gg/CVxzCKj) or check out the full documentation on our [website](http://solyx.xyz)!", inline=True)
 			em.set_author(name='Thanks for inviting me!', icon_url=guildicon)
 			em.set_thumbnail(url=botavatar)
-			await self.bot.send_message(owner, embed=em)
+			await ctx.send(owner, embed=em)
 		except:
 			return
 
@@ -48,7 +48,7 @@ class guilds(commands.Cog):
 
 		# x00th guild message
 		if (len(self.bot.guilds) % 100) == 0:
-			await self.bot.send_message(solyxannouncechannel, "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
+			await ctx.send(solyxannouncechannel, "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
 
 	@commands.Cog.listener()
 	async def on_guild_remove(self, guild):
@@ -60,7 +60,7 @@ class guilds(commands.Cog):
 		# Send message to the log in the Solyx guild
 		embed = discord.Embed(title='**Server removed:** {}'.format(guild.name), color=discord.Colour(0xff0000), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
 		embed.set_thumbnail(url=guildicon)
-		await self.bot.send_message(solyxlogchannel, embed=embed)
+		await ctx.send(solyxlogchannel, embed=embed)
 
 	@commands.Cog.listener()
 	async def on_guild_update(self, before, after):
@@ -117,7 +117,7 @@ class guilds(commands.Cog):
 					em = discord.Embed(title="Here is a small reward for joining:", description=joinrewarddescription, color=discord.Colour(0xffffff))
 					em.set_author(name="Thanks for joining {}!".format(guild.name), icon_url=guildicon)
 					em.set_thumbnail(url=botavatar)
-					await self.bot.send_message(user, embed=em)
+					await ctx.send(user, embed=em)
 				except:
 					return
 			else:
