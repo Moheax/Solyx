@@ -52,7 +52,7 @@ class guilds(commands.Cog):
 
 	@commands.Cog.listener()
 	async def on_guild_remove(self, guild):
-		db.guilds.remove({"_id": "{}".format(guild.id)}, 1)
+		db.servers.remove({"_id": "{}".format(guild.id)}, 1)
 		owner = guild.owner
 		guildicon = guild.icon_url
 		botavatar = self.bot.user.avatar_url
@@ -69,14 +69,14 @@ class guilds(commands.Cog):
 			return
 		if before.name != after.name:
 			guildinfo["name"] = after.name
-			db.guilds.replace_one({ "_id": after.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": after.id }, guildinfo, upsert=True)
 
 	@commands.Cog.listener()
 	async def _create_guild(self, guild):
 		exists = db.servers.find_one({ "_id": guild.id })
 		if not exists:
 			data = guilddata(guild)
-			db.guilds.insert_one(data)
+			db.servers.insert_one(data)
 
 	@commands.Cog.listener()
 	async def on_member_join(self, member):
@@ -92,7 +92,7 @@ class guilds(commands.Cog):
 		if guildinfo["joinreward"] == "True":
 			randomjoinreward = randchoice(["keys", "lootbag"])
 			guildinfo["joined"].append(user.id)
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 
 			userinfo = db.users.find_one({ "_id": user.id })
@@ -170,7 +170,7 @@ class guilds(commands.Cog):
 			flagemoji = ":flag_kr:"
 
 		guildinfo["language"] = selectedlang
-		db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		em = discord.Embed(title="Language Changed!", description="Language in {} has been set to {}!".format(guild.name, flagemoji), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
@@ -203,7 +203,7 @@ class guilds(commands.Cog):
 
 		if guildinfo["joinreward"] == "False":
 			guildinfo["joinreward"] = "True"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			em = discord.Embed(title="Join reward enabled!", description="New members will now get a reward for joining {}!".format(guild.name), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="Use {}joinreward again to disable it.".format(ctx.prefix))
@@ -218,7 +218,7 @@ class guilds(commands.Cog):
 
 		if guildinfo["joinreward"] == "True":
 			guildinfo["joinreward"] = "False"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			em = discord.Embed(title="Join reward disabled!", description="New members will no longer get a reward for joining {}!".format(guild.name), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="Use {}joinreward again to enable it.".format(ctx.prefix))
