@@ -10,6 +10,7 @@ from utils.dataIO import fileIO
 from utils.checks import staff, developer, owner
 from random import choice as randchoice
 import time
+from discord.ext.commands import Bot, has_permissions
 
 class guilds(commands.Cog):
 	def __init__(self, bot):
@@ -125,7 +126,7 @@ class guilds(commands.Cog):
 			return
 
 	@commands.command(name="language", pass_context=True, no_pm=True, aliases=["lang"])
-	@checks.serverowner_or_permissions(administrator=True)
+	@has_permissions(administrator=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_language(self, ctx, language: str):
 		"""Select guild language"""
@@ -193,7 +194,7 @@ class guilds(commands.Cog):
 				pass
 
 	@commands.command(name="joinreward", pass_context=True, no_pm=True, aliases=["jr"])
-	@checks.serverowner_or_permissions(administrator=True)
+	@has_permissions(administrator=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_join_reward(self, ctx):
 		"""Select guild language"""
