@@ -232,7 +232,7 @@ class guilds(commands.Cog):
 					return
 			return
 
-	@commands.command(pass_context=True, name="guilds")
+	@commands.command(pass_context=True, name="servers")
 	@commands.check(developer)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _guild_count(self, ctx):
