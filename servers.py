@@ -16,13 +16,14 @@ class guilds(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
 	@commands.Cog.listener()
-	async def on_guild_join(self, ctx, guild: discord.Guild):
+	async def on_guild_join(self, guild: discord.Guild):
 		# vars
 		owner = guild.owner
 		guildicon = guild.icon_url
 		botavatar = self.bot.user.avatar_url
-		solyxlogchannel = self.bot.get_channel('561200838790479873')
+		channel = self.bot.get_channel('561200838790479873')
 		solyxannouncechannel = self.bot.get_channel('559330366142545933')
 
 		await self._create_guild(guild)
@@ -41,9 +42,9 @@ class guilds(commands.Cog):
 		await asyncio.sleep(1)
 
 		# Send message to the log in the Solyx guild
-		embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
-		embed.set_thumbnail(url=guildicon)
-		await self.solyxlogchannel.send( embed=embed)
+		em = embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
+		em = embed.set_thumbnail(url=guildicon)
+		await channel.send(embed=em)
 
 		await asyncio.sleep(1)
 
@@ -52,16 +53,16 @@ class guilds(commands.Cog):
 			await ctx.solyxannouncechannel.send( "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
 
 	@commands.Cog.listener()
-	async def on_guild_remove(self, ctx, guild: discord.Guild):
+	async def on_guild_remove(self, guild: discord.Guild):
 		db.servers.remove({"_id": "{}".format(guild.id)}, 1)
 		owner = guild.owner
 		guildicon = guild.icon_url
 		botavatar = self.bot.user.avatar_url
-		solyxlogchannel = self.bot.get_channel('641274095400648704')
+		channel = self.bot.get_channel('641274095400648704')
 		# Send message to the log in the Solyx guild
-		embed = discord.Embed(title='**Server removed:** {}'.format(guild.name), color=discord.Colour(0xff0000), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
-		embed.set_thumbnail(url=guildicon)
-		await self.solyxlogchannel.send(embed=embed)
+		em = embed = discord.Embed(title='**Server removed:** {}'.format(guild.name), color=discord.Colour(0xff0000), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
+		em = embed.set_thumbnail(url=guildicon)
+		await channel.send(embed=em)
 
 	@commands.Cog.listener()
 	async def on_guild_update(self, before, after):
