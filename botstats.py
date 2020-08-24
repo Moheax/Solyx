@@ -26,7 +26,7 @@ class botstats(commands.Cog):
 		msg = ""
 		if ctx.invoked_subcommand is None:
 			for x in ctx.command.all_commands:
-				if x not in ctx.command.all_commands[x].aliases:
+				if x not in ctx.command.all_commands[x].aliases:	
 					if not ctx.command.all_commands[x].hidden:
 						msg += f"`{ctx.prefix}{ctx.command.name} {x}` - {ctx.command.all_commands[x].help} \n"
 			embed=discord.Embed(colour=servercolor)
@@ -112,7 +112,7 @@ class botstats(commands.Cog):
 				await self.bot.change_presence(status=discord.Status.online, activity=activity)
 				await asyncio.sleep(self.imagenius["SECONDS2LIVE"])
 			else:
-				await self.bot.change_presence(status=None, game=None)
+				await self.bot.change_presence(status=discord.Status.online)
 				return
 		else:
 			pass
