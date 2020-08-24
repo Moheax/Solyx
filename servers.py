@@ -23,34 +23,35 @@ class guilds(commands.Cog):
 		owner = guild.owner
 		guildicon = guild.icon_url
 		botavatar = self.bot.user.avatar_url
-		solyxlogchannel = self.bot.get_channel(561200838790479873)
+		
 		solyxannouncechannel = self.bot.get_channel(559330366142545933)
 
 		await self._create_guild(guild)
 
-		# Try to send message to owner of the new guild
-		try:
-			em = discord.Embed(color=discord.Colour(0xffffff), description="Here is some useful information:")
-			em.add_field(name="Get started", value="**-help** Get more information about a command\n**-commands** Shows all commands\n**-prefix** Set a new prefix for Solyx", inline=True)
-			em.add_field(name="Need help?", value="Join the [support guild](https://discord.gg/CVxzCKj) or check out the full documentation on our [website](http://solyx.xyz)!", inline=True)
-			em.set_author(name='Thanks for inviting me!', icon_url=guildicon)
-			em.set_thumbnail(url=botavatar)
-			await ctx.send(owner, embed=em)
-		except:
-			return
+		## Try to send message to owner of the new guild
+		#try:
+		#	em = discord.Embed(color=discord.Colour(0xffffff), description="Here is some useful information:")
+		#	em.add_field(name="Get started", value="**-help** Get more information about a command\n**-commands** Shows all commands\n**-prefix** Set a new prefix for Solyx", inline=True)
+		#	em.add_field(name="Need help?", value="Join the [support guild](https://discord.gg/CVxzCKj) or check out the full documentation on our [website](http://solyx.xyz)!", inline=True)
+		#	em.set_author(name='Thanks for inviting me!', icon_url=guildicon)
+		#	em.set_thumbnail(url=botavatar)
+		#	await ctx.send(owner, embed=em)
+		#except:
+		#	return
 
 		await asyncio.sleep(1)
 
 		# Send message to the log in the Solyx guild
+		solyxloggchannel = self.bot.get_channel(561200838790479873)
 		em = embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
 		em = embed.set_thumbnail(url=guildicon)
-		await solyxlogchannel.send(embed=em)
+		await solyxloggchannel.send(embed=em)
 
 		await asyncio.sleep(1)
 
 		# x00th guild message
 		if (len(self.bot.guilds) % 100) == 0:
-			await ctx.solyxannouncechannel.send( "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
+			await solyxannouncechannel.send( "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
 
 	@commands.Cog.listener()
 	async def on_guild_remove(self, guild: discord.Guild):
