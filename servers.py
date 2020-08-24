@@ -143,10 +143,10 @@ class guilds(commands.Cog):
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="This feature is still in development, only English fully works currently!")
 			try:
-				await self.bot.say(embed=em)
+				await ctx.send(embed=em)
 			except:
 				try:
-					await self.bot.say(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 				except:
 					return
 			return
@@ -177,10 +177,10 @@ class guilds(commands.Cog):
 		em.set_thumbnail(url=guild.icon_url)
 		em.set_footer(text="Use the {}language command to change it.".format(ctx.prefix))
 		try:
-			await self.bot.say(embed=em)
+			await ctx.send(embed=em)
 		except:
 			try:
-				await self.bot.say(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 			except:
 				pass
 
@@ -209,7 +209,7 @@ class guilds(commands.Cog):
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="Use {}joinreward again to disable it.".format(ctx.prefix))
 			try:
-				await self.bot.say(embed=em)
+				await ctx.send(embed=em)
 			except:
 				try:
 					await ctx.send(author, embed=em)
@@ -224,7 +224,7 @@ class guilds(commands.Cog):
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="Use {}joinreward again to enable it.".format(ctx.prefix))
 			try:
-				await self.bot.say(embed=em)
+				await ctx.send(embed=em)
 			except:
 				try:
 					await ctx.send(author, embed=em)
@@ -232,15 +232,15 @@ class guilds(commands.Cog):
 					return
 			return
 
-	@commands.command(pass_context=True, name="servers")
+	@commands.command(pass_context=True, name="guilds")
 	@commands.check(developer)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _guild_count(self, ctx):
 		"""Server count"""
-		embed = discord.Embed(description="{}".format(len(self.bot.guilds)), colour=discord.Colour(0xffffff))
-		embed.set_author(name='Solyx guild count', icon_url=self.bot.user.avatar_url)
+		em = embed = discord.Embed(description="{}".format(len(self.bot.guilds)), colour=discord.Colour(0xffffff))
+		em = embed.set_author(name='Solyx guild count', icon_url=self.bot.user.avatar_url)
 		try:
-			await self.bot.say(embed=embed)
+			await ctx.send(embed=em)
 		except:
 			return
 
