@@ -141,7 +141,7 @@ class guilds(commands.Cog):
 					"ID", "id", "indonesian", "Indonesian", "Indonesia", "indonesia", "bahasa", "Bahasa", "bahasa Indonesia", "Bahasa Indonesia", "Bahasa indonesia", "bahasa indonesia",
 					"KR", "kr", "korean", "Korean", "Korea", "korea", "한국어", "한국인"]
 		if not language in accepted:
-			em = discord.Embed(title="Accepted languages:", description="`English`, `Nederlands`", color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Accepted languages:", description="`English`, `Nederlands`, `русский`, `bahasa`, `한국어`", color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
 			em.set_footer(text="This feature is still in development, only English fully works currently!")
 			try:
