@@ -220,6 +220,8 @@ class market(commands.Cog):
 	@market.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def buy(self, ctx, id:int):
+
+
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
@@ -291,10 +293,26 @@ class market(commands.Cog):
 
 	@commands.group(name="buy", pass_context=True, no_pm=True)
 	async def normal_buy(self, ctx):
-		if ctx.invoked_subcommand:
-			return
-		else:
-			await self.bot.send_cmd_help(ctx)
+
+		user = ctx.message.author
+
+
+
+		msg = ""
+		if ctx.invoked_subcommand is None:
+			for x in ctx.command.all_commands:
+				if x not in ctx.command.all_commands[x].aliases:
+					if not ctx.command.all_commands[x].hidden:
+						msg += f"`{ctx.prefix}{ctx.command.name} {x}` - {ctx.command.all_commands[x].help} \n"
+			embed=discord.Embed(colour=(0xffffff))
+			embed.set_author(name=ctx.command.name, icon_url=ctx.author.avatar_url)
+			embed.add_field(name="Subcommands", value=msg, inline=False)
+			
+			try:
+				await ctx.send(embed=embed)
+			except:
+				return
+		return	
 
 	@normal_buy.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
