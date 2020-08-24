@@ -43,7 +43,7 @@ class guilds(commands.Cog):
 		# Send message to the log in the Solyx guild
 		embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
 		embed.set_thumbnail(url=guildicon)
-		await ctx.solyxlogchannel.send( embed=embed)
+		await self.solyxlogchannel.send( embed=embed)
 
 		await asyncio.sleep(1)
 
@@ -61,7 +61,7 @@ class guilds(commands.Cog):
 		# Send message to the log in the Solyx guild
 		embed = discord.Embed(title='**Server removed:** {}'.format(guild.name), color=discord.Colour(0xff0000), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
 		embed.set_thumbnail(url=guildicon)
-		await ctx.solyxlogchannel.send(embed=embed)
+		await self.solyxlogchannel.send(embed=embed)
 
 	@commands.Cog.listener()
 	async def on_guild_update(self, before, after):
