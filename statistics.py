@@ -51,7 +51,7 @@ class statistics(commands.Cog):
 			pass
 
 
-	@commands.command()
+	@commands.command(aliases=["info"])
 	@commands.cooldown(1, 12, commands.BucketType.user)
 	async def information(self, ctx):
 		"""Bot information"""
@@ -71,7 +71,7 @@ class statistics(commands.Cog):
 		embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		embed.set_author(name="Solyx Info", icon_url=avatar)
-		embed.add_field(name="Developers", value="`Maxie#1212`", inline=False)
+		embed.add_field(name="Developers", value="`TheMaksoo#1212`", inline=False)
 		embed.add_field(name="Creator", value="`Quintenvw#1337`", inline=False)
 		embed.add_field(name="Library", value="Discord.py", inline=False)
 		try:
@@ -200,7 +200,7 @@ class statistics(commands.Cog):
 	@commands.Cog.listener()		
 	async def on_message(self, message):
 		
-		self.counter["messages"] += 13
+		self.counter["messages"] += 1
 
 def check_folder():
 	if not os.path.exists('data/statistics'):
