@@ -151,7 +151,7 @@ class customhelp(commands.Cog):
 			await ctx.send("There was an error.")
 
 	@commands.command(pass_context=True)
-	async def chelp(self, ctx, *, command=None):
+	async def help(self, ctx, *, command=None):
 		if command is not None:
 			ctx.command = self.bot.get_command(command)
 			await send_cmd_help(ctx)
@@ -160,7 +160,7 @@ class customhelp(commands.Cog):
 		author = ctx.message.author
 
 		if self.customhelp["helpPrivate"]:
-			channel = author
+			channel = author.mention
 		else:
 			channel = ctx.message.channel
 
