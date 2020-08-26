@@ -59,23 +59,27 @@ class command(commands.Cog):
 			await msg.add_reaction("🇭")
 			await msg.add_reaction("🇮")
 			await msg.add_reaction("⬅")
-			#await msg.add_reaction("❌")																																															
+			await msg.add_reaction("❌")																																															
 		except:
 			return
 		
 		await asyncio.sleep(.2)
+
 		try:
 			reaction, user = await self.bot.wait_for("reaction_add")
 		except Exception as e:
 			print(e)
 			return
+
+		await asyncio.sleep(.2)
+
 		if reaction:
 
 		
 			if reaction.emoji == '❌':
 				
 				try:
-					await self.bot.delete_message(msg)
+					await self.bot.message.delete(msg)
 					return
 				except:
 					return
@@ -131,7 +135,7 @@ class command(commands.Cog):
 
 			elif reaction.emoji == "🇦":
 				try:
-					await self.bot.remove_reaction(msg, "🇦", user)
+					await self.bot.Message.remove_reaction(msg, "🇦", user)
 				except:
 					pass
 				e = discord.Embed(color=discord.Colour(0xffffff))
@@ -140,7 +144,7 @@ class command(commands.Cog):
 				e.add_field(name="{}begin".format(ctx.prefix), value="Create a character to start your adventure!", inline=True)
 				msg = await msg.edit(embed=e)
 				
-				return
+				
 
 			elif reaction.emoji == "🇧":
 				try:
