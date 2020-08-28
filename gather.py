@@ -46,6 +46,8 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def boop(self, ctx):
 		print('boop')
+		em = discord.Embed(title="BOOP?!", description="No u",color=discord.Colour(0xffffff))	
+		await ctx.send(embed=em)
 
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
