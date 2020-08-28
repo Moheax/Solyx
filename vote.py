@@ -226,7 +226,7 @@ class vote(commands.Cog):
 
 
 
-settings = js.load(config)
+
 
 app = Quart(__name__)
 
