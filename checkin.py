@@ -49,15 +49,17 @@ class checkin(commands.Cog):
 			goldget = random.randint(360, 600)
 			hpget = random.randint(3, 5)
 			lbget = random.randint(5, 9)
+			keyget = random.randint(5, 9)
 		elif userinfo["role"] == "Subscriber":
 			goldget = random.randint(450, 750)
 			hpget = random.randint(6, 9)
 			lbget = random.randint(7, 12)
+			keyget = random.randint(7, 12)
 		else:
 			goldget = random.randint(200, 400)
 			hpget = random.randint(2, 5)
 			lbget = random.randint(3, 5)
-
+			keyget = random.randint(3, 5)
 
 		curr_time = time()
 		delta = float(curr_time) - float(userinfo["daily_block"])
@@ -68,7 +70,7 @@ class checkin(commands.Cog):
 
 		if seconds <= 0:
 			  
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["success"]["title"]["translation"], description="\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(goldget, hpget, lbget, lbget), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["success"]["title"]["translation"], description="\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(goldget, hpget, lbget, keyget), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
