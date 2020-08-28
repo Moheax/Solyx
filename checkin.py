@@ -81,7 +81,7 @@ class checkin(commands.Cog):
 
 
 			userinfo["lootbag"] = userinfo["lootbag"] + lbget
-			userinfo["keys"] = userinfo["keys"] + lbget
+			userinfo["keys"] = userinfo["keys"] + keyget
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpget
 			userinfo["gold"] += int(goldget)
 			userinfo["daily_block"] = curr_time
