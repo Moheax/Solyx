@@ -44,12 +44,20 @@ class checkin(commands.Cog):
 		guild = ctx.message.guild
 
 
-		if userinfo["role"] == "Subscriber":
-			goldget = random.randint(150, 300) + (random.randint(150, 300)) / 50
-		elif userinfo["role"] == "Donator":
-			goldget = random.randint(120, 240) + (random.randint(120, 240)) / 50
+	
+		if userinfo["role"] == "Donator":
+			goldget = random.randint(360, 600)
+			hpget = random.randint(3, 5)
+			lbget = random.randint(5, 9)
+		elif userinfo["role"] == "Subscriber":
+			goldget = random.randint(450, 750)
+			hpget = random.randint(6, 9)
+			lbget = random.randint(7, 12)
 		else:
-			goldget = random.randint(100, 200) + (random.randint(100, 200)) / 50
+			goldget = random.randint(200, 400)
+			hpget = random.randint(2, 5)
+			lbget = random.randint(3, 5)
+
 
 		curr_time = time()
 		delta = float(curr_time) - float(userinfo["daily_block"])
@@ -68,6 +76,10 @@ class checkin(commands.Cog):
 				except:
 					return
 
+
+			userinfo["lootbag"] = userinfo["lootbag"] + lbget
+			userinfo["keys"] = userinfo["keys"] + lbget
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpget
 			userinfo["gold"] += int(goldget)
 			userinfo["daily_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
