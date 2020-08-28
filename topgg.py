@@ -1,37 +1,30 @@
-from quart import Quart, g, request, abort, render_template, session, redirect, url_for, flash, jsonify, send_file
-from requests_oauthlib import OAuth2Session
-from pymongo import MongoClient
-import requests
-from utils.db import db
-from utils.dataIO import fileIO
+import dbl
+import discord
+from discord.ext import commands, tasks
 
-settings = fileIO.load_json(config)
-
-app = Quart(__name__)
+import asyncio
+import logging
 
 
-@app.route('/', methods=["POST", "GET"])
-async def votes_webhook():
-    if request.method == 'GET':
-        return abort(400)
-    if request.method == 'POST':
-        if not request.headers.get('authorization') == "387317544228487168":
-            return
-        data = (await request.json)
-        print("VOTE: {}".format(data["user"]))
+class TopGG(commands.Cog):
+    """Handles interactions with the top.gg API"""
 
-        userinfo = db.users.find_one({"_id": int(data['user'])})
-        if not userinfo:
-            return 
+    def __init__(self, bot):
+        self.bot = bot
+        self.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5NTkyODkxNDA0NTMwNDg0NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTk2OTg1NTUyfQ.eAogWCDxTv_qYa22RVr7uaQUB6dzWGVxnzRFypDXOcY' # set this to your DBL token
+        self.dblpy = dbl.DBLClient(self.bot, self.token, webhook_path='http://192.168.1.15:65000', webhook_auth='password', webhook_port=65001)
 
-        userinfo["vote_info"] = True
-        db.users.replace_one({"_id": int(data['user'])}, userinfo, upsert=True)
-
-        return 
-
-    else:
-        return abort(400)
+    # The decorator below will work only on discord.py 1.1.0+
+    # In case your discord.py version is below that, you can use self.bot.loop.create_task(self.update_stats())
 
 
-if __name__ == "__main__":
-    app.run(host="83.82.139.228", port=int(8084), debug=False)
+
+    @commands.Cog.listener()
+    async def on_dbl_vote(self, data):
+        logger.info('Received an upvote')
+        print(data)
+
+def setup(bot):
+    global logger
+    logger = logging.getLogger('bot')
+    bot.add_cog(TopGG(bot))
