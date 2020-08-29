@@ -420,7 +420,7 @@ class give(commands.Cog):
 		if not authorinfo["role"] == "Developer":
 			return
 
-		em = discord.Embed(title="Give someone a new race", description="human / elf / orc / Demon", color=discord.Colour(0xffffff))
+		em = discord.Embed(title="Give someone a new race", description="human / elf / orc / demon", color=discord.Colour(0xffffff))
 		em.set_footer(text="-give race [race] [user]")
 		await ctx.send(embed=em)
 
@@ -507,5 +507,6 @@ class give(commands.Cog):
 			em = discord.Embed(title="Done", description="Changed {}'s race to {}.".format(user.mention, race), color=discord.Colour(0xffffff))
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
+
 def setup(bot):
 	bot.add_cog(give(bot))
