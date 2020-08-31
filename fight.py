@@ -1210,13 +1210,15 @@ class fight(commands.Cog):
 			enemydmg -= youdef
 			if enemydmg < 0:
 				enemydmg += youdef
-			userhealth = userhealth - enemydmg
-			enemyhp = userinfo["enemyhp"] - youdmg
+			
+			
 			lootbag = random.randint(1, 15)
-			overloaddmg = random.randint(10, 20)
-			overloadselfdmg = random.randint(5, 10)
+			overloaddmg = random.randint(15, 25)
+			overloadselfdmg = random.randint(1, 5)
 			youdmg += overloaddmg
 			enemydmg += overloadselfdmg
+			userhealth = userhealth - enemydmg - overloadselfdmg 
+			enemyhp = userinfo["enemyhp"] - youdmg
 
 			if enemydmg < 0:
 				enemydmg = 0
@@ -1253,7 +1255,7 @@ class fight(commands.Cog):
 					return
 			await asyncio.sleep(0.4)
 
-			em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], youdmg, overloadselfdmg), color=discord.Colour(0xffffff))
+			em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em3.set_thumbnail(url=userinfo["equip"]["image"])
 			try:
@@ -1266,7 +1268,7 @@ class fight(commands.Cog):
 					return
 			await asyncio.sleep(0.4)
 
-			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em4.set_thumbnail(url=userinfo["equip"]["image"])
 			try:
