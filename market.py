@@ -291,10 +291,31 @@ class market(commands.Cog):
 
 	@commands.group(name="buy", pass_context=True, no_pm=True)
 	async def normal_buy(self, ctx):
-		if ctx.invoked_subcommand:
+		author = ctx.message.author
+		authorinfo = db.users.find_one({ "_id": author.id })
+		if not authorinfo["role"] in ["Developer", "Staff"]:
 			return
-		else:
-			await self.bot.send_cmd_help(ctx)
+
+		server = ctx.guild
+		channel = ctx.channel
+		servercolor = ctx.author.color
+
+		msg = ""
+		if ctx.invoked_subcommand is None:
+			for x in ctx.command.all_commands:
+				if x not in ctx.command.all_commands[x].aliases:
+					if not ctx.command.all_commands[x].hidden:
+						msg += f"`{ctx.prefix}{ctx.command.name} {x}` - {ctx.command.all_commands[x].help} \n"
+			embed=discord.Embed(colour=servercolor)
+			embed.set_author(name=ctx.command.name, icon_url=ctx.author.avatar_url)
+			embed.add_field(name="Subcommands", value=msg, inline=False)
+			
+			try:
+				await ctx.send(embed=embed)
+			except:
+				return
+		return
+
 
 	@normal_buy.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -316,7 +337,7 @@ class market(commands.Cog):
 				return
 			return
 
-		marketinfo = db.market.find_one({ "_id": "{}".format(id) })
+		marketinfo = db.market.find_one({ "_id": "{}".format('id') })
 
 		existcheck = db.market.count_documents({"_id": "{}".format(id)})
 		if existcheck <= 0:
