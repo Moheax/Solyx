@@ -110,7 +110,7 @@ class guild(commands.Cog):
 
 			len(guild.members) = len(guild.members) + 1
 			guildinfo["memberlist"].append("<@" + user.id + ">")
-			db.guilds.replace_one({ "_id": author.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": author.id }, guildinfo, upsert=True)
 
 			em = discord.Embed(title="Joined Guild", description="You are now a member of {}!".format(guildname), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
@@ -162,19 +162,19 @@ class guild(commands.Cog):
 
 		if guildinfo["title"] == "None" and guildinfo["bonus"] >= 10:
 			guildinfo["title"] = "Big Boys"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		if guildinfo["title"] == "None" or guildinfo["title"] == "Big Boys" and guildinfo["bonus"] >= 30:
 			guildinfo["title"] = "Achievers"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		if guildinfo["title"] == "None" and guildinfo["lvl"] >= 3:
 			guildinfo["title"] = "Real Deal"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		if guildinfo["title"] == "Big Boys" and guildinfo["lvl"] >= 3:
 			guildinfo["title"] = "Real Deal"
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
@@ -215,7 +215,7 @@ class guild(commands.Cog):
 			return
 
 		guildinfo["officers"].append(user.id)
-		db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		em = discord.Embed(title="Guild Promotion", description=":tada: {} got promoted to officer of {}! :tada:".format(user.mention, guild.name), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
@@ -262,7 +262,7 @@ class guild(commands.Cog):
 			return
 
 		guildinfo["officers"].remove(user.id)
-		db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		em = discord.Embed(title="Guild Demotion", description="{} got demoted to member in {}.".format(user.mention, guild.name), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
@@ -318,7 +318,7 @@ class guild(commands.Cog):
 			return
 
 		available = True
-		for guild in db.guilds.find({}):
+		for guild in db.servers.find({}):
 			if guild["tag"].lower() == str(tag).lower():
 				available = False
 
@@ -327,7 +327,7 @@ class guild(commands.Cog):
 			return
 
 		guildinfo["tag"] = tag
-		db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 		em = discord.Embed(title="Guild Tag Changed", description="{} changed the tag of {} to [{}]!".format(author.mention, guild.name, tag), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
@@ -396,7 +396,7 @@ class guild(commands.Cog):
 
 		if guildinfo["mission"] == "None":
 			guildinfo["mission"] = randommission
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			em = discord.Embed(title="New Guild Mission!", description="{}.".format(randommission), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
@@ -436,7 +436,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		elif guildinfo["mission"] == "Collect 200 wood" and guildinfo["missionprogress"] >= 200:
@@ -466,7 +466,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		elif guildinfo["mission"] == "Check-in 10 times" and guildinfo["missionprogress"] >= 10:
@@ -496,7 +496,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		elif guildinfo["mission"] == "Collect 120 metal" and guildinfo["missionprogress"] >= 120:
@@ -526,7 +526,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		elif guildinfo["mission"] == "Kill 400 Oofers" and guildinfo["missionprogress"] >= 400:
@@ -556,7 +556,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		elif guildinfo["mission"] == "Kill 100 Goblins" and guildinfo["missionprogress"] >= 100:
@@ -586,7 +586,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
-			db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
 		else:
@@ -684,7 +684,7 @@ class guild(commands.Cog):
 		taxes = amount / 1000
 		finalamt = taxes / (2 * gmembercount)
 		guildinfo["bonus"] = guildinfo["bonus"] + finalamt
-		db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 		em = discord.Embed(title="You donated {} gold to your guild".format(amount), description="+{} guild boost!".format(finalamt), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
 		try:
@@ -726,7 +726,7 @@ class guild(commands.Cog):
 		if mission == "Donate 35000 gold to your guild":
 			try:
 				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
-				db.guilds.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
 				return
 			except:
 				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
@@ -738,7 +738,7 @@ class guild(commands.Cog):
 
 	async def guild_degenerate(self):
 		while self is self.bot.get_cog("guild"):
-			for guildinfo in db.guilds.find({}):
+			for guildinfo in db.servers.find({}):
 				idowo = guildinfo["_id"]
 				try:
 					if guildinfo["health"] <= 0:
@@ -751,14 +751,14 @@ class guild(commands.Cog):
 						guildinfo["wood"] = 0
 						guildinfo["title"] = "None"
 						guildinfo["inventory"] = []
-						db.guilds.replace_one({ "_id": idowo }, guildinfo, upsert=True)
+						db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
 					else:
 						guildinfo["health"] = guildinfo["health"] - random.randint(0, 2)
-						db.guilds.replace_one({ "_id": idowo }, guildinfo, upsert=True)
+						db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
 				except:
 					try:
 						guildinfo["health"] = 100
-						db.guilds.replace_one({ "_id": idowo }, guildinfo, upsert=True)
+						db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
 					except:
 						pass
 			await asyncio.sleep(2400)
