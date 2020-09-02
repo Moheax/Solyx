@@ -26,11 +26,11 @@ class autorest(commands.Cog):
 						restinfo["health"] = restinfo["health"] + randomhpgain
 					db.users.replace_one({ "_id": idowo }, restinfo, upsert=True)
 
-					now = datetime.datetime.now()
+					#now = datetime.datetime.now()
 
-					current_time = now.strftime("%H:%M:%S")
+					#current_time = now.strftime("%H:%M:%S")
 
-					print(current_time+" | Added "+str(randomhpgain),"health to users!")
+					#print(current_time+" | Added "+str(randomhpgain),"health to users!")
 				
 			await asyncio.sleep(60)
 
