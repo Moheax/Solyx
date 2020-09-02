@@ -7,6 +7,8 @@ import aiohttp
 import datetime
 import asyncio
 import random
+import operator
+
 
 from requests import Request, Session
 from random import choice as randchoice
@@ -42,11 +44,11 @@ class rank(commands.Cog):
 		try:
 			#await self.bot.send_file(channel, 'data/RPGR/{}_rank.png'.format(user.id), content='<:Solyx:560809141766193152> **| rank card for {}**'.format(user.mention), filename="Solyx.png")
 			await channel.send(content='<:Solyx:560809141766193152> **| rank card for {}**'.format(user.mention),file=discord.File('data/RPGR/{}_rank.png'.format(user.id)))
-			try:
-				os.remove('data/RPGR/{}_rank.png'.format(user.id))
-			except:
-				await ctx.send("**ERROR | I can't send images here!**")
-			return
+			#try:
+			#	os.remove('data/RPGR/{}_rank.png'.format(user.id))
+			#except:
+			#	await ctx.send("**ERROR | I can't send images here!**")
+			#return
 		except:
 			return
 		await asyncio.sleep(10)
@@ -233,15 +235,15 @@ class rank(commands.Cog):
 
 		for userinfo in db.users.find({}):
 			try:
-				users.append((userinfo["_id"], userinfo["exp"]))
-			except:
+				userid = userinfo["_id"]
+				users.append((userid, userinfo["lvl"]))
+			except KeyError:
 				pass
-
-		sorted_list = sorted(users,reverse=True)
+		sorted_list = sorted(users, key=operator.itemgetter(1), reverse=True)
 
 		rank = 1
-		for userdoc in sorted_list:
-			if userdoc[0] == user.id:
+		for stats in sorted_list:
+			if stats[0] == user.id:
 				return rank
 			rank+=1
 
