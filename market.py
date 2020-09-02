@@ -222,7 +222,7 @@ class market(commands.Cog):
 	async def buy(self, ctx, id:int):
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-
+		id = int
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -236,12 +236,10 @@ class market(commands.Cog):
 				return
 			return
 
-		marketinfo = db.market.find_one({ "_id": "{}".format(id) })
+		marketinfo = db.market.find_one({ "_id": "{}".format(id)})
 
 		existcheck = db.market.count_documents({"_id": "{}".format(id)})
-		if existcheck <= 0:
-			await ctx.send("<:Solyx:560809141766193152> **| Invalid ID.**")
-			return
+
 
 		if str(id) == str(user.id):
 			await ctx.send("<:Solyx:560809141766193152> **| You can't buy your own items!**")
@@ -337,12 +335,10 @@ class market(commands.Cog):
 				return
 			return
 
-		marketinfo = db.market.find_one({ "_id": "{}".format('id') })
+		marketinfo = db.market.find_one({ "_id": "{}".format(id)})
 
 		existcheck = db.market.count_documents({"_id": "{}".format(id)})
-		if existcheck <= 0:
-			await ctx.send("<:Solyx:560809141766193152> **| Invalid ID.**")
-			return
+
 
 		if str(id) == str(user.id):
 			await ctx.send("<:Solyx:560809141766193152> **| You can't buy your own items!**")
