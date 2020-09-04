@@ -4,11 +4,11 @@ import random
 import os, re, aiohttp
 from random import choice as randchoice
 from discord.ext import commands
-from cogs.rpgutils.db import db
-from cogs.rpgutils.defaults import serverdata, userdata
-from cogs.utils import checks
-from cogs.utils.chat_formatting import pagify
-from cogs.utils.dataIO import fileIO
+from utils.db import db
+from utils.defaults import guilddata, userdata
+from utils import checks
+from utils.chat_formatting import pagify
+from utils.dataIO import fileIO
 import math
 try:
     from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
@@ -21,9 +21,8 @@ try:
 except:
     pass
 
-prefix = fileIO("data/red/settings.json", "load")['PREFIXES']
 
-class wiki:
+class wiki(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
@@ -33,7 +32,7 @@ class wiki:
     async def wiki(self, ctx, *, topic=None):
         if topic == None:
             title="Wiki topics"
-            description="`elf`, `orc`, `phantasm`, `corrupted`, `fire golem`"
+            description="`elf`, `orc`, `phantasm`, `corrupted`, `fire golem`, `test`"
             footer="Command usage: {}wiki [subject].".format(ctx.prefix)
 
         elif topic == "elf":
@@ -61,13 +60,19 @@ class wiki:
             description="The fire golem's name speaks for itself. The golems arose from the depths of a volcano, summoned by an ancient group of druids to protect the Golden Temple. The golem's bodies are made from magnetized lava rock. built to withstand high pressure and has strong resistance against piercing attacks. Long have the golems been asleep. But the increase of wandering adventurers have woken them once more. The golems have no feelings and only one objective in mind. To kill tresspassers."
             footer="Submitted by AceTheBear223#4562 | Submit your wiki acticle using {}server.".format(ctx.prefix)
 
+        elif topic == "test" or topic == "testing":
+            title="Test123"
+            description="**\u27a4 Health** - 1 \n **\u27a4 Damage** - 2 \n **\u27a4 Gold** - 3 \n **\u27a4 Exp** -4 "
+            footer="Submitted by your mom **>:c** | Submit your wiki acticle using {}server.".format(ctx.prefix)
+
+
         try:
             em = discord.Embed(title=title, description=description, color=discord.Colour(0xffffff))
             em.set_footer(text=footer)
-            await self.bot.say(embed=em)
+            await ctx.send(embed=em)
         except:
             try:
-                await self.bot.send_message(ctx.message.channel, "I cound't send the message.")
+                await ctx.send(ctx.message.channel, "I cound't send the message.")
             except:
                 return
 
