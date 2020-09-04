@@ -62,13 +62,14 @@ class wiki(commands.Cog):
 
         elif topic == "test" or topic == "testing":
             title="Test123"
-            description="**\u27a4 Health** - 1 \n **\u27a4 Damage** - 2 \n **\u27a4 Gold** - 3 \n **\u27a4 Exp** -4 "
+            description="**\u27a4 Health** - 1 \n**\u27a4 Damage** - 2 \n**\u27a4 Gold** - 3 \n**\u27a4 Exp** -4 \n \n  yes sum text blabla big monster RAWR big mad long story \n"
             footer="Submitted by your mom **>:c** | Submit your wiki acticle using {}server.".format(ctx.prefix)
 
 
         try:
             em = discord.Embed(title=title, description=description, color=discord.Colour(0xffffff))
             em.set_footer(text=footer)
+            em.set_thumbnail(url=guild.icon_url)
             await ctx.send(embed=em)
         except:
             try:
