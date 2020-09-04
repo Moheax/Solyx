@@ -30,6 +30,9 @@ class wiki(commands.Cog):
     @commands.command(pass_context=True, aliases=["wikipedia"], no_pm=True)
     @commands.cooldown(1, 3, commands.BucketType.user)
     async def wiki(self, ctx, *, topic=None):
+        guild = ctx.guild
+        testicon = ('https://cdn.discordapp.com/attachments/750681506262810624/751520899848601620/unknown.png')
+
         if topic == None:
             title="Wiki topics"
             description="`elf`, `orc`, `phantasm`, `corrupted`, `fire golem`, `test`"
@@ -69,7 +72,7 @@ class wiki(commands.Cog):
         try:
             em = discord.Embed(title=title, description=description, color=discord.Colour(0xffffff))
             em.set_footer(text=footer)
-            em.set_thumbnail(url=guild.icon_url)
+            em.set_thumbnail(url=testicon)
             await ctx.send(embed=em)
         except:
             try:
