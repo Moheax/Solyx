@@ -350,11 +350,11 @@ class fight(commands.Cog):
 			elif debi == "The Corrupted":
 				em.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
 			elif debi == "The Accursed":
-				em.set_image(url="https://i.ytimg.com/vi/qfawzEshL9Y/hqdefault.jpg")
+				em.set_image(url="") #https://i.ytimg.com/vi/qfawzEshL9Y/hqdefault.jpg
 			elif debi == "The Nameless King":
-				em.set_image(url="https://darksouls3.wiki.fextralife.com/file/Dark-Souls-3/Nameless_King_Concept_Art.jpg?v=1497014604745")
+				em.set_image(url="")
 			elif debi == "The Venomous":
-				em.set_image(url="https://i.pinimg.com/originals/5e/27/a1/5e27a156594970c73454cf0aaf5c540a.jpg")
+				em.set_image(url="") #https://i.pinimg.com/originals/5e/27/a1/5e27a156594970c73454cf0aaf5c540a.jpg
 			em.set_footer(text="yes / no")
 			await ctx.send(embed=em)
 			options = ["y", "Y", "yes", "Yes", "n", "N", "No", "no", "-fight"]
