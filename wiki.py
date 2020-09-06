@@ -34,10 +34,28 @@ class wiki(commands.Cog):
        
 
         if topic == None:
-            title="Wiki topics"
-            description="`elf`, `orc`, `phantasm`, `corrupted`, `fire golem`, `test`, `Guild Bonus`"
-            footer="Command usage: {}wiki [subject].".format(ctx.prefix)
-            icon = guild.icon_url
+            embed=discord.Embed(color=discord.Colour(0xffffff))
+            embed.add_field(name="Wiki Topics", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Armor", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Bosses", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Classes", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Daily", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Equip", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Fighting", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Gathering", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Guild", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Items", value="Item1, Item2, Item3, Item4, item5", inline=False)  
+            embed.add_field(name="Market", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Monsters", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Races", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Ranking", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Vote", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            embed.add_field(name="Weapons", value="Item1, Item2, Item3, Item4, item5", inline=False)
+            await ctx.send(embed=embed)
+
+            #title="Wiki topics"
+            #description="`elf`, `orc`, `phantasm`, `corrupted`, `fire golem`, `test`, `Guild Bonus`"
+            #footer="Command usage: {}wiki [subject].".format(ctx.prefix)
 
         elif topic == "elf":
             title="Elf"
