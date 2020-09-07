@@ -277,17 +277,50 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
-			
 		elif topic == "Archer" or topic == "archer" :
 			embed=discord.Embed(title="**Archer**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
-			embed.set_image(url="")
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="30G - 33G", inline=False)
-			embed.add_field(name="**Experience**", value="20Exp - 45Exp", inline=False)
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473419703812122.png?")
+			embed.add_field(name="**Description**", value="Precise and long ranged damage, chance on critical strike", inline=False)
+			embed.add_field(name="**Skills**", value="Shoot", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="20% Change to deal 120% dmg", inline=False)
+			embed.add_field(name="**Specialization**", value="Assassin or Ranger", inline=False)
 			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+			
+		elif topic == "Knight" or topic == "knight" :
+			embed=discord.Embed(title="**Knight**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473415492861972.png?v=1")
+			embed.add_field(name="**Description**", value="Tanky class with close combat damage reduction", inline=False)
+			embed.add_field(name="**Skills**", value="Swing", inline=False)
+			embed.add_field(name="**Special**", value="8 -15 Damage Reduction", inline=False)
+			embed.add_field(name="**Specialization**", value="Paladin or Samurai", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Mage" or topic == "mage" :
+			embed=discord.Embed(title="**Mage**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473422040301574.png?v=1")
+			embed.add_field(name="**Description**", value="Long ranged average damage class with epic items", inline=False)
+			embed.add_field(name="**Skills**", value="Cast", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="AOE Damage (Area of Effect)", inline=False)
+			embed.add_field(name="**Specialization**", value="Necromancer or Elementalist", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Thief" or topic == "thief" :
+			embed=discord.Embed(title="**Thief**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473408563740681.png?v=1")
+			embed.add_field(name="**Description**", value="The most risky class with close ranged high damage", inline=False)
+			embed.add_field(name="**Skills**", value="Stab", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="Lower Base HP higher Base dmg", inline=False)
+			embed.add_field(name="**Specialization**", value="Rogue or Mesmer", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
 
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
