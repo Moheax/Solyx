@@ -33,7 +33,7 @@ class wiki(commands.Cog):
         guild = ctx.guild
        
 
-if topic == None:
+		if topic == None:
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="<:ShieldCheck:560804135545602078>**Wiki Mainpage**", value="\n\nPage 1/3\n\nWiki usage: {}wiki [page].\n Or\nWiki usage: {}wiki [subject].\n\nShield Meanings\n <:ShieldCheck:560804135545602078> = Works Completely! \n <:ShieldBug:649157223905492992> = Working on it!\n <:ShieldBroken:649157253701566474> = Is made but broken...\n <:ShieldCross:560804112548233217> = Hasnt been made yet.\n\n If items dont have the <:ShieldCheck:560804135545602078> Emote you can help and submit a backstory if you want!\n\nCurrent pages 1, 2,3\n\n".format(ctx.prefix, ctx.prefix), inline=False)
 
@@ -92,7 +92,7 @@ if topic == None:
 
 		elif topic == "Chainmail" or topic == "chainmail":
 			embed=discord.Embed(title="**Chainmail Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="2 - 12", inline=False)
@@ -102,7 +102,7 @@ if topic == None:
 			
 		elif topic == "Barbaric" or topic == "barbaric":
 			embed=discord.Embed(title="**Barbaric Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="5 - 7", inline=False)
@@ -112,7 +112,7 @@ if topic == None:
 			
 		elif topic == "Pit fighter" or topic == "pit fighter":
 			embed=discord.Embed(title="**Pit fighter**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="4 - 9", inline=False)
@@ -122,7 +122,7 @@ if topic == None:
 			
 		elif topic == "Banded" or topic == "banded":
 			embed=discord.Embed(title="**Banded Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="1 - 10", inline=False)
@@ -132,7 +132,7 @@ if topic == None:
 			
 		elif topic == "Leather" or topic == "leather":
 			embed=discord.Embed(title="**Leather Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="3 - 8", inline=False)
@@ -142,7 +142,7 @@ if topic == None:
 			
 		elif topic == "Iron" or topic == "iron":
 			embed=discord.Embed(title="**Iron Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
 			embed.add_field(name="**Defense**", value="14 - 16", inline=False)
@@ -152,7 +152,7 @@ if topic == None:
 			
 		elif topic == "Branded Metal" or topic == "branded metal":
 			embed=discord.Embed(title="**Branded Metal Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
 			embed.add_field(name="**Defense**", value="13 - 17", inline=False)
@@ -162,7 +162,7 @@ if topic == None:
 			
 		elif topic == "Wolf Fur" or topic == "wolf fur":
 			embed=discord.Embed(title="**Wolf Fur**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
 			embed.add_field(name="**Defense**", value="1 - 24", inline=False)
@@ -172,7 +172,7 @@ if topic == None:
 			
 		elif topic == "Enchanted Steel" or topic == "enchanted steel":
 			embed=discord.Embed(title="**Enchanted Steel Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
 			embed.add_field(name="**Defense**", value="12 - 17", inline=False)
@@ -182,7 +182,7 @@ if topic == None:
 			
 		elif topic == "Bane Of The Goblin Lord" or topic == "bane of the goblin lord":
 			embed=discord.Embed(title="**Bane Of The Goblin Lord**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
 			embed.add_field(name="**Defense**", value="20 - 25", inline=False)
@@ -192,7 +192,7 @@ if topic == None:
 			
 		elif topic == "Nightstalker Mantle" or topic == "nightstalker mantle":
 			embed=discord.Embed(title="**Nightstalker Mantle**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
 			embed.add_field(name="**Defense**", value="15 - 28", inline=False)
@@ -202,7 +202,7 @@ if topic == None:
 
 		elif topic == "Hephaestus Armor" or topic == "hephaestus armor":
 			embed=discord.Embed(title="**Hephaestus Armor**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
+			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
 			embed.add_field(name="**Defense**", value="16 - 27", inline=False)
@@ -212,7 +212,7 @@ if topic == None:
 			
 		elif topic == "Phantasm" or topic == "phantasm":
 			embed=discord.Embed(title="**Phantasm**", description="**<:ShieldCheck:560804135545602078>Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="https://i.imgur.com/BbBmEOF.jpg")
+			embed.set_image(url="https://i.imgur.com/BbBmEOF.jpg")
 			embed.add_field(name="**Health**", value="60Hp - 80Hp", inline=False)
 			embed.add_field(name="**Damage**", value="10Dmg - 15Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="16G  - 21G", inline=False)
@@ -244,18 +244,50 @@ if topic == None:
 			embed.set_footer(text="Submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
-		elif topic == "1" or topic == "1":
-			embed=discord.Embed(title="****", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
-			embed.add_field(name="**Health**", value="Hp - Hp", inline=False)
-			embed.add_field(name="**Damage**", value="Dmg - Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="G  - G", inline=False)
-			embed.add_field(name="**Experience**", value="Exp - Exp", inline=False)
-			embed.add_field(name="Back Story", value="", inline=False)
+		elif topic == "The Accursed" or topic == "Accursed" or topic == "the accursed" or topic == "accursed":
+			embed=discord.Embed(title="**The Accursed**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Health**", value="70Hp - 90Hp", inline=False)
+			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="26G  - 29G", inline=False)
+			embed.add_field(name="**Experience**", value="15Exp - 35Exp", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "The Nameless King" or topic == "the nameless king" or topic == "Nameless King" or topic == "nameless king":
+			embed=discord.Embed(title="**The Nameless King**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="28G  - 31G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 40Exp", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "The Venomous" or topic == "the venomous" or topic == "Venomous" or topic == "venomous":
+			embed=discord.Embed(title="**The Venomous**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="30G - 33G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 45Exp", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
-
+			
+		elif topic == "Archer" or topic == "archer" :
+			embed=discord.Embed(title="**Archer**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="30G - 33G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 45Exp", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
@@ -302,16 +334,16 @@ if topic == None:
 			footer="submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.".format(ctx.prefix)
 			icon = ('https://cdn.discordapp.com/emojis/560844076967002112.png?v=1') #https://cdn.discordapp.com/attachments/737821854680744017/751554397456040088/unknown.png
 
-        try:
-            em = discord.Embed(title=title, description=description, color=discord.Colour(0xffffff))
-            em.set_footer(text=footer)
-            em.set_thumbnail(url=icon)
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(ctx.message.channel, "I cound't send the message.")
-            except:
-                return
+		try:
+			em = discord.Embed(title=title, description=description, color=discord.Colour(0xffffff))
+			em.set_footer(text=footer)
+			em.set_thumbnail(url=icon)
+			await ctx.send(embed=em)
+		except:
+			try:
+				await ctx.send(ctx.message.channel, "I cound't send the message.")
+			except:
+				return
 
 
 def setup(bot):
