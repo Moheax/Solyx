@@ -233,7 +233,6 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 
 		elif topic == "corrupted" or topic == "the corrupted" or topic == "The Corrupted" or topic == "Corrupted":
-			
 			embed=discord.Embed(title="**The Corrupted**", description="**<:ShieldCheck:560804135545602078>Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
 			embed.add_field(name="**Health**", value="70Hp - 90Hp", inline=False)
@@ -320,7 +319,94 @@ class wiki(commands.Cog):
 			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+			
+		elif topic == "Assassin" or topic == "assassin" :
+			embed=discord.Embed(title="**Assassin**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205760897034.png?v=1")
+			embed.add_field(name="**Description**", value="test", inline=False)
+			embed.add_field(name="**Skills**", value="t", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="t", inline=False)
+			embed.add_field(name="**Specialization**", value="t", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
+		elif topic == "Ranger" or topic == "ranger" :
+			embed=discord.Embed(title="**Ranger**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Samurai" or topic == "samurai" :
+			embed=discord.Embed(title="**Samurai**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Paladin" or topic == "paladin" :
+			embed=discord.Embed(title="**Paladin**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Necromancer" or topic == "necromancer" :
+			embed=discord.Embed(title="**Necromancer**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Elementalist" or topic == "elementalist" :
+			embed=discord.Embed(title="**Elementalist**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Rogue" or topic == "rogue" :
+			embed=discord.Embed(title="**Rogue**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Mesmer" or topic == "mesmer" :
+			embed=discord.Embed(title="**Mesmer**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Description**", value="", inline=False)
+			embed.add_field(name="**Skills**", value="", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
+			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.add_field(name="Back Story", value="None!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
