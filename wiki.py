@@ -323,9 +323,9 @@ class wiki(commands.Cog):
 		elif topic == "Assassin" or topic == "assassin" :
 			embed=discord.Embed(title="**Assassin**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205760897034.png?v=1")
-			embed.add_field(name="**Description**", value="High damage but low health", inline=False)
+			embed.add_field(name="**Description**", value="Higher Crit damage but low health", inline=False)
 			embed.add_field(name="**Skills**", value="Shoot, Strike", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="Higher crit chance and Dmg", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="40% Chance to deal 120% Dmg -20Hp", inline=False)
 			embed.add_field(name="**Specialization**", value="None yet!", inline=False)
 			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -333,11 +333,11 @@ class wiki(commands.Cog):
 
 		elif topic == "Ranger" or topic == "ranger" :
 			embed=discord.Embed(title="**Ranger**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
-			embed.add_field(name="**Description**", value="", inline=False)
-			embed.add_field(name="**Skills**", value="", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
-			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638206285185116.png?v=1")
+			embed.add_field(name="**Description**", value="Always sure to hit for a decent amount of damage", inline=False)
+			embed.add_field(name="**Skills**", value="Shoot, Strike", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="Higher Minimal Dmg", inline=False)
+			embed.add_field(name="**Specialization**", value="None yet!", inline=False)
 			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
