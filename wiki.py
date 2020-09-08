@@ -344,11 +344,11 @@ class wiki(commands.Cog):
 
 		elif topic == "Samurai" or topic == "samurai" :
 			embed=discord.Embed(title="**Samurai**", description="**<:ShieldBug:649157223905492992>Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url="")
-			embed.add_field(name="**Description**", value="", inline=False)
-			embed.add_field(name="**Skills**", value="", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="", inline=False)
-			embed.add_field(name="**Specialization**", value="", inline=False)
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205920018603.png?v=1")
+			embed.add_field(name="**Description**", value="Defensive playstile", inline=False)
+			embed.add_field(name="**Skills**", value="Swing, Protrude", inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="Chance to evade attack", inline=False)
+			embed.add_field(name="**Specialization**", value="None yet!", inline=False)
 			embed.add_field(name="Back Story", value="None!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
