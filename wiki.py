@@ -408,6 +408,62 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
+		elif topic == "Chop" or topic == "chop":
+			embed=discord.Embed(title="**Chop**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574740220969007.png?v=1")
+			embed.add_field(name="**Usage**", value="Just type {}chop <:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Chopping**", value="With the {}chop command you gather 1 to 5 wood.".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Cooldown**", value="10 Minutes", inline=False)
+			await ctx.send(embed=embed)
+			
+		elif topic == "Mine" or topic == "mine":
+			embed=discord.Embed(title="**Mine**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574740640530471.png?v=1")
+			embed.add_field(name="**Usage**", value="Just type {}mine <:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Mining**", value="With the {}mine command you gather 1 to 5 stone and 0 to 2.".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Cooldown**", value="10 Minutes", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Fish" or topic == "fish":
+			embed=discord.Embed(title="**Fish**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://discord.com/assets/2d827842d29f3408d9eb56fcdd96e589.svg")
+			embed.add_field(name="**Usage**", value="Just type {}fish <:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Fishing**", value="With the {}fish command you can fish up multiple things.\n"":fish:"" = +5G\n"":tropical_fish:"" = +10G\n"":blowfish:"" = +4G\n"":prayer_beads:"" = +15G\n"":key2:"" = +2G\n"":paperclip:"" = +2G\n"":potato:"" = +2G\n"":wastebasket:"" = -10G\n"":crab:"" = -5G\n".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Cooldown**", value="4 seconds", inline=False)
+			embed.add_field(name="**Texts**", value=":fishing_pole_and_fish: **| "+ (user.name) + " , you caught (fish or item)!** *+GoldAmount*\n:fishing_pole_and_fish: **|"+ (user.name) + ", your line broke when you caught (fish or item)!** *+GoldAmount*\n:fishing_pole_and_fish: **|"+ (user.name) + ", you caught (fish or item)!** *-GoldAmount*\n"":fishing_pole_and_fish: **| Uh-oh! "+ (user.name) + " failed to catch anything!**")
+			await ctx.send(embed=embed)
+
+		elif topic == "Wood" or topic == "wood":
+			embed=discord.Embed(title="**Wood**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574660185260042.png?v=1")
+			embed.add_field(name="**Gathering**", value="There are multiple ways you can get wood.", inline=False)
+			embed.add_field(name="**Chopping**", value="With the {}chop command you gather 1 to 5 wood.".format(ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Crates**", value="With the {}crate/{}lb you gather 1 to 3 wood.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Daily**", value="With the {}daily/{}checkin you gather 10 to 20 wood.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Vote**", value="With the {}vote you gather 10 to 20 wood.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Stone" or topic == "stone":
+			embed=discord.Embed(title="**Stone**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574662525550593.png?v=1")
+			embed.add_field(name="**Gathering**", value="There are multiple ways you can get stone.", inline=False)
+			embed.add_field(name="**Mining**", value="With the {}mine command you gather 1 to 5 stone.".format(ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Crates**", value="With the {}crate/{}lb you gather 1 to 3 stone.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Daily**", value="With the {}daily/{}checkin you gather 10 to 20 stone.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Vote**", value="With the {}vote you gather 10 to 20 stone.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Metal" or topic == "metal":
+			embed=discord.Embed(title="**Metal**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574661108006915.png?v=1")
+			embed.add_field(name="**Gathering**", value="There are multiple ways you can get metal.", inline=False)
+			embed.add_field(name="**Chopping**", value="With the {}mine command you gather 0 to 2 metal.".format(ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Crates**", value="With the {}crate/{}lb you gather 1 metal.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Daily**", value="With the {}daily/{}checkin you gather 3 to 9 metal.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="<:ShieldCross:560804112548233217>**Vote**", value="With the {}vote you gather 4 to 10 metal.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 3".format(ctx.prefix, ctx.prefix), inline=False)
