@@ -408,6 +408,19 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
+		elif topic == "PVE" or topic == "pve":
+			embed=discord.Embed(title="**PVE**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.add_field(name="**Pve meaning**", value="short for player versus environment.", inline=False)
+			embed.add_field(name="**Pve in Solyx**", value="For now the only pve fights are with {}fight.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "PVP" or topic == "pvp":
+			embed=discord.Embed(title="**PVP**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573580993055686657.png?v=1")
+			embed.add_field(name="**PvP meaning**", value="short for player versus player.", inline=False)
+			embed.add_field(name="**PvP in Solyx**", value="For now the only pvp fights are with {}battle.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
 		elif topic == "Chop" or topic == "chop":
 			embed=discord.Embed(title="**Chop**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573574740220969007.png?v=1")
