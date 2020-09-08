@@ -78,7 +78,6 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCross:560804112548233217>Guild", value="Info, Represent, Mission, Donate, Promote, Demote, Tag", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
-
 		elif topic == "Chainmail" or topic == "chainmail":
 			embed=discord.Embed(title="**Chainmail Armor**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
@@ -491,6 +490,66 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCross:560804112548233217>**Vote**", value="With the {}vote you gather 4 to 10 metal.".format(ctx.prefix), inline=False)
 			await ctx.send(embed=embed)
 
+		elif topic == "info" or topic == "Info" or topic == " Guild Info" or topic == "guild info":
+			embed=discord.Embed(title="**Guild Info**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="**Guild info**", value="it does not represent Server info it shows the info of the RPG guild.\nEvery server solyx is in is a guild.", inline=False)
+			embed.add_field(name="Name", value="Name of the server.".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="Title", value="represents the level of the guild. (check {}wiki Titles Guilds).".format(ctx.prefix), inline=False)
+			embed.add_field(name="Leader", value="Server owner.", inline=False)
+			embed.add_field(name="Members", value="server members", inline=False)
+			embed.add_field(name="Level", value="level of the guild not Nitro boost.", inline=False)
+			embed.add_field(name="Exp", value="the guild Exp.", inline=False)
+			embed.add_field(name="Bonus", value="Guild Bonus (check {}wiki guild bonus).".format(ctx.prefix), inline=False)
+			embed.add_field(name="Health", value="the guild HP If the guild hp reaches 0 the stats get reset back to 0\n level, exp and bonus.\n to keep the hp up, complete missions!.", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Represent" or topic == "Represent" or topic == "guild represent" or topic == "represent":
+			embed=discord.Embed(title="**Guild Represent**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild Represent<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Explanation", value="When you represent a guild you join that guild you said it in.\nThe guild name will be shown in you status.\n you also gain that guilds guildbonus.\nYou also will join the guild mission!", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Mission" or topic == "Mission" or topic == "guild mission" or topic == "mission":
+			embed=discord.Embed(title="**Guild Mission**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild mission<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Meaning", value="Guild missions keep your guild HP up to 100 and give it Exp to level up!".format(ctx.prefix), inline=False)
+			embed.add_field(name="Missions", value="Collect 200 wood, Collect 120 metal, Check-in 10 times, Kill 400 Oofers, Kill 100 Goblins, Donate 35000 to the guild", inline=False)
+			embed.add_field(name="Rewards", value="All missions get 10 to 40 exp once finshed except,\nKill 400 Oofers gets 10 - 50Exp\nKill 100 Goblins gets 10 - 30Exp", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Donate" or topic == "Donate" or topic == "guild donate" or topic == "donate":
+			embed=discord.Embed(title="**Guild Donate**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild donate <amount><:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Benefits", value="Donation gold to your guild grants it a Guildbonus.", inline=False)
+			embed.add_field(name="Stats", value="Guild bonus is maxed at 200\nGuild bonus is calculated with\nTaxes = AmountDonated / 1000\nGuildbonus = taxes : ( 2 x membercount)", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Promote" or topic == "Promote" or topic == "guild promote" or topic == "promote":
+			embed=discord.Embed(title="**Guild Promote**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild promote<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Officers", value="can promote and demote members".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Demote" or topic == "Demote" or topic == "guild demote" or topic == "demote":
+			embed=discord.Embed(title="**Guild Demote**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild demote<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Officers", value="can demote members".format(ctx.prefix), inline=False)
+			embed.add_field(name="Leader", value="can promote and demote officers and members".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Guild Tag" or topic == "Tag" or topic == "guild tag" or topic == "tag":
+			embed=discord.Embed(title="**Guild Tag**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="Usage", value="Just type {}guild tag (3 Letters)<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Leaderboard", value="The guild tag will be show in  the guild leaderboard.".format(ctx.prefix), inline=False)
+			embed.add_field(name="Rules", value="Only guild owner can change the guild tag.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
 
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
