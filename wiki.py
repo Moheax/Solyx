@@ -565,6 +565,42 @@ class wiki(commands.Cog):
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
+		elif topic == "Health" or topic == "health" or topic == "Health potion" or topic == "health potion" or topic == "Health potions" or topic == "health potions":
+			embed=discord.Embed(title="**Health Potion**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573577125064605706.png?v=1")
+			embed.add_field(name="Usage", value="Just type {}heal<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
+			embed.add_field(name="Buy", value="To buy it type {}buy hp <amount>\nThe price changes on your level".format(ctx.prefix), inline=False)
+			embed.add_field(name="Price", value="Level 0+ = 5G\nLevel 10+ = 10G\nLevel 30+ = 15G\nLevel  50+ = 20G\nLevel  70+ = 25G".format(ctx.prefix, ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="How to get", value="You can get Health potions with {}daily, {}vote and {}lb".format(ctx.prefix, ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="Stats", value="Minor health potions will heal you between 25 and 55 hp\nDaily will get you 2 to 5 Health potions.\nMore health potions will be added later.".format(ctx.prefix), inline=False)
+			embed.set_footer(text="G = Gold, HP = Health, Level = User level.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Key" or topic == "key" or topic == "Keys"or topic == "keys":
+			embed=discord.Embed(title="**Key**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573780034355986432.png?v=1")
+			embed.add_field(name="Usage", value="You need 1 Key and 1 Crate to open a crate!".format(ctx.prefix), inline=False)
+			embed.add_field(name="how to get.", value="You can get keys by fighting monsters.\n By daily's in and voting".format(ctx.prefix), inline=False)
+			embed.add_field(name="Stats", value="Fighting monsters = 6.25% chance of getting a key\nDaily will get you 3 to 5 keys.\nVoting will get you 3 to 5 Keys.".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Donaters and subscribers get more.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Crate" or topic == "crate" or topic == "Crates" or topic == "crates":
+			embed=discord.Embed(title="**Crate**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639425690072252426.png?v=1")
+			embed.add_field(name="Usage", value="You need 1 Key and 1 Crate to open a crate!".format(ctx.prefix), inline=False)
+			embed.add_field(name="how to get.", value="You can get Crates by fighting monsters.\n By daily's in and voting".format(ctx.prefix), inline=False)
+			embed.add_field(name="Stats", value="Fighting monsters = 6.25% chance of getting a crate\nDaily will get you 3 to 5 crates.\nVoting will get you 3 to 5 crates.".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Donaters and subscribers get more.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Gold" or topic == "gold":
+			embed=discord.Embed(title="**Gold**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639484869809930251.png?v=1")
+			embed.add_field(name="Usage", value="Gold is used for a lot of things\n Health potions, Market, When u die  you pay a certain amount, Donating to the guild, The shop, Soon more!".format(ctx.prefix), inline=False)
+			embed.add_field(name="how to get.", value="You can get Gold by fighting monsters.\n By daily's in and voting and market\nYou can also get it with selling resources \n{}sell <wood/stone/metal> <amount>\nAnd by Fishing but you can also loose gold..".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Donaters and subscribers get more.")
+			await ctx.send(embed=embed)
 
 
 		elif topic == "elf":
