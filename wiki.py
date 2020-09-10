@@ -857,17 +857,42 @@ class wiki(commands.Cog):
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
-		elif topic == "elf":
-			title="<:ShieldBug:649157223905492992>Elf"
-			description="In the lush forested areas of east Solyx, the elves thrive. While their bodies are naturally slim, they are surprisingly strong and can easily hold their own in a fight. However, elves do not prioritize physical strength; instead favoring the charismatic members of society. While many things can be seen as status symbols to individual elf communities, the pointiness of their ears is the most common way an elf shows off their looks."
-			footer="Submitted by (8ᘌꇤ⁐ꃳ 三#2369\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.".format(ctx.prefix)
-			icon = guild.icon_url
+		
+		elif topic == "Orc" or topic == "orc":
+			embed=discord.Embed(title="**Orc**", description="**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.discordapp.com/emojis/639474558109483028.png?v=1")
+			embed.add_field(name="**Type**", value="Character Race", inline=False)
+			embed.add_field(name="**Traits**", value="None yet!", inline=False)
+			embed.add_field(name="**Backstory**", value="To the far west of Solyx, deep into the cold and dangerous mountain ranges, lies the kingdom of the orc. This grand and heavily fortified city is home to the orcs. To survive the cold and harsh lands they live in, the orcs have to go through hellish training, starting from the day they can walk. Once they become of age, these fierce creatures will have been shaped up to be the pinnacle of raw physical strength, and combat prowess.", inline=False)
+			embed.set_footer(text="Submitted by Rideric#4935\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
-		elif topic == "orc":
-			title="<:ShieldBug:649157223905492992>Orc"
-			description="To the far west of Solyx, deep into the cold and dangerous mountain ranges, lies the kingdom of the orc. This grand and heavily fortified city is home to the orcs. To survive the cold and harsh lands they live in, the orcs have to go through hellish training, starting from the day they can walk. Once they become of age, these fierce creatures will have been shaped up to be the pinnacle of raw physical strength, and combat prowess."
-			footer="Submitted by Rideric#4935\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.".format(ctx.prefix)
-			icon = guild.icon_url
+		elif topic == "Human" or topic == "human":
+			embed=discord.Embed(title="**Human**", description="book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.discordapp.com/emojis/639474561355874304.png?v=1")
+			embed.add_field(name="**Type**", value="Character Race", inline=False)
+			embed.add_field(name="**Traits**", value="None yet!", inline=False)
+			embed.add_field(name="**Backstory**", value="", inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "elf" or topic == "Elf":
+			embed=discord.Embed(title="**Elf**", description="**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.discordapp.com/emojis/639474564023189554.png?v=1")
+			embed.add_field(name="**Type**", value="Character Race", inline=False)
+			embed.add_field(name="**Traits**", value="None yet!", inline=False)
+			embed.add_field(name="**Backstory**", value="In the lush forested areas of east Solyx, the elves thrive. While their bodies are naturally slim, they are surprisingly strong and can easily hold their own in a fight. However, elves do not prioritize physical strength; instead favoring the charismatic members of society. While many things can be seen as status symbols to individual elf communities, the pointiness of their ears is the most common way an elf shows off their looks.", inline=False)
+			embed.set_footer(text="Submitted by (8ᘌꇤ⁐ꃳ 三#2369\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Demon" or topic == "demon":
+			embed=discord.Embed(title="**Demon**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.discordapp.com/emojis/639474562463170590.png?v=1")
+			embed.add_field(name="**Type**", value="Character Race", inline=False)
+			embed.add_field(name="**Traits**", value="None yet!", inline=False)
+			embed.add_field(name="**Backstory**", value="", inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 
 
