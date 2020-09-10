@@ -1059,8 +1059,105 @@ class wiki(commands.Cog):
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
-
-
+			
+		elif topic == "Excalibur" or topic == "Excalibur":
+			embed=discord.Embed(title="**Excalibur**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/mnQAA1X.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Knight, Paladin, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Twilight" or topic == "twilight":
+			embed=discord.Embed(title="**Twilight**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/HFH7ugZ.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Knight, Paladin, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Devil's Kiss" or topic == "devil's kiss" or topic == "Devils Kiss" or topic == "devils kiss":
+			embed=discord.Embed(title="**Devil's Kiss**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/59tnHA8.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Archer, Ranger, Assassin", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Hawkeye" or topic == "`hawkeye":
+			embed=discord.Embed(title="**Hawkeye**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/dnkLTAj.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Archer, Ranger, Assassin", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Solarflare" or topic == "solarflare":
+			embed=discord.Embed(title="**Solarflare**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/ZP2KxJl.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Mage, Elementalist, Necromancer, Mesmer", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Thunderguard" or topic == "thunderguard":
+			embed=discord.Embed(title="**Thunderguard**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/XXSZylz.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Mage, Elementalist, Necromancer, Mesmer", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Doomblade" or topic == "doomblade":
+			embed=discord.Embed(title="**Doomblade**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/kFHHkyu.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Deathraze" or topic == "`deathraze":
+			embed=discord.Embed(title="**Deathraze**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/2jRAyud.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Soulreaper" or topic == "soulreaper":
+			embed=discord.Embed(title="**Soulreaper**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/xpmTArc.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
+			embed.add_field(name="**Damage**", value="30 - 40", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 
 
