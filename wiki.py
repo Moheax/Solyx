@@ -893,8 +893,172 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Backstory**", value="Noneyet!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+			
+		elif topic == "Users" or topic == "users":
+			embed=discord.Embed(title="**Ranking users**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="**Stats**", value="to show detailed info type {}stats or {}status".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="**Profile**", value="To show basic info and profile type {}profile ".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Rank**", value="To check level progression and rank type {}rank".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Global Rank**", value="To check global level rank type {}top users".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+	
+		elif topic == "Guilds" or topic == "guilds":
+			embed=discord.Embed(title="**Ranking Guilds**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="**Stats**", value="to show detailed info type {}guild info".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Global Rank**", value="To check global guild rank type {}top guilds".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Titles Guilds" or topic == "titles guilds":
+			embed=discord.Embed(title="**Titles Guilds**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=guild.icon_url)
+			embed.add_field(name="**Titles**", value="1. Big Boys\n2. Achievers\n3. Real Deal".format(ctx.prefix), inline=False)
+			embed.add_field(name="**How to obtain**", value="The guild titles refer to a guild level.\nLevel 1 = Big boys\nLevel 2 = Achievers\nLevel 3 = Real Deal".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
+		elif topic == "Titles Users" or topic == "titles users":
+			embed=discord.Embed(title="**Titles Users**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="**Titles**", value="1. Beginner\n2. Legendary\n3. Twice Told Legend".format(ctx.prefix), inline=False)
+			embed.add_field(name="**How to obtain**", value="The Users titles Can be obtained by random actions or achievements.\nBeginner will be giving at the creation of a character.\nLegendary is aquired on getting a Legendary item.\nTwice Told Legend will be aquired on your second legendary.\nMore titles will be made in the future!".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
+		elif topic == "Starter Bow" or topic == "starter bow":
+			embed=discord.Embed(title="**Starter Bow**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/JSHWiSK.png")
+			embed.add_field(name="**Type**", value="Weapon, ", inline=False)
+			embed.add_field(name="**For**", value="Archer, Ranger, Assassin", inline=False)
+			embed.add_field(name="**Rarity**", value="Basic", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 12", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+	
+		elif topic == "Starter Sword" or topic == "starter sword":
+			embed=discord.Embed(title="**Starter Sword**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/oW8roUp.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Knight, Paladin, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Basic", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 12", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Starter Staff" or topic == "starter staff":
+			embed=discord.Embed(title="**Starter Staff**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/S7eGyqy.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Mage, Elementalist, Necromancer, Mesmer", inline=False)
+			embed.add_field(name="**Rarity**", value="Basic", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 12", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Starter Dagger" or topic == "starter dagger":
+			embed=discord.Embed(title="**Starter Dagger**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/WGaqfei.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Basic", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 12", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Iron Claws" or topic == "iron claws":
+			embed=discord.Embed(title="**Iron Claws**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/lrk0y5p.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="24 - 28", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Iron Mace" or topic == "iron mace":
+			embed=discord.Embed(title="**Iron Mace**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/eMGSaS5.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Paladin, Rogue, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="20 - 30", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Curved Dagger" or topic == "curved dagger":
+			embed=discord.Embed(title="**Curved Dagger**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/31mYMgk.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Thief, Mesmer, Rogue", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Tomb of water" or topic == "tomb of water":
+			embed=discord.Embed(title="**Tomb of water**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/H7Umwgs.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Mage, Elementalist, Necromancer, Mesmer", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Spiked Mace" or topic == "spiked mace":
+			embed=discord.Embed(title="**Spiked Mace**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/3PZfnkC.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Paladin, Rogue, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="5 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Mithril Sword" or topic == "mithril sword":
+			embed=discord.Embed(title="**Mithril Sword**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/UNc4JeO.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Knight, Paladin, Samurai", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="2 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Etched Longbow" or topic == "etched longbow":
+			embed=discord.Embed(title="**Etched  Longbow**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/VvYc9zY.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Archer, Ranger, Assassin", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="2 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Verdant Bow" or topic == "verdant bow":
+			embed=discord.Embed(title="**Verdant bow**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://i.imgur.com/3EyPeH2.png")
+			embed.add_field(name="**Type**", value="Weapon", inline=False)
+			embed.add_field(name="**For**", value="Archer, Ranger, Assassin", inline=False)
+			embed.add_field(name="**Rarity**", value="Rare", inline=False)
+			embed.add_field(name="**Damage**", value="2 - 25", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 
 
