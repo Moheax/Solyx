@@ -792,6 +792,71 @@ class wiki(commands.Cog):
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+						
+		elif topic == "Dormammu" or topic == "dormammu":
+			embed=discord.Embed(title="**Dormammu**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Place**", value="Township of Arkina", inline=False)
+			embed.add_field(name="**Health**", value="90Hp - 110Hp", inline=False)
+			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="26G  - 29G", inline=False)
+			embed.add_field(name="**Experience**", value="15Exp - 35Exp", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Ettin" or topic == "ettin":
+			embed=discord.Embed(title="**Ettin**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Place**", value="Township of Arkina", inline=False)
+			embed.add_field(name="**Health**", value="90Hp - 110Hp", inline=False)
+			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="26G  - 29G", inline=False)
+			embed.add_field(name="**Experience**", value="15Exp - 35Exp", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)	
+			
+		elif topic == "Largos" or topic == "largos":
+			embed=discord.Embed(title="**Largos**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
+			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="30G  - 33G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 45Exp", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Deathclaw" or topic == "deathclaw":
+			embed=discord.Embed(title="**Deathclaw**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
+			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="28G  - 31G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 40Exp", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "Saurian" or topic == "saurian":
+			embed=discord.Embed(title="**Saurian**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="")
+			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
+			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
+			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
+			embed.add_field(name="**Gold**", value="`28G  - 31G", inline=False)
+			embed.add_field(name="**Experience**", value="20Exp - 40Exp", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 		elif topic == "elf":
 			title="<:ShieldBug:649157223905492992>Elf"
 			description="In the lush forested areas of east Solyx, the elves thrive. While their bodies are naturally slim, they are surprisingly strong and can easily hold their own in a fight. However, elves do not prioritize physical strength; instead favoring the charismatic members of society. While many things can be seen as status symbols to individual elf communities, the pointiness of their ears is the most common way an elf shows off their looks."
