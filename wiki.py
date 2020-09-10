@@ -890,7 +890,7 @@ class wiki(commands.Cog):
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639474562463170590.png?v=1")
 			embed.add_field(name="**Type**", value="Character Race", inline=False)
 			embed.add_field(name="**Traits**", value="None yet!", inline=False)
-			embed.add_field(name="**Backstory**", value="", inline=False)
+			embed.add_field(name="**Backstory**", value="Noneyet!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
