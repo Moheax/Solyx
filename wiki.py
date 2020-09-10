@@ -868,7 +868,7 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 
 		elif topic == "Human" or topic == "human":
-			embed=discord.Embed(title="**Human**", description="book:**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Human**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/639474561355874304.png?v=1")
 			embed.add_field(name="**Type**", value="Character Race", inline=False)
 			embed.add_field(name="**Traits**", value="None yet!", inline=False)
