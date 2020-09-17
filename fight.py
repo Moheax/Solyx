@@ -35,7 +35,7 @@ class fight(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		guild = ctx.message.guild
-		guildinfo = db.guilds.find_one({ "_id": guild.id })
+		guildinfo = db.servers.find_one({ "_id": guild.id })
 
 		if not userinfo["class"] == "None" and not userinfo["race"] == "None":
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["restart"]["translation"].format(user.mention))
@@ -186,15 +186,28 @@ class fight(commands.Cog):
 	async def _level_up_check_user(self, ctx, user):
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })
-		if userinfo["exp"] >= ((userinfo["lvl"] + 1) * 165):
+		if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 			userinfo["lvl"] = userinfo["lvl"] + 1
 			userinfo["health"] = 100
+			userinfo["exp"] = 0
 			em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 			await ctx.send(embed=em)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		if userinfo["lvl"] >= 10 and not "Beginner" in titlesinfo["titles_list"]:
 			newtitle = "Beginner"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 20 and not "Apprentice" in titlesinfo["titles_list"]:
+			newtitle = "Apprentice"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
 				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
@@ -349,12 +362,6 @@ class fight(commands.Cog):
 				em.set_image(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/c7f23f41-5bd8-4b82-a00c-d61b0cfb0160/d9p8w3t-e2e0278a-7b05-4d6b-9a69-c50f3f005126.png/v1/fill/w_700,h_331,q_70,strp/fire_golem_by_sourshade_d9p8w3t-350t.jpg")
 			elif debi == "The Corrupted":
 				em.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
-			elif debi == "The Accursed":
-				em.set_image(url="") #https://i.ytimg.com/vi/qfawzEshL9Y/hqdefault.jpg
-			elif debi == "The Nameless King":
-				em.set_image(url="")
-			elif debi == "The Venomous":
-				em.set_image(url="") #https://i.pinimg.com/originals/5e/27/a1/5e27a156594970c73454cf0aaf5c540a.jpg
 			em.set_footer(text="yes / no")
 			await ctx.send(embed=em)
 			options = ["y", "Y", "yes", "Yes", "n", "N", "No", "no", "-fight"]
