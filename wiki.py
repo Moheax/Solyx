@@ -11,27 +11,27 @@ from utils.chat_formatting import pagify
 from utils.dataIO import fileIO
 import math
 try:
-    from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
+	from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
 except:
-    raise RuntimeError("Can't load pillow. Do 'pip3 install pillow'.")
+	raise RuntimeError("Can't load pillow. Do 'pip3 install pillow'.")
 try:
-    import scipy
-    import scipy.misc
-    import scipy.cluster
+	import scipy
+	import scipy.misc
+	import scipy.cluster
 except:
-    pass
+	pass
 
 
 class wiki(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+	def __init__(self, bot):
+		self.bot = bot
 
 
-    @commands.command(pass_context=True, aliases=["wikipedia"], no_pm=True)
-    @commands.cooldown(1, 3, commands.BucketType.user)
-    async def wiki(self, ctx, *, topic=None):
-        guild = ctx.guild
-       
+	@commands.command(pass_context=True, aliases=["wikipedia"], no_pm=True)
+	@commands.cooldown(1, 3, commands.BucketType.user)
+	async def wiki(self, ctx, *, topic=None):
+		guild = ctx.guild
+		user = ctx.author
 
 		if topic == None:
 			embed=discord.Embed(color=discord.Colour(0xffffff))
@@ -75,7 +75,7 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Equip", value="Weapons, armor", inline=False)			
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Fighting", value="PVE, PVP", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Gathering", value="Chop, Mine, Wood, Stone, Metal, Fish", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Guild", value="Info, Represent, Mission, Donate, Promote, Demote, Tag", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Guild", value="Info, Represent, Mission, Donate, Promote, Demote, Tag", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 		elif topic == "Chainmail" or topic == "chainmail":
@@ -256,7 +256,7 @@ class wiki(commands.Cog):
 			
 		elif topic == "The Venomous" or topic == "the venomous" or topic == "Venomous" or topic == "venomous":
 			embed=discord.Embed(title="**The Venomous**", description="**:book:Wiki**", color=discord.Colour(0xffffff))
-			embed.set_image(url="")
+			embed.set_image(url="https://i.pinimg.com/originals/d3/5e/fb/d35efb16a4e1aeee4e0119c8a2257fca.jpg")
 			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
 			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="30G - 33G", inline=False)
@@ -554,13 +554,13 @@ class wiki(commands.Cog):
 		elif topic == "3" or topic =="page 3/3":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 3".format(ctx.prefix, ctx.prefix), inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Items", value="Health Potions, Keys, Crates, Gold", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Market", value="Sell, Buy,", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Monsters", value="Rachi, Debin, Oofer, Wyvern, Wolf, Goblin, Zombie, Draugr, Stalker, Souleater, Elder Dragon, Hades, Ebony Guardian, Harpy, Dormammu, Ettin, Largos, Deathclaw, Saurian", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Races", value="Orc, Human, Elf, Demon", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Ranking", value="Users, Guilds", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Titles", value="Titles Guilds, Titles Users", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=True)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Items", value="Health Potions, Keys, Crates, Gold", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Market", value="Sell, Buy,", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Monsters", value="Rachi, Debin, Oofer, Wyvern, Wolf, Goblin, Zombie, Draugr, Stalker, Souleater, Elder Dragon, Hades, Ebony Guardian, Harpy, Dormammu, Ettin, Largos, Deathclaw, Saurian", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Races", value="Orc, Human, Elf, Demon", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Ranking", value="Users, Guilds", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Titles", value="Titles Guilds, Titles Users, Achievement Titles, Level Titles", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=True)
 
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -923,8 +923,24 @@ class wiki(commands.Cog):
 		elif topic == "Titles Users" or topic == "titles users":
 			embed=discord.Embed(title="**Titles Users**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="**Titles**", value="1. Beginner\n2. Legendary\n3. Twice Told Legend".format(ctx.prefix), inline=False)
-			embed.add_field(name="**How to obtain**", value="The Users titles Can be obtained by random actions or achievements.\nBeginner will be giving at the creation of a character.\nLegendary is aquired on getting a Legendary item.\nTwice Told Legend will be aquired on your second legendary.\nMore titles will be made in the future!".format(ctx.prefix), inline=False)
+			embed.add_field(name="**How to obtain**", value="The Users titles Can be obtained by random actions or achievements.".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Titles**", value="Level titles.\nAchievement titles".format(ctx.prefix), inline=False)
+			embed.add_field(name="Level titles", value="{}wiki Level titles".format(ctx.prefix), inline=False)
+			embed.add_field(name="Achievement titles", value="{}wiki achievement titles".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+			
+		elif topic == "achievement titles" or topic == "Achievement Titles":
+			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="Achievement titles", value="1. Legendary, obtained at first legendary item.\n2.Twice Told Legend, obtained at second legendary item.".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+	
+		elif topic == "level titles" or topic == "Level Titles":
+			embed=discord.Embed(title="**Level Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="Level titles", value="Beginner - Level 10\nAmateur - Level 20\nNovice - Level 30\nApprentice - Level 40\nRespected - Level 50\nRenowned - Level 75\nProfessional - Level 100\nMaster - Level 125\nGrand-Master - Level 150\nEnlightened - Level 200\nMighty - Level 250\nEmpowered - Level 300\nGolden - Level 350\nRadiant - Level 400\nArcane - Level 450\nIridescent - Level 500\nLuminescent - Level 600\nCelestial - Level 700\nunbelievable - Level 800\nUnreal - Level 900\nGodlike - Level 1000".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
@@ -1169,7 +1185,7 @@ class wiki(commands.Cog):
 
 		elif topic == "guild bonus" or topic == "guildbonus":
 			title= "<:ShieldBug:649157223905492992>Guild Bonus"
-			description="The guild bonus adds a percentage of gold-gain on top of the regular gold income from an enemy kill.\n\nIt works through an equation which we shall not bore you with here. Simply put, the higher the bonus, the higher the chance of more bonus gold.\n\n-The bonus applies to all those who represent the guild\n-The bonus starts at 0 can be increased by donating gold to the guild"
+			description="The guild bonus adds a percentage of gold-gain on top of the regular gold income from an enemy kill.\n\nIt works through an equation which we shall not bore you with here. Simply put, the higher the bonus, the higher the chance of more bonus gold.\n\nThe bonus applies to all those who represent the guild\nThe bonus starts at 0 can be increased by donating gold to the guild"
 			footer="submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.".format(ctx.prefix)
 			icon = ('https://cdn.discordapp.com/emojis/560844076967002112.png?v=1') #https://cdn.discordapp.com/attachments/737821854680744017/751554397456040088/unknown.png
 
@@ -1186,5 +1202,5 @@ class wiki(commands.Cog):
 
 
 def setup(bot):
-    n = wiki(bot)
-    bot.add_cog(n)
+	n = wiki(bot)
+	bot.add_cog(n)
