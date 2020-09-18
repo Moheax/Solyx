@@ -206,8 +206,527 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 
-		if userinfo["lvl"] >= 20 and not "Apprentice" in titlesinfo["titles_list"]:
+		if userinfo["lvl"] >= 20 and not "Amateur" in titlesinfo["titles_list"]:
+			newtitle = "Amateur"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 30 and not "Novice" in titlesinfo["titles_list"]:
+			newtitle = "Novice"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 40 and not "Apprentice" in titlesinfo["titles_list"]:
 			newtitle = "Apprentice"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["lvl"] >= 50 and not "Respected" in titlesinfo["titles_list"]:
+			newtitle = "Respected"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["lvl"] >= 75 and not "Renowned" in titlesinfo["titles_list"]:
+			newtitle = "Renowned"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["lvl"] >= 100 and not "Professional" in titlesinfo["titles_list"]:
+			newtitle = "Professional"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["lvl"] >= 125 and not "Master" in titlesinfo["titles_list"]:
+			newtitle = "Master"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+		
+		if userinfo["lvl"] >= 150 and not "Grand-Master" in titlesinfo["titles_list"]:
+			newtitle = "Grand-Master"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+		
+		if userinfo["lvl"] >= 200 and not "Enlightened" in titlesinfo["titles_list"]:
+			newtitle = "Enlightened"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 250 and not "Mighty" in titlesinfo["titles_list"]:
+			newtitle = "Mighty"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 300 and not "Empowered" in titlesinfo["titles_list"]:
+			newtitle = "Empowered"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 350 and not "Golden" in titlesinfo["titles_list"]:
+			newtitle = "Golden"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 400 and not "Radiant" in titlesinfo["titles_list"]:
+			newtitle = "Radiant"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 450 and not "Arcane" in titlesinfo["titles_list"]:
+			newtitle = "Arcane"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 500 and not "Iridescent" in titlesinfo["titles_list"]:
+			newtitle = "Iridescent"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 600 and not "Luminescent" in titlesinfo["titles_list"]:
+			newtitle = "Luminescent"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 700 and not "Celestial" in titlesinfo["titles_list"]:
+			newtitle = "Celestial"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 800 and not "unbelievable" in titlesinfo["titles_list"]:
+			newtitle = "unbelievable"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["lvl"] >= 900 and not "Unreal" in titlesinfo["titles_list"]:
+			newtitle = "Unreal"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["lvl"] >= 1000 and not "Godlike" in titlesinfo["titles_list"]:
+			newtitle = "Godlike"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+			
+		if userinfo["Rachikilled"] >= 100  and not "Rachi killer" in titlesinfo["titles_list"]:
+			newtitle = "Rachi Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["Draugrkilled"] >= 100  and not "Draugr killer" in titlesinfo["titles_list"]:
+			newtitle = "Draugr Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["Debinkilled"] >= 100  and not "Debin killer" in titlesinfo["titles_list"]:
+			newtitle = "Debin Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Stalkerkilled"] >= 100  and not "Stalker killer" in titlesinfo["titles_list"]:
+			newtitle = "Stalker Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["FireGolemkilled"] >= 100  and not "Fire Golem killer" in titlesinfo["titles_list"]:
+			newtitle = "Fire Golem Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Wyvernkilled"] >= 100  and not "Wyvern killer" in titlesinfo["titles_list"]:
+			newtitle = "Wyvern Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Ooferkilled"] >= 100  and not "Oofer killer" in titlesinfo["titles_list"]:
+			newtitle = "Oofer Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Souleaterkilled"] >= 100  and not "Souleater killer" in titlesinfo["titles_list"]:
+			newtitle = "Souleater Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Wolfkilled"] >= 100  and not "Wolf killer" in titlesinfo["titles_list"]:
+			newtitle = "Wolf Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Goblinkilled"] >= 100  and not "Goblin killer" in titlesinfo["titles_list"]:
+			newtitle = "Goblin Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Zombiekilled"] >= 100  and not "Zombie killer" in titlesinfo["titles_list"]:
+			newtitle = "Zombie Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["Phantasmkilled"] >= 100  and not "Phantasm killer" in titlesinfo["titles_list"]:
+			newtitle = "Phantasm Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["TheCorruptedkilled"] >= 100  and not "The Corrupted killer" in titlesinfo["titles_list"]:
+			newtitle = "The Corrupted Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["TheAccursedkilled"] >= 100  and not "The Accursed killer" in titlesinfo["titles_list"]:
+			newtitle = "The Accursed Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+					
+		if userinfo["ElderDragonkilled"] >= 100  and not "Elder Dragon killer" in titlesinfo["titles_list"]:
+			newtitle = "Elder Dragon Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+								
+		if userinfo["Hadeskilled"] >= 100  and not "Hades killer" in titlesinfo["titles_list"]:
+			newtitle = "Hades Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["EbonyGuardiankilled"] >= 100  and not "Ebony killer" in titlesinfo["titles_list"]:
+			newtitle = "Ebony Guardian Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Harpykilled"] >= 100  and not "Harpy killer" in titlesinfo["titles_list"]:
+			newtitle = "Harpy Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Dormammukilled"] >= 100  and not "Dormammu killer" in titlesinfo["titles_list"]:
+			newtitle = "Dormammu Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Ettinkilled"] >= 100  and not "Ettin killer" in titlesinfo["titles_list"]:
+			newtitle = "Ettin Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["TheNamelessKingkilled"] >= 100  and not "The Nameless King killer" in titlesinfo["titles_list"]:
+			newtitle = "The Nameless King Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Largoskilled"] >= 100  and not "Largos killer" in titlesinfo["titles_list"]:
+			newtitle = "Largos Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Deathclawkilled"] >= 100  and not "RacDeath Clawhi killer" in titlesinfo["titles_list"]:
+			newtitle = "Death Claw Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["Sauriankilled"] >= 100  and not "Saurian killer" in titlesinfo["titles_list"]:
+			newtitle = "Saurian Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)			
+		if userinfo["TheVenomouskilled"] >= 100  and not "The Venomous killer" in titlesinfo["titles_list"]:
+			newtitle = "The Venomous Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
 				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
@@ -314,6 +833,7 @@ class fight(commands.Cog):
 
 		user = ctx.author
 		userinfo = db.users.find_one({ "_id": user.id })
+		titlesinfo = db.titles.find_one({ "_id": user.id })
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
@@ -465,7 +985,12 @@ class fight(commands.Cog):
 			effectiveguildbonus = 0
 
 
-		if userinfo["selected_enemy"] == "Rachi" or userinfo["selected_enemy"] == "Draugr":
+		if userinfo["selected_enemy"] == "Rachi":
+			enemydmg += random.randint(2, 10)
+			enemygold = random.randint(10, 15) + (random.randint(5, 20) * effectiveguildbonus)
+			goldlost = random.randint(20, 60)
+			xpgain = random.randint(5, 10)
+		if userinfo["selected_enemy"] == "Draugr":
 			enemydmg += random.randint(2, 10)
 			enemygold = random.randint(10, 15) + (random.randint(5, 20) * effectiveguildbonus)
 			goldlost = random.randint(20, 60)
@@ -522,6 +1047,8 @@ class fight(commands.Cog):
 			xpgain = random.randint(20, 45)
 		elif userinfo["selected_enemy"] == "None":
 			return 
+
+		
 			#YOUR SKILL OPTIONS LIST
 		skill_list = [i for i in userinfo["skills_learned"]]
 		show_list = []
@@ -1650,6 +2177,180 @@ class fight(commands.Cog):
 					print("Error while trying to check '" + mission + "' mission for " + user.name + " (" + user.id + ")")
 					pass
 
+			if userinfo["selected_enemy"] == "Rachi":
+				try:
+					userinfo["Rachikilled"] = userinfo["Rachikilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+					
+			if userinfo["selected_enemy"] == "Draugr":
+				try:
+					userinfo["Draugrkilled"] = userinfo["Draugrkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Debin":
+				try:
+					userinfo["Debinkilled"] = userinfo["Debinkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Stalker":
+				try:
+					userinfo["Stalkerkilled"] = userinfo["Stalkerkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Fire Golem":
+				try:
+					userinfo["FireGolemkilled"] = userinfo["FireGolemkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Wyvern":
+				try:
+					userinfo["Wyvernkilled"] = userinfo["Wyvernkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Oofer":
+				try:
+					userinfo["Ooferkilled"] = userinfo["Ooferkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Souleater":
+				try:
+					userinfo["Souleaterkilled"] = userinfo["Souleaterkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Wolf":
+				try:
+					userinfo["Wolfkilled"] = userinfo["Wolfkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Goblin":
+				try:
+					userinfo["Goblinkilled"] = userinfo["Goblinkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Zombie":
+				try:
+					userinfo["Zombiekilled"] = userinfo["Zombiekilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Phantasm":
+				try:
+					userinfo["Phantasmkilled"] = userinfo["Phantasmkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "The Corrupted":
+				try:
+					userinfo["TheCorruptedkilled"] = userinfo["TheCorruptedkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "The Accursed":
+				try:
+					userinfo["TheAccursedkilled"] = userinfo["TheAccursedkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Elder Dragon":
+				try:
+					userinfo["ElderDragonkilled"] = userinfo["ElderDragonkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Hades":
+				try:
+					userinfo["Hadeskilled"] = userinfo["Hadeskilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Ebony Guardian":
+				try:
+					userinfo["EbonyGuardiankilled"] = userinfo["EbonyGuardiankilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Harpy":
+				try:
+					userinfo["Harpykilled"] = userinfo["Harpykilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Dormammu":
+				try:
+					userinfo["Dormammukilled"] = userinfo["Dormammukilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Ettin":
+				try:
+					userinfo["Ettinkilled"] = userinfo["Ettinkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "The Nameless King":
+				try:
+					userinfo["TheNamelessKingkilled"] = userinfo["TheNamelessKingkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Largos":
+				try:
+					userinfo["Largoskilled"] = userinfo["Largoskilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Death Claw":
+				try:
+					userinfo["Deathclawilled"] = userinfo["Deathclawilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Saurian":
+				try:
+					userinfo["Sauriankilled"] = userinfo["Sauriankilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "The venemous":
+				try:
+					userinfo["TheVenomouskilled"] = userinfo["TheVenomouskilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
 			userinfo["selected_enemy"] = "None"
 			userinfo["gold"] = userinfo["gold"] + int(enemygold)
 			userinfo["exp"] = userinfo["exp"] + xpgain
