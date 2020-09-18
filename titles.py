@@ -20,6 +20,8 @@ class titles(commands.Cog):
 
 # - - - Titles - - - # 
 
+
+
 	@commands.group(name="title", pass_context=True, no_pm=True, aliases=["titles"])
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def title(self, ctx):
