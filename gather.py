@@ -3,7 +3,10 @@ import random
 import time
 import datetime
 from discord.ext import commands
+import asyncio
 from random import choice as randchoice
+from discord import Permissions
+from utils.checks import staff, developer, owner
 # from cogs.economy import NoAccount
 from cogs.rpgutils.db import db
 from cogs.utils.dataIO import fileIO
@@ -42,10 +45,18 @@ class gather(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.check(developer)
+	async def clear(channel, ctx, amount : int):
+		await ctx.channel.purge(limit=amount+1)
+		print( f'Cleared {amount} messages.', delete_after=5) 
+
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def boop(self, ctx):
 		print('boop')
+		await asyncio.sleep(random.randint(5, 10))
 		em = discord.Embed(title="BOOP?!", description="No u",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
@@ -100,6 +111,9 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def mine(self, ctx):
 
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
+
 		guild = ctx.guild
 
 		channel = ctx.message.channel
@@ -152,6 +166,8 @@ class gather(commands.Cog):
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def chop(self, ctx):
 		
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
 
 		guild = ctx.guild
 
