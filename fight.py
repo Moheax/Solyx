@@ -703,17 +703,18 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["Deathclawkilled"] >= 100  and not "RacDeath Clawhi killer" in titlesinfo["titles_list"]:
-			newtitle = "Death Claw Killer"
-			if not newtitle in titlesinfo["titles_list"]:
-				titlesinfo["titles_list"].append(newtitle)
-				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
-				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
-				try:
-					await user.send(embed=em)
-				except:
-					await ctx.send(embed=em)			
+		#if userinfo["Deathclawkilled"] >= 100  and not "Death Claw Killer" in titlesinfo["titles_list"]:
+		#	newtitle = "Death Claw Killer"
+		#	if not newtitle in titlesinfo["titles_list"]:
+		#		titlesinfo["titles_list"].append(newtitle)
+		#		titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+		#		db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+		#		em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+		#		try:
+		#			await user.send(embed=em)
+		#		except:
+		#			await ctx.send(embed=em)			
+
 		if userinfo["Sauriankilled"] >= 100  and not "Saurian killer" in titlesinfo["titles_list"]:
 			newtitle = "Saurian Killer"
 			if not newtitle in titlesinfo["titles_list"]:
@@ -1084,7 +1085,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef	
+				enemydmg = 0	
 			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
@@ -1154,7 +1155,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef	
+				enemydmg = 0	
 			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
@@ -1224,7 +1225,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef	
+				enemydmg = 0
 			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
@@ -1294,7 +1295,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef	
+				enemydmg = 0	
 			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
@@ -1364,7 +1365,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef	
+				enemydmg = 0	
 			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
@@ -1497,7 +1498,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
 			distortchance = random.randint(1, 100)
@@ -1629,7 +1630,7 @@ class fight(commands.Cog):
 			enemydmg -= youdef
 			enemyhp = userinfo["enemyhp"]
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			if enemydmg < 0:
 				enemydmg = 0
@@ -1749,7 +1750,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			
 			
 			lootbag = random.randint(1, 15)
@@ -1826,7 +1827,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			critchance = random.randint(1, 100)
 			if critchance >= 75:
@@ -1901,7 +1902,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			youdmg -= int((youdmg / 100) * 60)
 			misschance = random.randint(1, 10)
@@ -1975,7 +1976,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			extradmgchance = random.randint(1, 100)
 			randomdamage = random.randint(5, 15)
@@ -2051,7 +2052,7 @@ class fight(commands.Cog):
 			userhealth = userinfo["health"]
 			enemydmg -= youdef
 			if enemydmg < 0:
-				enemydmg += youdef
+				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			corruptchance = random.randint(1, 100)
 			if corruptchance >= 95:
@@ -2190,7 +2191,6 @@ class fight(commands.Cog):
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
-
 			if userinfo["selected_enemy"] == "Debin":
 				try:
 					userinfo["Debinkilled"] = userinfo["Debinkilled"] + 1
