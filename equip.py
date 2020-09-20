@@ -86,7 +86,7 @@ class equip(commands.Cog):
 		maceable = ["Paladin", "Rogue", "Samurai"]
 		daggerable = ["Thief", "Mesmer", "Rogue"]
 		gunable = ["Assassin", "Necromancer", "Mesmer"]
-
+		armorable = [""]
 		if type == "sword":
 			if not userinfo["class"] in swordable:
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantsword"]["translation"].format(userinfo["class"]), color=discord.Colour(0xffffff))
@@ -123,6 +123,13 @@ class equip(commands.Cog):
 				await ctx.send(embed=em)
 				return
 
+		if type == "armor":
+			if not userinfo["class"] in armorable:
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmor"]["translation"], color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+			
+
 		userinfo["inventory"].append(userinfo["equip"])
 		userinfo["equip"] = "None"
 		userinfo["equip"] = item
@@ -142,8 +149,7 @@ class equip(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _equip_armor(self, ctx, number:int):
 		"""[Work in progress]"""
-		languageinfo = db.guilds.find_one({ "_id": ctx.message.guild.id })
-		language = languageinfo["language"]
+
 
 		user = ctx.message.author
 
@@ -165,11 +171,7 @@ class equip(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		try:
-			await ctx.send("<:Solyx:560809141766193152> | Armor is currently being worked on. Please try again later.")
-			return
-		except:
-			return
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 		if number not in range(1, 21): # Max
