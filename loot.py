@@ -74,40 +74,40 @@ class loot(commands.Cog):
 		rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
 
 		if legendary == "Excalibur":
-			legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+			legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
 
 		if legendary == "Twilight":
-			legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+			legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
 
 		if legendary == "Devil's Kiss":
-			legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+			legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
 
 		if legendary == "Hawkeye":
-			legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+			legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
 
 		if legendary == "Solarflare":
-			legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+			legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
 
 		if legendary == "Thunderguard":
-			legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+			legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
 
 		if legendary == "Doomblade":
-			legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+			legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
 
 		if legendary == "Deathraze":
-			legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+			legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
 
 		if legendary == "Soulreaper":
-			legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+			legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
 
 		if legendary == "Nightstalker Mantle":
-			legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "None"}
+			legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
 
 		if legendary == "Bane Of The Goblin Lord":
-			legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "None"}
+			legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
 
 		if legendary == "Hephaestus Armor":
-			legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 30, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "None"}
+			legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
 
 		if chance > 950:
 			userinfo["inventory"].append(legendaryitemobj)
@@ -175,18 +175,44 @@ class loot(commands.Cog):
 		if rare == "Verdant Bow":
 			rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
 
+		if rare == "Chainmail Armor":
+			rareitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
 
-		elif chance < 950 and chance > 600:
+		if rare == "Barbaric Armor":
+			rareitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Pit fighter Armor":
+			rareitemobj = {"name": "Pit fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Banded Armor":
+			rareitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Leather Armor":
+			rareitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Iron Armor":
+			rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Branded Metal Armor":
+			rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Wolf Fur":
+			rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if rare == "Enchanted Steel Armor":
+			rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+		if chance < 950 and chance > 600:
 			userinfo["inventory"].append(rareitemobj)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
-		try:
-			await ctx.send(embed=em)
-		except:
 			try:
-				await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare))
+				await ctx.send(embed=em)
+				return
 			except:
-				pass
+				return
+
 		else:
 			em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
