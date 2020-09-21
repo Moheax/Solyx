@@ -559,7 +559,7 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Monsters", value="Rachi, Debin, Oofer, Wyvern, Wolf, Goblin, Zombie, Draugr, Stalker, Souleater, Elder Dragon, Hades, Ebony Guardian, Harpy, Dormammu, Ettin, Largos, Deathclaw, Saurian", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Races", value="Orc, Human, Elf, Demon", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Ranking", value="Users, Guilds", inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Titles", value="Titles Guilds, Titles Users, Achievement Titles, Level Titles", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Titles", value="Titles Guilds, Titles Users, Achievement Titles, Level Titles, Monster titles", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=True)
 
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -933,10 +933,17 @@ class wiki(commands.Cog):
 		elif topic == "achievement titles" or topic == "Achievement Titles":
 			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="Achievement titles", value="1. Legendary, obtained at first legendary item.\n2.Twice Told Legend, obtained at second legendary item.".format(ctx.prefix), inline=False)
+			embed.add_field(name="Achievement titles", value="1. Legendary - obtained at first legendary item.\n2. Twice Told Legend - obtained at second legendary item.\n3. Uncoordinated - Get 15 deaths...\n4. Unhandy - Get 30 deaths...\n5 Clumsy - Get 60 deaths...\n6. Unskillful - Get 90 deaths...\n7. Inexpert - Get 120 deaths...\n8. I'm playing the game wrong... - ???".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
-	
+
+		elif topic == "Monster titles" or topic == "monster titles":
+			embed=discord.Embed(title="**Monster Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="Monster titles", value="1. Rachi Killer - Kill 100 Rachi's\n2. Draugr Killer - Kill 100 Draugr's\n3. Debin Killer - Kill 100 Debin's\n4. Stalker Killer - Kill 100 Stalker's\n5. Fire Golem Killer - Kill 100 Fire Golem's\n6. Wyvern Killer - Kill 100 Wyvern's\n7. Oofer Killer - Kill 100  Oofer's\n8. Souleater Killer - Kill 100  Souleater's\n9. Wolf Killer - Kill 100 Wolf's\n10. Goblin Killer - Kill 100  Goblin's\n11. Zombie Killer - Kill 100  Zombie's\n12. Phantasm Killer - Kill 100 Phantasm's\n13. The Corrupted Killer - Kill 100 Corrupted\n14. The Accursed Killer - Kill 100 Accursed\n15. Elder Dragon Killer - Kill 100 Elder Dragon's\n16. Hades Killer - Kill 100 Hades\n17. Harpy Killer - Kill 100  Harpy's\n18. Dormammu Killer - Kill 100 Dormammu's\n19. Ettin Killer - Kill 100 Ettin's\n20. The Nameless King Killer - Kill 100 Nameless Kings\n21. Largos Killer - Kill 100 Largo's\n22. Saurian Killer - Kill 100 Saurian's\n23. The Venomous Killer - Kill 100 Venomous\n24. Ebony Guardian Killer - Kill 100  Ebony Guardians".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
 		elif topic == "level titles" or topic == "Level Titles":
 			embed=discord.Embed(title="**Level Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
