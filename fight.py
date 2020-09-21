@@ -446,7 +446,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 			
-		if userinfo["Rachikilled"] >= 100  and not "Rachi killer" in titlesinfo["titles_list"]:
+		if userinfo["Rachikilled"] >= 100  and not "Rachi Killer" in titlesinfo["titles_list"]:
 			newtitle = "Rachi Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -458,7 +458,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 
-		if userinfo["Draugrkilled"] >= 100  and not "Draugr killer" in titlesinfo["titles_list"]:
+		if userinfo["Draugrkilled"] >= 100  and not "Draugr Killer" in titlesinfo["titles_list"]:
 			newtitle = "Draugr Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -470,7 +470,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 
-		if userinfo["Debinkilled"] >= 100  and not "Debin killer" in titlesinfo["titles_list"]:
+		if userinfo["Debinkilled"] >= 100  and not "Debin Killer" in titlesinfo["titles_list"]:
 			newtitle = "Debin Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -482,7 +482,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Stalkerkilled"] >= 100  and not "Stalker killer" in titlesinfo["titles_list"]:
+		if userinfo["Stalkerkilled"] >= 100  and not "Stalker Killer" in titlesinfo["titles_list"]:
 			newtitle = "Stalker Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -494,7 +494,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["FireGolemkilled"] >= 100  and not "Fire Golem killer" in titlesinfo["titles_list"]:
+		if userinfo["FireGolemkilled"] >= 100  and not "Fire Golem Killer" in titlesinfo["titles_list"]:
 			newtitle = "Fire Golem Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -506,7 +506,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Wyvernkilled"] >= 100  and not "Wyvern killer" in titlesinfo["titles_list"]:
+		if userinfo["Wyvernkilled"] >= 100  and not "Wyvern Killer" in titlesinfo["titles_list"]:
 			newtitle = "Wyvern Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -518,7 +518,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Ooferkilled"] >= 100  and not "Oofer killer" in titlesinfo["titles_list"]:
+		if userinfo["Ooferkilled"] >= 100  and not "Oofer Killer" in titlesinfo["titles_list"]:
 			newtitle = "Oofer Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -530,7 +530,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Souleaterkilled"] >= 100  and not "Souleater killer" in titlesinfo["titles_list"]:
+		if userinfo["Souleaterkilled"] >= 100  and not "Souleater Killer" in titlesinfo["titles_list"]:
 			newtitle = "Souleater Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -542,7 +542,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Wolfkilled"] >= 100  and not "Wolf killer" in titlesinfo["titles_list"]:
+		if userinfo["Wolfkilled"] >= 100  and not "Wolf Killer" in titlesinfo["titles_list"]:
 			newtitle = "Wolf Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -554,7 +554,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Goblinkilled"] >= 100  and not "Goblin killer" in titlesinfo["titles_list"]:
+		if userinfo["Goblinkilled"] >= 100  and not "Goblin Killer" in titlesinfo["titles_list"]:
 			newtitle = "Goblin Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -566,7 +566,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Zombiekilled"] >= 100  and not "Zombie killer" in titlesinfo["titles_list"]:
+		if userinfo["Zombiekilled"] >= 100  and not "Zombie Killer" in titlesinfo["titles_list"]:
 			newtitle = "Zombie Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -578,7 +578,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["Phantasmkilled"] >= 100  and not "Phantasm killer" in titlesinfo["titles_list"]:
+		if userinfo["Phantasmkilled"] >= 100  and not "Phantasm Killer" in titlesinfo["titles_list"]:
 			newtitle = "Phantasm Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -590,7 +590,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["TheCorruptedkilled"] >= 100  and not "The Corrupted killer" in titlesinfo["titles_list"]:
+		if userinfo["TheCorruptedkilled"] >= 100  and not "The Corrupted Killer" in titlesinfo["titles_list"]:
 			newtitle = "The Corrupted Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -602,7 +602,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["TheAccursedkilled"] >= 100  and not "The Accursed killer" in titlesinfo["titles_list"]:
+		if userinfo["TheAccursedkilled"] >= 100  and not "The Accursed Killer" in titlesinfo["titles_list"]:
 			newtitle = "The Accursed Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -614,7 +614,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 					
-		if userinfo["ElderDragonkilled"] >= 100  and not "Elder Dragon killer" in titlesinfo["titles_list"]:
+		if userinfo["ElderDragonkilled"] >= 100  and not "Elder Dragon Killer" in titlesinfo["titles_list"]:
 			newtitle = "Elder Dragon Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -626,7 +626,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 								
-		if userinfo["Hadeskilled"] >= 100  and not "Hades killer" in titlesinfo["titles_list"]:
+		if userinfo["Hadeskilled"] >= 100  and not "Hades Killer" in titlesinfo["titles_list"]:
 			newtitle = "Hades Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -637,7 +637,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["EbonyGuardiankilled"] >= 100  and not "Ebony killer" in titlesinfo["titles_list"]:
+		if userinfo["EbonyGuardiankilled"] >= 100  and not "Ebony Killer" in titlesinfo["titles_list"]:
 			newtitle = "Ebony Guardian Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -648,7 +648,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["Harpykilled"] >= 100  and not "Harpy killer" in titlesinfo["titles_list"]:
+		if userinfo["Harpykilled"] >= 100  and not "Harpy Killer" in titlesinfo["titles_list"]:
 			newtitle = "Harpy Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -659,7 +659,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["Dormammukilled"] >= 100  and not "Dormammu killer" in titlesinfo["titles_list"]:
+		if userinfo["Dormammukilled"] >= 100  and not "Dormammu Killer" in titlesinfo["titles_list"]:
 			newtitle = "Dormammu Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -670,7 +670,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["Ettinkilled"] >= 100  and not "Ettin killer" in titlesinfo["titles_list"]:
+		if userinfo["Ettinkilled"] >= 100  and not "Ettin Killer" in titlesinfo["titles_list"]:
 			newtitle = "Ettin Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -681,7 +681,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["TheNamelessKingkilled"] >= 100  and not "The Nameless King killer" in titlesinfo["titles_list"]:
+		if userinfo["TheNamelessKingkilled"] >= 100  and not "The Nameless King Killer" in titlesinfo["titles_list"]:
 			newtitle = "The Nameless King Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -692,7 +692,7 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		if userinfo["Largoskilled"] >= 100  and not "Largos killer" in titlesinfo["titles_list"]:
+		if userinfo["Largoskilled"] >= 100  and not "Largos Killer" in titlesinfo["titles_list"]:
 			newtitle = "Largos Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -703,19 +703,20 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)			
-		#if userinfo["Deathclawkilled"] >= 100  and not "Death Claw Killer" in titlesinfo["titles_list"]:
-		#	newtitle = "Death Claw Killer"
-		#	if not newtitle in titlesinfo["titles_list"]:
-		#		titlesinfo["titles_list"].append(newtitle)
-		#		titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-		#		db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
-		#		em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
-		#		try:
-		#			await user.send(embed=em)
-		#		except:
-		#			await ctx.send(embed=em)			
+			
+		if userinfo["Deathclawkilled"] >= 100  and not "Deathclaw Killer" in titlesinfo["titles_list"]:
+			newtitle = "Deathclaw Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
 
-		if userinfo["Sauriankilled"] >= 100  and not "Saurian killer" in titlesinfo["titles_list"]:
+		if userinfo["Sauriankilled"] >= 100  and not "Saurian Killer" in titlesinfo["titles_list"]:
 			newtitle = "Saurian Killer"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -725,9 +726,82 @@ class fight(commands.Cog):
 				try:
 					await user.send(embed=em)
 				except:
-					await ctx.send(embed=em)			
-		if userinfo["TheVenomouskilled"] >= 100  and not "The Venomous killer" in titlesinfo["titles_list"]:
+					await ctx.send(embed=em)
+					
+		if userinfo["TheVenomouskilled"] >= 100  and not "The Venomous Killer" in titlesinfo["titles_list"]:
 			newtitle = "The Venomous Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+							
+		if userinfo["deaths"] >=15  and not "Uncoordinated" in titlesinfo["titles_list"]:
+			newtitle = "Uncoordinated"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)	
+					
+		if userinfo["deaths"] >=30  and not "Unhandy" in titlesinfo["titles_list"]:
+			newtitle = "Unhandy"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+							
+		if userinfo["deaths"] >=60  and not "Clumsy" in titlesinfo["titles_list"]:
+			newtitle = "Clumsy"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+							
+		if userinfo["deaths"] >=90  and not "Unskillful" in titlesinfo["titles_list"]:
+			newtitle = "Unskillful"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+							
+		if userinfo["deaths"] >=120  and not "Inexpert" in titlesinfo["titles_list"]:
+			newtitle = "Inexpert"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["deaths"] >=999  and not "I'm playing the game wrong..." in titlesinfo["titles_list"]:
+			newtitle = "I'm playing the game wrong..."
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
 				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
@@ -1098,6 +1172,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1136,6 +1211,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1167,7 +1243,8 @@ class fight(commands.Cog):
 				enemyhp = 0
 			if userhealth >= 100:
 				userhealth = 100
-
+			
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1206,6 +1283,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1238,6 +1316,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1276,6 +1355,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1308,6 +1388,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1346,6 +1427,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1385,6 +1467,8 @@ class fight(commands.Cog):
 				youdmg -= int((youdmg / 100) * 20)
 				enemyhp = userinfo["enemyhp"] - youdmg
 
+
+				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1423,6 +1507,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage ang regains {} HP**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, hpgain, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1454,6 +1539,7 @@ class fight(commands.Cog):
 						return
 				await asyncio.sleep(0.4)
 
+				"""
 				em2 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em2.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1479,6 +1565,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1515,6 +1602,7 @@ class fight(commands.Cog):
 				userhealth = userhealth
 				enemyhp = userinfo["enemyhp"] - youdmg
 
+				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1553,6 +1641,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and nulls {}'s attack**\n**{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1571,6 +1660,7 @@ class fight(commands.Cog):
 				userhealth = userhealth - enemydmg
 				enemyhp = userinfo["enemyhp"] - youdmg
 
+				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1609,6 +1699,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1650,6 +1741,7 @@ class fight(commands.Cog):
 				enemydmg = 0
 				enemyhp = userinfo["enemyhp"]
 
+				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1675,6 +1767,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses reap and absorbs {}'s damage.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1692,6 +1785,7 @@ class fight(commands.Cog):
 				userhealth = userhealth - enemydmg
 				youdmg -= int((youdmg / 100) * 20)
 				enemyhp = userinfo["enemyhp"] - youdmg
+				"""
 
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1731,6 +1825,7 @@ class fight(commands.Cog):
 					except:
 						return
 				await asyncio.sleep(0.4)
+				"""
 
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1770,6 +1865,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1808,6 +1904,8 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
+
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1845,6 +1943,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1883,6 +1982,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1919,6 +2019,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1957,6 +2058,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -1995,6 +2097,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2033,6 +2136,7 @@ class fight(commands.Cog):
 				except:
 					return
 			await asyncio.sleep(0.4)
+			"""
 
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
@@ -2069,6 +2173,7 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
+			"""
 			em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2108,6 +2213,7 @@ class fight(commands.Cog):
 					return
 			await asyncio.sleep(0.4)
 
+			"""
 			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2178,6 +2284,7 @@ class fight(commands.Cog):
 					print("Error while trying to check '" + mission + "' mission for " + user.name + " (" + user.id + ")")
 					pass
 
+		elif enemyhp <= 0:
 			if userinfo["selected_enemy"] == "Rachi":
 				try:
 					userinfo["Rachikilled"] = userinfo["Rachikilled"] + 1
@@ -2351,6 +2458,8 @@ class fight(commands.Cog):
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
+
+
 			userinfo["selected_enemy"] = "None"
 			userinfo["gold"] = userinfo["gold"] + int(enemygold)
 			userinfo["exp"] = userinfo["exp"] + xpgain
