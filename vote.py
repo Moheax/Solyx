@@ -79,66 +79,67 @@ class vote(commands.Cog):
 					except discord.HTTPException:
 						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 
-			else:
-				# Weekend multiplier is in effect
-				if userinfo["voted"] == "weekend":
-					votemtp = "×2 Weekend multiplier"
-					if userinfo["role"] == "Donator":
-						votegold = random.randint(700, 1000)
-						votehp = random.randint(3, 8)
-						votelb = random.randint(10, 15)
-					elif userinfo["role"] == "Subscriber":
-						votegold = random.randint(750, 1200)
-						votehp = random.randint(4, 8)
-						votelb = random.randint(13, 22)
-					else:
-						votegold = random.randint(500, 900)
-						votehp = random.randint(4, 7)
-						votelb = random.randint(9, 12)
+			await asyncio.sleep(random.randint(27, 54))
+
+			# Weekend multiplier is in effect
+			if userinfo["voted"] == "weekend":
+				votemtp = "×2 Weekend multiplier"
+				if userinfo["role"] == "Donator":
+					votegold = random.randint(700, 1000)
+					votehp = random.randint(3, 8)
+					votelb = random.randint(10, 15)
+				elif userinfo["role"] == "Subscriber":
+					votegold = random.randint(750, 1200)
+					votehp = random.randint(4, 8)
+					votelb = random.randint(13, 22)
 				else:
-					votemtp = "\n"
-					if userinfo["role"] == "Donator":
-						votegold = random.randint(360, 600)
-						votehp = random.randint(3, 5)
-						votelb = random.randint(7, 13)
-					elif userinfo["role"] == "Subscriber":
-						votegold = random.randint(450, 750)
-						votehp = random.randint(4, 7)
-						votelb = random.randint(9, 18)
-					else:
-						votegold = random.randint(300, 500)
-						votehp = random.randint(2, 5)
-						votelb = random.randint(6, 10)
+					votegold = random.randint(500, 900)
+					votehp = random.randint(4, 7)
+					votelb = random.randint(9, 12)
+			else:
+				votemtp = "\n"
+				if userinfo["role"] == "Donator":
+					votegold = random.randint(360, 600)
+					votehp = random.randint(3, 5)
+					votelb = random.randint(7, 13)
+				elif userinfo["role"] == "Subscriber":
+					votegold = random.randint(450, 750)
+					votehp = random.randint(4, 7)
+					votelb = random.randint(9, 18)
+				else:
+					votegold = random.randint(300, 500)
+					votehp = random.randint(2, 5)
+					votelb = random.randint(6, 10)
 
-				userinfo["lootbag"] = userinfo["lootbag"] + votelb
-				userinfo["keys"] = userinfo["keys"] + votelb
-				userinfo["gold"] = userinfo["gold"] + votegold
-				userinfo["hp_potions"] = userinfo["hp_potions"] + votehp
-				userinfo["vote_block"] = curr_time
-				userinfo["voted"] = "False"
-				db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+			userinfo["lootbag"] = userinfo["lootbag"] + votelb
+			userinfo["keys"] = userinfo["keys"] + votelb
+			userinfo["gold"] = userinfo["gold"] + votegold
+			userinfo["hp_potions"] = userinfo["hp_potions"] + votehp
+			userinfo["vote_block"] = curr_time
+			userinfo["voted"] = "False"
+			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
-				# Reward embed
-				em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
-				em.set_footer(text="React ⏰ to set a vote reminder!")
+			# Reward embed
+			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
+			em.set_footer(text="React ⏰ to set a vote reminder!")
+			try:
+				msg = await channel.send(embed=em)
+				# Vote reminder
+				await self.vote_reminder(ctx, msg, user)
+			except:
 				try:
-					msg = await channel.send(embed=em)
+					msg = await user.send(embed=em)
 					# Vote reminder
 					await self.vote_reminder(ctx, msg, user)
 				except:
-					try:
-						msg = await user.send(embed=em)
-						# Vote reminder
-						await self.vote_reminder(ctx, msg, user)
-					except:
-						pass
+					pass
 
-				# Solyx server message
-				em = discord.Embed(title="🎉 {} has voted 🎉".format(user.name), description="{} has voted for Solyx!\n**Server:** {}\n".format(user.mention, server.name), color=discord.Colour(0xffffff))
-				em.set_thumbnail(url=user.avatar_url)
-				em.set_footer(text="{}".format(user.id))
-				logchannel = self.bot.get_channel(561200838790479873)
-				await logchannel.send(embed=em)
+			# Solyx server message
+			em = discord.Embed(title="🎉 {} has voted 🎉".format(user.name), description="{} has voted for Solyx!\n**Server:** {}\n".format(user.mention, server.name), color=discord.Colour(0xffffff))
+			em.set_thumbnail(url=user.avatar_url)
+			em.set_footer(text="{}".format(user.id))
+			logchannel = self.bot.get_channel(561200838790479873)
+			await logchannel.send(embed=em)
 
 		else:
 			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["rpg"]["vote"]["cooldown"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["rpg"]["vote"]["cooldown"]["description"]["translation"].format(int(h), int(m), int(s)), color=discord.Colour(0xffffff))
