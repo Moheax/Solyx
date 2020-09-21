@@ -98,9 +98,10 @@ class market(commands.Cog):
 
 			msg += '{}**{} {}** ({}-{}) <:Gold:639484869809930251>{} ID: `{}`\n'.format(rarityy, itemx[5], itemx[0], itemx[3], itemx[4], itemx[6], itemx[7])
 			rank += 1
-
+		
 		em = discord.Embed(description=msg, colour=discord.Colour(0xffffff))
 		em.set_author(name="Solyx Market", icon_url = self.bot.user.avatar_url)
+		em.add_field(name="<:ShieldBug:649157223905492992>", value="Market is currently bugged, buying items and items dont always show up.", inline=False)
 #		em.add_field(name="Number		   Item\n", value=msg)
 		em.set_footer(text="Page {}/{} | Use {}market buy [id] to buy an item!".format(page, pages, ctx.prefix))
 		await ctx.send(embed = em)
