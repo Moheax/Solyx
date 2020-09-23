@@ -38,6 +38,9 @@ class loot(commands.Cog):
 
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })
+
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
