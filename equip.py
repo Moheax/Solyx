@@ -49,7 +49,7 @@ class equip(commands.Cog):
 	@_equip.command(name="weapon", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _equip_weapon(self, ctx, number:int):
-
+		"""Equip a weapon compatible with your class!"""
 		user = ctx.message.author
 
 		guild = ctx.guild
@@ -148,7 +148,7 @@ class equip(commands.Cog):
 	@_equip.command(name="armor", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _equip_armor(self, ctx, number:int):
-		"""[Work in progress]"""
+		"""Equip any piece of armor!"""
 
 
 		user = ctx.message.author

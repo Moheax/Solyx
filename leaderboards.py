@@ -77,7 +77,7 @@ class leaderboard(commands.Cog):
 				pass
 
 		icon_url = self.bot.user.avatar_url
-		sorted_list = sorted(users, key=operator.itemgetter(3), reverse=True)
+		sorted_list = sorted(users, key=operator.itemgetter(2), reverse=True)
 		# multiple page support
 		page = 1
 		per_page = 10
@@ -131,20 +131,21 @@ class leaderboard(commands.Cog):
 			except:
 				return
 
+
 	async def _find_user_rank(self, user):
 		users = []
 
 		for userinfo in db.users.find({}):
 			try:
-				users.append((userinfo["_id"], userinfo["exp"]))
-			except:
+				userid = userinfo["_id"]
+				users.append((userid, userinfo["lvl"]))
+			except KeyError:
 				pass
-
 		sorted_list = sorted(users, key=operator.itemgetter(1), reverse=True)
 
 		rank = 1
-		for userdoc in sorted_list:
-			if userdoc[0] == user.id:
+		for stats in sorted_list:
+			if stats[0] == user.id:
 				return rank
 			rank+=1
 
@@ -168,7 +169,7 @@ class leaderboard(commands.Cog):
 		guild_exps = []
 		user_stat = None
 		title = "guilds Leaderboard\n"
-		for guildinfo in db.guilds.find({}):
+		for guildinfo in db.servers.find({}):
 			try:
 				guilds.append((guildinfo["name"], guildinfo["lvl"], guildinfo["tag"]))
 				guild_exps.append(guildinfo["exp"])
@@ -218,7 +219,7 @@ class leaderboard(commands.Cog):
 		try:
 			guild_exps.sort(reverse=True)
 			highest_exp = guild_exps[0]
-			top_guild = db.guilds.find_one({ "exp": highest_exp })
+			top_guild = db.servers.find_one({ "exp": highest_exp })
 		except:
 			pass
 		else:
@@ -238,20 +239,22 @@ class leaderboard(commands.Cog):
 
 		print(user.name+"#"+user.discriminator,"Has checked the leaderboard")
 
+
 	async def _find_guild_rank(self, guild):
 		guilds = []
 
-		for guildinfo in db.guilds.find({}):
+		for guildinfo in db.servers.find({}):
 			try:
+				guild = guildinfo["_id"]
+				
 				guilds.append((guildinfo["_id"], guildinfo["exp"]))
-			except:
+			except KeyError:
 				pass
-
 		sorted_list = sorted(guilds, key=operator.itemgetter(1), reverse=True)
 
 		rank = 1
 		for guilddoc in sorted_list:
-			if guilddoc[0] == guild.id:
+			if guilddoc[0] == guild:
 				return rank
 			rank+=1
 

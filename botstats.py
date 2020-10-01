@@ -3,6 +3,7 @@ from utils import checks
 from discord.ext import commands
 from utils.dataIO import dataIO
 
+from utils.db import db
 import os
 import asyncio
 from utils.checks import staff, developer, owner
@@ -14,7 +15,6 @@ class botstats(commands.Cog):
 		self.bot = bot
 		self.derp = "data/botstats/json.json"
 		self.imagenius = dataIO.load_json(self.derp)
-		self.bot.loop.create_task(self.botstatz())
 
 	@commands.check(developer)
 	@commands.group(pass_context=True)
@@ -46,7 +46,7 @@ class botstats(commands.Cog):
 		"""Turn BotStatus on and off, like a boss"""
 		
 		servers = str(len(self.bot.guilds))
-		users = str(len(set(self.bot.get_all_members())))
+		users = db.users.count()
 		if self.imagenius["TOGGLE"] is False:
 			self.imagenius["TOGGLE"] = True
 			self.imagenius["MAINPREFIX"] = ctx.prefix
@@ -104,7 +104,7 @@ class botstats(commands.Cog):
 			if self.imagenius["TOGGLE"] is True:
 				status = discord.Status.dnd
 				servers = str(len(self.bot.guilds))
-				users = str(len(set(self.bot.get_all_members())))
+				users = db.users.count()
 				botstatus = self.imagenius["MESSAGE"]
 				prefix = self.imagenius["MAINPREFIX"]
 				message = botstatus.format(prefix, servers, users)
@@ -113,6 +113,8 @@ class botstats(commands.Cog):
 				await asyncio.sleep(self.imagenius["SECONDS2LIVE"])
 			else:
 				await self.bot.change_presence(status=discord.Status.online)
+
+				await asyncio.sleep(60)
 				return
 		else:
 			pass
@@ -122,7 +124,7 @@ class botstats(commands.Cog):
 			while True:
 				status = discord.Status.dnd
 				servers = str(len(self.bot.guild))
-				users = str(len(set(self.bot.get_all_members())))
+				users = db.users.count()
 				botstatus = self.imagenius["MESSAGE"]
 				prefix = self.imagenius["MAINPREFIX"]
 				message = botstatus.format(prefix, servers, users)

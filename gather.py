@@ -8,8 +8,8 @@ from random import choice as randchoice
 from discord import Permissions
 from utils.checks import staff, developer, owner
 # from cogs.economy import NoAccount
-from cogs.rpgutils.db import db
-from cogs.utils.dataIO import fileIO
+from utils.db import db
+from utils.dataIO import fileIO
 
 # All the positive ones and their rewards!
 fishables = {

@@ -152,10 +152,6 @@ class customhelp(commands.Cog):
 
 	@commands.command(pass_context=True)
 	async def help(self, ctx, *, command=None):
-		if command is not None:
-			ctx.command = self.bot.get_command(command)
-			await send_cmd_help(ctx)
-			return
 		
 		author = ctx.message.author
 

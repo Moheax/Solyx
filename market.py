@@ -391,37 +391,45 @@ class market(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def hp(self, ctx, *, amount : int):
 		"""Buy a healing potion"""
-		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
-		language = languageinfo["language"]
-
 		user = ctx.message.author
+
 		userinfo = db.users.find_one({ "_id": user.id })
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has tried to buy some healthpods")
+
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
-			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
 		if userinfo["lvl"] <= 10:
-					Sum = amount * 15
+					Sum = amount * 5
 		elif userinfo["lvl"] > 10 and userinfo["lvl"] <= 30:
-					Sum = amount * 20
+					Sum = amount * 10
 		elif userinfo["lvl"] > 30 and userinfo["lvl"] <= 50:
-					Sum = amount * 25
+					Sum = amount * 15
 		elif userinfo["lvl"] > 50 and userinfo["lvl"] <= 70:
-					Sum = amount * 30
+					Sum = amount * 20
 		elif userinfo["lvl"] >= 71:
-					Sum = amount * 35
+					Sum = amount * 25
 
 		if amount == None:
 			amount = 1
 
 		if amount <= 0:
-			em = discord.Embed(description="You can't buy negative amounts!", color=discord.Colour(0xffffff))
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["negative"]["translation"], color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 					return
 				except:
 					return
@@ -429,12 +437,12 @@ class market(commands.Cog):
 
 		if userinfo["gold"] < Sum:
 			needed = Sum - userinfo["gold"]
-			em = discord.Embed(description="You need {} more gold for {} potion(s)".format(needed, amount), color=discord.Colour(0xffffff))
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["needgold"]["translation"].format(needed, amount), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 					return
 				except:
 					return
@@ -442,15 +450,16 @@ class market(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] - Sum
 			userinfo["hp_potions"] = userinfo["hp_potions"] + int(amount)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You bought {} potion(s) for {}<:Gold:639484869809930251>".format(amount, Sum), color=discord.Colour(0xffffff))
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["bought"]["translation"].format(amount, Sum), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 					return
 				except:
 					return
+
 
 	# handles market item creation
 	async def _create_item(self, userid, itemname, rarity, stats_min, stats_max, refinement, price, type, image, description):

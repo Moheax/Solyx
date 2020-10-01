@@ -740,7 +740,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 							
-		if userinfo["deaths"] >=15  and not "Uncoordinated" in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 15  and not "Uncoordinated" in titlesinfo["titles_list"]:
 			newtitle = "Uncoordinated"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -752,7 +752,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)	
 					
-		if userinfo["deaths"] >=30  and not "Unhandy" in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 30  and not "Unhandy" in titlesinfo["titles_list"]:
 			newtitle = "Unhandy"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -764,7 +764,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 							
-		if userinfo["deaths"] >=60  and not "Clumsy" in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 60  and not "Clumsy" in titlesinfo["titles_list"]:
 			newtitle = "Clumsy"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -776,7 +776,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 							
-		if userinfo["deaths"] >=90  and not "Unskillful" in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 90  and not "Unskillful" in titlesinfo["titles_list"]:
 			newtitle = "Unskillful"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -788,7 +788,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 							
-		if userinfo["deaths"] >=120  and not "Inexpert" in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 120  and not "Inexpert" in titlesinfo["titles_list"]:
 			newtitle = "Inexpert"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -800,7 +800,7 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 
-		if userinfo["deaths"] >=999  and not "I'm playing the game wrong..." in titlesinfo["titles_list"]:
+		if userinfo["deaths"] >= 999  and not "I'm playing the game wrong..." in titlesinfo["titles_list"]:
 			newtitle = "I'm playing the game wrong..."
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
@@ -2284,7 +2284,7 @@ class fight(commands.Cog):
 					print("Error while trying to check '" + mission + "' mission for " + user.name + " (" + user.id + ")")
 					pass
 
-		elif enemyhp <= 0:
+
 			if userinfo["selected_enemy"] == "Rachi":
 				try:
 					userinfo["Rachikilled"] = userinfo["Rachikilled"] + 1

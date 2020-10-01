@@ -72,7 +72,7 @@ class statistics(commands.Cog):
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		embed.set_author(name="Solyx Info", icon_url=avatar)
 		embed.add_field(name="Developers", value="`TheMaksoo#1212`", inline=False)
-		embed.add_field(name="Creator", value="`Quintenvw#1337`", inline=False)
+		embed.add_field(name="Managing assistant", value="`AceTheBearg223#4562`", inline=False)
 		embed.add_field(name="Library", value="Discord.py", inline=False)
 		try:
 			await ctx.send(embed=embed)
@@ -135,7 +135,7 @@ class statistics(commands.Cog):
 
 		
 		name = self.bot.user.name
-		users = str(len(set(self.bot.get_all_members())))
+		users = db.users.count()
 		guilds = str(len(self.bot.guilds))
 		commands_run = self.counter["commands"] 
 		read_messages = self.counter["messages"] 

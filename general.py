@@ -232,8 +232,21 @@ class general(commands.Cog):
 		authorinfo = db.users.find_one({ "_id": f"{author.id}"})
 		if not authorinfo["role"] in ["Developer", "Staff"]:
 			return
+			msg = ""
 		if ctx.invoked_subcommand is None:
-			await self.bot.send_cmd_help(ctx)
+			for x in ctx.command.all_commands:
+				if x not in ctx.command.all_commands[x].aliases:
+					if not ctx.command.all_commands[x].hidden:
+						msg += f"`{ctx.prefix}{ctx.command.name} {x}` - {ctx.command.all_commands[x].help} \n"
+			embed=discord.Embed(colour=servercolor)
+			embed.set_author(name=ctx.command.name, icon_url=ctx.author.avatar_url)
+			embed.add_field(name="Subcommands", value=msg, inline=False)
+			
+			try:
+				await ctx.send(embed=embed)
+			except:
+				return
+		return
 
 	@blacklist.command(name="add", pass_context=True)
 	@commands.check(staff)

@@ -123,7 +123,7 @@ class guild(commands.Cog):
 	@guild.command(name="represent", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def guild_represent(self, ctx):
-
+		"""Represent this guild!"""
 
 		user = ctx.message.author
 		guild = ctx.message.guild
@@ -148,7 +148,7 @@ class guild(commands.Cog):
 	@guild.command(name="info", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_info(self, ctx):
-		"""Show your guild's info"""
+		"""Show your guild's info."""
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
@@ -176,7 +176,7 @@ class guild(commands.Cog):
 			guildinfo["title"] = "Real Deal"
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
-		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
 		try:
 			await ctx.send(embed=em)
@@ -191,7 +191,7 @@ class guild(commands.Cog):
 	@checks.serverowner_or_permissions(administrator=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_promote(self, ctx, user: discord.Member):
-		"""Promote someone to officer of your guild"""
+		"""Promote someone to officer of your guild."""
 
 
 		author = ctx.message.author
@@ -238,7 +238,7 @@ class guild(commands.Cog):
 	@checks.serverowner_or_permissions(administrator=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_demote(self, ctx, user: discord.Member):
-		"""Promote someone to officer of your guild"""
+		"""Promote someone to officer of your guild."""
 
 
 		author = ctx.message.author
@@ -277,18 +277,18 @@ class guild(commands.Cog):
 		em2 = discord.Embed(title="Guild Demotion", description="You got demoted to member in {}.".format(guild.name), color=discord.Colour(0xffffff))
 		em2.set_thumbnail(url=guild.icon_url)
 		try:
-			await self.bot.send_message(user, embed=em2)
+			await ctx.send(user, embed=em2)
 		except:
-			pass
+			pass	
 
 	@guild.command(name="tag", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_tag(self, ctx, tag: str):
-		"""Set the tag of your guild"""
+		"""Set the tag of your guild."""
 
 
 		author = ctx.message.author
-		guild = ctx.message.guild
+		guild = ctx.guild
 		userinfo = db.users.find_one({ "_id": author.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -326,6 +326,7 @@ class guild(commands.Cog):
 			await ctx.send("<:Solyx:560809141766193152> | The tag [{}] is already taken!".format(str(tag)))
 			return
 
+		guild = ctx.guild
 		guildinfo["tag"] = tag
 		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
@@ -350,7 +351,7 @@ class guild(commands.Cog):
 	@guild.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def leaders(self, ctx):
-		"""A list all officers and the leader of this guild guild"""
+		"""A list all officers and the leader of this guild guild."""
 
 
 		user = ctx.message.author
@@ -382,7 +383,7 @@ class guild(commands.Cog):
 	@guild.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def mission(self, ctx):
-		"""Complete missions together to get rewards"""
+		"""Complete missions together to get rewards."""
 
 
 		user = ctx.message.author
@@ -636,7 +637,7 @@ class guild(commands.Cog):
 	@guild.command(name="donate", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_donate(self, ctx, amount: int):
-		"""Increase your guild boosters by donating gold"""
+		"""Increase your guild boosters by donating gold."""
 
 
 		user = ctx.message.author
@@ -681,8 +682,8 @@ class guild(commands.Cog):
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		gmembercount = len(guild.members)
-		taxes = amount / 1000
-		finalamt = taxes / (2 * gmembercount)
+		taxes = amount / 10000
+		finalamt = taxes / (1 * 1)
 		guildinfo["bonus"] = guildinfo["bonus"] + finalamt
 		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 		em = discord.Embed(title="You donated {} gold to your guild".format(amount), description="+{} guild boost!".format(finalamt), color=discord.Colour(0xffffff))

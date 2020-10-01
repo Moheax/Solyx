@@ -27,7 +27,11 @@ class image(commands.Cog):
 	@commands.command(name="profile", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 12, commands.BucketType.user)
 	async def _player_profile(self,ctx, *, user : discord.Member=None):
+		
 		"""Displays a user profile"""
+
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
 
 		if user == None:
 			user = ctx.message.author

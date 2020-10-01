@@ -26,7 +26,7 @@ class command(commands.Cog):
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"looked at commands")
 
-		em = embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
+		em = embed = discord.Embed(description="Click [here](https://solyxbot.webflow.io/commands) for a detailed documentation.", color=discord.Colour(0xffffff))
 		em = embed.set_author(name="Solyx Commands:", icon_url=ctx.message.author.avatar_url)
 		em = embed.add_field(name="🇦 Getting Started", value="The basics", inline=False)
 		em = embed.add_field(name="🇧 Fighting", value="All basic fighting related commands", inline=False)

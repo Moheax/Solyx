@@ -41,7 +41,7 @@ class status(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-		maxexp = (userinfo["lvl"] + 1) * 165
+		maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
 		if not userinfo["guild"] == "None":
 			try:
 				guildid = userinfo["guild"]
@@ -53,16 +53,18 @@ class status(commands.Cog):
 
 		if not userinfo["equip"] == "None":
 			weaponequipped = userinfo["equip"]["name"]
+			item = userinfo["equip"]
 		else:
 			weaponequipped = "None"
 
 		if not userinfo["wearing"] == "None":
 			armorequipped = userinfo["wearing"]["name"]
+			item2 = userinfo["wearing"]
 		else:
 			armorequipped = "None"
 
 		em = discord.Embed(description="**Name:** {}\n**Race:** {}\n**Class:** {}\n**Title:** {}\n**Guild:** {}\n\n**Level:** {}\n**Exp:** {}/{}\n**Health:** {}".format(userinfo["name"], userinfo["race"], userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"]), color=discord.Colour(0xffffff))
-		em.add_field(name="Equipment", value="**Weapon:** {}\n**Wearing:** {}".format(weaponequipped, armorequipped), inline=False)
+		em.add_field(name="Equipment", value="**Weapon:** {}\n**Weapon Damage:** {}-{}\n\n**Wearing:** {}\n**Armor Defense:** {}-{}\n".format(weaponequipped, item["stats_min"], item["stats_max"], armorequipped, item2["stats_min"], item2["stats_max"]), inline=False)
 		em.add_field(name="History", value="**Kills:** {}\n**Deaths:** {}".format(userinfo["enemieskilled"], userinfo["deaths"]), inline=False)
 		em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
 		try:

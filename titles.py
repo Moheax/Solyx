@@ -51,7 +51,7 @@ class titles(commands.Cog):
 		return
 
 
-	@title.command(name="select", pass_context=True, no_pm=True, aliases=["title select"])
+	@title.command(name="select", pass_context=True, no_pm=True, aliases=["title select","title equip","equip"])
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def title_select(self, ctx):
 		"""Select your title"""

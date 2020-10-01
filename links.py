@@ -18,9 +18,36 @@ class links(commands.Cog):
 		super().__init__()
 		self.bot = bot
 
-		# LINKS WORK (the actual links dont work yet)
+		# LINKS WORK
 
-	@commands.command(pass_context=True, name="invite")
+	@commands.command(pass_context=True, name="Donate", aliases=["donate"])
+	@commands.cooldown(1, 10, commands.BucketType.user)
+	async def _donate(self, ctx):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has check the donation site!!!!!!")
+
+		
+		color = 0xffffff
+		embed = discord.Embed(colour=color)
+		embed.add_field(name="Donate to solyx!", value="You can check out the donation options by clicking [here](https://donatebot.io/checkout/559328647639728128)!")
+		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+		try:
+			await ctx.send(ctx.message.author.mention, embed=embed)
+		except:
+			await ctx.send(ctx.message.channel, "I cound't send the message.")
+
+
+	@commands.command(pass_context=True, name="invite", aliases=["server"])
 	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def _invite(self, ctx):
 
@@ -78,7 +105,7 @@ class links(commands.Cog):
 		#Website
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Check out the Solyx website!", value="Click [here](http://solyx.xyz) to visit the website!")
+		embed.add_field(name="Check out the Solyx website!", value="Click [here](https://solyxbot.webflow.io/) to visit the website!")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)
@@ -104,7 +131,7 @@ class links(commands.Cog):
 		#Bot status page
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Check out the Solyx status page!", value="Click [here](http://solyx.xyz/status) to visit the status page!")
+		embed.add_field(name="Check out the Solyx status page!", value="Click [here](https://solyxbot.webflow.io/) to visit the status page!")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)
@@ -131,8 +158,8 @@ class links(commands.Cog):
 		#Support
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Solyx support guild", value="Click [here](https://discord.gg/CVxzCKj) to join!")
-		embed.add_field(name="  Website", value="  Click [here](http://solyx.xyz) to visit the website!")
+		embed.add_field(name="Solyx support guild", value="Click [here](https://discord.gg/SpKUA8y) to join!")
+		embed.add_field(name="  Website", value="  Click [here](https://solyxbot.webflow.io/) to visit the website!")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)
