@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"solyx.titles"}],"uuid":"ef05581b4db642ea95a38a89a1fc44e8"}
