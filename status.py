@@ -53,18 +53,24 @@ class status(commands.Cog):
 
 		if not userinfo["equip"] == "None":
 			weaponequipped = userinfo["equip"]["name"]
-			item = userinfo["equip"]
+			item = userinfo["equip"]["stats_min"]
+			item2 = userinfo["equip"]["stats_max"]
 		else:
 			weaponequipped = "None"
+			item = ""
+			item2 = ""
 
 		if not userinfo["wearing"] == "None":
 			armorequipped = userinfo["wearing"]["name"]
-			item2 = userinfo["wearing"]
+			item3 = userinfo["equip"]["stats_min"]
+			item4 = userinfo["equip"]["stats_max"]
 		else:
 			armorequipped = "None"
+			item3 = ""
+			item4 = ""
 
 		em = discord.Embed(description="**Name:** {}\n**Race:** {}\n**Class:** {}\n**Title:** {}\n**Guild:** {}\n\n**Level:** {}\n**Exp:** {}/{}\n**Health:** {}".format(userinfo["name"], userinfo["race"], userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"]), color=discord.Colour(0xffffff))
-		em.add_field(name="Equipment", value="**Weapon:** {}\n**Weapon Damage:** {}-{}\n\n**Wearing:** {}\n**Armor Defense:** {}-{}\n".format(weaponequipped, item["stats_min"], item["stats_max"], armorequipped, item2["stats_min"], item2["stats_max"]), inline=False)
+		em.add_field(name="Equipment", value="**Weapon:** {}\n**Weapon Damage:** {}-{}\n\n**Armor:** {}\n**Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
 		em.add_field(name="History", value="**Kills:** {}\n**Deaths:** {}".format(userinfo["enemieskilled"], userinfo["deaths"]), inline=False)
 		em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
 		try:

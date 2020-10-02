@@ -13,8 +13,15 @@ class autorest(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
 	async def rest_add_hp(self):
 		while self is self.bot.get_cog("autorest"):
+			users = db.users.count()
+			message = '-help', users
+			activity = discord.Game(name=message)
+			await self.bot.change_presence(status=discord.Status.online, activity=activity)
+			await asyncio.sleep(60)
+
 			for restinfo in db.users.find({}):
 				idowo = restinfo["_id"]
 				if not restinfo["health"] >= 100:

@@ -56,43 +56,43 @@ class travel(commands.Cog):
 			options.append("(1) Golden Temple")
 			options2.append("1")
 
-		if userinfo["lvl"] >= 0:
+		if userinfo["lvl"] >= 5:
 			options.append("(2) Lost City [Coming Soon]")
 			options2.append("2")
 	
-		if userinfo["lvl"] >= 0:
+		if userinfo["lvl"] >= 10:
 			options.append("(3) Drenheim [Coming Soon]")
 			options2.append("3")
 
-		if userinfo["lvl"] >= 0:
+		if userinfo["lvl"] >= 20:
 			options.append("(4) Havelow [Coming Soon]")
 			options2.append("4")
 
-		if userinfo["lvl"] >= 5:
+		if userinfo["lvl"] >= 40:
 			options.append("(5) Saker Keep")
 			options2.append("5")
 
-		if userinfo["lvl"] >= 10:
+		if userinfo["lvl"] >= 60:
 			options.append("(6) The Forest")
 			options2.append("6")
 
-		if userinfo["lvl"] >= 20:
+		if userinfo["lvl"] >= 90:
 			options.append("(7) Ebony Mountains")
 			options2.append("7")
 
-		if userinfo["lvl"] >= 40:
+		if userinfo["lvl"] >= 120:
 			options.append("(8) Township of Arkina")
 			options2.append("8")
 
-		if userinfo["lvl"] >= 60:
+		if userinfo["lvl"] >= 150:
 			options.append("(9) Sacred Cave [Coming Soon]")
 			options2.append("9")
 
-		if userinfo["lvl"] >= 90:
+		if userinfo["lvl"] >= 200:
 			options.append("(10) Zulanthu")
 			options2.append("10")
 
-		if userinfo["lvl"] >= 120:
+		if userinfo["lvl"] >= 250:
 			options.append("(11) The Haunted Tomb [Coming Soon]")
 			options2.append("11")
 
@@ -298,7 +298,7 @@ class travel(commands.Cog):
 		if location_name == "Golden Temple":
 			em.set_image(url="https://i.imgur.com/6u83Sy9.jpg")
 		elif location_name == "Saker Keep":
-			em.set_image(url="https://i.imgur.com/A5pbtEB.jpg")
+			em.set_image(url="https://i.imgur.com/xyrgOth.jpg")
 		elif location_name == "The Forest":
 			em.set_image(url="https://i.imgur.com/FAHXOLl.jpg")
 		elif location_name == "Ebony Mountains":
@@ -306,7 +306,7 @@ class travel(commands.Cog):
 		elif location_name == "Zulanthu":
 			em.set_image(url="https://i.imgur.com/GEvABaS.jpg")
 		elif location_name == "Township of Arkina":
-			em.set_image(url="https://i.imgur.com/xyrgOth.jpg")
+			em.set_image(url="https://i.imgur.com/lypzFbu.jpg")
 		elif location_name == "Lost City":
 			em.set_image(url="https://i.imgur.com/cBo113x.jpg")
 		elif location_name == "Drenheim":
