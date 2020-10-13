@@ -87,14 +87,22 @@ class checkin(commands.Cog):
 			userinfo["daily_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
+			guildinfo = db.servers.find_one({ "_id": guild.id })
+
 			try:
-				mission = "Check-in 10 times"
-				await self._guild_mission_check(user, guild, mission, 1)
+				if guildinfo["mission"] == "Check-in 10 times":
+					if not guildinfo["mission"] == "Check-in 10 times":
+						pass
+				try:
+					guildinfo["missionprogress"] = guildinfo["missionprogress"] + 1
+					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+					pass
+				except:
+					print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+					pass
 			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
-
-			return
-
 		else:
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["failed"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["failed"]["description"]["translation"].format(int(h), int(m), int(s)), color=discord.Colour(0xffffff))
 			try:

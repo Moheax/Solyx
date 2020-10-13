@@ -66,7 +66,7 @@ class links(commands.Cog):
 		#Invite me to your guild
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Invite Solyx to you guild!", value="You can add me by clicking [here](https://discordapp.com/api/oauth2/authorize?client_id=495928914045304847&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2FCVxzCKj&scope=bot)!")
+		embed.add_field(name="Invite Solyx to you guild!", value="You can add me by clicking [here](https://discord.com/api/oauth2/authorize?client_id=495928914045304847&permissions=378944&redirect_uri=https%3A%2F%2Fsolyxbot.webflow.io%2F&scope=bot)!")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)

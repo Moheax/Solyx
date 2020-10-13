@@ -7,6 +7,7 @@ import random
 from random import choice as randchoice
 from time import time
 
+
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
@@ -739,7 +740,55 @@ class fight(commands.Cog):
 					await user.send(embed=em)
 				except:
 					await ctx.send(embed=em)
-							
+
+		if userinfo["Skeletonkilled"] >= 100  and not "Skeleton Killer" in titlesinfo["titles_list"]:
+			newtitle = "Skeleton Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["Lizardmenkilled"] >= 100  and not "Lizardmen Killer" in titlesinfo["titles_list"]:
+			newtitle = "Lizardmen Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["Giantkilled"] >= 100  and not "Giant Killer" in titlesinfo["titles_list"]:
+			newtitle = "Giant Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["DeathKnightkilled"] >= 100  and not "Death Knight Killer" in titlesinfo["titles_list"]:
+			newtitle = "Death Knight Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
 		if userinfo["deaths"] >= 15  and not "Uncoordinated" in titlesinfo["titles_list"]:
 			newtitle = "Uncoordinated"
 			if not newtitle in titlesinfo["titles_list"]:
@@ -802,6 +851,68 @@ class fight(commands.Cog):
 
 		if userinfo["deaths"] >= 999  and not "I'm playing the game wrong..." in titlesinfo["titles_list"]:
 			newtitle = "I'm playing the game wrong..."
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+
+
+		if userinfo["gold"] == 0 and not "Broke" in titlesinfo["titles_list"]:
+			newtitle = "Broke"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["gold"] >= 500 and not "Poor" in titlesinfo["titles_list"]:
+			newtitle = "Poor"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["gold"] >= 10000 and not "Rich" in titlesinfo["titles_list"]:
+			newtitle = "Rich"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["gold"] >= 100000 and not "Wealthy" in titlesinfo["titles_list"]:
+			newtitle = "Wealthy"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["gold"] >= 1000000 and not "Millionaire" in titlesinfo["titles_list"]:
+			newtitle = "Millionaire"
 			if not newtitle in titlesinfo["titles_list"]:
 				titlesinfo["titles_list"].append(newtitle)
 				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
@@ -919,8 +1030,6 @@ class fight(commands.Cog):
 		guild = ctx.guild
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
-		guild = ctx.guild
-
 		channel = ctx.message.channel
 
 		user = ctx.message.author
@@ -930,7 +1039,8 @@ class fight(commands.Cog):
 		current_time = now.strftime("%H:%M:%S")
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Started a fight")
-
+				
+		now = datetime.datetime.now()
 
 
 		#IF PLAYER ISNT FIGHTING AN ENEMY, CHOOSE ONE BASED ON LOCATION
@@ -947,8 +1057,10 @@ class fight(commands.Cog):
 				debi = randchoice(["The Nameless King", "Harpy", "Dormammu", "Ettin"])
 			elif userinfo["location"] == "Zulanthu":
 				debi = randchoice(["Largos", "Deathclaw", "Saurian", "The Venomous"])
+			elif userinfo["location"] == "Lost City":
+				debi = randchoice(["Giant", "Lizardmen", "Skeleton", "Death Knight"])
 			enemyname = debi
-			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous":
+			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight":
 				enemyname = ":trident: " + debi
 			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["title"]["translation"].format(userinfo["location"], enemyname), description=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["description"]["translation"], color=discord.Colour(0xffffff))
 			if debi == "Phantasm":
@@ -957,6 +1069,8 @@ class fight(commands.Cog):
 				em.set_image(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/c7f23f41-5bd8-4b82-a00c-d61b0cfb0160/d9p8w3t-e2e0278a-7b05-4d6b-9a69-c50f3f005126.png/v1/fill/w_700,h_331,q_70,strp/fire_golem_by_sourshade_d9p8w3t-350t.jpg")
 			elif debi == "The Corrupted":
 				em.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
+			elif debi == "Death Knight":
+				em.set_image(url="https://i.imgur.com/ELd7Ll5.jpg")
 			em.set_footer(text="yes / no")
 			await ctx.send(embed=em)
 			options = ["y", "Y", "yes", "Yes", "n", "N", "No", "no", "-fight"]
@@ -976,17 +1090,17 @@ class fight(commands.Cog):
 					userinfo["enemyhp"] = random.randint(40, 60)
 				elif userinfo["selected_enemy"] in ["Wolf", "Goblin"]:
 					userinfo["enemyhp"] = random.randint(50, 70)
-				elif userinfo["selected_enemy"] in ["Zombie", "Phantasm"]:
+				elif userinfo["selected_enemy"] in ["Zombie", "Phantasm", "Skeleton"]:
 					userinfo["enemyhp"] = random.randint(60, 80)
 				elif userinfo["selected_enemy"] in ["The Corrupted", "The Accursed", "Elder Dragon"]:
 					userinfo["enemyhp"] = random.randint(70, 90)
 				elif userinfo["selected_enemy"] in ["Hades", "Ebony Guardian", "Harpy"]:
 					userinfo["enemyhp"] = random.randint(80, 100)
-				elif userinfo["selected_enemy"] in ["Dormammu", "Ettin"]: 
+				elif userinfo["selected_enemy"] in ["Dormammu", "Ettin", "Lizardmen"]: 
 					userinfo["enemyhp"] = random.randint(90, 110)
 				elif userinfo["selected_enemy"] in ["The Nameless King", "Largos", "Deathclaw"]: 
 					userinfo["enemyhp"] = random.randint(100, 120)
-				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous"]: 
+				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous","Giant", "Death Knight"]: 
 					userinfo["enemyhp"] = random.randint(110, 130)
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1047,77 +1161,86 @@ class fight(commands.Cog):
 		xpgain = random.randint(10, 15)
 
 		#GUILD BOOST
-		try:
-			guild = ctx.guild
-			guildinfo = db.servers.find_one({ "_id": guild.id })
-			guildbonus = guildinfo["bonus"]
 
-			if guildbonus >= 200:
-				effectiveguildbonus == 200
-			else:
-				effectiveguildbonus == guildbonus
-		except:
-			effectiveguildbonus = 0
 
+		#try:
+		#	guild = ctx.guild
+		#	guildinfo = db.servers.find_one({ "_id": guild.id })
+		#	guildbonus = guildinfo["bonus"]
+
+		#	if guildbonus >= 200:
+		#		effectiveguildbonus == 200
+		#	else:
+		#		effectiveguildbonus == guildbonus
+		#except:
+		#	effectiveguildbonus = 0
+
+
+		guild = ctx.guild
+		guildinfo = db.servers.find_one({ "_id": guild.id })
+		effectiveguildbonus = guildinfo["bonus"]
+
+		if effectiveguildbonus >= 200:
+			effectiveguildbonus == 200
 
 		if userinfo["selected_enemy"] == "Rachi":
 			enemydmg += random.randint(2, 10)
-			enemygold = random.randint(10, 15) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(10, 15) + (effectiveguildbonus)
 			goldlost = random.randint(20, 60)
 			xpgain = random.randint(5, 10)
 		if userinfo["selected_enemy"] == "Draugr":
 			enemydmg += random.randint(2, 10)
-			enemygold = random.randint(10, 15) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(10, 15) + (effectiveguildbonus)
 			goldlost = random.randint(20, 60)
 			xpgain = random.randint(5, 10)
 		elif userinfo["selected_enemy"] == "Debin" or userinfo["selected_enemy"] == "Stalker":
 			enemydmg += random.randint(5, 10)
-			enemygold = random.randint(12, 17) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(12, 17) + (effectiveguildbonus)
 			goldlost = random.randint(30, 70)
 			xpgain = random.randint(5, 20)
 		elif userinfo["selected_enemy"] == "Oofer" or userinfo["selected_enemy"] == "Souleater" or userinfo["selected_enemy"] == "Wyvern":
 			enemydmg += random.randint(5, 15)
-			enemygold = random.randint(14, 19) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(14, 19) + (effectiveguildbonus)
 			goldlost = random.randint(40, 80)
 			xpgain = random.randint(10, 25)
 		elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Phantasm":
 			enemydmg += random.randint(10, 15)
-			enemygold = random.randint(16, 21) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(16, 21) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
 			xpgain = random.randint(10, 30)
 		elif userinfo["selected_enemy"] == "Goblin" or userinfo["selected_enemy"] == "Fire Golem":
 			enemydmg += random.randint(10, 20)
-			enemygold = random.randint(18, 21) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(18, 21) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
 			xpgain = random.randint(10, 30)
-		elif userinfo["selected_enemy"] == "Zombie":
+		elif userinfo["selected_enemy"] == "Zombie" or userinfo["selected_enemy"] == "Skeleton":
 			enemydmg += random.randint(15, 20)
-			enemygold = random.randint(20, 23) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(20, 23) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
 			xpgain = random.randint(10, 30)
-		elif userinfo["selected_enemy"] == "The Corrupted":
+		elif userinfo["selected_enemy"] == "The Corrupted" or userinfo["selected_enemy"] == "Lizardmen":
 			enemydmg += random.randint(15, 30)
-			enemygold = random.randint(22, 25) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(22, 25) + (effectiveguildbonus)
 			goldlost = random.randint(100, 180)
 			xpgain = random.randint(10, 35)
 		elif userinfo["selected_enemy"] == "Ebony Guardian" or userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades":
 			enemydmg += random.randint(20, 30)
-			enemygold = random.randint(24, 27) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(24, 27) + (effectiveguildbonus)
 			goldlost = random.randint(100, 190)
 			xpgain = random.randint(15, 35)
 		elif userinfo["selected_enemy"] == "The Accursed" or userinfo["selected_enemy"] == "Harpy" or userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
 			enemydmg += random.randint(20, 40)
-			enemygold = random.randint(26, 29) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(26, 29) + (effectiveguildbonus)
 			goldlost = random.randint(150, 200)
 			xpgain = random.randint(15, 35)
 		elif userinfo["selected_enemy"] == "The Nameless King" or userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian":
 			enemydmg += random.randint(25, 40)
-			enemygold = random.randint(28, 31) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(28, 31) + (effectiveguildbonus)
 			goldlost = random.randint(160, 220)
 			xpgain = random.randint(20, 40)
-		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous":
+		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous" or userinfo["selected_enemy"] == "Giant" or userinfo["selected_enemy"] == "Death Knight":
 			enemydmg += random.randint(25, 50)
-			enemygold = random.randint(30, 33) + (random.randint(5, 20) * effectiveguildbonus)
+			enemygold = random.randint(30, 33) + (effectiveguildbonus)
 			goldlost = random.randint(170, 240)
 			xpgain = random.randint(20, 45)
 		elif userinfo["selected_enemy"] == "None":
@@ -2228,8 +2351,13 @@ class fight(commands.Cog):
 
 
 		elif answer2 == "heal" or answer2 == "Heal":
-			await self._heal_reaction(ctx, user, skillmsg)
-			return
+			battleinfo = db.battles.find_one({ "_id": user.id })
+			if battleinfo["battle_active"] == "True":
+				await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["inbattle"]["translation"])
+				return
+			else:
+				await self._heal_reaction(ctx, user, skillmsg)
+				return
 
 		else:
 			return
@@ -2455,6 +2583,34 @@ class fight(commands.Cog):
 			if userinfo["selected_enemy"] == "The venemous":
 				try:
 					userinfo["TheVenomouskilled"] = userinfo["TheVenomouskilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Skeleton":
+				try:
+					userinfo["Skeletonkilled"] = userinfo["Skeletonkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Lizardmen":
+				try:
+					userinfo["Lizardmenkilled"] = userinfo["Lizardmenkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Giant":
+				try:
+					userinfo["Giantkilled"] = userinfo["Giantkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Death Knight":
+				try:
+					userinfo["DeathKnightkilled"] = userinfo["DeathKnightkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass

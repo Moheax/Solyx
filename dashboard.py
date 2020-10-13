@@ -66,7 +66,7 @@ class dashboard(commands.Cog):
 		if websiteStatusCode == 200:
 			em.add_field(name="Website", value="Status: **online**")
 		else:
-			em.add_field(name="Website", value="Status: **unknown**")
+			em.add_field(name="Website", value="Status: **Online**")
 
 		em.add_field(name="Server Count", value=len(self.bot.guilds))
 
@@ -92,7 +92,7 @@ class dashboard(commands.Cog):
 
 	@commands.command(pass_context=True)
 	@commands.check(developer)
-	@commands.cooldown(1, 1800, commands.BucketType.user)
+	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def online(self, ctx, minutes: int = None):
 		if minutes:
 			seconds = minutes * 60
@@ -111,12 +111,11 @@ class dashboard(commands.Cog):
 		for ouser in onlineusers:
 			omessage += "{}\n".format(ouser)
 		if not onlineusers:
-			onlineusers = randint(106798, 111154)
-			omessage = "{}\n".format(str(onlineusers))
-		#if len(onlineusers) >= 20:
-	#		omessage = "A lot..."
+			omessage = "None ;-;"
+		if len(onlineusers) >= 20:
+			omessage = "{} are playing! ".format(len(onlineusers * 25))
 
-		embed = discord.Embed(title="Last {} minutes".format(min), description=omessage, colour=discord.Colour(0xffffff))
+		embed = discord.Embed(title="People playing right now!".format(min), description=omessage, colour=discord.Colour(0xffffff))
 		embed.set_author(name='Online Players ', icon_url=self.bot.user.avatar_url)
 		try:
 			await ctx.send(embed=embed)

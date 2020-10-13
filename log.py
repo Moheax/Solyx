@@ -76,19 +76,19 @@ class log(commands.Cog):
 	@checks.serverowner_or_permissions(administrator=True)
 	async def ignore_channel(self, ctx, channel:  discord.TextChannel=None):
 		"""Add a channel to ignore"""
-		guild = ctx.message.guild
+		guild = ctx.guild
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 		if not channel:
-			if ctx.message.channel.id not in guildinfo["ignore"]:
-				guildinfo["ignore"].append(ctx.message.channel.id)
-				db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			if ctx.message.id not in guildinfo["ignore"]:
+				guildinfo["ignore"].append(ctx.channel.id)
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				await ctx.send("<:Solyx:560809141766193152> | Ignoring {}.".format(ctx.message.channel.mention))
 			else:
 				await ctx.send("<:Solyx:560809141766193152> | Already ignoring {}.".format(ctx.message.channel.mention))
 		else:
 			if channel.id not in guildinfo["ignore"]:
 				guildinfo["ignore"].append(channel.id)
-				db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				await ctx.send("<:Solyx:560809141766193152> | Ignoring {}.".format(channel.mention))
 			else:
 				await ctx.send("<:Solyx:560809141766193152> | Already ignoring {}.".format(channel.mention))
@@ -98,19 +98,19 @@ class log(commands.Cog):
 	@checks.serverowner_or_permissions(administrator=True)
 	async def unignore_channel(self, ctx, channel:  discord.TextChannel=None):
 		"""Remove a channel from the ignore list"""
-		guild = ctx.message.guild
+		guild = ctx.guild
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 		if not channel:
-			if ctx.message.channel.id in guildinfo["ignore"]:
-				guildinfo["ignore"].remove(ctx.message.channel.id)
-				db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			if ctx.message.id in guildinfo["ignore"]:
+				guildinfo["ignore"].remove(ctx.channel.id)
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				await ctx.send("<:Solyx:560809141766193152> | No longer ignoring {}.".format(ctx.message.channel.mention))
 			else:
 				await ctx.send("<:Solyx:560809141766193152> | {} wasn't ignored.".format(ctx.message.channel.mention))
 		else:
 			if channel.id in self.ignore_list["CHANNELS"]:
 				guildinfo["ignore"].remove(channel.id)
-				db.guilds.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				await ctx.send("<:Solyx:560809141766193152> | No longer ignoring {}.".format(channel.mention))
 			else:
 				await ctx.send("<:Solyx:560809141766193152> | {} wasn't ignored.".format(channel.mention))
@@ -119,7 +119,7 @@ class log(commands.Cog):
 		TIME = 20 # check infractions for the last <TIME> seconds
 		LIMIT = 6 # <LIMIT> for cooldown infractions
 
-		guild = message.guild
+		guild = ctx.guild
 		author = message.author
 		userinfo = db.users.find_one({ "_id": author.id })
 

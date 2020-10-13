@@ -62,8 +62,8 @@ class status(commands.Cog):
 
 		if not userinfo["wearing"] == "None":
 			armorequipped = userinfo["wearing"]["name"]
-			item3 = userinfo["equip"]["stats_min"]
-			item4 = userinfo["equip"]["stats_max"]
+			item3 = userinfo["wearing"]["stats_min"]
+			item4 = userinfo["wearing"]["stats_max"]
 		else:
 			armorequipped = "None"
 			item3 = ""

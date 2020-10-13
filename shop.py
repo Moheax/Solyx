@@ -52,6 +52,8 @@ class shop(commands.Cog):
 	@shop.command(name="buy", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def buy(self, ctx, *, item):
+
+		"""| -shop buy <item Name>"""
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
@@ -65,13 +67,10 @@ class shop(commands.Cog):
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-		if len(userinfo["inventory"]) >= 24:
-			try:
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["general"]["fullinv"]["translation"], color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-			except:
-				return
-			return
+		if len(userinfo["inventory"]) >= 25:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["general"]["fullinv"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+		if not len(userinfo["inventory"]) >= 25:
 			if item == "Sclerite Sword" or item == "sclerite sword":
 				itemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
 				cost = 2000
@@ -499,6 +498,8 @@ class shop(commands.Cog):
 	@shop.command(name="sell", pass_context=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
 	async def sell(self, ctx, *, item):
+		"""| -shop sell <item Name>"""
+
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
@@ -813,6 +814,8 @@ class shop(commands.Cog):
 	@shop.command(name="weapons", pass_context=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
 	async def _items_weapons(self, ctx):
+		"""Take a look at buyable weapons!"""
+
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		Class = userinfo["class"]
@@ -867,6 +870,8 @@ class shop(commands.Cog):
 	@shop.command(name="armor", pass_context=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
 	async def _items_armor(self, ctx):
+
+		"""Take a look at buyable armor"""
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		Class = userinfo["class"]

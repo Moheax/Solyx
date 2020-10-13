@@ -68,12 +68,12 @@ class equip(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if number not in range(1, 21): # Max
+		if number not in range(1, 24): # Max
 			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
 
 		try:
-			item = userinfo["inventory"][number-1]
+			item = userinfo["inventory"][number+0]
 		except:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["noiteminslot"]["translation"])
 			return
@@ -174,32 +174,37 @@ class equip(commands.Cog):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		if number not in range(1, 21): # Max
+		if number not in range(1, 24): # Max
 			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
 
 		try:
-			item = userinfo["inventory"][number-1]
+			item = userinfo["inventory"][number+0]
 		except:
 			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
 			return
 
 		type = item["type"]
 
-		userinfo["inventory"].append(userinfo["wearing"])
-		userinfo["wearing"] = "None"
-		userinfo["wearing"] = item
-		userinfo["inventory"].remove(item)
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title="Item Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
-		try:
-			await ctx.send(embed=em)
-		except:
+		if type == "armor":
+			userinfo["inventory"].append(userinfo["wearing"])
+			userinfo["wearing"] = "None"
+			userinfo["wearing"] = item
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Item Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
 			try:
-				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-				return
+				await ctx.send(embed=em)
 			except:
-				return
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
 
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -222,11 +227,11 @@ class equip(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-		if number not in range(1, 21): # Max
+		if number not in range(1, 24): # Max
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 			return
 		try:
-			item = userinfo["inventory"][number-1]
+			item = userinfo["inventory"][number+0]
 		except:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["noiteminslot"]["translation"])
 			return

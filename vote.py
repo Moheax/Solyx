@@ -67,6 +67,13 @@ class vote(commands.Cog):
 		# The actual vote stuff
 		if seconds <= 0:
 			if userinfo["voted"] == "False":
+				try:
+					userinfo["vote_block"] = curr_time
+					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				except:
+					pass
+				
+
 				color = 0xffffff
 				embed = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["rpg"]["vote"]["canvote"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["rpg"]["vote"]["canvote"]["description"]["translation"], colour=color)
 				embed.set_footer(text=fileIO(f"data/languages/{language}.json", "load")["rpg"]["vote"]["canvote"]["footer"]["translation"].format(ctx.prefix))
@@ -79,7 +86,8 @@ class vote(commands.Cog):
 					except discord.HTTPException:
 						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 
-			await asyncio.sleep(random.randint(27, 54))
+
+			await asyncio.sleep(random.randint(37, 64))
 
 			# Weekend multiplier is in effect
 			if userinfo["voted"] == "weekend":
@@ -167,9 +175,9 @@ class vote(commands.Cog):
 		try:
 			await message.add_reaction('⏰')
 		except:
-			return
+			pass
 
-		await asyncio.sleep(.3)
+		await asyncio.sleep(0.3)
 
 		def check(reaction, user):
 			return user == message.author and str(reaction.emoji) == '⏰'
@@ -180,7 +188,7 @@ class vote(commands.Cog):
 			try:
 				await message.clear_reactions()
 			except:
-				return
+				pass
 		else:
 			try:
 				seconds = 43200

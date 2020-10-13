@@ -55,7 +55,7 @@ class loot(commands.Cog):
 			await ctx.send(embed=em)
 			return
 
-		if len(userinfo["inventory"]) >= 24:
+		if len(userinfo["inventory"]) >= 25:
 			try:
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["general"]["fullinv"]["translation"], color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
@@ -69,6 +69,22 @@ class loot(commands.Cog):
 		await ctx.send(embed=em)
 
 		await asyncio.sleep(4)
+
+		guildinfo = db.servers.find_one({ "_id": guild.id })
+		try:
+			if guildinfo["mission"] == "Open 250 lootbags":
+				if not guildinfo["mission"] == "Open 250 lootbags":
+					pass
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + 1
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+				pass
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				pass
+		except:
+			print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+			pass
 
 		goldmul = random.randint(12, 28)
 		goldgain = goldmul * 3 + userinfo["lvl"]
@@ -226,7 +242,8 @@ class loot(commands.Cog):
 				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 			except:
 				pass
-				
+
+
 
 def setup(bot):
 	n = loot(bot)

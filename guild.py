@@ -128,12 +128,14 @@ class guild(commands.Cog):
 		user = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
-
+		
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+		guildinfo = db.servers.find_one({ "_id": guild.id })
 
 		userinfo["guild"] = guild.id
+		userinfo["GuildTag"] = guildinfo["tag"]
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="<:Guild:560844076967002112> Representing", description="You are now representing {}!".format(guild.name), color=discord.Colour(0xffffff))
 		try:
@@ -330,6 +332,10 @@ class guild(commands.Cog):
 		guildinfo["tag"] = tag
 		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
+		userinfo["GuildTag"] = tag
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		
+		
 		em = discord.Embed(title="Guild Tag Changed", description="{} changed the tag of {} to [{}]!".format(author.mention, guild.name, tag), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
 		try:
@@ -390,7 +396,7 @@ class guild(commands.Cog):
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
-		randommission = randchoice(["Collect 200 wood", "Collect 120 metal", "Check-in 10 times", "Kill 400 Oofers", "Kill 100 Goblins"]) # "Donate 35000 gold to your guild",  | Have to fix
+		randommission = randchoice(["Collect 200 wood", "Collect 120 metal", "Collect 160 stone", "Check-in 10 times", "Kill 400 Oofers", "Kill 100 Goblins", "Open 250 Lootbags", "Donate 35000 gold to your guild"]) 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
@@ -530,6 +536,66 @@ class guild(commands.Cog):
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
+		elif guildinfo["mission"] == "Collect 160 stone" and guildinfo["missionprogress"] >= 160:
+			reward1 = random.randint(10, 40)
+			em = discord.Embed(title="Mission Completed", description="Your guild completed the Collect 160 Stone mission and got {} :sparkles: as a reward!".format(reward1), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			guildinfo["mission"] = randommission
+			guildinfo["missionscompleted"] = guildinfo["missionscompleted"] + 1
+			guildinfo["missionprogress"] = 0
+			guildinfo["health"] = 100
+			guildinfo["exp"] = guildinfo["exp"] + reward1
+			if guildinfo["exp"] >= guildinfo["lvl"]:
+				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				guildinfo["lvl"] = guildinfo["lvl"] + 1
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			return
+
+		elif guildinfo["mission"] == "Open 250 Lootbags" and guildinfo["missionprogress"] >= 250:
+			reward1 = random.randint(10, 40)
+			em = discord.Embed(title="Mission Completed", description="Your guild completed the open 250 lootbags mission and got {} :sparkles: as a reward!".format(reward1), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			guildinfo["mission"] = randommission
+			guildinfo["missionscompleted"] = guildinfo["missionscompleted"] + 1
+			guildinfo["missionprogress"] = 0
+			guildinfo["health"] = 100
+			guildinfo["exp"] = guildinfo["exp"] + reward1
+			if guildinfo["exp"] >= guildinfo["lvl"]:
+				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				guildinfo["lvl"] = guildinfo["lvl"] + 1
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+			return
+
 		elif guildinfo["mission"] == "Kill 400 Oofers" and guildinfo["missionprogress"] >= 400:
 			reward1 = random.randint(20, 50)
 			em = discord.Embed(title="Mission Completed", description="Your guild completed the Kill 400 Oofers mission and got {} :sparkles: as a reward!".format(reward1), color=discord.Colour(0xffffff))
@@ -606,6 +672,11 @@ class guild(commands.Cog):
 				mdescription = guildinfo["mission"]
 				mprogress = guildinfo["missionprogress"]
 
+			elif guildinfo["mission"] == "Collect 160 stone":
+				mtitle = "Stone Masons"
+				mdescription = guildinfo["mission"]
+				mprogress = guildinfo["missionprogress"]
+
 			elif guildinfo["mission"] == "Check-in 10 times":
 				mtitle = "Dedicated"
 				mdescription = guildinfo["mission"]
@@ -618,6 +689,11 @@ class guild(commands.Cog):
 
 			elif guildinfo["mission"] == "Kill 100 Goblins":
 				mtitle = "Goblin Slayers"
+				mdescription = guildinfo["mission"]
+				mprogress = guildinfo["missionprogress"]
+
+			elif guildinfo["mission"] == "Open 250 Lootbags":
+				mtitle = "Loot Collector"
 				mdescription = guildinfo["mission"]
 				mprogress = guildinfo["missionprogress"]
 
@@ -672,12 +748,22 @@ class guild(commands.Cog):
 					return
 			return
 
+
 		try:
-			mission = "Donate 35000 gold to your guild"
-			add = amount
-			await self._guild_mission_check(user, mission, add)
+			if guildinfo["mission"] == "Donate 35000 gold to your guild":
+				if not guildinfo["mission"] == "Donate 35000 gold to your guild":
+					pass
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + amount
+				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+				pass
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				pass
 		except:
+			print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 			pass
+
 
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)

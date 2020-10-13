@@ -74,7 +74,7 @@ class inventory(commands.Cog):
 		list1 = ""
 		list2 = ""
 
-		for i, x in enumerate(range(24)):
+		for i, x in enumerate(range(1, 26)):
 			try:
 				item = inventory[i]
 				type = item["type"]
@@ -100,7 +100,7 @@ class inventory(commands.Cog):
 					if type == "armor":
 						list1 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
-				if i >= 12:			
+				if i >= 13:			
 					if type == "sword":
 						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
@@ -144,7 +144,7 @@ class inventory(commands.Cog):
 		#await msg.add_reaction('\u25C0')
 		#await msg.add_reaction('\u25B6')
 		#print("hi")
-		
+		"""
 		await self.item_list_menu_check(user)
 		return
 	
@@ -164,7 +164,7 @@ class inventory(commands.Cog):
 				
 			list1 = ""
 			list2 = ""
-			for i, x in enumerate(range(24)):
+			for i, x in enumerate(range(1, 25)):
 				try:
 					item = inventory[i]
 
@@ -216,7 +216,7 @@ class inventory(commands.Cog):
 					em.set_thumbnail(url=user.avatar_url)
 					em.set_footer(text="Use the reactions to scroll between pages!")
 					await self.bot.edit_message(msg, embed=em)
-
+				"""
 
 def setup(bot):
 	n = inventory(bot)

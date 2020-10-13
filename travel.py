@@ -57,43 +57,43 @@ class travel(commands.Cog):
 			options2.append("1")
 
 		if userinfo["lvl"] >= 5:
-			options.append("(2) Lost City [Coming Soon]")
+			options.append("(2) Saker Keep")
 			options2.append("2")
 	
 		if userinfo["lvl"] >= 10:
-			options.append("(3) Drenheim [Coming Soon]")
+			options.append("(3) The Forest")
 			options2.append("3")
 
 		if userinfo["lvl"] >= 20:
-			options.append("(4) Havelow [Coming Soon]")
+			options.append("(4) Ebony Mountains")
 			options2.append("4")
 
 		if userinfo["lvl"] >= 40:
-			options.append("(5) Saker Keep")
+			options.append("(5) Township of Arkina")
 			options2.append("5")
 
 		if userinfo["lvl"] >= 60:
-			options.append("(6) The Forest")
+			options.append("(6) Zulanthu")
 			options2.append("6")
 
 		if userinfo["lvl"] >= 90:
-			options.append("(7) Ebony Mountains")
+			options.append("(7) Lost City")
 			options2.append("7")
 
 		if userinfo["lvl"] >= 120:
-			options.append("(8) Township of Arkina")
+			options.append("(8) Drenheim [Coming soon]")
 			options2.append("8")
 
 		if userinfo["lvl"] >= 150:
-			options.append("(9) Sacred Cave [Coming Soon]")
+			options.append("(9) Havelow [Coming soon]")
 			options2.append("9")
 
 		if userinfo["lvl"] >= 200:
-			options.append("(10) Zulanthu")
+			options.append("(10) Sacred Cave [Coming soon]")
 			options2.append("10")
 
 		if userinfo["lvl"] >= 250:
-			options.append("(11) The Haunted Tomb [Coming Soon]")
+			options.append("(11) The Haunted Tomb [Coming soon]")
 			options2.append("11")
 
 		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["title"]["translation"], description="{}".format("\n ".join(options)), color=discord.Colour(0xffffff))
@@ -127,7 +127,86 @@ class travel(commands.Cog):
 				userinfo["location"] = "Golden Temple"
 
 		elif answer1 == "2":
-			return
+			if userinfo["location"] == "Saker Keep":
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				return
+			else:
+				location_name = "Saker Keep"
+				userinfo["location"] = "Saker Keep"
+
+		elif answer1 == "3":
+			if userinfo["location"] == "The Forest":
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				return
+			else:
+				location_name = "The Forest"
+				userinfo["location"] = "The Forest"
+
+		elif answer1 == "4":
+			if userinfo["location"] == "Ebony Mountains":
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				return
+			else:
+				location_name = "Ebony Mountains"
+				userinfo["location"] = "Ebony Mountains"
+
+		elif answer1 == "5":
+			if userinfo["location"] == "Township of Arkina":
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				return
+			else:
+				location_name = "Township of Arkina"
+				userinfo["location"] = "Township of Arkina"
+
+		elif answer1 == "6":
+			if userinfo["location"] == "Zulanthu":
+				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				return
+			else:
+				location_name = "Zulanthu"
+				userinfo["location"] = "Zulanthu"
+
+		elif answer1 == "7":
 			if userinfo["location"] == "Lost City":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
 				try:
@@ -143,7 +222,7 @@ class travel(commands.Cog):
 				location_name = "Lost City"
 				userinfo["location"] = "Lost City"
 
-		elif answer1 == "3":
+		elif answer1 == "8":
 			return
 			if userinfo["location"] == "Drenheim":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
@@ -160,7 +239,7 @@ class travel(commands.Cog):
 				location_name = "Drenheim"
 				userinfo["location"] = "Drenheim"
 
-		elif answer1 == "4":
+		elif answer1 == "9":
 			return
 			if userinfo["location"] == "Havelow":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
@@ -177,71 +256,8 @@ class travel(commands.Cog):
 				location_name = "Havelow"
 				userinfo["location"] = "Havelow"
 
-		elif answer1 == "5":
-			if userinfo["location"] == "Saker Keep":
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				return
-			else:
-				location_name = "Saker Keep"
-				userinfo["location"] = "Saker Keep"
 
-		elif answer1 == "6":
-			if userinfo["location"] == "The Forest":
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				return
-			else:
-				location_name = "The Forest"
-				userinfo["location"] = "The Forest"
-
-		elif answer1 == "7":
-			if userinfo["location"] == "Ebony Mountains":
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				return
-			else:
-				location_name = "Ebony Mountains"
-				userinfo["location"] = "Ebony Mountains"
-
-		elif answer1 == "8":
-			if userinfo["location"] == "Township of Arkina":
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				return
-			else:
-				location_name = "Township of Arkina"
-				userinfo["location"] = "Township of Arkina"
-
-		elif answer1 == "9":
+		elif answer1 == "10":
 			return
 			if userinfo["location"] == "Sacred Cave":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
@@ -257,22 +273,6 @@ class travel(commands.Cog):
 			else:
 				location_name = "Sacred Cave"
 				userinfo["location"] = "Sacred Cave"
-
-		elif answer1 == "10":
-			if userinfo["location"] == "Zulanthu":
-				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				return
-			else:
-				location_name = "Zulanthu"
-				userinfo["location"] = "Zulanthu"
 
 		elif answer1 == "11":
 			return
