@@ -1058,7 +1058,7 @@ class fight(commands.Cog):
 			elif userinfo["location"] == "Zulanthu":
 				debi = randchoice(["Largos", "Deathclaw", "Saurian", "The Venomous"])
 			elif userinfo["location"] == "Lost City":
-				debi = randchoice(["Giant", "Lizardmen", "Skeleton", "Death Knight"])
+				debi = randchoice(["Skeleton", "Lizardmen", "Giant", "Death Knight"])
 			enemyname = debi
 			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight":
 				enemyname = ":trident: " + debi
@@ -1090,15 +1090,15 @@ class fight(commands.Cog):
 					userinfo["enemyhp"] = random.randint(40, 60)
 				elif userinfo["selected_enemy"] in ["Wolf", "Goblin"]:
 					userinfo["enemyhp"] = random.randint(50, 70)
-				elif userinfo["selected_enemy"] in ["Zombie", "Phantasm", "Skeleton"]:
+				elif userinfo["selected_enemy"] in ["Zombie", "Phantasm"]:
 					userinfo["enemyhp"] = random.randint(60, 80)
 				elif userinfo["selected_enemy"] in ["The Corrupted", "The Accursed", "Elder Dragon"]:
 					userinfo["enemyhp"] = random.randint(70, 90)
 				elif userinfo["selected_enemy"] in ["Hades", "Ebony Guardian", "Harpy"]:
 					userinfo["enemyhp"] = random.randint(80, 100)
-				elif userinfo["selected_enemy"] in ["Dormammu", "Ettin", "Lizardmen"]: 
+				elif userinfo["selected_enemy"] in ["Dormammu", "Ettin", "Skeleton"]: 
 					userinfo["enemyhp"] = random.randint(90, 110)
-				elif userinfo["selected_enemy"] in ["The Nameless King", "Largos", "Deathclaw"]: 
+				elif userinfo["selected_enemy"] in ["The Nameless King", "Largos", "Deathclaw", "Lizardmen"]: 
 					userinfo["enemyhp"] = random.randint(100, 120)
 				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous","Giant", "Death Knight"]: 
 					userinfo["enemyhp"] = random.randint(110, 130)
@@ -1213,17 +1213,17 @@ class fight(commands.Cog):
 			enemygold = random.randint(18, 21) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
 			xpgain = random.randint(10, 30)
-		elif userinfo["selected_enemy"] == "Zombie" or userinfo["selected_enemy"] == "Skeleton":
+		elif userinfo["selected_enemy"] == "Zombie":
 			enemydmg += random.randint(15, 20)
 			enemygold = random.randint(20, 23) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
 			xpgain = random.randint(10, 30)
-		elif userinfo["selected_enemy"] == "The Corrupted" or userinfo["selected_enemy"] == "Lizardmen":
+		elif userinfo["selected_enemy"] == "The Corrupted":
 			enemydmg += random.randint(15, 30)
 			enemygold = random.randint(22, 25) + (effectiveguildbonus)
 			goldlost = random.randint(100, 180)
 			xpgain = random.randint(10, 35)
-		elif userinfo["selected_enemy"] == "Ebony Guardian" or userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades":
+		elif userinfo["selected_enemy"] == "Ebony Guardian" or userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades" or userinfo["selected_enemy"] == "Skeleton":
 			enemydmg += random.randint(20, 30)
 			enemygold = random.randint(24, 27) + (effectiveguildbonus)
 			goldlost = random.randint(100, 190)
@@ -1233,16 +1233,21 @@ class fight(commands.Cog):
 			enemygold = random.randint(26, 29) + (effectiveguildbonus)
 			goldlost = random.randint(150, 200)
 			xpgain = random.randint(15, 35)
-		elif userinfo["selected_enemy"] == "The Nameless King" or userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian":
+		elif userinfo["selected_enemy"] == "The Nameless King" or userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian" or userinfo["selected_enemy"] == "Lizardmen":
 			enemydmg += random.randint(25, 40)
 			enemygold = random.randint(28, 31) + (effectiveguildbonus)
 			goldlost = random.randint(160, 220)
 			xpgain = random.randint(20, 40)
-		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous" or userinfo["selected_enemy"] == "Giant" or userinfo["selected_enemy"] == "Death Knight":
+		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous"  or userinfo["selected_enemy"] == "Giant":
 			enemydmg += random.randint(25, 50)
 			enemygold = random.randint(30, 33) + (effectiveguildbonus)
 			goldlost = random.randint(170, 240)
-			xpgain = random.randint(20, 45)
+			xpgain = random.randint(25, 45)
+		elif userinfo["selected_enemy"] == "Death Knight":
+			enemydmg += random.randint(30, 55)
+			enemygold = random.randint(35, 37) + (effectiveguildbonus)
+			goldlost = random.randint(200, 260)
+			xpgain = random.randint(30, 45)
 		elif userinfo["selected_enemy"] == "None":
 			return 
 
@@ -1571,10 +1576,9 @@ class fight(commands.Cog):
 			enemydmg -= youdef
 			if enemydmg < 0:
 				enemydmg = 0	
-			userhealth = userhealth - enemydmg
 			enemyhp = userinfo["enemyhp"] - youdmg
 			lootbag = random.randint(1, 15)
-			parrychance = random.randint(1, 100)
+			
 			if enemydmg < 0:
 				enemydmg = 0
 			if userhealth < 0:
@@ -1584,12 +1588,19 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
-			if parrychance >= 80:
-				hpgain = int((userhealth / 100) * 25)
+			parrychance = random.randint(1, 100)
+			
+			if parrychance >= 70:
+				hpgain = int((youdmg / 100) * 25)
 				userhealth += hpgain
 				youdmg -= int((youdmg / 100) * 20)
 				enemyhp = userinfo["enemyhp"] - youdmg
+				userhealth = userhealth - enemydmg
 
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0	
 
 				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
@@ -1632,7 +1643,7 @@ class fight(commands.Cog):
 				await asyncio.sleep(0.4)
 				"""
 
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage ang regains {} HP**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, hpgain, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage and regains {} HP**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, hpgain, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -1645,10 +1656,18 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userhealth = userhealth - enemydmg
+				enemydmg = int((enemydmg / 100) * 150)
 				youdmg -= int((youdmg / 100) * 20)
 				enemyhp = userinfo["enemyhp"] - youdmg
+				userhealth = userhealth - enemydmg
 
+
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0
+	
+				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em1.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1662,7 +1681,7 @@ class fight(commands.Cog):
 						return
 				await asyncio.sleep(0.4)
 
-				"""
+				
 				em2 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em2.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1721,10 +1740,14 @@ class fight(commands.Cog):
 			if userhealth >= 100:
 				userhealth = 100
 
-			if distortchance >= 70:
+			if distortchance >= 80:
 				userhealth = userhealth
 				enemyhp = userinfo["enemyhp"] - youdmg
-
+			
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0
 				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1778,11 +1801,15 @@ class fight(commands.Cog):
 					except:
 						return
 
-			else:
+			else:	
 				enemydmg += int((enemydmg / 100) * 35)
 				userhealth = userhealth - enemydmg
 				enemyhp = userinfo["enemyhp"] - youdmg
 
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0
 				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -1857,12 +1884,17 @@ class fight(commands.Cog):
 
 			reapchance = random.randint(1, 100)
 
-			if reapchance >= 90:
-				userhealth += enemydmg
+			if reapchance >= 85:
+				absorb = enemydmg
+				userhealth += absorb
 				if userhealth >= 100:
 					userhealth = 100
 				enemydmg = 0
 				enemyhp = userinfo["enemyhp"]
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0
 
 				"""
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
@@ -1892,7 +1924,7 @@ class fight(commands.Cog):
 				await asyncio.sleep(0.4)
 				"""
 
-				em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses reap and absorbs {}'s damage.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses reap and absorbs {}'s damage \n{} Hp healed!**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], absorb, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em3.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -1908,6 +1940,10 @@ class fight(commands.Cog):
 				userhealth = userhealth - enemydmg
 				youdmg -= int((youdmg / 100) * 20)
 				enemyhp = userinfo["enemyhp"] - youdmg
+				if userhealth < 0:
+					userhealth = 0
+				if enemyhp < 0:
+					enemyhp = 0
 				"""
 
 				em1 = discord.Embed(description="{} has {} HP\n{} has {} HP".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"]), color=discord.Colour(0xffffff))
@@ -1973,7 +2009,7 @@ class fight(commands.Cog):
 			
 			lootbag = random.randint(1, 15)
 			overloaddmg = random.randint(15, 25)
-			overloadselfdmg = random.randint(1, 5)
+			overloadselfdmg = random.randint(5, 10)
 			youdmg += overloaddmg
 			enemydmg += overloadselfdmg
 			userhealth = userhealth - enemydmg - overloadselfdmg 
@@ -2042,7 +2078,7 @@ class fight(commands.Cog):
 				except:
 					return
 
-#Not done yet
+#done
 		elif answer2 == "fusillade" or answer2 == "Fusillade":
 			move = "Fusillade"
 			userhealth = userinfo["health"]
@@ -2051,7 +2087,7 @@ class fight(commands.Cog):
 				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			critchance = random.randint(1, 100)
-			if critchance >= 75:
+			if critchance <= 75:
 				youdmg += int((youdmg / 100) * 30)
 			else:
 				enemydmg += int((enemydmg / 100) * 25)
@@ -2106,20 +2142,32 @@ class fight(commands.Cog):
 					return
 			await asyncio.sleep(0.4)
 			"""
-
-			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-				em4.set_thumbnail(url=userinfo["equip"]["image"])
-			try:
-				await skillmsg.edit(embed=em4)
-			except:
+			if critchance <= 75:
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and has a Critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-					return
+					await skillmsg.edit(embed=em4)
 				except:
-					return
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+			else:
+				em5 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em5.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em5)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
-#Not done yet
+#done
 		elif answer2 == "protrude" or answer2 == "Protrude":
 			move = "Protrude"
 			userhealth = userinfo["health"]
@@ -2127,7 +2175,7 @@ class fight(commands.Cog):
 			if enemydmg < 0:
 				enemydmg = 0
 			lootbag = random.randint(1, 15)
-			youdmg -= int((youdmg / 100) * 60)
+			youdmg -= int((youdmg / 100) * 75)
 			misschance = random.randint(1, 10)
 			if misschance >= 5:
 				enemydmg = 0
@@ -2182,20 +2230,32 @@ class fight(commands.Cog):
 					return
 			await asyncio.sleep(0.4)
 			"""
-
-			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-				em4.set_thumbnail(url=userinfo["equip"]["image"])
-			try:
-				await skillmsg.edit(embed=em4)
-			except:
+			if misschance >= 5:
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Misses and hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-					return
+					await skillmsg.edit(embed=em4)
 				except:
-					return
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+			else:
+				em5 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em5.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em5)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
-#Not done yet
+#done
 		elif answer2 == "strike" or answer2 == "Strike":
 			move = "Strike"
 			userhealth = userinfo["health"]
@@ -2282,10 +2342,10 @@ class fight(commands.Cog):
 				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			corruptchance = random.randint(1, 100)
-			if corruptchance >= 95:
-				youdmg += int((100 - userhealth) / 3)
+			if corruptchance >= 70:
+				corruptdmg =  int((100 - userhealth) / 3)
 			userhealth = userhealth - enemydmg
-			enemyhp = userinfo["enemyhp"] - youdmg
+			enemyhp = userinfo["enemyhp"] - youdmg - corruptdmg
 
 			if enemydmg < 0:
 				enemydmg = 0
@@ -2337,18 +2397,30 @@ class fight(commands.Cog):
 			await asyncio.sleep(0.4)
 
 			"""
-			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-				em4.set_thumbnail(url=userinfo["equip"]["image"])
-			try:
-				await skillmsg.edit(embed=em4)
-			except:
+			if corruptchance >= 70:
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage\nDeals a extra {} corrupt damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, corruptdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-					return
+					await skillmsg.edit(embed=em4)
 				except:
-					return
-
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+			else:
+				em5 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em5.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em5)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
 		elif answer2 == "heal" or answer2 == "Heal":
 			battleinfo = db.battles.find_one({ "_id": user.id })

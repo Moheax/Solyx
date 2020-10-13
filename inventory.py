@@ -55,6 +55,7 @@ class inventory(commands.Cog):
 		em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"]), inline=True)
 		em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"]), inline=True)
 		em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
+		em.set_footer(text="Type | -vote | and vote for extra rewards!")
 		try:
 			await ctx.send(embed=em)
 		except:
