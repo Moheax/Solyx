@@ -91,6 +91,7 @@ class loot(commands.Cog):
 		chance = random.randint(1, 1000)
 		legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor"])
 		rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+		material = randchoice(["Stone", "Metal", "Wood"])
 
 		if legendary == "Excalibur":
 			legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
@@ -231,6 +232,41 @@ class loot(commands.Cog):
 				return
 			except:
 				return
+
+		if chance < 300 and chance > 0:
+
+			if material == "Stone":
+				mined_stone = random.randint(1, 5)
+				userinfo["stone"] = userinfo["stone"] + mined_stone
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+					return
+				except:
+					return
+
+			if material == "Metal":
+				mined_metal= random.randint(1, 2)
+				userinfo["metal"] = userinfo["metal"] + mined_metal
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+					return
+				except:
+					return
+
+			if material == "Wood":
+				chopped = random.randint(1, 5)
+				userinfo["wood"] = userinfo["wood"] + chopped
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+					return
+				except:
+					return
 
 		else:
 			em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))

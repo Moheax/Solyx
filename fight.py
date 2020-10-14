@@ -1118,7 +1118,6 @@ class fight(commands.Cog):
 		youdmg = random.randint(mindmg, maxdmg)
 
 
-
 		#YOUR PROTECTION IS BASED ON THE ARMOR YOURE HOLDING
 		youdef = 0
 
@@ -1128,32 +1127,36 @@ class fight(commands.Cog):
 			youdef += random.randint(8, 15)
 
 # - - Common Armor - -
-		if userinfo["wearing"] == "Chainmail Armor":
-			youdef += random.randint(2, 12)
-		elif userinfo["wearing"] == "Barbaric Armor":
-			youdef += random.randint(5, 7)
-		elif userinfo["wearing"] == "Pit fighter Armor":
-			youdef += random.randint(4, 9)
-		elif userinfo["wearing"] == "Banded Armor":
-			youdef += random.randint(1, 10)
-		elif userinfo["wearing"] == "Leather Armor":
-			youdef += random.randint(3, 8)
+#		if userinfo["wearing"] == "Chainmail Armor":
+#			youdef += random.randint(2, 12)
+#		elif userinfo["wearing"] == "Barbaric Armor":
+#			youdef += random.randint(5, 7)
+#		elif userinfo["wearing"] == "Pit fighter Armor":
+#			youdef += random.randint(4, 9)
+#		elif userinfo["wearing"] == "Banded Armor":
+#			youdef += random.randint(1, 10)
+#		elif userinfo["wearing"] == "Leather Armor":
+#			youdef += random.randint(3, 8)
 # - - Rare Armor - -
-		elif userinfo["wearing"] == "Iron Armor":
-			youdef += random.randint(14, 16)
-		elif userinfo["wearing"] == "Branded Metal Armor":
-			youdef += random.randint(13, 17)
-		elif userinfo["wearing"] == "Wolf Fur":
-			youdef += random.randint(1, 24)
-		elif userinfo["wearing"] == "Enchanted Steel Armor":
-			youdef += random.randint(12, 17)
+#		elif userinfo["wearing"] == "Iron Armor":
+#			youdef += random.randint(14, 16)
+#		elif userinfo["wearing"] == "Branded Metal Armor":
+#			youdef += random.randint(13, 17)
+#		elif userinfo["wearing"] == "Wolf Fur":
+#			youdef += random.randint(1, 24)
+#		elif userinfo["wearing"] == "Enchanted Steel Armor":
+#			youdef += random.randint(12, 17)
 # - - Legendary Armor - -
-		elif userinfo["wearing"] == "Bane Of The Goblin Lord":
-			youdef += random.randint(20, 25)
-		elif userinfo["wearing"] == "Nightstalker Mantle":
-			youdef += random.randint(15, 28)
-		elif userinfo["wearing"] == "Hephaestus Armor":
-			youdef += random.randint(16, 27)
+#		elif userinfo["wearing"] == "Bane Of The Goblin Lord":
+#			youdef += random.randint(20, 25)
+#		elif userinfo["wearing"] == "Nightstalker Mantle":
+#			youdef += random.randint(15, 28)
+#		elif userinfo["wearing"] == "Hephaestus Armor":
+#			youdef += random.randint(16, 27)
+		mindef = userinfo["wearing"]["stats_min"]
+		maxdef = userinfo["wearing"]["stats_max"]
+		youdef = random.randint(mindef, maxdef)
+
 
 		#ENEMY DAMAGE BASED ON ENEMY GROUPS
 		enemydmg = 0
@@ -2066,7 +2069,7 @@ class fight(commands.Cog):
 			"""
 
 
-			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage but also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+			em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage\nBut also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 			if not userinfo["equip"]["image"] == "None":
 				em4.set_thumbnail(url=userinfo["equip"]["image"])
 			try:
@@ -2333,7 +2336,7 @@ class fight(commands.Cog):
 				except:
 					return
 
-#Not done yet
+#done
 		elif answer2 == "corrupt" or answer2 == "Corrupt":
 			move = "Corrupt"
 			userhealth = userinfo["health"]
