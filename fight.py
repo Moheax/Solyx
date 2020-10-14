@@ -2345,6 +2345,7 @@ class fight(commands.Cog):
 				enemydmg = 0
 			lootbag = random.randint(1, 15)
 			corruptchance = random.randint(1, 100)
+			corruptdmg = 0
 			if corruptchance >= 70:
 				corruptdmg =  int((100 - userhealth) / 3)
 			userhealth = userhealth - enemydmg

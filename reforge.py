@@ -826,7 +826,7 @@ class reforge(commands.Cog):
 				userinfo["inventory"].append(newitem)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="Refogred {}".format(item["name"]), description="**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n".format(newitem["rarity"], newitem["refinement"], newitem["type"], newitem["stats_min"], newitem["stats_max"]), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Reforged {}".format(item["name"]), description="**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n".format(newitem["rarity"], newitem["refinement"], newitem["type"], newitem["stats_min"], newitem["stats_max"]), color=discord.Colour(0xffffff))
 				if not item["image"] == "None":
 					em.set_thumbnail(url=item["image"])
 				try:
@@ -837,8 +837,8 @@ class reforge(commands.Cog):
 						return
 					except:
 						return
-
-
+			if refinement == "Unreal":
+				ctx.send("<:Solyx:560809141766193152> | Item can't be reforged!")
 
 
 	async def check_answer(self, ctx, valid_options):
