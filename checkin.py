@@ -70,7 +70,8 @@ class checkin(commands.Cog):
 
 		if seconds <= 0:
 			  
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["success"]["title"]["translation"], description="\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(goldget, hpget, lbget, keyget), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["success"]["title"]["translation"], description="\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**\n\n[**New Merch!**](https://teespring.com/nl/SolyxBotMerch?)\n[**Website**](https://solyxbot.webflow.io/)".format(goldget, hpget, lbget, keyget), color=discord.Colour(0xffffff))
+			
 			try:
 				await ctx.send(embed=em)
 			except:

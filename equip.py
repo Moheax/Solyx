@@ -68,7 +68,7 @@ class equip(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if number not in range(1, 24): # Max
+		if number not in range(1, 26): # Max
 			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
 

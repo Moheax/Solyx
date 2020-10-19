@@ -220,10 +220,10 @@ class market(commands.Cog):
 
 	@market.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
-	async def buy(self, ctx, id:int):
+	async def buy(self, ctx, idmarket:int):
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-		id = int
+		idmarket = int
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
@@ -237,27 +237,28 @@ class market(commands.Cog):
 				return
 			return
 
-		marketinfo = db.market.find_one({ "_id": "{}".format(id)})
+		marketinfo = db.market.find_one({ "marketid": idmarket})
+		print(marketinfo["price"])
 
-		existcheck = db.market.count_documents({"_id": "{}".format(id)})
+		existcheck = db.market.count_documents({"_id": idmarket})
+		
 
-
-		if str(id) == str(user.id):
+		if str(idmarket) == str(user.id):
 			await ctx.send("<:Solyx:560809141766193152> **| You can't buy your own items!**")
 			return
 
-		if not int(userinfo["gold"]) >= int(marketinfo["price"]):
-			neededgold = int(marketinfo["price"]) - int(userinfo["gold"])
+		if not userinfo["gold"] >= marketinfo["price"]:
+			neededgold = marketinfo["price"] - userinfo["gold"]
 			await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to buy this item!**".format(neededgold))
 			return
 
 		itemobj = {"name": marketinfo["name"], "type": marketinfo["type"], "rarity": marketinfo["rarity"], "stats_min": marketinfo["stats_min"], "stats_max": marketinfo["stats_max"], "refinement": marketinfo["refinement"], "description": marketinfo["description"], "image": marketinfo["image"]}
 		userinfo["inventory"].append(itemobj)
-		userinfo["gold"] = userinfo["gold"] - int(marketinfo["price"])
+		userinfo["gold"] = userinfo["gold"] - marketinfo["price"]
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		sellerinfo = db.users.find_one({ "_id": "{}".format(id) })
-		sellerinfo["gold"] = sellerinfo["gold"] + int(marketinfo["price"])
+		sellerinfo["gold"] = sellerinfo["gold"] + marketinfo["price"]
 		db.users.replace_one({ "_id": "{}".format(id) }, sellerinfo, upsert=True)
 
 		"""maxamt = db.market.count()

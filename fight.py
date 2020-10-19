@@ -789,6 +789,54 @@ class fight(commands.Cog):
 				except:
 					await ctx.send(embed=em)
 
+		if userinfo["IceWolveskilled"] >= 100  and not "Ice Wolves Killer" in titlesinfo["titles_list"]:
+			newtitle = "Ice Wolves Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["FrostOrckilled"] >= 100  and not "Frost Orc Killer" in titlesinfo["titles_list"]:
+			newtitle = "Frost Orc Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["FrostGoblinkilled"] >= 100  and not "Frost Goblin Killer" in titlesinfo["titles_list"]:
+			newtitle = "Frost Goblin Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
+		if userinfo["FrostDragonkilled"] >= 100  and not "Frost Dragon Killer" in titlesinfo["titles_list"]:
+			newtitle = "Frost Dragon Killer"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+
 		if userinfo["deaths"] >= 15  and not "Uncoordinated" in titlesinfo["titles_list"]:
 			newtitle = "Uncoordinated"
 			if not newtitle in titlesinfo["titles_list"]:
@@ -1059,8 +1107,10 @@ class fight(commands.Cog):
 				debi = randchoice(["Largos", "Deathclaw", "Saurian", "The Venomous"])
 			elif userinfo["location"] == "Lost City":
 				debi = randchoice(["Skeleton", "Lizardmen", "Giant", "Death Knight"])
+			elif userinfo["location"] == "Drenheim":
+				debi = randchoice(["Ice wolves", "Frost Orc", "Frost Goblin", "Frost Dragon"])
 			enemyname = debi
-			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight":
+			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight" or debi == "Frost Dragon":
 				enemyname = ":trident: " + debi
 			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["title"]["translation"].format(userinfo["location"], enemyname), description=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["description"]["translation"], color=discord.Colour(0xffffff))
 			if debi == "Phantasm":
@@ -1071,6 +1121,8 @@ class fight(commands.Cog):
 				em.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
 			elif debi == "Death Knight":
 				em.set_image(url="https://i.imgur.com/ELd7Ll5.jpg")
+			elif debi == "Frost Dragon":
+				em.set_image(url="https://cdn.wallpapersafari.com/11/55/3hBQ9Z.jpg")
 			em.set_footer(text="yes / no")
 			await ctx.send(embed=em)
 			options = ["y", "Y", "yes", "Yes", "n", "N", "No", "no", "-fight"]
@@ -1100,8 +1152,12 @@ class fight(commands.Cog):
 					userinfo["enemyhp"] = random.randint(90, 110)
 				elif userinfo["selected_enemy"] in ["The Nameless King", "Largos", "Deathclaw", "Lizardmen"]: 
 					userinfo["enemyhp"] = random.randint(100, 120)
-				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous","Giant", "Death Knight"]: 
+				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous","Giant", "Death Knight", "Ice Wolves"]: 
 					userinfo["enemyhp"] = random.randint(110, 130)
+				elif userinfo["selected_enemy"] in ["Frost Orc", "Frost Goblin"]: 
+					userinfo["enemyhp"] = random.randint(120, 140)
+				elif userinfo["selected_enemy"] in ["Frost Dragon"]: 
+					userinfo["enemyhp"] = random.randint(130, 150)
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			elif answer1 == "n" or answer1 == "N" or answer1 == "no" or answer1 == "No":
@@ -1153,10 +1209,12 @@ class fight(commands.Cog):
 #			youdef += random.randint(15, 28)
 #		elif userinfo["wearing"] == "Hephaestus Armor":
 #			youdef += random.randint(16, 27)
-		mindef = userinfo["wearing"]["stats_min"]
-		maxdef = userinfo["wearing"]["stats_max"]
-		youdef = random.randint(mindef, maxdef)
-
+		try:
+			mindef = userinfo["wearing"]["stats_min"]
+			maxdef = userinfo["wearing"]["stats_max"]
+			youdef = random.randint(mindef, maxdef)
+		except:
+			pass
 
 		#ENEMY DAMAGE BASED ON ENEMY GROUPS
 		enemydmg = 0
@@ -1190,67 +1248,72 @@ class fight(commands.Cog):
 			enemydmg += random.randint(2, 10)
 			enemygold = random.randint(10, 15) + (effectiveguildbonus)
 			goldlost = random.randint(20, 60)
-			xpgain = random.randint(5, 10)
+			xpgain = random.randint(5, 20)
 		if userinfo["selected_enemy"] == "Draugr":
 			enemydmg += random.randint(2, 10)
 			enemygold = random.randint(10, 15) + (effectiveguildbonus)
 			goldlost = random.randint(20, 60)
-			xpgain = random.randint(5, 10)
+			xpgain = random.randint(7, 20)
 		elif userinfo["selected_enemy"] == "Debin" or userinfo["selected_enemy"] == "Stalker":
 			enemydmg += random.randint(5, 10)
-			enemygold = random.randint(12, 17) + (effectiveguildbonus)
+			enemygold = random.randint(15, 20) + (effectiveguildbonus)
 			goldlost = random.randint(30, 70)
-			xpgain = random.randint(5, 20)
+			xpgain = random.randint(10, 25)
 		elif userinfo["selected_enemy"] == "Oofer" or userinfo["selected_enemy"] == "Souleater" or userinfo["selected_enemy"] == "Wyvern":
 			enemydmg += random.randint(5, 15)
-			enemygold = random.randint(14, 19) + (effectiveguildbonus)
+			enemygold = random.randint(20, 25) + (effectiveguildbonus)
 			goldlost = random.randint(40, 80)
-			xpgain = random.randint(10, 25)
+			xpgain = random.randint(15, 25)
 		elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Phantasm":
 			enemydmg += random.randint(10, 15)
-			enemygold = random.randint(16, 21) + (effectiveguildbonus)
+			enemygold = random.randint(20, 30) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
-			xpgain = random.randint(10, 30)
+			xpgain = random.randint(15, 30)
 		elif userinfo["selected_enemy"] == "Goblin" or userinfo["selected_enemy"] == "Fire Golem":
 			enemydmg += random.randint(10, 20)
-			enemygold = random.randint(18, 21) + (effectiveguildbonus)
+			enemygold = random.randint(25, 35) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
-			xpgain = random.randint(10, 30)
+			xpgain = random.randint(20, 35)
 		elif userinfo["selected_enemy"] == "Zombie":
 			enemydmg += random.randint(15, 20)
-			enemygold = random.randint(20, 23) + (effectiveguildbonus)
+			enemygold = random.randint(25, 40) + (effectiveguildbonus)
 			goldlost = random.randint(90, 160)
-			xpgain = random.randint(10, 30)
+			xpgain = random.randint(25, 35)
 		elif userinfo["selected_enemy"] == "The Corrupted":
 			enemydmg += random.randint(15, 30)
-			enemygold = random.randint(22, 25) + (effectiveguildbonus)
+			enemygold = random.randint(30, 50) + (effectiveguildbonus)
 			goldlost = random.randint(100, 180)
-			xpgain = random.randint(10, 35)
+			xpgain = random.randint(30, 40)
 		elif userinfo["selected_enemy"] == "Ebony Guardian" or userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades" or userinfo["selected_enemy"] == "Skeleton":
 			enemydmg += random.randint(20, 30)
-			enemygold = random.randint(24, 27) + (effectiveguildbonus)
+			enemygold = random.randint(35, 55) + (effectiveguildbonus)
 			goldlost = random.randint(100, 190)
-			xpgain = random.randint(15, 35)
+			xpgain = random.randint(35, 45)
 		elif userinfo["selected_enemy"] == "The Accursed" or userinfo["selected_enemy"] == "Harpy" or userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
 			enemydmg += random.randint(20, 40)
-			enemygold = random.randint(26, 29) + (effectiveguildbonus)
+			enemygold = random.randint(40, 55) + (effectiveguildbonus)
 			goldlost = random.randint(150, 200)
-			xpgain = random.randint(15, 35)
+			xpgain = random.randint(35, 45)
 		elif userinfo["selected_enemy"] == "The Nameless King" or userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian" or userinfo["selected_enemy"] == "Lizardmen":
 			enemydmg += random.randint(25, 40)
-			enemygold = random.randint(28, 31) + (effectiveguildbonus)
+			enemygold = random.randint(45, 60) + (effectiveguildbonus)
 			goldlost = random.randint(160, 220)
-			xpgain = random.randint(20, 40)
-		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous"  or userinfo["selected_enemy"] == "Giant":
+			xpgain = random.randint(40, 50)
+		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous"  or userinfo["selected_enemy"] == "Giant" or userinfo["selected_enemy"] == "Ice Wolves":
 			enemydmg += random.randint(25, 50)
-			enemygold = random.randint(30, 33) + (effectiveguildbonus)
+			enemygold = random.randint(45, 65) + (effectiveguildbonus)
 			goldlost = random.randint(170, 240)
-			xpgain = random.randint(25, 45)
-		elif userinfo["selected_enemy"] == "Death Knight":
+			xpgain = random.randint(40, 55)
+		elif userinfo["selected_enemy"] == "Death Knight" or userinfo["selected_enemy"] == "Frost Orc" or userinfo["selected_enemy"] == "Frost Goblin":
 			enemydmg += random.randint(30, 55)
-			enemygold = random.randint(35, 37) + (effectiveguildbonus)
+			enemygold = random.randint(50, 65) + (effectiveguildbonus)
 			goldlost = random.randint(200, 260)
-			xpgain = random.randint(30, 45)
+			xpgain = random.randint(45, 60)
+		elif userinfo["selected_enemy"] == "Frost Dragon":
+			enemydmg += random.randint(35, 60)
+			enemygold = random.randint(55, 70) + (effectiveguildbonus)
+			goldlost = random.randint(230, 290)
+			xpgain = random.randint(50, 65)
 		elif userinfo["selected_enemy"] == "None":
 			return 
 
@@ -1593,10 +1656,10 @@ class fight(commands.Cog):
 
 			parrychance = random.randint(1, 100)
 			
-			if parrychance >= 70:
-				hpgain = int((youdmg / 100) * 25)
+			if parrychance >= 60:
+				hpgain = random.randint(10, 25)
 				userhealth += hpgain
-				youdmg -= int((youdmg / 100) * 20)
+				youdmg -= int((youdmg / 100) * 80)
 				enemyhp = userinfo["enemyhp"] - youdmg
 				userhealth = userhealth - enemydmg
 
@@ -2691,6 +2754,33 @@ class fight(commands.Cog):
 				except:
 					pass
 
+			if userinfo["selected_enemy"] == "Ice Wolves":
+				try:
+					userinfo["IceWolveskilled"] = userinfo["IceWolveskilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Frost Orc":
+				try:
+					userinfo["FrostOrckilled"] = userinfo["FrostOrckilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Frost Goblin":
+				try:
+					userinfo["FrostGoblinkilled"] = userinfo["FrostGoblinkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
+
+			if userinfo["selected_enemy"] == "Frost Dragon":
+				try:
+					userinfo["FrostDragonkilled"] = userinfo["FrostDragonkilled"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				except:
+					pass
 
 			userinfo["selected_enemy"] = "None"
 			userinfo["gold"] = userinfo["gold"] + int(enemygold)
@@ -2751,6 +2841,11 @@ class fight(commands.Cog):
 
 		# USER
 		userinfo = db.users.find_one({ "_id": user.id })
+
+		# CHECK IF USERS CHALLANGES ITSELF
+		if authorinfo["_id"] == userinfo["_id"]:
+			await ctx.send("<:Solyx:560809141766193152> **| You cant fight yourself.**")
+			return
 
 		# CHECK IF USERS EXIST
 		if authorinfo["race"] == "None" or authorinfo["class"] == "None":
@@ -2882,33 +2977,39 @@ class fight(commands.Cog):
 			youdef += random.randint(8, 15)
 
 # - - Common Armor - -
-		if userinfo["wearing"] == "Chainmail Armor":
-			youdef += random.randint(2, 12)
-		elif userinfo["wearing"] == "Barbaric Armor":
-			youdef += random.randint(5, 7)
-		elif userinfo["wearing"] == "Pit fighter Armor":
-			youdef += random.randint(4, 9)
-		elif userinfo["wearing"] == "Banded Armor":
-			youdef += random.randint(1, 10)
-		elif userinfo["wearing"] == "Leather Armor":
-			youdef += random.randint(3, 8)
+#		if userinfo["wearing"] == "Chainmail Armor":
+#			youdef += random.randint(2, 12)
+#		elif userinfo["wearing"] == "Barbaric Armor":
+#			youdef += random.randint(5, 7)
+#		elif userinfo["wearing"] == "Pit fighter Armor":
+#			youdef += random.randint(4, 9)
+#		elif userinfo["wearing"] == "Banded Armor":
+#			youdef += random.randint(1, 10)
+#		elif userinfo["wearing"] == "Leather Armor":
+#			youdef += random.randint(3, 8)
 # - - Rare Armor - -
-		elif userinfo["wearing"] == "Iron Armor":
-			youdef += random.randint(14, 16)
-		elif userinfo["wearing"] == "Branded Metal Armor":
-			youdef += random.randint(13, 17)
-		elif userinfo["wearing"] == "Wolf Fur":
-			youdef += random.randint(1, 24)
-		elif userinfo["wearing"] == "Enchanted Steel Armor":
-			youdef += random.randint(12, 17)
+#		elif userinfo["wearing"] == "Iron Armor":
+#			youdef += random.randint(14, 16)
+#		elif userinfo["wearing"] == "Branded Metal Armor":
+#			youdef += random.randint(13, 17)
+#		elif userinfo["wearing"] == "Wolf Fur":
+#			youdef += random.randint(1, 24)
+#		elif userinfo["wearing"] == "Enchanted Steel Armor":
+#			youdef += random.randint(12, 17)
 # - - Legendary Armor - -
-		elif userinfo["wearing"] == "Bane Of The Goblin Lord":
-			youdef += random.randint(20, 25)
-		elif userinfo["wearing"] == "Nightstalker Mantle":
-			youdef += random.randint(15, 28)
-		elif userinfo["wearing"] == "Hephaestus Armor":
-			youdef += random.randint(19, 26)
+#		elif userinfo["wearing"] == "Bane Of The Goblin Lord":
+#			youdef += random.randint(20, 25)
+#		elif userinfo["wearing"] == "Nightstalker Mantle":
+#			youdef += random.randint(15, 28)
+#		elif userinfo["wearing"] == "Hephaestus Armor":
+#			youdef += random.randint(19, 26)
 
+		try:
+			mindef = userinfo["wearing"]["stats_min"]
+			maxdef = userinfo["wearing"]["stats_max"]
+			youdef = random.randint(mindef, maxdef)
+		except:
+			pass
 # - - - - - - - - - - - - - - - ENEMY STATS CHECKS - - - - - - - - - - - - - - -
 		mindmg = enemyinfo["equip"]["stats_min"]
 		maxdmg = enemyinfo["equip"]["stats_max"]
@@ -2923,32 +3024,39 @@ class fight(commands.Cog):
 			enemydef += random.randint(8, 15)
 
 # - - Common Armor - -
-		if enemyinfo["wearing"] == "Chainmail Armor":
-			enemydef += random.randint(2, 12)
-		elif enemyinfo["wearing"] == "Barbaric Armor":
-			enemydef += random.randint(5, 7)
-		elif enemyinfo["wearing"] == "Pit fighter Armor":
-			enemydef += random.randint(4, 9)
-		elif enemyinfo["wearing"] == "Banded Armor":
-			enemydef += random.randint(1, 10)
-		elif enemyinfo["wearing"] == "Leather Armor":
-			enemydef += random.randint(3, 8)
+#		if enemyinfo["wearing"] == "Chainmail Armor":
+#			enemydef += random.randint(2, 12)
+#		elif enemyinfo["wearing"] == "Barbaric Armor":
+#			enemydef += random.randint(5, 7)
+#		elif enemyinfo["wearing"] == "Pit fighter Armor":
+#			enemydef += random.randint(4, 9)
+#		elif enemyinfo["wearing"] == "Banded Armor":
+#			enemydef += random.randint(1, 10)
+#		elif enemyinfo["wearing"] == "Leather Armor":
+#			enemydef += random.randint(3, 8)
 # - - Rare Armor - -
-		elif enemyinfo["wearing"] == "Iron Armor":
-			enemydef += random.randint(14, 16)
-		elif enemyinfo["wearing"] == "Branded Metal Armor":
-			enemydef += random.randint(13, 17)
-		elif enemyinfo["wearing"] == "Wolf Fur":
-			enemydef += random.randint(1, 24)
-		elif enemyinfo["wearing"] == "Enchanted Steel Armor":
-			enemydef += random.randint(12, 17)
+#		elif enemyinfo["wearing"] == "Iron Armor":
+#			enemydef += random.randint(14, 16)
+#		elif enemyinfo["wearing"] == "Branded Metal Armor":
+#			enemydef += random.randint(13, 17)
+#		elif enemyinfo["wearing"] == "Wolf Fur":
+#			enemydef += random.randint(1, 24)
+#		elif enemyinfo["wearing"] == "Enchanted Steel Armor":
+#			enemydef += random.randint(12, 17)
 # - - Legendary Armor - -
-		elif enemyinfo["wearing"] == "Bane Of The Goblin Lord":
-			enemydef += random.randint(20, 25)
-		elif enemyinfo["wearing"] == "Nightstalker Mantle":
-			enemydef += random.randint(15, 28)
-		elif enemyinfo["wearing"] == "Hephaestus Armor":
-			enemydef += random.randint(16, 27)
+#		elif enemyinfo["wearing"] == "Bane Of The Goblin Lord":
+#			enemydef += random.randint(20, 25)
+#		elif enemyinfo["wearing"] == "Nightstalker Mantle":
+#			enemydef += random.randint(15, 28)
+#		elif enemyinfo["wearing"] == "Hephaestus Armor":
+#			enemydef += random.randint(16, 27)
+
+		try:
+			mindef = enemyinfo["wearing"]["stats_min"]
+			maxdef = enemyinfo["wearing"]["stats_max"]
+			enemydef = random.randint(mindef, maxdef)
+		except:
+			pass
 
 		enemygold = random.randint(30, 60) # CHECK THIS - unused
 		xpgain = random.randint(10, 15) # CHECK THIS - unused

@@ -126,7 +126,7 @@ class rank(commands.Cog):
 		expbar = Image.open('data/RPGR/{}_temp_white.png'.format(user.id)).convert('RGBA')
 		expbar = expbar.resize((880, barthiccness), Image.ANTIALIAS)
 		if not userinfo["exp"] == 0 and not userinfo["lvl"] == 0:
-			expamt = int(880 * (userinfo["exp"]/((userinfo["lvl"] + 1) * 165)))
+			expamt = int(880 * (userinfo["exp"]/((userinfo["lvl"] + 1) * 3.5)))
 		else:
 			expamt = 1
 		waveexp = expbar.crop((0, 0, expamt, barthiccness)) # left, up, right, bottom
@@ -138,12 +138,12 @@ class rank(commands.Cog):
 		light_color = (160,160,160,255)
 
 		# % under exp bar
-		percent = ((userinfo["exp"] + 1)/(((userinfo["lvl"] + 1) * 165)/100))
+		percent = ((userinfo["exp"] + 1)/(((userinfo["lvl"] + 1) * 3.5)/100))
 		percentage = "{}%".format(int(percent))
 		draw.text((expamt + 5, expbar_y + 20), percentage, font=general_info_fnt, fill=white_color)
 
 		# Name
-		_write_unicode(self._name(user, 12), 20, 20, level_label_fnt, header_u_fnt, white_color)
+		_write_unicode(self._name(user, 50), 20, 20, level_label_fnt, header_u_fnt, white_color)
 
 		# Level
 		lvl_text = "{}".format(userinfo["lvl"])
@@ -165,7 +165,7 @@ class rank(commands.Cog):
 		draw.text((self._center(0, 900, "Current exp", general_info_fnt), textvalue_y + 35), "Current exp",  font=general_info_fnt, fill=(white_color[0],white_color[1],white_color[2],255))
 
 		# EXP need
-		expneeded = (((userinfo["lvl"] + 1) * 165) - userinfo["exp"])
+		expneeded = (((100) + (userinfo["lvl"] + 1) * 3.5) - userinfo["exp"])
 		expneed_text = "{}".format(expneeded)
 		draw.text((self._center(450, 900, expneed_text, level_label_fnt), textvalue_y), expneed_text,  font=level_label_fnt, fill=(white_color[0],white_color[1],white_color[2],255))
 

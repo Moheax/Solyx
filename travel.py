@@ -81,7 +81,7 @@ class travel(commands.Cog):
 			options2.append("7")
 
 		if userinfo["lvl"] >= 120:
-			options.append("(8) Drenheim [Coming soon]")
+			options.append("(8) Drenheim ")
 			options2.append("8")
 
 		if userinfo["lvl"] >= 150:
@@ -223,7 +223,6 @@ class travel(commands.Cog):
 				userinfo["location"] = "Lost City"
 
 		elif answer1 == "8":
-			return
 			if userinfo["location"] == "Drenheim":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
 				try:

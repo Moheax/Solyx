@@ -64,7 +64,7 @@ class reforge(commands.Cog):
 			stone = 25
 			metal = 15
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -136,7 +136,7 @@ class reforge(commands.Cog):
 			stone = 50
 			metal = 30
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -208,7 +208,7 @@ class reforge(commands.Cog):
 			stone = 100
 			metal = 60
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -280,7 +280,7 @@ class reforge(commands.Cog):
 			stone = 200
 			metal = 150
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -352,7 +352,7 @@ class reforge(commands.Cog):
 			stone = 350
 			metal = 200
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -424,7 +424,7 @@ class reforge(commands.Cog):
 			stone = 500
 			metal = 300
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -496,7 +496,7 @@ class reforge(commands.Cog):
 			stone = 750
 			metal = 500
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -567,7 +567,7 @@ class reforge(commands.Cog):
 			stone = 1000
 			metal = 750
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -638,7 +638,7 @@ class reforge(commands.Cog):
 			stone = 1250
 			metal = 1000
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -709,7 +709,7 @@ class reforge(commands.Cog):
 			stone = 1500
 			metal = 1250
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:
@@ -780,7 +780,7 @@ class reforge(commands.Cog):
 			stone = 1750
 			metal = 1250
 
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["refinement"], ref, item["type"], item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
 				em.set_thumbnail(url=item["image"])
 			try:

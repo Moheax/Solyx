@@ -105,19 +105,31 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 			else:
-				votemtp = "\n"
+				votemtp = "×2 Weekend multiplier"
 				if userinfo["role"] == "Donator":
-					votegold = random.randint(360, 600)
-					votehp = random.randint(3, 5)
-					votelb = random.randint(7, 13)
+					votegold = random.randint(700, 1000)
+					votehp = random.randint(3, 8)
+					votelb = random.randint(10, 15)
 				elif userinfo["role"] == "Subscriber":
-					votegold = random.randint(450, 750)
-					votehp = random.randint(4, 7)
-					votelb = random.randint(9, 18)
+					votegold = random.randint(750, 1200)
+					votehp = random.randint(4, 8)
+					votelb = random.randint(13, 22)
 				else:
-					votegold = random.randint(300, 500)
-					votehp = random.randint(2, 5)
-					votelb = random.randint(6, 10)
+					votegold = random.randint(500, 900)
+					votehp = random.randint(4, 7)
+					votelb = random.randint(9, 12)
+				#if userinfo["role"] == "Donator":
+				#	votegold = random.randint(360, 600)
+				#	votehp = random.randint(3, 5)
+				#	votelb = random.randint(7, 13)
+				#elif userinfo["role"] == "Subscriber":
+				#	votegold = random.randint(450, 750)
+				#	votehp = random.randint(4, 7)
+				#	votelb = random.randint(9, 18)
+				#else:
+				#	votegold = random.randint(300, 500)
+				#	votehp = random.randint(2, 5)
+				#	votelb = random.randint(6, 10)
 
 			userinfo["lootbag"] = userinfo["lootbag"] + votelb
 			userinfo["keys"] = userinfo["keys"] + votelb
@@ -128,7 +140,7 @@ class vote(commands.Cog):
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 			# Reward embed
-			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**\n\n[**New Merch!**](https://teespring.com/nl/SolyxBotMerch?)\n[**Website**](https://solyxbot.webflow.io/)".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
 			em.set_footer(text="React ⏰ to set a vote reminder!")
 			try:
 				msg = await channel.send(embed=em)

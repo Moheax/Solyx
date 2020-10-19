@@ -228,7 +228,7 @@ class general(commands.Cog):
 	@commands.check(staff)
 	async def blacklist(self, ctx):
 		"""Blacklist commands"""
-		author = ctx.author
+		author = ctx.message.author
 		authorinfo = db.users.find_one({ "_id": f"{author.id}"})
 		if not authorinfo["role"] in ["Developer", "Staff"]:
 			return

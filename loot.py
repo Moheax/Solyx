@@ -89,9 +89,12 @@ class loot(commands.Cog):
 		goldmul = random.randint(12, 28)
 		goldgain = goldmul * 3 + userinfo["lvl"]
 		chance = random.randint(1, 1000)
+
 		legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor"])
 		rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+		common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
 		material = randchoice(["Stone", "Metal", "Wood"])
+
 
 		if legendary == "Excalibur":
 			legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
@@ -129,7 +132,7 @@ class loot(commands.Cog):
 		if legendary == "Hephaestus Armor":
 			legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
 
-		if chance > 995:
+		if chance > 950:
 			userinfo["inventory"].append(legendaryitemobj)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
@@ -195,21 +198,6 @@ class loot(commands.Cog):
 		if rare == "Verdant Bow":
 			rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
 
-		if rare == "Chainmail Armor":
-			rareitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
-
-		if rare == "Barbaric Armor":
-			rareitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
-
-		if rare == "Pit fighter Armor":
-			rareitemobj = {"name": "Pit fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
-
-		if rare == "Banded Armor":
-			rareitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
-
-		if rare == "Leather Armor":
-			rareitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
-
 		if rare == "Iron Armor":
 			rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
 
@@ -223,7 +211,7 @@ class loot(commands.Cog):
 			rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
 
 
-		if chance < 950 and chance > 600:
+		if chance < 950 and chance > 700:
 			userinfo["inventory"].append(rareitemobj)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
@@ -233,7 +221,73 @@ class loot(commands.Cog):
 			except:
 				return
 
-		if chance < 300 and chance > 0:
+		if common == "Sclerite Sword":
+			commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+		if common == "Iron Greatsword":
+			commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+		if common == "Abaddon Dagger":
+			commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+		if common == "Rusted Short Sword":
+			commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+		if common == "Makeshift Shortbow":
+			commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+		if common == "Obsidian Longbow":
+			commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+		if common == "Concealed Blade":
+			commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+		if common == "Tomb of Fire":
+			commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+		if common == "Scroll of Blizzards":
+			commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+		if common ==  "Glyphic Bow":
+			commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+		if common == "Oblivion":
+			commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+		if common == "Staff of Milos":
+			commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+		if common == "Calcite Staff":
+			commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+		if common == "Leather Armor":
+			commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if common == "Banded Armor":
+			commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if common == "Pit Fighter Armor":
+			commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if common == "Chainmail Armor":
+			commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if common == "Barbaric Armor":
+			commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+		if chance < 700 and chance > 300:
+
+			userinfo["inventory"].append(commonitemobj)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+				return
+			except:
+				return
+
+
+		if chance < 300 and chance > 50:
 
 			if material == "Stone":
 				mined_stone = random.randint(1, 5)

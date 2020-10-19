@@ -440,7 +440,7 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 
 			elif item == "Enchanted Steel Armor" or item == "enchanted steel armor":
-				itemobj = {"name": "Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+				itemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
 				cost = 7000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
@@ -497,318 +497,298 @@ class shop(commands.Cog):
 
 	@shop.command(name="sell", pass_context=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
-	async def sell(self, ctx, *, item):
-		"""| -shop sell <item Name>"""
+	async def sell(self, ctx, *, number:int):
+		"""| -shop sell <number>"""
 
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
-		if item == "Sclerite Sword" or item == "sclerite sword":
-			itemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+		try:
+			item = userinfo["inventory"][number+0]
+		except:
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["noiteminslot"]["translation"])
+			return
+
+
+		itemname = item["name"]
+
+		if itemname == "Sclerite Sword":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Iron Greatsword" or item == "iron greatsword":
-			itemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+		elif itemname == "Iron Greatsword" :
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Abaddon Dagger" or item == "abaddon dagger":
-			itemobj = {"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+		elif itemname == "Abaddon Dagger":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Rusted Short Sword" or item == "rusted short sword":
-			itemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+		elif itemname == "Rusted Short Sword":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Verdant Bow" or item == "verdant bow":
-			itemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+		elif itemname == "Verdant Bow":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Obsidian Longbow" or item == "obsidian longbow":
-			itemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+		elif itemname == "Obsidian Longbow":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Etched Longbow" or item == "etched longbow":
-			itemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+		elif itemname == "Etched Longbow":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Mithril Sword" or item == "mithril sword":
-			print("aaah")
-			itemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+		elif itemname == "Mithril Sword":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Spiked Mace" or item == "spiked mace":
-			itemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+		elif itemname == "Spiked Mace":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Curved Dagger" or item == "curved dagger":
-			itemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+		elif itemname == "Curved Dagger":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Tomb of Water" or item == "tomb of water":
-			itemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+		elif itemname == "Tomb of Water":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Makeshift Shortbow" or item == "makeshift shortbow":
-			itemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+		elif itemname == "Makeshift Shortbow":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Iron Mace" or item == "iron mace":
-			itemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+		elif itemname == "Iron Mace":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Iron Claws" or item == "iron claws":
-			itemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+		elif itemname == "Iron Claws":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Concealed Blade" or item == "concealed blade":
-			itemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+		elif itemname == "Concealed Blade":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Tomb of Fire" or item == "tomb of fire":
-			itemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+		elif itemname == "Tomb of Fire":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Scroll of Blizzards" or item == "scroll of blizzards":
-			itemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+		elif itemname == "Scroll of Blizzards":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Glyphic Bow" or item == "glyphic bow":
-			itemobj = {"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+		elif itemname == "Glyphic Bow":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Oblivion" or item == "oblivion":
-			itemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+		elif itemname == "Oblivion":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Staff of Milos" or item == "staff of milos":
-			itemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+		elif itemname == "Staff of Milos":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Calcite Staff" or item == "calcite staff":
-			itemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+		elif itemname == "Calcite Staff":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 
 
 # - - - - - Armor - - - - -
 
-		elif item == "Leather Armor" or item == "leather armor":
-			itemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
+		elif itemname == "Leather Armor":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Banded Armor" or item == "banded armor":
-			itemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
+		elif itemname == "Banded Armor":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Wolf Fur" or item == "wolf fur":
-			itemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+		elif itemname == "Wolf Fur":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Pit Fighter Armor" or item == "pit fighter armor":
-			itemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
+		elif itemname == "Pit Fighter Armor":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Chainmail Armor" or item == "chainmail armor":
-			itemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
+		elif itemname == "Chainmail Armor":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Enchanted Steel Armor" or item == "enchanted steel armor":
-			itemobj = {"name": "Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+		elif itemname == "Enchanted Steel Armor":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Barbaric Armor" or item == "barbaric armor":
-			itemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
+		elif itemname == "Barbaric Armor":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Branded Metal Armor" or item == "branded metal armor":
-			itemobj = {"name": "Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+		elif itemname == "Branded Metal Armor":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif item == "Iron Armor" or item == "iron armor":
-			itemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+		elif itemname == "Iron Armor":
 			cost = 700
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
-			userinfo["inventory"].remove(itemobj)
+			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(description="You sold the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 	@shop.command(name="weapons", pass_context=True)
@@ -876,25 +856,19 @@ class shop(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		Class = userinfo["class"]
 
-		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer":
+		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger":
 			em = discord.Embed(title="Armor list for the {} class (Light)".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Leather Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Banded Armor <:Common:573784881012932618>", value="2,000 gold")
-			em.add_field(name="Wolf Fur <:Rare:573784880815538186>", value="7,000 gold")
-			em.add_field(name="Nightstalker Mantle <:Legendary:639425368167809065>", value="Not buyable")
-			await ctx.send(embed=em)
-		elif Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue":
-			em = discord.Embed(title="Armor list for the {} class (Medium)".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
+			em.add_field(name="Barbaric Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Chainmail Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Pit Fighter Armor <:Common:573784881012932618>", value="2,000 gold")
+			em.add_field(name="Wolf Fur <:Rare:573784880815538186>", value="7,000 gold")
 			em.add_field(name="Enchanted Steel Armor <:Rare:573784880815538186>", value="7,000 gold")
-			em.add_field(name="Bane Of The Goblin Lord <:Legendary:639425368167809065>", value="Not buyable")
-			await ctx.send(embed=em)
-		elif Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger":
-			em = discord.Embed(title="Armor list for the {} class (Heavy)".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
-			em.add_field(name="Barbaric Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Branded Metal Armor <:Rare:573784880815538186>", value="7,000 gold")
 			em.add_field(name="Iron Armor <:Rare:573784880815538186>", value="7,000 gold")
+			em.add_field(name="Bane Of The Goblin Lord <:Legendary:639425368167809065>", value="Not buyable")
+			em.add_field(name="Nightstalker Mantle <:Legendary:639425368167809065>", value="Not buyable")
 			em.add_field(name="Hephaestus Armor <:Legendary:639425368167809065>", value="Not buyable")
 			await ctx.send(embed=em)
 		else:
