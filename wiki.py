@@ -299,8 +299,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Damage**", value="35Dmg - 60Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="55G  - 70G", inline=False)
 			embed.add_field(name="**Experience**", value="50Exp - 65Exp", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The Frost Dragon was said to be a living fossil, a strong type of dragon that a great hero once had slain and put a spell on. This spell caused a never ending life cycle that made the dragon into a bone-like creature, It was once found at the Ebony mountain looking for frozen caves to be its den and the Frost Dragon ended up at ""Drenheim"" known to be the coldest place of Solyx.", inline=False)
+			embed.set_footer(text="Submitted by 𝓗𝓲𝓻𝓸#9377\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Archer" or topic == "archer" :
