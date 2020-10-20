@@ -125,6 +125,18 @@ class guild(commands.Cog):
 	async def guild_represent(self, ctx):
 		"""Represent this guild!"""
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Is now representing"+guild.name)
+
 		user = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
@@ -153,6 +165,18 @@ class guild(commands.Cog):
 		"""Show your guild's info."""
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
+			
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Checked guild info")
 
 		user = ctx.message.author
 		guild = ctx.message.guild
@@ -195,7 +219,6 @@ class guild(commands.Cog):
 	async def guild_promote(self, ctx, user: discord.Member):
 		"""Promote someone to officer of your guild."""
 
-
 		author = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
@@ -235,12 +258,22 @@ class guild(commands.Cog):
 			await self.bot.send_message(user, embed=em2)
 		except:
 			pass
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		author = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+author.name+"#"+author.discriminator,"Promoted"+user.name)
 	@guild.command(name="demote", pass_context=True, no_pm=True)
 	@checks.serverowner_or_permissions(administrator=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_demote(self, ctx, user: discord.Member):
-		"""Promote someone to officer of your guild."""
+		"""Demote someone to officer of your guild."""
 
 
 		author = ctx.message.author
@@ -282,7 +315,17 @@ class guild(commands.Cog):
 			await ctx.send(user, embed=em2)
 		except:
 			pass	
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		author = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+author.name+"#"+author.discriminator,"Demoted"+user.name)
 	@guild.command(name="tag", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def guild_tag(self, ctx, tag: str):
@@ -354,12 +397,33 @@ class guild(commands.Cog):
 			except:
 				pass
 
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Changed guild tag to"+tag)
 	@guild.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def leaders(self, ctx):
 		"""A list all officers and the leader of this guild guild."""
 
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		author = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+author.name+"#"+author.discriminator,"check leader list")
 		user = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
@@ -391,7 +455,17 @@ class guild(commands.Cog):
 	async def mission(self, ctx):
 		"""Complete missions together to get rewards."""
 
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Checked guild mission")
 		user = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
@@ -715,7 +789,17 @@ class guild(commands.Cog):
 	async def guild_donate(self, ctx, amount: int):
 		"""Increase your guild boosters by donating gold."""
 
+		guild = ctx.guild
 
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Donated gold to the guild")
 		user = ctx.message.author
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })

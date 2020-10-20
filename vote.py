@@ -140,7 +140,7 @@ class vote(commands.Cog):
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 			# Reward embed
-			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**\n\n[**New Merch!**](https://teespring.com/nl/SolyxBotMerch?)\n[**Website**](https://solyxbot.webflow.io/)".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**\n\n[**New Merch!**](https://teespring.com/stores/solyx-2)\n[**Website**](https://solyxbot.webflow.io/)".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))
 			em.set_footer(text="React ⏰ to set a vote reminder!")
 			try:
 				msg = await channel.send(embed=em)

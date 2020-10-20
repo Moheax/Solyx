@@ -53,11 +53,19 @@ class rank(commands.Cog):
 			return
 		await asyncio.sleep(10)
 
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
 		now = datetime.datetime.now()
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+user.name+"#"+user.discriminator,"checked their Rank")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has requested their rank!")
 
 	async def draw_profile(self, user):
 

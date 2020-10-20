@@ -45,6 +45,19 @@ class market(commands.Cog):
 	@commands.group(pass_context = True, aliases=["auction"], no_pm=True, invoke_without_command=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def market(self, ctx, *options):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"checked market listings")
+
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
@@ -109,6 +122,19 @@ class market(commands.Cog):
 	@market.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def sell(self, ctx, number:int, price:int):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"sold a item to the market")
+
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
@@ -221,6 +247,20 @@ class market(commands.Cog):
 	@market.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def buy(self, ctx, idmarket:int):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Bought a item from the market")
+
+
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 		idmarket = int
@@ -321,6 +361,18 @@ class market(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def item(self, ctx, id:int):
 		"""Buy an item from the market"""
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"bought a item from the market")
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 

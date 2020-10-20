@@ -28,7 +28,19 @@ class tutorial(commands.Cog):
 		user = ctx.message.author
 		channel = ctx.message.channel
 
-		em = discord.Embed(title="Let's get started!", description="Type **{}start** to start your journey!".format(ctx.prefix), color=discord.Colour(0xffffff))
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has checked the tutorial")
+
+		em = discord.Embed(title="Let's get started!", description="You can find the online tutorial [Here](https://solyxbot.webflow.io/tutorial)!".format(ctx.prefix), color=discord.Colour(0xffffff))
 		#em.add_field(name="", value="", inline=False)
 		em.set_author(name="Solyx Tutorial", icon_url=user.avatar_url)
 		#em.set_footer(text="")
@@ -41,6 +53,14 @@ class tutorial(commands.Cog):
 			except:
 				return
 
+
+
+
+
+
+
+
+		""" 
 		completiontime = datetime.datetime.now() + datetime.timedelta(minutes=15)
 		valid_options = ["Archer", "Knight", "Mage", "Thief", "archer", "knight", "mage", "thief"]
 		answer = await self.check_tutorial_answer(user, channel, valid_options, completiontime)
@@ -176,7 +196,7 @@ class tutorial(commands.Cog):
 										except:
 											return
 									return
-
+									"""
 
 	async def check_tutorial_answer(self, user, channel, valid_options, time):
 		if datetime.datetime.now() >= time:

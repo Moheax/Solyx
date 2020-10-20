@@ -54,6 +54,20 @@ class shop(commands.Cog):
 	async def buy(self, ctx, *, item):
 
 		"""| -shop buy <item Name>"""
+
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Bought something from the shop!")
+
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
@@ -499,6 +513,20 @@ class shop(commands.Cog):
 	@commands.cooldown(1, 2, commands.BucketType.user)
 	async def sell(self, ctx, *, number:int):
 		"""| -shop sell <number>"""
+
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Sold something in the shop!")
+
 
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
