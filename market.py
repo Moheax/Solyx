@@ -114,7 +114,7 @@ class market(commands.Cog):
 		
 		em = discord.Embed(description=msg, colour=discord.Colour(0xffffff))
 		em.set_author(name="Solyx Market", icon_url = self.bot.user.avatar_url)
-		em.add_field(name="<:ShieldBug:649157223905492992>", value="Market is currently bugged, buying items and items dont always show up.", inline=False)
+		em.add_field(name="<:ShieldBug:649157223905492992>", value="small bug	items dont always show up.", inline=False)
 #		em.add_field(name="Number		   Item\n", value=msg)
 		em.set_footer(text="Page {}/{} | Use {}market buy [id] to buy an item!".format(page, pages, ctx.prefix))
 		await ctx.send(embed = em)
@@ -187,7 +187,7 @@ class market(commands.Cog):
 				return
 
 		try:
-			marketinfo = db.market.find_one({ "_id": "{}".format(user.id) })
+			marketinfo = db.market.find_one({ "_id": user.id })
 			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["alreadylisted"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["alreadylisted"]["description"]["translation"], color=discord.Colour(0xffffff))
 			em.add_field(name="Item info:", value=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["alreadylisted"]["value"]["translation"].format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]), inline=False)
 			em.set_footer(text=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["alreadylisted"]["footer"]["translation"])
@@ -199,35 +199,46 @@ class market(commands.Cog):
 					return
 				except:
 					return
-			answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
-			if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":
-				db.market.remove({"_id": "{}".format(user.id)}, 1)
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				await self._create_item(user.id, item["name"], item["rarity"], item["stats_min"], item["stats_max"], item["refinement"], price, item["type"], item["image"], item["description"])
-				em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price), color=discord.Colour(0xffffff))
-				try:
-					await ctx.send(embed=em)
-					return
-				except:
-					try:
-						msg = fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"]
-						msg += "\n"
-						msg += fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price)
-						await ctx.send(msg)
-						return
-					except:
-						return
-
-			else:
-				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["notselling"]["translation"])
-					return
-				except:
-					return
-
 		except:
 			pass
+			
+		try:
+			em = discord.Embed(description="**Are you sure you want to Sell this item?**", color=discord.Colour(0xffffff))
+			em.set_footer(text="Type yes to put it on the market!")
+			await ctx.send(embed=em)
+		except:
+			pass
+
+
+
+		answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+		if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":
+			db.market.remove({"_id": "{}".format(user.id)}, 1)
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			await self._create_item(user.id, item["name"], item["rarity"], item["stats_min"], item["stats_max"], item["refinement"], price, item["type"], item["image"], item["description"])
+			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+				return
+			except:
+				try:
+					msg = fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"]
+					msg += "\n"
+					msg += fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price)
+					await ctx.send(msg)
+					return
+				except:
+					return
+
+		else:
+			try:
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["notselling"]["translation"])
+				return
+			except:
+				return
+
+
 
 		userinfo["inventory"].remove(item)
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -263,7 +274,7 @@ class market(commands.Cog):
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
-		idmarket = int
+		
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
@@ -278,29 +289,31 @@ class market(commands.Cog):
 				return
 			return
 
-		marketinfo = db.market.find_one({ "marketid": idmarket})
-		print(marketinfo["price"])
+		marketinfo = db.market.find_one({"_id": int(idmarket)})
+		print(marketinfo)
 
-		existcheck = db.market.count_documents({"_id": idmarket})
-		
+		existcheck = db.market.count_documents({"_id": int(idmarket)})
+		seller = idmarket
+		idmarket = int
 
 		if str(idmarket) == str(user.id):
 			await ctx.send("<:Solyx:560809141766193152> **| You can't buy your own items!**")
 			return
 
 		if not userinfo["gold"] >= marketinfo["price"]:
-			neededgold = marketinfo["price"] - userinfo["gold"]
+			neededgold = int(marketinfo["price"]) - int(userinfo["gold"])
 			await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to buy this item!**".format(neededgold))
 			return
 
 		itemobj = {"name": marketinfo["name"], "type": marketinfo["type"], "rarity": marketinfo["rarity"], "stats_min": marketinfo["stats_min"], "stats_max": marketinfo["stats_max"], "refinement": marketinfo["refinement"], "description": marketinfo["description"], "image": marketinfo["image"]}
 		userinfo["inventory"].append(itemobj)
-		userinfo["gold"] = userinfo["gold"] - marketinfo["price"]
+		userinfo["gold"] = int(userinfo["gold"]) - int(marketinfo["price"])
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-		sellerinfo = db.users.find_one({ "_id": "{}".format(id) })
-		sellerinfo["gold"] = sellerinfo["gold"] + marketinfo["price"]
-		db.users.replace_one({ "_id": "{}".format(id) }, sellerinfo, upsert=True)
+		sellerinfo = db.users.find_one({ "_id": int(seller) })
+		print(sellerinfo)
+		sellerinfo["gold"] = sellerinfo["gold"] + int(marketinfo["price"])
+		db.users.replace_one({ "_id": int(seller) }, sellerinfo, upsert=True)
 
 		"""maxamt = db.market.count()
 		if number not in range(1, str(maxamt)): # Max
@@ -328,7 +341,7 @@ class market(commands.Cog):
 		except:
 			pass
 
-		db.market.remove({"_id": "{}".format(id)}, 1)
+		db.market.remove({"_id": seller}, 1)
 
 	@commands.group(name="buy", pass_context=True, no_pm=True)
 	async def normal_buy(self, ctx):
@@ -514,7 +527,33 @@ class market(commands.Cog):
 				except:
 					return
 
+	async def check_answer(self, ctx, valid_options):
+		def pred(m):
+			return m.author == ctx.author and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
 
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
+	async def check_answer_other_user(self, ctx, user, valid_options):
+		def pred(m):
+			return m.author == user and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
 	# handles market item creation
 	async def _create_item(self, userid, itemname, rarity, stats_min, stats_max, refinement, price, type, image, description):
 		try:
