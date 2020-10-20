@@ -3166,9 +3166,10 @@ class fight(commands.Cog):
 				db.battles.replace_one({ "_id": enemyid }, enemybattleinfo, upsert=True)
 
 			elif userhealth <= 0:
+				xpgain = random.randint(10, 15)
 				em = discord.Embed(description=":crown: <@{}> **won!** :crown:\n:sparkles: +{} Exp".format(battleinfo["battle_enemy"], xpgain), color=discord.Colour(0xffdf00))
 				await ctx.send(embed=em)
-				xpgain = random.randint(10, 15)
+				
 
 				battleinfo["battle_active"] = "False"
 				battleinfo["battle_enemy"] = "None"
@@ -3187,11 +3188,12 @@ class fight(commands.Cog):
 				db.battles.replace_one({ "_id": enemyid }, enemybattleinfo, upsert=True)
 
 			elif enemyhp <= 0:
+				xpgain = random.randint(10, 15)
 				em = discord.Embed(description=":crown: {} **won!** :crown:\n:sparkles: +{} Exp".format(user.mention, xpgain), color=discord.Colour(0xffdf00))
 				await asyncio.sleep(1)
 				await ctx.send(embed=em)
 						
-				xpgain = random.randint(10, 15)
+				
 				battleinfo["battle_active"] = "False"
 				battleinfo["battle_enemy"] = "None"
 				battleinfo["battle_streak"] = battleinfo["battle_streak"] + 1
