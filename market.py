@@ -266,11 +266,12 @@ class market(commands.Cog):
 		idmarket = int
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
+
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if len(userinfo["inventory"]) >= 24:
+		if len(userinfo["inventory"]) >= 26:
 			try:
 				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["fullinv"]["translation"])
 			except:
