@@ -88,7 +88,7 @@ class shop(commands.Cog):
 		if not len(userinfo["inventory"]) >= 25:
 			if item == "Sclerite Sword" or item == "sclerite sword":
 				itemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -102,7 +102,7 @@ class shop(commands.Cog):
 
 			elif item == "Iron Greatsword" or item == "iron greatsword":
 				itemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -116,7 +116,7 @@ class shop(commands.Cog):
 
 			elif item == "Abaddon Dagger" or item == "abaddon dagger":
 				itemobj = {"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -130,7 +130,7 @@ class shop(commands.Cog):
 
 			elif item == "Rusted Short Sword" or item == "rusted short sword":
 				itemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -158,7 +158,7 @@ class shop(commands.Cog):
 
 			elif item == "Obsidian Longbow" or item == "obsidian longbow":
 				itemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -242,7 +242,7 @@ class shop(commands.Cog):
 
 			elif item == "Makeshift Shortbow" or item == "makeshift shortbow":
 				itemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -256,7 +256,7 @@ class shop(commands.Cog):
 
 			elif item == "Iron Mace" or item == "iron mace":
 				itemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -270,7 +270,7 @@ class shop(commands.Cog):
 
 			elif item == "ron Claws" or item == "iron claws":
 				itemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -284,7 +284,7 @@ class shop(commands.Cog):
 
 			elif item == "Concealed Blade" or item == "concealed blade":
 				itemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -298,7 +298,7 @@ class shop(commands.Cog):
 
 			elif item == "Tomb of Fire" or item == "tomb of fire":
 				itemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -312,7 +312,7 @@ class shop(commands.Cog):
 
 			elif item == "Scroll of Blizzards" or item == "scroll of blizzards":
 				itemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -326,7 +326,7 @@ class shop(commands.Cog):
 
 			elif item == "Glyphic Bow" or item == "glyphic bow":
 				itemobj = {"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -354,7 +354,7 @@ class shop(commands.Cog):
 
 			elif item == "Staff of Milos" or item == "staff of milos":
 				itemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -368,7 +368,7 @@ class shop(commands.Cog):
 
 			elif item == "Calcite Staff" or item == "calcite staff":
 				itemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -386,7 +386,7 @@ class shop(commands.Cog):
 
 			elif item == "Leather Armor" or item == "leather armor":
 				itemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -400,7 +400,7 @@ class shop(commands.Cog):
 
 			elif item == "Banded Armor" or item == "banded armor":
 				itemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -428,7 +428,7 @@ class shop(commands.Cog):
 
 			elif item == "Pit Fighter Armor" or item == "pit fighter armor":
 				itemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -442,7 +442,7 @@ class shop(commands.Cog):
 
 			elif item == "Chainmail Armor" or item == "chainmail armor":
 				itemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -470,7 +470,7 @@ class shop(commands.Cog):
 
 			elif item == "Barbaric Armor" or item == "barbaric armor":
 				itemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 2000
+				cost = 4000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
@@ -538,7 +538,7 @@ class shop(commands.Cog):
 			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
 		try:
-			item = userinfo["inventory"][number+0]
+			item = userinfo["inventory"][number-1]
 		except:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["noiteminslot"]["translation"])
 			return
@@ -547,7 +547,7 @@ class shop(commands.Cog):
 		itemname = item["name"]
 
 		if itemname == "Sclerite Sword":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -556,7 +556,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Iron Greatsword" :
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -565,7 +565,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Abaddon Dagger":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -574,7 +574,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Rusted Short Sword":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -592,7 +592,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Obsidian Longbow":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -646,7 +646,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Makeshift Shortbow":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -655,7 +655,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Iron Mace":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -664,7 +664,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Iron Claws":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -673,7 +673,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Concealed Blade":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -682,7 +682,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Tomb of Fire":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -691,7 +691,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Scroll of Blizzards":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -700,7 +700,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Glyphic Bow":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -718,7 +718,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Staff of Milos":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -727,7 +727,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Calcite Staff":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -740,7 +740,7 @@ class shop(commands.Cog):
 # - - - - - Armor - - - - -
 
 		elif itemname == "Leather Armor":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -749,7 +749,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Banded Armor":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -767,7 +767,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Pit Fighter Armor":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -776,7 +776,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Chainmail Armor":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -794,7 +794,7 @@ class shop(commands.Cog):
 			await ctx.send(embed=em)
 
 		elif itemname == "Barbaric Armor":
-			cost = 200
+			cost = 400
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)
@@ -813,6 +813,42 @@ class shop(commands.Cog):
 
 		elif itemname == "Iron Armor":
 			cost = 700
+			value = cost + userinfo["gold"]
+			userinfo["gold"] = userinfo["gold"] + cost
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		elif itemname == "starter Bow":
+			cost = 200
+			value = cost + userinfo["gold"]
+			userinfo["gold"] = userinfo["gold"] + cost
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		elif itemname == "starter Sword":
+			cost = 200
+			value = cost + userinfo["gold"]
+			userinfo["gold"] = userinfo["gold"] + cost
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		elif itemname == "starter Staff":
+			cost = 200
+			value = cost + userinfo["gold"]
+			userinfo["gold"] = userinfo["gold"] + cost
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		elif itemname == "starter Dagger":
+			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
 			userinfo["inventory"].remove(item)

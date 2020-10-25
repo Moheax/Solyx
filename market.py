@@ -203,7 +203,7 @@ class market(commands.Cog):
 			pass
 			
 		try:
-			em = discord.Embed(description="**Are you sure you want to Sell this item?**", color=discord.Colour(0xffffff))
+			em = discord.Embed(description="**Are you sure you want to Sell {}?**".format(item["name"]), color=discord.Colour(0xffffff))
 			em.set_footer(text="Type yes to put it on the market!")
 			await ctx.send(embed=em)
 		except:
@@ -290,7 +290,7 @@ class market(commands.Cog):
 			return
 
 		marketinfo = db.market.find_one({"_id": int(idmarket)})
-		print(marketinfo)
+		
 
 		existcheck = db.market.count_documents({"_id": int(idmarket)})
 		seller = idmarket
@@ -311,7 +311,7 @@ class market(commands.Cog):
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		sellerinfo = db.users.find_one({ "_id": int(seller) })
-		print(sellerinfo)
+		
 		sellerinfo["gold"] = sellerinfo["gold"] + int(marketinfo["price"])
 		db.users.replace_one({ "_id": int(seller) }, sellerinfo, upsert=True)
 
@@ -518,6 +518,80 @@ class market(commands.Cog):
 			userinfo["hp_potions"] = userinfo["hp_potions"] + int(amount)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["bought"]["translation"].format(amount, Sum), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+
+	@normal_buy.command(pass_context=True, no_pm=True, aliases=["Experiencepotion", "experiencepotions", "exps", "xp"])
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	async def exp(self, ctx, *, amount : int):
+		"""Buy a experience potion"""
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has tried to buy some exppotionss")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+		if userinfo["lvl"] <= 10:
+					Sum = amount * 50
+		elif userinfo["lvl"] > 10 and userinfo["lvl"] <= 30:
+					Sum = amount * 100
+		elif userinfo["lvl"] > 30 and userinfo["lvl"] <= 50:
+					Sum = amount * 150
+		elif userinfo["lvl"] > 50 and userinfo["lvl"] <= 70:
+					Sum = amount * 200
+		elif userinfo["lvl"] >= 71:
+					Sum = amount * 250
+
+
+		if amount == None:
+			amount = 1
+
+		if amount <= 0:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["Exp"]["negative"]["translation"], color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			return
+
+		if userinfo["gold"] < Sum:
+			needed = Sum - userinfo["gold"]
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["Exp"]["needgold"]["translation"].format(needed, amount), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:   
+			userinfo["gold"] = userinfo["gold"] - Sum
+			userinfo["exp_potions"] = userinfo["exp_potions"] + int(amount)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["Exp"]["bought"]["translation"].format(amount, Sum), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:

@@ -47,20 +47,6 @@ class gather(commands.Cog):
 
 
 	@commands.command(pass_context=True, no_pm=True)
-	@commands.check(developer)
-	async def clear(channel, ctx, amount : int):
-		await ctx.channel.purge(limit=amount+1)
-		print( f'Cleared {amount} messages.', delete_after=5) 
-
-	@commands.command(pass_context=True, no_pm=True)
-	@commands.cooldown(1, 4, commands.BucketType.user)
-	async def boop(self, ctx):
-		print('boop')
-		await asyncio.sleep(random.randint(5, 10))
-		em = discord.Embed(title="BOOP?!", description="No u",color=discord.Colour(0xffffff))	
-		await ctx.send(embed=em)
-
-	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def fish(self, ctx):
 

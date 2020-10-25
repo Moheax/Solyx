@@ -64,6 +64,7 @@ class command(commands.Cog):
 			e.add_field(name="{}fight".format(ctx.prefix), value="Fight a monster", inline=True)
 			e.add_field(name="{}hp".format(ctx.prefix), value="Check your health", inline=True)
 			e.add_field(name="{}heal".format(ctx.prefix), value="Use a healing potion to gain HP", inline=False)
+			e.add_field(name="{}exp".format(ctx.prefix), value="Use a experience potion to gain more EXP", inline=False)
 			e.add_field(name="{}travel".format(ctx.prefix), value="Go to a new location to fight different monsters", inline=False)
 			await ctx.send(embed=e)
 			return
@@ -94,6 +95,7 @@ class command(commands.Cog):
 			e.add_field(name="{}sell".format(ctx.prefix), value="Sell an item", inline=True)
 			e.add_field(name="{}market".format(ctx.prefix), value="Check the market or buy/sell items", inline=False)
 			e.add_field(name="{}hp buy".format(ctx.prefix), value="Buy a healing potion", inline=False)
+			e.add_field(name="{}buy exp".format(ctx.prefix), value="Buy a experience potion", inline=False)
 			e.add_field(name="{}daily".format(ctx.prefix), value="Earn daily credits", inline=False)
 			e.add_field(name="{}vote".format(ctx.prefix), value="Vote for the bot and get a big reward", inline=False)
 			await ctx.send(embed=e)

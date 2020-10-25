@@ -154,8 +154,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
 			embed.add_field(name="**Defense**", value="1 - 24", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The wolf might be alone but don't let down your guard. The wolf is wild, on his own he survives in the forest due to his metal breaking teeth. His fur is covered  in the blood of his  enemies and his eyes might be the last thing you will ever see. ", inline=False)
+			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Enchanted Steel" or topic == "enchanted steel" or topic == "Enchanted Steel Armor" or topic == "enchanted steel armor":
@@ -776,8 +776,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Damage**", value="5Dmg - 15Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="20G - 25G", inline=False)
 			embed.add_field(name="**Experience**", value="15Exp - 25Exp", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The soul eater is darker than the night and almost impossible to see. Trust me, you don't even want to see it. The soul eater manifests itself as your worst nightmare and will consume your soul, leaving behind nothing but a dead shell that was once your body.", inline=False)
+			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Elder Dragon" or topic == "elder dragon":
@@ -828,8 +828,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="40G - 55G", inline=False)
 			embed.add_field(name="**Experience**", value="35Exp - 55Exp", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="Some of you may know this name from Greek myths, Stories about a creature that lived in the mountains. It looked like a woman with wings instead of arms and sharp claws instead of feet. The sole purpose of this creature is to punish evildoers using their claws and overwhelming speed to make deep cuts.", inline=False)
+			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 						
 		elif topic == "Dormammu" or topic == "dormammu":
@@ -867,8 +867,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="45G - 65G", inline=False)
 			embed.add_field(name="**Experience**", value="40Exp - 55Exp", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The largos are an Aquatic race from the depths of the Neverending ocean. They are silent and smart killers. Only few adventurers have ever seen them and lived to report it. All sightings of them so far looked like tall humanoid monsters with pale sea-blue skin and big thin frills attached at the base of their neck for swimming. Largos' always wear masks, their true faces are unknown. For it is wiser to slay them at first opportunity than to try and look underneath. Any adventurers that made such mistake did not live to tell. ", inline=False)
+			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Deathclaw" or topic == "deathclaw":
@@ -880,8 +880,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
 			embed.add_field(name="**Gold**", value="45G - 60G", inline=False)
 			embed.add_field(name="**Experience**", value="40Exp - 60Exp", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="Death claw is a dragon knight, equipped with legendary unbreakable iron claws and tough barbaric armor. Death claw is highly trained and intends to kill with one quick and clean strike.", inline=False)
+			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Saurian" or topic == "saurian":

@@ -90,7 +90,7 @@ class loot(commands.Cog):
 		goldgain = goldmul * 3 + userinfo["lvl"]
 		chance = random.randint(1, 1000)
 
-		legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor"])
+		legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
 		rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
 		common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
 		material = randchoice(["Stone", "Metal", "Wood"])
@@ -131,8 +131,21 @@ class loot(commands.Cog):
 
 		if legendary == "Hephaestus Armor":
 			legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
 
 		if chance > 950:
+			
+			if legendary == "exp":
+				expgained = random.randint(1, 3)
+				userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+					return
+				except:
+					return
+
 			userinfo["inventory"].append(legendaryitemobj)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))

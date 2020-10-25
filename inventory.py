@@ -53,7 +53,7 @@ class inventory(commands.Cog):
 			extraItems = userinfo["inventory"]
 		em = discord.Embed(color=discord.Colour(0xffffff))
 		em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"]), inline=True)
-		em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"]), inline=True)
+		em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n<:ExpBottle:770044187348566046> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"], userinfo["exp_potions"]), inline=True)
 		em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
 		em.set_footer(text="Type | -vote | and vote for extra rewards!")
 		try:
@@ -75,53 +75,53 @@ class inventory(commands.Cog):
 		list1 = ""
 		list2 = ""
 
-		for i, x in enumerate(range(1, 26)):
+		for i, x in enumerate(range(0, 26)):
 			try:
 				item = inventory[i]
 				type = item["type"]
-				if i <= 12:			
+				if i <= 12 and i >= 0:			
 					if type == "sword":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "bow":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "staff":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "mace":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "dagger":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "gun":
-						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "armor":
-						list1 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list1 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 				if i >= 13:			
 					if type == "sword":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "bow":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "staff":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "mace":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "dagger":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "gun":
-						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 
 					if type == "armor":
-						list2 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+						list2 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 			except:
 				pass
 			#msg += "{} >\n".format(i)

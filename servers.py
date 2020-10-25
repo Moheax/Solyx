@@ -53,6 +53,20 @@ class guilds(commands.Cog):
 		if (len(self.bot.guilds) % 100) == 0:
 			await solyxannouncechannel.send( "🎉 Thanks for **{}** guilds! 🎉".format(len(self.bot.guilds)))
 
+		# Send message to the log in the Solyx guild
+		solyxloggchannel = self.bot.get_channel(561200838790479873)
+
+
+		await asyncio.sleep(1)
+
+		# x00th guild message
+		totalusers = db.users.count()
+		if (len(totalusers) % 100) == 0:
+			print(totalusers)
+			await solyxannouncechannel.send( "🎉 Thanks for **{}** Users! 🎉".format(len(totalusers)))
+
+
+
 	@commands.Cog.listener()
 	async def on_guild_remove(self, guild: discord.Guild):
 		db.servers.remove({"_id": "{}".format(guild.id)}, 1)

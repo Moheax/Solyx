@@ -1108,7 +1108,7 @@ class fight(commands.Cog):
 			elif userinfo["location"] == "Lost City":
 				debi = randchoice(["Skeleton", "Lizardmen", "Giant", "Death Knight"])
 			elif userinfo["location"] == "Drenheim":
-				debi = randchoice(["Ice wolves", "Frost Orc", "Frost Goblin", "Frost Dragon"])
+				debi = randchoice(["Ice Wolves", "Frost Orc", "Frost Goblin", "Frost Dragon"])
 			enemyname = debi
 			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight" or debi == "Frost Dragon":
 				enemyname = ":trident: " + debi
