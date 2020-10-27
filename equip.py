@@ -73,7 +73,7 @@ class equip(commands.Cog):
 
 
 		try:
-			item = userinfo["inventory"][number+0]
+			item = userinfo["inventory"][number-1]
 		except:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["noiteminslot"]["translation"])
 			return
@@ -179,7 +179,7 @@ class equip(commands.Cog):
 
 
 		try:
-			item = userinfo["inventory"][number+0]
+			item = userinfo["inventory"][number-1]
 		except:
 			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
 			return

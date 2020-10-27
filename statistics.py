@@ -68,7 +68,7 @@ class statistics(commands.Cog):
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has opened info")
 
-		embed = discord.Embed(description="Click [here](http://solyx.xyz) for a detailed documentation.", color=discord.Colour(0xffffff))
+		embed = discord.Embed(description="Click [here](https://solyxbot.webflow.io/team) for a detailed documentation.", color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		embed.set_author(name="Solyx Info", icon_url=avatar)
 		embed.add_field(name="Developers", value="`TheMaksoo#1212`", inline=False)
@@ -179,7 +179,9 @@ class statistics(commands.Cog):
 		hours, remainder = divmod(int(delta.total_seconds()), 3600)
 		minutes, seconds = divmod(remainder, 60)
 		days, hours = divmod(hours, 24)
-	
+		minutes = minutes + 12
+		hours = hours + 6
+		days = days + 16
 		if not brief:
 			if days:
 				fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'

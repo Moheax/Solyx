@@ -72,13 +72,13 @@ class shop(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
-		bow = ["Archer", "Ranger", "Assassin"]
-		sword = ["Paladin", "Gladiator", "Knight"]
-		dagger = ["Thief", "Mesmer", "Rogue"]
-		staff = ["Mage", "Elementalist", "Necromancer"]
-		light = ["Mesmer", "Assassin", "Thief", "Archer"]
-		medium = ["Gladiator", "Mage", "Necromancer", "Rogue"]
-		heavy = ["Paladin", "Knight", "Elementalist", "Ranger"]
+		bow = ["Archer", "Ranger", "Assassin", "Night Assassin", "Skilled Ranger"]
+		sword = ["Paladin", "Samurai", "Knight", "Master Samurai", "Grand Paladin"]
+		dagger = ["Thief", "Mesmer", "Rogue", "High rogue", "Adept Mesmer"]
+		staff = ["Mage", "Elementalist", "Necromancer", "Developed Necromancer", "Adequate Elementalist"]
+		light = ["Mesmer", "Assassin", "Thief", "Archer", "Adept Mesmer", "Night Assassin"]
+		medium = ["Samurai", "Mage", "Necromancer", "Rogue", "High rogue", "Developed Necromancer", "Master Samurai"]
+		heavy = ["Paladin", "Knight", "Elementalist", "Ranger", "Adequate Elementalist", "Grand Paladin", "Skilled Ranger"]
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
@@ -864,7 +864,7 @@ class shop(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		Class = userinfo["class"]
-		if Class == "Mage" or Class == "Elementalist" or Class == "Necromancer":
+		if Class == "Mage" or Class == "Elementalist" or Class == "Necromancer" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Calcite Staff <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Staff of Milos <:Common:573784881012932618>", value="2,000 gold")
@@ -875,7 +875,7 @@ class shop(commands.Cog):
 			em.add_field(name="Thunderguard <:Legendary:639425368167809065>", value="Not buyable")
 			em.add_field(name="Solarflare <:Legendary:639425368167809065>", value="Not buyable")
 			await ctx.send(embed=em)
-		elif Class == "Paladin" or Class == "Gladiator" or Class == "Knight":
+		elif Class == "Paladin" or Class == "Samurai" or Class == "Knight" or Class == "Master Samurai" or Class == "Grand Paladin":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Sclerite Sword <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Iron Greatsword <:Common:573784881012932618>", value="2,000 gold")
@@ -885,7 +885,7 @@ class shop(commands.Cog):
 			em.add_field(name="Excalibur <:Legendary:639425368167809065>", value="Not buyable")
 			em.add_field(name="Twilight <:Legendary:639425368167809065>", value="Not buyable")
 			await ctx.send(embed=em)
-		elif Class == "Thief" or Class == "Mesmer" or Class == "Rogue":
+		elif Class == "Thief" or Class == "Mesmer" or Class == "Rogue" or Class == "High rogue" or Class == "Adept Mesmer":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Abaddon Dagger <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Rusted Short Sword <:Common:573784881012932618>", value="2,000 gold")
@@ -896,7 +896,7 @@ class shop(commands.Cog):
 			em.add_field(name="Doomblade <:Legendary:639425368167809065>", value="Not buyable")
 			em.add_field(name="Soulreaper <:Legendary:639425368167809065>", value="Not buyable")
 			await ctx.send(embed=em)
-		elif Class == "Archer" or Class == "Ranger" or Class == "Assassin":
+		elif Class == "Archer" or Class == "Ranger" or Class == "Assassin" or Class == "Night Assassin" or Class == "Skilled Ranger":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Glyphic Bow <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Obsidian Longbow <:Common:573784881012932618>", value="2,000 gold")
@@ -921,8 +921,8 @@ class shop(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		Class = userinfo["class"]
 
-		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger":
-			em = discord.Embed(title="Armor list for the {} class (Light)".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
+		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger" or Class == "Night Assassin" or Class == "Skilled Ranger" or Class == "High rogue" or Class == "Adept Mesmer" or Class == "Master Samurai" or Class == "Grand Paladin" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":
+			em = discord.Embed(title="Armor list for the {} class ".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Leather Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Banded Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Barbaric Armor <:Common:573784881012932618>", value="2,000 gold")

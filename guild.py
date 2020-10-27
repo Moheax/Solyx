@@ -201,8 +201,15 @@ class guild(commands.Cog):
 		if guildinfo["title"] == "Big Boys" and guildinfo["lvl"] >= 3:
 			guildinfo["title"] = "Real Deal"
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
+		try:
 
-		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+			em.set_thumbnail(url=guild.icon_url)
+			await ctx.send(embed=em)
+			return
+		except:
+			pass
+		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** ~\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
 		try:
 			await ctx.send(embed=em)

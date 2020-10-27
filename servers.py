@@ -59,11 +59,11 @@ class guilds(commands.Cog):
 
 		await asyncio.sleep(1)
 
-		# x00th guild message
+		# x00th user message
 		totalusers = db.users.count()
-		if (len(totalusers) % 100) == 0:
+		if (len(str(totalusers)) % 100) == 0:
 			print(totalusers)
-			await solyxannouncechannel.send( "🎉 Thanks for **{}** Users! 🎉".format(len(totalusers)))
+			await solyxannouncechannel.send( "🎉 Thanks for **{}** Users! 🎉".format(len(str(totalusers))))
 
 
 

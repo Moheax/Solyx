@@ -508,5 +508,461 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
+	@_give.command(name="exp", pass_context=True, aliases=["exp potions"])
+	@commands.check(developer)
+	async def give_exp(self, ctx, user: discord.Member, amount: int):
+		author = ctx.message.author
+		authorinfo = db.users.find_one({ "_id": author.id })
+		if not authorinfo["role"] in ["Developer", "Staff"]:
+			return
+
+		userinfo = db.users.find_one({ "_id": user.id })
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["exp_potions"] = userinfo["exp_potions"] + amount
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Gave {} {} <:ExpBottle:770044187348566046>".format(user.mention, amount), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} | {}".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Gold given: {}".format(amount), description="{} ({}) got {} Exp potions from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/770044187348566046.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_give.group(name="class", pass_context=True, no_pm=True)
+	@commands.check(developer)
+	async def _set_class(self, ctx):
+		author = ctx.message.author
+		authorinfo = db.users.find_one({ "_id": author.id })
+		if not authorinfo["role"] in ["Developer", "Staff"]:
+			return
+
+		em = discord.Embed(title="Give someone a new class", description="Archer\n -- Assassin\n ---- Night Assassin\n -- Ranger\n ---- Skilled Ranger\n\nKnight\n-- Paladin\n---- Grand Paladin\n -- Samurai\n---- Master Samurai\n\nMage\n-- Necromancer\n---- Developed Necromancer\n-- Elementalist\n---- Adequate Elementalist\n\nThief\n-- Rogue\n---- High Rogue\n-- Mesmer\n---- Adept Mesmer", color=discord.Colour(0xffffff))
+		em.set_footer(text="-give role [role] [user]")
+		await ctx.send(embed=em)
+
+	@_set_class.command(name="Archer", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Archer"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473419703812122.png?")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	
+	@_set_class.command(name="Assassin", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Assassin"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205760897034.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+	@_set_class.command(name="Night Assassin", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Night Assassin"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205760897034.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Ranger", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Ranger"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638206285185116.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Skilled Ranger", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Skilled Ranger"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638206285185116.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Knight", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Knight"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473415492861972.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Paladin", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Paladin"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205869949168.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Grand Paladin", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Grand Paladin"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205869949168.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Samurai", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Samurai"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205920018603.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name=" Master Samurai", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = " Master Samurai"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205920018603.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Mage", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Mage"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473422040301574.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Necromancer", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Necromancer"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205832069191.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Developed Necromancer", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Developed Necromancer"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205832069191.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Elementalist", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Elementalist"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205584474164.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Adequate Elementalist", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Adequate Elementalist"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205584474164.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Thief", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Thief"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/639473408563740681.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Rogue", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Rogue"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205928538252.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="High Rogue", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "High Rogue"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205928538252.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Mesmer", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Mesmer"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205697851413.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+	@_set_class.command(name="Adept Mesmer", pass_context=True)
+	@commands.check(developer)
+	async def set_role_staff(self, ctx, user: discord.Member):
+		author = ctx.message.author
+		channel = ctx.message.channel
+		userinfo = db.users.find_one({ "_id": user.id })
+		role = "Adept Mesmer"
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["role"] = role
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Changed {}'s class to {}.".format(user.mention, role), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} ({})".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="Class given: {}".format(role), description="{} ({}) got the {} class from {} ({})!".format(user.mention, user.id, role, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205697851413.png?v=1")
+			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
+
+
 def setup(bot):
 	bot.add_cog(give(bot))

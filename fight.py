@@ -21,7 +21,6 @@ class fight(commands.Cog):
 
 
 
-
 # - - - Begin / Start - - - WORKS
 
 	@commands.command(pass_context=True, no_pm=True, aliases=["start"])
@@ -978,6 +977,7 @@ class fight(commands.Cog):
 				em.add_field(name="<:Mesmer:639473407401918485> Mesmer", value="Master of confusion and movement", inline=False)
 				em.add_field(name="<:Rogue:639473412221304842> Rogue", value="Quick and brutal attacks", inline=False)
 				await ctx.send(embed=em)
+
 				answer = await self.check_answer(ctx, options)
 				if answer == "Rogue" or answer == "rogue":
 					spechoice = "Rogue"
@@ -985,18 +985,21 @@ class fight(commands.Cog):
 					userinfo["skills_learned"].append("Parry")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 				elif answer == "Mesmer" or answer == "mesmer":
 					spechoice = "Mesmer"
 					userinfo["class"] = spechoice
 					userinfo["skills_learned"].append("Distort")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 			elif userinfo["class"] == "Mage":
 				options = ["Necromancer", "necromancer", "Elementalist", "elementalist"]
 				em = discord.Embed(title=":military_medal: Specialization!", description="Please choose a specialization:", color=discord.Colour(0xffffff))
 				em.add_field(name="<:Elementalist:639473417376235551> Elementalist", value="Controll all the elements", inline=False)
 				em.add_field(name="<:Necromancer:639473415295860767> Necromancer", value="Wield the power of the dead", inline=False)
 				await ctx.send(embed=em)
+
 				answer = await self.check_answer(ctx, options)
 				if answer == "Necromancer" or answer == "necromancer":
 					spechoice = "Necromancer"
@@ -1004,18 +1007,21 @@ class fight(commands.Cog):
 					userinfo["skills_learned"].append("Reap")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 				elif answer == "Elementalist" or answer == "elementalist":
 					spechoice = "Elementalist"
 					userinfo["class"] = spechoice
 					userinfo["skills_learned"].append("Overload")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 			elif userinfo["class"] == "Knight":
 				options = ["Samurai", "samurai", "Paladin", "paladin"]
 				em = discord.Embed(title=":military_medal: Specialization!", description="Please choose a specialization:", color=discord.Colour(0xffffff))
 				em.add_field(name="<:Paladin:639473415257980938> Paladin", value="Brutal attacks", inline=False)
 				em.add_field(name="<:Samurai:639473412028497940> Samurai", value="Defensive playstile", inline=False)
 				await ctx.send(embed=em)
+
 				answer = await self.check_answer(ctx, options)
 				if answer == "Paladin" or answer == "paladin":
 					spechoice = "Paladin"
@@ -1023,18 +1029,21 @@ class fight(commands.Cog):
 					userinfo["skills_learned"].append("Fusillade")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 				elif answer == "Samurai" or answer == "samurai":
 					spechoice = "Samurai"
 					userinfo["class"] = spechoice
 					userinfo["skills_learned"].append("Protrude")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 			elif userinfo["class"] == "Archer":
 				options = ["Assassin", "assassin", "Ranger", "ranger"]
 				em = discord.Embed(title=":military_medal: Specialization!", description="Please choose a specialization:", color=discord.Colour(0xffffff))
 				em.add_field(name="<:Assassin:639473417791209472> Assassin", value="High damage but low health", inline=False)
 				em.add_field(name="<:Ranger:639473419930304513> Ranger", value="Always sure to hit for a decent amount of damage", inline=False)
 				await ctx.send(embed=em)
+
 				answer = await self.check_answer(ctx, options)
 				if answer == "Ranger" or answer == "ranger":
 					spechoice = "Ranger"
@@ -1042,12 +1051,98 @@ class fight(commands.Cog):
 					userinfo["skills_learned"].append("Strike")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
 				elif answer == "Assassin" or answer == "assassin":
 					spechoice = "Assassin"
 					userinfo["class"] = spechoice
 					userinfo["skills_learned"].append("Corrupt")
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					await ctx.send("You are now a {}!\nGood luck on the rest of your journey.".format(spechoice))
+
+
+
+		if userinfo["lvl"] >= 90:
+			if userinfo["class"] == "Rogue":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Adept Mesmer", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Rogue:639473412221304842> High Rogue", value="faster and deadlier attacks.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "High Rogue"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Rupture")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Mesmer":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Adept Mesmer!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Mesmer:639473407401918485> Adept Mesmer", value="Master of confusion, illusion and movement.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Adept Mesmer"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Warp")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Necromancer":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Developed Necromancer!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Necromancer:639473415295860767>  Developed Necromancer", value="Master of The dead.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Developed Necromancer"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Arise")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Elementalist":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Adequate Elementalist!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Elementalist:639473417376235551> Adequate Elementalist", value="Master the air element.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Adequate Elementalist"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Surge")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Samurai":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Master Samurai!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Samurai:639473412028497940> Master Samurai", value="Master of The Sword.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Master Samurai"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Slice")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Paladin":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Grand Paladin!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Paladin:639473415257980938> Grand Paladin", value="Respected amongst Knights and Paladins.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Grand Paladin"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Blockade")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+
+			if userinfo["class"] == "Assassin":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Night Assassin!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Assassin:639473417791209472> Night Assassin", value="One with the night.", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Night Assassin"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Sneak")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+				
+			if userinfo["class"] == "Ranger":
+				em = discord.Embed(title=":military_medal: You reached a advancement!", description="You have now become a Skilled Ranger!", color=discord.Colour(0xffffff))
+				em.add_field(name="<:Ranger:639473419930304513> Skilled Ranger", value="Most skilled with the bow out of all classes!", inline=False)
+				await ctx.send(embed=em)
+				spechoice = "Skilled Ranger"
+				userinfo["class"] = spechoice
+				userinfo["skills_learned"].append("Snipe")
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
+		
+
 
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -1328,6 +1423,9 @@ class fight(commands.Cog):
 			"Cast", "Parry", "Distort",
 			"Reap", "Overload", "Fusillade",
 			"Protrude", "Strike", "Corrupt",
+			"Rupture", "Warp", "Arise",
+			"Surge", "Slice", "Blockade",
+			"Sneak", "Snipe"
 		]
 
 		for skill in all_skills:
@@ -2488,6 +2586,123 @@ class fight(commands.Cog):
 						return
 					except:
 						return
+
+
+		elif answer2 == "Rupture" or answer2 == "rupture":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+		elif answer2 == "Warp" or answer2 == "warp":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+		elif answer2 == "Arise" or answer2 == "arise":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+		elif answer2 == "Surge" or answer2 == "surge":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+
+		elif answer2 == "Slice" or answer2 == "slice":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+
+		elif answer2 == "Blockade" or answer2 == "blockade":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+		elif answer2 == "Sneak" or answer2 == "sneak":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+		elif answer2 == "Snipe" or answer2 == "snipe":
+			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
+			if not userinfo["equip"]["image"] == "None":
+					em1.set_thumbnail(url=userinfo["equip"]["image"])
+					try:
+						await skillmsg.edit(embed=em1)
+					except:
+						try:
+							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+							return
+						except:
+							return
+			return
+
+
 
 		elif answer2 == "heal" or answer2 == "Heal":
 			battleinfo = db.battles.find_one({ "_id": user.id })
