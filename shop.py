@@ -75,7 +75,7 @@ class shop(commands.Cog):
 		bow = ["Archer", "Ranger", "Assassin", "Night Assassin", "Skilled Ranger"]
 		sword = ["Paladin", "Samurai", "Knight", "Master Samurai", "Grand Paladin"]
 		dagger = ["Thief", "Mesmer", "Rogue", "High rogue", "Adept Mesmer"]
-		staff = ["Mage", "Elementalist", "Necromancer", "Developed Necromancer", "Adequate Elementalist"]
+		staff = ["Mage", "Elementalist", "Necromancer", "Developed Necromancer", "Adequate Elementalist", "Ranger","Skilled Ranger"]
 		light = ["Mesmer", "Assassin", "Thief", "Archer", "Adept Mesmer", "Night Assassin"]
 		medium = ["Samurai", "Mage", "Necromancer", "Rogue", "High rogue", "Developed Necromancer", "Master Samurai"]
 		heavy = ["Paladin", "Knight", "Elementalist", "Ranger", "Adequate Elementalist", "Grand Paladin", "Skilled Ranger"]

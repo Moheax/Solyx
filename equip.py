@@ -80,12 +80,12 @@ class equip(commands.Cog):
 
 		type = item["type"]
 
-		swordable = ["Knight", "Paladin", "Samurai"]
-		bowable = ["Archer", "Ranger", "Assassin"]
-		staffable = ["Mage", "Elementalist", "Necromancer", "Ranger"]
-		maceable = ["Paladin", "Rogue", "Samurai"]
-		daggerable = ["Thief", "Mesmer", "Rogue"]
-		gunable = ["Assassin", "Necromancer", "Mesmer"]
+		swordable = ["Knight", "Paladin", "Samurai","Master Samurai", "Grand Paladin"]
+		bowable = ["Archer", "Ranger", "Assassin", "Night Assassin", "Skilled Ranger"]
+		staffable = ["Mage", "Elementalist", "Necromancer", "Ranger", "Developed Necromancer", "Adequate Elementalist","Skilled Ranger"]
+		maceable = ["Paladin", "Rogue", "Samurai", "Master Samurai", "Grand Paladin", "High rogue"]
+		daggerable = ["Thief", "Mesmer", "Rogue", "High rogue", "Adept Mesmer"]
+		gunable = ["Assassin", "Necromancer", "Mesmer", "Adept Mesmer"]
 		armorable = [""]
 		if type == "sword":
 			if not userinfo["class"] in swordable:
