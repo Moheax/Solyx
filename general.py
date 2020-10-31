@@ -10,8 +10,10 @@ import threading
 import datetime
 import glob
 import aiohttp
+
 from copy import deepcopy
 
+from utils.chat_formatting import pagify
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, guilddata
@@ -225,20 +227,23 @@ class general(commands.Cog):
 
 	@commands.group()
 	@commands.cooldown(1, 5, commands.BucketType.user)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def blacklist(self, ctx):
 		"""Blacklist commands"""
-		author = ctx.message.author
-		authorinfo = db.users.find_one({ "_id": f"{author.id}"})
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
-			msg = ""
+		guild = ctx.guild
+		channel = ctx.channel
+		guildcolor = ctx.author.color
+
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
+			
+		msg = ""
 		if ctx.invoked_subcommand is None:
 			for x in ctx.command.all_commands:
 				if x not in ctx.command.all_commands[x].aliases:
 					if not ctx.command.all_commands[x].hidden:
 						msg += f"`{ctx.prefix}{ctx.command.name} {x}` - {ctx.command.all_commands[x].help} \n"
-			embed=discord.Embed(colour=servercolor)
+			embed=discord.Embed(colour=guildcolor)
 			embed.set_author(name=ctx.command.name, icon_url=ctx.author.avatar_url)
 			embed.add_field(name="Subcommands", value=msg, inline=False)
 			
@@ -247,21 +252,17 @@ class general(commands.Cog):
 			except:
 				return
 		return
-
 	@blacklist.command(name="add", pass_context=True)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def _blacklist_add(self, ctx, user: discord.User):
 		"""Adds user to the blacklist"""
 		author = ctx.author
-		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
 
-		await self._create_user(user)
-		userinfo = db.users.find_one({ "_id": f"{author.id}" })
+		userinfo = db.users.find_one({ "_id": user.id })
 		try:
 			userinfo["blacklisted"] = "True"
-			db.users.replace_one({ "_id": f"{user.id}" }, userinfo, upsert=True)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			await ctx.send(":pencil2: | User has been blacklisted.")
 
 			em = discord.Embed(title="User blacklisted: {}".format(user), description="{} ({}) has been blacklisted from Solyx by {} ({})!".format(user, user.id, author.mention, author.id), color=discord.Colour(0xff0000))
@@ -273,19 +274,18 @@ class general(commands.Cog):
 
 	@commands.command(name="ban", pass_context=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def ban_blacklist_add(self, ctx, user: discord.User):
 		"""Adds user to the blacklist"""
 		author = ctx.author
 		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
+	
 
-		await self._create_user(user)
-		userinfo = db.users.find_one({ "_id": f"{user.id}" })
+		
+		userinfo = db.users.find_one({ "_id": user.id })
 		try:
 			userinfo["blacklisted"] = "True"
-			db.users.replace_one({ "_id": f"{user.id}" }, userinfo, upsert=True)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			await ctx.send(":pencil2: | User has been blacklisted.")
 
 			em = discord.Embed(title="User blacklisted: {}".format(user), description="{} ({}) has been blacklisted from Solyx by {} ({})!".format(user, user.id, author.mention, author.id), color=discord.Colour(0xff0000))
@@ -296,19 +296,18 @@ class general(commands.Cog):
 			await ctx.send(":pencil2: | User is already blacklisted.")
 
 	@blacklist.command(name="remove", pass_context=True)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def _blacklist_remove(self, ctx, user: discord.User):
 		"""Removes user from the blacklist"""
 		author = ctx.author
 		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
+	
 
-		await self._create_user(user)
-		userinfo = db.users.find_one({ "_id": f"{user.id}" })
+		
+		userinfo = db.users.find_one({ "_id": user.id })
 		try:
 			userinfo["blacklisted"] = "False"
-			db.users.replace_one({ "_id": f"{user.id}" }, userinfo, upsert=True)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			await ctx.send(":pencil2: | User has been removed from the blacklist.")
 
 			em = discord.Embed(title="User removed from blacklisted: {}".format(user), description="{} ({}) has been removed from the blacklist by {} ({})!".format(user, user.id, author.mention, author.id), color=discord.Colour(0x00ff00))
@@ -320,16 +319,14 @@ class general(commands.Cog):
 
 	@commands.command(name="unban", pass_context=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def unban_blacklist_remove(self, ctx, user: discord.User):
 		"""Removes user from the blacklist"""
 		author = ctx.author
 		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
+	
 
-		await self._create_user(user)
-		userinfo = db.users.find_one({ "_id": f"{user.id}" })
+		userinfo = db.users.find_one({ "_id": user.id })
 		try:
 			userinfo["blacklisted"] = "False"
 			db.users.replace_one({ "_id": f"{user.id}" }, userinfo, upsert=True)
@@ -344,13 +341,12 @@ class general(commands.Cog):
 
 	@blacklist.command(name="list", pass_context=True)
 	@commands.cooldown(1, 30, commands.BucketType.user)
-	@commands.check(staff)
+	@commands.check(developer)
 	async def _blacklist_list(self, ctx):
 		"""Lists users on the blacklist"""
 		author = ctx.author
 		authorinfo = db.users.find_one({ "_id": f"{author.id}" })
-		if not authorinfo["role"] in ["Developer", "Staff"]:
-			return
+
 
 		blacklist = "\n"
 		for userinfo in db.users.find({}):

@@ -73,6 +73,14 @@ class sell(commands.Cog):
 			await ctx.send("?")
 			return
 		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
+
+			if userinfo["questname"] == "Wood Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 10:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(2, 6)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["wood"] = userinfo["wood"] - amount
@@ -123,7 +131,15 @@ class sell(commands.Cog):
 		if amount < 0:
 			await ctx.send("?")
 			return
-		if userinfo["wood"] > 0:
+		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
+
+			if userinfo["questname"] == "Wood Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 10:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(2, 6)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["wood"] = userinfo["wood"] - amount
@@ -176,6 +192,14 @@ class sell(commands.Cog):
 			await ctx.send("?")
 			return
 		if userinfo["stone"] > 0 and userinfo["stone"] >= amount:
+
+			if userinfo["questname"] == "Stone Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 10:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(2, 6)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["stone"] = userinfo["stone"] - amount
@@ -227,7 +251,15 @@ class sell(commands.Cog):
 		if amount < 0:
 			await ctx.send("?")
 			return
-		if userinfo["stone"] > 0:
+		if userinfo["stone"] > 0 and userinfo["stone"] >= amount:
+
+			if userinfo["questname"] == "Stone Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 10:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(2, 6)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["stone"] = userinfo["stone"] - amount
@@ -281,6 +313,14 @@ class sell(commands.Cog):
 			await ctx.send("?")
 			return
 		if userinfo["metal"] > 0 and userinfo["metal"] >= amount:
+
+			if userinfo["questname"] == "Metal Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 5:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(5, 10)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["metal"] = userinfo["metal"] - amount
@@ -334,7 +374,15 @@ class sell(commands.Cog):
 		if amount < 0:
 			await ctx.send("?")
 			return
-		if userinfo["metal"] > 0:
+		if userinfo["metal"] > 0 and userinfo["metal"] >= amount:
+
+			if userinfo["questname"] == "Metal Trader I":
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 10:
+					await ctx.send("Quest Updated!")
+				pass
+
 			gain = amount * random.randint(5, 10)
 			userinfo["gold"] = userinfo["gold"] + gain
 			userinfo["metal"] = userinfo["metal"] - amount

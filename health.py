@@ -50,6 +50,14 @@ class health(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["fullhp"]["translation"])
 			return
 		if userinfo["hp_potions"] > 0:
+
+			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 1:
+				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				userinfo["questpart"] = userinfo["questpart"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 1:
+					await ctx.send("Quest Updated!")
+
 			gain = random.randint(25, 55)
 			userinfo["health"] = userinfo["health"] + gain
 			if userinfo["health"] > 100:
@@ -169,7 +177,15 @@ class health(commands.Cog):
 					return
 				except:
 					return
-		else:   
+		else:
+			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 0:
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questpart"] = userinfo["questpart"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 5:
+					await ctx.send("Quest Updated!")
+				pass
+
 			userinfo["gold"] = userinfo["gold"] - Sum
 			userinfo["hp_potions"] = userinfo["hp_potions"] + int(amount)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)

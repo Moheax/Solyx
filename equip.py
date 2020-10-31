@@ -84,7 +84,7 @@ class equip(commands.Cog):
 		bowable = ["Archer", "Ranger", "Assassin", "Night Assassin", "Skilled Ranger"]
 		staffable = ["Mage", "Elementalist", "Necromancer", "Ranger", "Developed Necromancer", "Adequate Elementalist","Skilled Ranger"]
 		maceable = ["Paladin", "Rogue", "Samurai", "Master Samurai", "Grand Paladin", "High rogue"]
-		daggerable = ["Thief", "Mesmer", "Rogue", "High rogue", "Adept Mesmer"]
+		daggerable = ["Thief", "Mesmer", "Rogue", "High Rogue", "Adept Mesmer"]
 		gunable = ["Assassin", "Necromancer", "Mesmer", "Adept Mesmer"]
 		armorable = [""]
 		if type == "sword":
@@ -128,22 +128,46 @@ class equip(commands.Cog):
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmor"]["translation"], color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
+
+		if userinfo["questname"] == "Equip" and  userinfo["questpart"] == 1:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
+		if userinfo["questname"] == "Equip" and  userinfo["questpart"] == 0 and item["rarity"] == "Training":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+		
+
+
+		if  userinfo["equip"]["rarity"] == "Training":
+			userinfo["equip"] = "None"
+			userinfo["equip"] = item
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			
 
-		userinfo["inventory"].append(userinfo["equip"])
-		userinfo["equip"] = "None"
-		userinfo["equip"] = item
-		userinfo["inventory"].remove(item)
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
-		try:
-			await ctx.send(embed=em)
-		except:
+			userinfo["inventory"].append(userinfo["equip"])
+			userinfo["equip"] = "None"
+			userinfo["equip"] = item
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
 			try:
-				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-				return
+				await ctx.send(embed=em)
 			except:
-				return
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
 
 	@_equip.command(name="armor", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -174,7 +198,7 @@ class equip(commands.Cog):
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		if number not in range(1, 24): # Max
+		if number not in range(1, 26): # Max
 			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 
 

@@ -45,6 +45,16 @@ class loot(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+		if userinfo["questname"] == "Unboxing I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			if userinfo["questprogress"] >= 10:
+				await ctx.send("Quest Updated!")
+			pass
+
 		if userinfo["lootbag"] == 0 or userinfo["lootbag"] < 0:
 			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["nocrates"]["translation"], color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
@@ -133,7 +143,7 @@ class loot(commands.Cog):
 			legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
 		
 
-		if chance > 950:
+		if chance > 990:
 			
 			if legendary == "exp":
 				expgained = random.randint(1, 3)

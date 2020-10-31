@@ -513,7 +513,15 @@ class market(commands.Cog):
 					return
 				except:
 					return
-		else:   
+		else:
+			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 0:
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questpart"] = userinfo["questpart"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 5:
+					await ctx.send("Quest Updated!")
+				pass
+
 			userinfo["gold"] = userinfo["gold"] - Sum
 			userinfo["hp_potions"] = userinfo["hp_potions"] + int(amount)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)

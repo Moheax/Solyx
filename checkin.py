@@ -40,6 +40,15 @@ class checkin(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
+
+		
+		if userinfo["questname"] == "Daily I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		#GUILD BOOST
 		guild = ctx.message.guild
 

@@ -41,6 +41,17 @@ class status(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+		if userinfo["questname"] == "Basic A":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated! Type **{}quests** To check quest progress!".format(ctx.prefix))
+			pass
+
 		maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
 		if not userinfo["guild"] == "None":
 			try:

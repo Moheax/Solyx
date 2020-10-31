@@ -71,9 +71,20 @@ class gather(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
 		if userinfo["gold"] < 10:
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["gather"]["fish"]["notenoughgold"]["translation"])
 			return
+
+		if userinfo["questname"] == "Gathering Fish I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			if userinfo["questprogress"] >= 5:
+				await ctx.send("Quest Updated!")
+			pass
+	
 
 		all_items = list(fishables.keys()) + list(extras.keys())
 		result = randchoice(all_items)
@@ -116,7 +127,15 @@ class gather(commands.Cog):
 		mined_rock = random.randint(1, 5)
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
-	
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["mine_block"])
 
@@ -145,6 +164,20 @@ class gather(commands.Cog):
 					print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 					pass
 			except:
+				pass
+
+			if userinfo["questname"] == "Gathering Metal I":
+				userinfo["questprogress"] = userinfo["questprogress"] + mined_metal
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 2:
+					await ctx.send("Quest Updated!")
+				pass
+	
+			if userinfo["questname"] == "Gathering Stone I":
+				userinfo["questprogress"] = userinfo["questprogress"] + mined_rock
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 5:
+					await ctx.send("Quest Updated!")
 				pass
 
 			userinfo["metal"] = userinfo["metal"] + mined_metal
@@ -192,6 +225,10 @@ class gather(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["chop_block"])
 
@@ -210,6 +247,13 @@ class gather(commands.Cog):
 					pass
 			except:
 				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				pass
+		
+			if userinfo["questname"] == "Gathering Wood I":
+				userinfo["questprogress"] = userinfo["questprogress"] + chopped
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 5:
+					await ctx.send("Quest Updated!")
 				pass
 
 			userinfo["wood"] = userinfo["wood"] + chopped

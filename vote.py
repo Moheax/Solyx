@@ -89,6 +89,13 @@ class vote(commands.Cog):
 
 			await asyncio.sleep(random.randint(37, 64))
 
+			if userinfo["questname"] == "Vote I":
+				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 1:
+					await ctx.send("Quest Updated!")
+				pass
+
 			# Weekend multiplier is in effect
 			if userinfo["voted"] == "weekend":
 				votemtp = "×2 Weekend multiplier"
@@ -105,31 +112,31 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 			else:
-				votemtp = "2x multiplier 350K users!"
-				if userinfo["role"] == "Donator":
-					votegold = random.randint(700, 1000)
-					votehp = random.randint(3, 8)
-					votelb = random.randint(10, 15)
-				elif userinfo["role"] == "Subscriber":
-					votegold = random.randint(750, 1200)
-					votehp = random.randint(4, 8)
-					votelb = random.randint(13, 22)
-				else:
-					votegold = random.randint(500, 900)
-					votehp = random.randint(4, 7)
-					votelb = random.randint(9, 12)
+				votemtp = ""
 				#if userinfo["role"] == "Donator":
-				#	votegold = random.randint(360, 600)
-				#	votehp = random.randint(3, 5)
-				#	votelb = random.randint(7, 13)
+				#	votegold = random.randint(700, 1000)
+				#	votehp = random.randint(3, 8)
+				#	votelb = random.randint(10, 15)
 				#elif userinfo["role"] == "Subscriber":
-				#	votegold = random.randint(450, 750)
-				#	votehp = random.randint(4, 7)
-				#	votelb = random.randint(9, 18)
+				#	votegold = random.randint(750, 1200)
+				#	votehp = random.randint(4, 8)
+				#	votelb = random.randint(13, 22)
 				#else:
-				#	votegold = random.randint(300, 500)
-				#	votehp = random.randint(2, 5)
-				#	votelb = random.randint(6, 10)
+				#	votegold = random.randint(500, 900)
+				#	votehp = random.randint(4, 7)
+				#	votelb = random.randint(9, 12)
+				if userinfo["role"] == "Donator":
+					votegold = random.randint(360, 600)
+					votehp = random.randint(3, 5)
+					votelb = random.randint(7, 13)
+				elif userinfo["role"] == "Subscriber":
+					votegold = random.randint(450, 750)
+					votehp = random.randint(4, 7)
+					votelb = random.randint(9, 18)
+				else:
+					votegold = random.randint(300, 500)
+					votehp = random.randint(2, 5)
+					votelb = random.randint(6, 10)
 			userinfo["lootbag"] = userinfo["lootbag"] + votelb
 			userinfo["keys"] = userinfo["keys"] + votelb
 			userinfo["gold"] = userinfo["gold"] + votegold

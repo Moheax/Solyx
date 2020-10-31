@@ -24,7 +24,7 @@ class fight(commands.Cog):
 # - - - Begin / Start - - - WORKS
 
 	@commands.command(pass_context=True, no_pm=True, aliases=["start"])
-	@commands.cooldown(1, 30, commands.BucketType.user)
+	@commands.cooldown(1, 10, commands.BucketType.user)
 	async def begin(self, ctx):
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
@@ -129,6 +129,7 @@ class fight(commands.Cog):
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		embed = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["setupdone"]["title"]["translation"], colour=0xffffff)
+		embed.add_field(name="Quests", value=":notebook_with_decorative_cover: **You new Quest is *Basic A***\n Take a look at your stats\nType {}stats!".format(ctx.prefix), inline=False)
 		embed.set_footer(text=fileIO(f"data/languages/EN.json", "load")["rpg"]["setupdone"]["footer"]["translation"].format(ctx.prefix))
 		try:
 			await ctx.send(embed=embed)
@@ -1166,6 +1167,16 @@ class fight(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+
+		if userinfo["questname"] == "Basic C":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
 
 		if userinfo["health"] <= 0:
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["fight"]["nohp"]["translation"])

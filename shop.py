@@ -820,7 +820,7 @@ class shop(commands.Cog):
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif itemname == "starter Bow":
+		elif itemname == "Starter Bow":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
@@ -829,7 +829,7 @@ class shop(commands.Cog):
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif itemname == "starter Sword":
+		elif itemname == "Starter Sword":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
@@ -838,7 +838,7 @@ class shop(commands.Cog):
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif itemname == "starter Staff":
+		elif itemname == "Starter Staff":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost
@@ -847,7 +847,7 @@ class shop(commands.Cog):
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
-		elif itemname == "starter Dagger":
+		elif itemname == "Starter Dagger":
 			cost = 200
 			value = cost + userinfo["gold"]
 			userinfo["gold"] = userinfo["gold"] + cost

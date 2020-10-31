@@ -43,7 +43,7 @@ class guilds(commands.Cog):
 
 		# Send message to the log in the Solyx guild
 		solyxloggchannel = self.bot.get_channel(561200838790479873)
-		em = embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n**Owner:** {}'.format(len(guild.members) - 1, guild.owner.name))
+		em = embed = discord.Embed(title='🎁 **New guild:** {} 🎁'.format(guild.name), color=discord.Colour(0xffdf00), description='**Members:** {}\n'.format(len(guild.members) - 1, ))
 		em = embed.set_thumbnail(url=guildicon)
 		await solyxloggchannel.send(embed=em)
 

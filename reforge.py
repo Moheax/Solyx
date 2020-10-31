@@ -37,11 +37,15 @@ class reforge(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
 		if number not in range(1, 24): # Max
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
 			return
 		try:
-			item = userinfo["inventory"][number+0]
+			item = userinfo["inventory"][number-1]
 		except:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["noiteminslot"]["translation"])
 			return
@@ -778,7 +782,7 @@ class reforge(commands.Cog):
 			cost = 60000
 			wood = 2000
 			stone = 1750
-			metal = 1250
+			metal = 1500
 
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["reforge"]["confirmation"]["description"]["translation"].format(item["name"], item["rarity"], item["type"], item["refinement"], ref, item["stats_min"], item["stats_max"], newstats_min, newstats_max, cost, wood, stone, metal), color=discord.Colour(0xffffff))
 			if not item["image"] == "None":
