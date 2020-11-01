@@ -1178,6 +1178,13 @@ class fight(commands.Cog):
 				await ctx.send("Quest Updated!")
 			pass
 
+		if userinfo["questname"] == "Fight I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 25:
+				await ctx.send("Quest Updated!")
+			pass
+
 		if userinfo["health"] <= 0:
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["fight"]["nohp"]["translation"])
 			return

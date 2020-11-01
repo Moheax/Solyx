@@ -58,6 +58,15 @@ class vote(commands.Cog):
 		if userinfo["class"] == "None" and userinfo["race"] == "None":
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+
+		if userinfo["questname"] == "Vote I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		# Time left till user can vote again
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["vote_block"])
@@ -89,12 +98,6 @@ class vote(commands.Cog):
 
 			await asyncio.sleep(random.randint(37, 64))
 
-			if userinfo["questname"] == "Vote I":
-				userinfo["questprogress"] = userinfo["questprogress"] + 1
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 1:
-					await ctx.send("Quest Updated!")
-				pass
 
 			# Weekend multiplier is in effect
 			if userinfo["voted"] == "weekend":

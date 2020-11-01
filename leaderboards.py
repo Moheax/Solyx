@@ -30,6 +30,15 @@ class leaderboard(commands.Cog):
 		server = ctx.guild
 		channel = ctx.channel
 		servercolor = ctx.author.color
+		user = ctx.message.author
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		if userinfo["questname"] == "Leaderboard" :
+			userinfo["questprogress"] = userinfo["questprogress"] + 1		
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
 
 		msg = ""
 		if ctx.invoked_subcommand is None:
@@ -67,6 +76,7 @@ class leaderboard(commands.Cog):
 		current_time = now.strftime("%H:%M:%S")
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
+
 
 		users = []
 		user_stat = None
@@ -153,7 +163,7 @@ class leaderboard(commands.Cog):
 	@leaderboard.command(name="guilds", aliases=["guild"])
 	@commands.cooldown(2, 12, commands.BucketType.user)
 	async def guildslb(self, ctx, *options):
-
+		"""See the Solyx guilds/guilds leaderboard"""
 		guild = ctx.guild
 
 		channel = ctx.message.channel
@@ -165,7 +175,11 @@ class leaderboard(commands.Cog):
 		current_time = now.strftime("%H:%M:%S")
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
-		"""See the Solyx guilds/guilds leaderboard"""
+
+
+	
+
+		
 		guilds = []
 		guild_exps = []
 		user_stat = None

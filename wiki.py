@@ -33,6 +33,15 @@ class wiki(commands.Cog):
 		guild = ctx.guild
 		user = ctx.author
 
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		if userinfo["questname"] == "Wiki Check" :
+			userinfo["questprogress"] = userinfo["questprogress"] + 1		
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		if topic == None:
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="<:ShieldCheck:560804135545602078>**Wiki Mainpage**", value="\n\nPage 1/4\n\nWiki usage: {}wiki [page].\n Or\nWiki usage: {}wiki [subject].\n\nEmote Meanings\n <:ShieldCheck:560804135545602078> = Works Completely! \n :book: = Missing Backstory \n <:ShieldBug:649157223905492992> = Working on it!\n <:ShieldBroken:649157253701566474> = Is made but broken...\n <:ShieldCross:560804112548233217> = Hasnt been made yet.\n\n If a item has a :book: emote you can help to submit a backstory if you want!\n\nCurrent pages 1, 2, 3, 4\n\n".format(ctx.prefix, ctx.prefix), inline=False)
@@ -1329,11 +1338,11 @@ class wiki(commands.Cog):
 		elif topic == "achievement titles" or topic == "Achievement Titles":
 			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="Achievement titles", value="1. Legendary - obtained at first legendary item.\n2. Twice Told Legend - obtained at second legendary item.\n3. Uncoordinated - Get 15 deaths...\n4. Unhandy - Get 30 deaths...\n5 Clumsy - Get 60 deaths...\n6. Unskillful - Get 90 deaths...\n7. Inexpert - Get 120 deaths...\n8. I'm playing the game wrong... - ???\n9. Broke - Have 0 gold!\n10. Poor - have 500+ gold.\n11. Rich - have 10.000+ gold.\n12. Wealthy - Have 100.000+ gold.\n12. Millionaire - Have 1.000.000+ gold!".format(ctx.prefix), inline=False)
+			embed.add_field(name="Achievement titles", value="1. Legendary - obtained at first legendary item.\n2. Twice Told Legend - obtained at second legendary item.\n3. Uncoordinated - Get 15 deaths...\n4. Unhandy - Get 30 deaths...\n5 Clumsy - Get 60 deaths...\n6. Unskillful - Get 90 deaths...\n7. Inexpert - Get 120 deaths...\n8. I'm playing the game wrong... - ???\n9. Broke - Have 0 gold!\n10. Poor - have 500+ gold.\n11. Rich - have 10.000+ gold.\n12. Wealthy - Have 100.000+ gold.\n13. Millionaire - Have 1.000.000+ gold!\n14 Peek-A-Boo - Place top 5 in 2020 Halloween event!".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
-		elif topic == "Monster Titles" or topic == "monster titles ":
+		elif topic == "Monster Titles" or topic == "monster titles":
 			embed=discord.Embed(title="**Monster Titles 1**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
 			embed.add_field(name="Monster titles", value="1. Rachi Killer - Kill 100 Rachi's\n2. Draugr Killer - Kill 100 Draugr's\n3. Debin Killer - Kill 100 Debin's\n4. Stalker Killer - Kill 100 Stalker's\n5. Fire Golem Killer - Kill 100 Fire Golem's\n6. Wyvern Killer - Kill 100 Wyvern's\n7. Oofer Killer - Kill 100  Oofer's\n8. Souleater Killer - Kill 100  Souleater's\n9. Wolf Killer - Kill 100 Wolf's\n10. Goblin Killer - Kill 100  Goblin's\n11. Zombie Killer - Kill 100  Zombie's\n12. Phantasm Killer - Kill 100 Phantasm's\n13. The Corrupted Killer - Kill 100 Corrupted\n14. The Accursed Killer - Kill 100 Accursed\n15. Elder Dragon Killer - Kill 100 Elder Dragon's\n16. Hades Killer - Kill 100 Hades\n17. Harpy Killer - Kill 100  Harpy's\n18. Dormammu Killer - Kill 100 Dormammu's\n19. Ettin Killer - Kill 100 Ettin's\n20. The Nameless King Killer - Kill 100 Nameless Kings ".format(ctx.prefix), inline=False)
@@ -1343,7 +1352,7 @@ class wiki(commands.Cog):
 		elif topic == "Monster titles 2" or topic == "monster titles 2":
 			embed=discord.Embed(title="**Monster Titles 2**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="Monster titles", value="21. Largos Killer - Kill 100 Largo's\n22. Saurian Killer - Kill 100 Saurian's\n23. The Venomous Killer - Kill 100 Venomous\n24. Ebony Guardian Killer - Kill 100  Ebony Guardians\n25. Skeleton Killer - kill 100 Skeletons\n26. Lizardmen Killer - Kill 100 Lizardmen\n27. Giant Killer - Kill 100 Giants\n28. Death Knight Killer - Kill 100 Death Knights\n29. Ice Wolves Killer - kill 100 Ice Wolves\n30. Frost Orc Killer - kill 100 Frost Orcs\n31. Frost Goblin Killer - Kill 100 Frost Goblins\32. Frost Dragon Killer - Kill 100 Frost Dragons".format(ctx.prefix), inline=False)
+			embed.add_field(name="Monster titles", value="21. Largos Killer - Kill 100 Largo's\n22. Saurian Killer - Kill 100 Saurian's\n23. The Venomous Killer - Kill 100 Venomous\n24. Ebony Guardian Killer - Kill 100  Ebony Guardians\n25. Skeleton Killer - kill 100 Skeletons\n26. Lizardmen Killer - Kill 100 Lizardmen\n27. Giant Killer - Kill 100 Giants\n28. Death Knight Killer - Kill 100 Death Knights\n29. Ice Wolves Killer - kill 100 Ice Wolves\n30. Frost Orc Killer - kill 100 Frost Orcs\n31. Frost Goblin Killer - Kill 100 Frost Goblins\n32. Frost Dragon Killer - Kill 100 Frost Dragons".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 

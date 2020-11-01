@@ -129,7 +129,7 @@ class equip(commands.Cog):
 				await ctx.send(embed=em)
 				return
 
-		if userinfo["questname"] == "Equip" and  userinfo["questpart"] == 1:
+		if userinfo["questname"] == "Equip" :
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
@@ -137,37 +137,21 @@ class equip(commands.Cog):
 				await ctx.send("Quest Updated!")
 			pass
 
-		if userinfo["questname"] == "Equip" and  userinfo["questpart"] == 0 and item["rarity"] == "Training":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
-			pass
-		
 
-
-		if  userinfo["equip"]["rarity"] == "Training":
-			userinfo["equip"] = "None"
-			userinfo["equip"] = item
-			userinfo["inventory"].remove(item)
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			
-
-			userinfo["inventory"].append(userinfo["equip"])
-			userinfo["equip"] = "None"
-			userinfo["equip"] = item
-			userinfo["inventory"].remove(item)
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+		userinfo["inventory"].append(userinfo["equip"])
+		userinfo["equip"] = "None"
+		userinfo["equip"] = item
+		userinfo["inventory"].remove(item)
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+		try:
+			await ctx.send(embed=em)
+		except:
 			try:
-				await ctx.send(embed=em)
+				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+				return
 			except:
-				try:
-					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-					return
-				except:
-					return
+				return
 
 	@_equip.command(name="armor", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -209,6 +193,15 @@ class equip(commands.Cog):
 			return
 
 		type = item["type"]
+
+		
+		if userinfo["questname"] == "Equip"and userinfo["questpart"] == 1 :
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
 
 		if type == "armor":
 			userinfo["inventory"].append(userinfo["wearing"])

@@ -40,6 +40,15 @@ class image(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+
+		if userinfo["questname"] == "Check Profile" :
+			userinfo["questprogress"] = userinfo["questprogress"] + 1		
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		await self.draw_profile(user)
 		try:
 			await ctx.trigger_typing()

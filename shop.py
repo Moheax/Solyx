@@ -88,12 +88,19 @@ class shop(commands.Cog):
 		if not len(userinfo["inventory"]) >= 25:
 			if item == "Sclerite Sword" or item == "sclerite sword":
 				itemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -102,12 +109,19 @@ class shop(commands.Cog):
 
 			elif item == "Iron Greatsword" or item == "iron greatsword":
 				itemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -116,12 +130,19 @@ class shop(commands.Cog):
 
 			elif item == "Abaddon Dagger" or item == "abaddon dagger":
 				itemobj = {"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -130,12 +151,19 @@ class shop(commands.Cog):
 
 			elif item == "Rusted Short Sword" or item == "rusted short sword":
 				itemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -150,6 +178,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -158,12 +193,19 @@ class shop(commands.Cog):
 
 			elif item == "Obsidian Longbow" or item == "obsidian longbow":
 				itemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -178,6 +220,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -192,6 +241,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -206,6 +262,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -220,6 +283,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -234,6 +304,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -242,12 +319,19 @@ class shop(commands.Cog):
 
 			elif item == "Makeshift Shortbow" or item == "makeshift shortbow":
 				itemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -256,12 +340,19 @@ class shop(commands.Cog):
 
 			elif item == "Iron Mace" or item == "iron mace":
 				itemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -270,12 +361,19 @@ class shop(commands.Cog):
 
 			elif item == "ron Claws" or item == "iron claws":
 				itemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -284,12 +382,19 @@ class shop(commands.Cog):
 
 			elif item == "Concealed Blade" or item == "concealed blade":
 				itemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -298,12 +403,19 @@ class shop(commands.Cog):
 
 			elif item == "Tomb of Fire" or item == "tomb of fire":
 				itemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -312,12 +424,19 @@ class shop(commands.Cog):
 
 			elif item == "Scroll of Blizzards" or item == "scroll of blizzards":
 				itemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -326,12 +445,19 @@ class shop(commands.Cog):
 
 			elif item == "Glyphic Bow" or item == "glyphic bow":
 				itemobj = {"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -340,12 +466,19 @@ class shop(commands.Cog):
 
 			elif item == "Oblivion" or item == "oblivion":
 				itemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
-				cost = 7000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -354,12 +487,19 @@ class shop(commands.Cog):
 
 			elif item == "Staff of Milos" or item == "staff of milos":
 				itemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -368,12 +508,19 @@ class shop(commands.Cog):
 
 			elif item == "Calcite Staff" or item == "calcite staff":
 				itemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -386,12 +533,19 @@ class shop(commands.Cog):
 
 			elif item == "Leather Armor" or item == "leather armor":
 				itemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -400,12 +554,19 @@ class shop(commands.Cog):
 
 			elif item == "Banded Armor" or item == "banded armor":
 				itemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -420,6 +581,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -428,12 +596,19 @@ class shop(commands.Cog):
 
 			elif item == "Pit Fighter Armor" or item == "pit fighter armor":
 				itemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -442,12 +617,19 @@ class shop(commands.Cog):
 
 			elif item == "Chainmail Armor" or item == "chainmail armor":
 				itemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -462,6 +644,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -470,12 +659,19 @@ class shop(commands.Cog):
 
 			elif item == "Barbaric Armor" or item == "barbaric armor":
 				itemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "price": 1000, "description": "?!", "image": "None"}
-				cost = 4000
+				cost = 2000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -490,6 +686,13 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -504,11 +707,23 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 					em = discord.Embed(description="You bought the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
+			
+
+			
+
+			
 
 	@shop.command(name="sell", pass_context=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
@@ -863,6 +1078,16 @@ class shop(commands.Cog):
 
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
+
+
+		if userinfo["questname"] == "Shop I" and userinfo["questpart"] == 0:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		Class = userinfo["class"]
 		if Class == "Mage" or Class == "Elementalist" or Class == "Necromancer" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
@@ -919,6 +1144,15 @@ class shop(commands.Cog):
 		"""Take a look at buyable armor"""
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
+
+		if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 1:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		Class = userinfo["class"]
 
 		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger" or Class == "Night Assassin" or Class == "Skilled Ranger" or Class == "High rogue" or Class == "Adept Mesmer" or Class == "Master Samurai" or Class == "Grand Paladin" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":

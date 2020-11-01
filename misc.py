@@ -17,6 +17,7 @@ class misc(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+		
 
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.check(developer)
@@ -57,11 +58,15 @@ class misc(commands.Cog):
 
 		current_time = now.strftime("%H:%M:%S")
 
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has booped solyx")
 		print('boop')
 		em = discord.Embed(title="BOOP?!", description="No u",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
+		
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	@commands.check(developer)
