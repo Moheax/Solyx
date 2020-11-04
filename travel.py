@@ -56,43 +56,43 @@ class travel(commands.Cog):
 			options.append("(1) Golden Temple")
 			options2.append("1")
 
-		if userinfo["lvl"] >= 5:
+		if userinfo["lvl"] >= 10:
 			options.append("(2) Saker Keep")
 			options2.append("2")
 	
-		if userinfo["lvl"] >= 10:
+		if userinfo["lvl"] >= 20:
 			options.append("(3) The Forest")
 			options2.append("3")
 
-		if userinfo["lvl"] >= 20:
+		if userinfo["lvl"] >= 40:
 			options.append("(4) Ebony Mountains")
 			options2.append("4")
 
-		if userinfo["lvl"] >= 40:
+		if userinfo["lvl"] >= 60:
 			options.append("(5) Township of Arkina")
 			options2.append("5")
 
-		if userinfo["lvl"] >= 60:
+		if userinfo["lvl"] >= 90:
 			options.append("(6) Zulanthu")
 			options2.append("6")
 
-		if userinfo["lvl"] >= 90:
+		if userinfo["lvl"] >= 120:
 			options.append("(7) Lost City")
 			options2.append("7")
 
-		if userinfo["lvl"] >= 120:
+		if userinfo["lvl"] >= 150:
 			options.append("(8) Drenheim ")
 			options2.append("8")
 
-		if userinfo["lvl"] >= 150:
+		if userinfo["lvl"] >= 200:
 			options.append("(9) Havelow [Coming soon]")
 			options2.append("9")
 
-		if userinfo["lvl"] >= 200:
+		if userinfo["lvl"] >= 250:
 			options.append("(10) Sacred Cave [Coming soon]")
 			options2.append("10")
 
-		if userinfo["lvl"] >= 250:
+		if userinfo["lvl"] >= 300:
 			options.append("(11) The Haunted Tomb [Coming soon]")
 			options2.append("11")
 
@@ -127,6 +127,14 @@ class travel(commands.Cog):
 				userinfo["location"] = "Golden Temple"
 
 		elif answer1 == "2":
+
+			if userinfo["questname"] == "Travel I":
+				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				if userinfo["questprogress"] >= 1:
+					await ctx.send("Quest Updated!")
+				pass
+
 			if userinfo["location"] == "Saker Keep":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))
 				try:

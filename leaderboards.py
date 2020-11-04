@@ -89,7 +89,7 @@ class leaderboard(commands.Cog):
 
 		icon_url = self.bot.user.avatar_url
 		sorted_list = sorted(users, key=operator.itemgetter(2), reverse=True)
-		# multiple page support
+		# multiple page support	
 		page = 1
 		per_page = 10
 		pages = math.ceil(len(sorted_list)/per_page)

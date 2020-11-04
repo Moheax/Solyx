@@ -154,6 +154,13 @@ class market(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["noitem"]["translation"])
 			return
 
+		if userinfo["questname"] == "Market I":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		if item["rarity"] == "Basic":
 			if price < 1000:
 				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["pricecheck"]["basicmin"]["translation"])

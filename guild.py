@@ -144,10 +144,18 @@ class guild(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 0:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
 		userinfo["guild"] = guild.id
-		userinfo["GuildTag"] = guildinfo["tag"]
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="<:Guild:560844076967002112> Representing", description="You are now representing {}!".format(guild.name), color=discord.Colour(0xffffff))
 		try:
@@ -185,6 +193,14 @@ class guild(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 1:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
 
 		if guildinfo["title"] == "None" and guildinfo["bonus"] >= 10:
 			guildinfo["title"] = "Big Boys"
@@ -481,6 +497,15 @@ class guild(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
+
+		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 2:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 
 		if guildinfo["mission"] == "None":
 			guildinfo["mission"] = randommission
@@ -815,6 +840,14 @@ class guild(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
+		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 3:
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questpart"] = userinfo["questpart"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
+
 		if amount <= 0:
 			em = discord.Embed(description="You can't donate negative amounts!", color=discord.Colour(0xffffff))
 			try:
@@ -839,6 +872,12 @@ class guild(commands.Cog):
 					return
 			return
 
+		if userinfo["questname"] == "Guild II":
+			userinfo["questprogress"] = userinfo["questprogress"] + amount
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1000:
+				await ctx.send("Quest Updated!")
+			pass
 
 		try:
 			if guildinfo["mission"] == "Donate 35000 gold to your guild":

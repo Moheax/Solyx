@@ -359,7 +359,7 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You bought the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 
-			elif item == "ron Claws" or item == "iron claws":
+			elif item == "Iron Claws" or item == "iron claws":
 				itemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
 				cost = 2000
 				value = cost - userinfo["gold"]
@@ -758,7 +758,12 @@ class shop(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["noiteminslot"]["translation"])
 			return
 
-
+		if userinfo["questname"] == "Shop II":
+			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			if userinfo["questprogress"] >= 1:
+				await ctx.send("Quest Updated!")
+			pass
 		itemname = item["name"]
 
 		if itemname == "Sclerite Sword":

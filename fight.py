@@ -1207,24 +1207,127 @@ class fight(commands.Cog):
 		#IF PLAYER ISNT FIGHTING AN ENEMY, CHOOSE ONE BASED ON LOCATION
 		if userinfo["selected_enemy"] == "None":
 			if userinfo["location"] == "Golden Temple":
-				debi = randchoice(["Rachi", "Debin", "Oofer", "Fire Golem", "Wyvern"])
-			elif userinfo["location"] == "The Forest":
-				debi = randchoice(["Wolf", "Goblin", "Zombie", "Phantasm"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["Fire Golem"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Wyvern"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Rachi", "Debin", "Oofer"])
+
+
 			elif userinfo["location"] == "Saker Keep":
-				debi = randchoice(["Draugr", "Stalker", "Souleater", "The Corrupted"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["The Corrupted"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Souleater"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Draugr", "Stalker"])
+
+		
+			elif userinfo["location"] == "The Forest":
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["Phantasm"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Zombie"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Wolf", "Goblin"])
+
+				
 			elif userinfo["location"] == "Ebony Mountains":
-				debi = randchoice(["The Accursed", "Elder Dragon", "Hades", "Ebony Guardian"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["The Accursed"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Ebony Guardian"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Elder Dragon", "Hades"])
+
+
 			elif userinfo["location"] == "Township of Arkina":
-				debi = randchoice(["The Nameless King", "Harpy", "Dormammu", "Ettin"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["The Nameless King"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Harpy"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Ettin", "Dormammu"])
+
+
 			elif userinfo["location"] == "Zulanthu":
-				debi = randchoice(["Largos", "Deathclaw", "Saurian", "The Venomous"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["The Venomous"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Largos"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Saurian", "Deathclaw"])
+
+
 			elif userinfo["location"] == "Lost City":
-				debi = randchoice(["Skeleton", "Lizardmen", "Giant", "Death Knight"])
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["Death Knight"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Giant"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Skeleton", "Lizardmen"])
+
+				
 			elif userinfo["location"] == "Drenheim":
-				debi = randchoice(["Ice Wolves", "Frost Orc", "Frost Goblin", "Frost Dragon"])
-			enemyname = debi
+				chance = random.randint(1, 100)
+
+				if chance >= 90:
+					debi = randchoice(["Frost Dragon"])
+				elif chance <= 90 and chance >= 60:
+					debi = randchoice(["Frost Orc"])
+				elif chance <= 60 and chance >= 0:
+					debi = randchoice(["Ice Wolves", "Frost Goblin"])
+
+		
+			
+			Difficulty = random.randint(1, 100)
+
+			userinfo["enemydifficulty"] = "Common"
+			if Difficulty >= 99:
+				difficulty = "<:Mythical:573784881386225694> Mythical " 
+				userinfo["enemydifficulty"] ="Mythical"
+
+			elif Difficulty <= 99 and Difficulty >= 90:
+				difficulty = "<:Legendary:639425368167809065> Legendary " 
+				userinfo["enemydifficulty"] = "Legendary"
+
+			elif Difficulty <= 90 and Difficulty >= 70:
+				difficulty = "<:Rare:573784880815538186> Rare " 
+				userinfo["enemydifficulty"] = "Rare"
+
+			elif Difficulty <= 70 and Difficulty >= 50:
+				difficulty = " Uncommon "
+				userinfo["enemydifficulty"] = "Uncommon"
+
+			elif Difficulty <= 50 and Difficulty >= 0:
+				difficulty = "<:Common:573784881012932618> Common " 
+				userinfo["enemydifficulty"] = "Common"	
+
+
+			else:
+				em = discord.Embed(title=("No enemy found."), description=("You wandered around but no enemies were seen."), color=discord.Colour(0xffffff))
+					
+			
+
+			enemyname = difficulty + debi
+
 			if debi == "Fire Golem" or debi == "Phantasm" or debi == "The Corrupted" or debi == "The Accursed" or debi == "The Nameless King" or debi == "The Venomous" or debi == "Death Knight" or debi == "Frost Dragon":
-				enemyname = ":trident: " + debi
+				enemyname = difficulty + ":trident: " + debi
 			em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["title"]["translation"].format(userinfo["location"], enemyname), description=fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["description"]["translation"], color=discord.Colour(0xffffff))
 			if debi == "Phantasm":
 				em.set_image(url="https://i.imgur.com/BbBmEOF.jpg")
@@ -1245,33 +1348,546 @@ class fight(commands.Cog):
 				userinfo["selected_enemy"] = debi
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				if userinfo["selected_enemy"] in ["Rachi", "Draugr"]:
+
+				# Hp steps increase 1 hard 2 boss pers monster kind (hard +2 steps) (boss (+2 extra steps)
+				# hp steps increase by 1 per location
+
+				# GOLDEN TEMPLE DONE
+				# Normal monsters
+				if userinfo["selected_enemy"] == "Rachi" or userinfo["selected_enemy"] == "Debin" or userinfo["selected_enemy"] == "Oofer": 
 					userinfo["enemyhp"] = random.randint(10, 30)
-				elif userinfo["selected_enemy"] in ["Debin", "Stalker"]:
-					userinfo["enemyhp"] = random.randint(20, 40)
-				elif userinfo["selected_enemy"] in ["Fire Golem", "Wyvern"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+	
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+						
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Wyvern":
 					userinfo["enemyhp"] = random.randint(30, 50)
-				elif userinfo["selected_enemy"] in ["Oofer", "Souleater"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+				# Boss
+				elif userinfo["selected_enemy"] == "Fire Golem":
 					userinfo["enemyhp"] = random.randint(40, 60)
-				elif userinfo["selected_enemy"] in ["Wolf", "Goblin"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+	
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+
+				# SAKER KEEP DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Draugr" or userinfo["selected_enemy"] == "Stalker":
+					userinfo["enemyhp"] = random.randint(20, 40)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Souleater":
+					userinfo["enemyhp"] = random.randint(40, 60)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+	
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+				# Boss	
+				elif userinfo["selected_enemy"] == "The Corrupted":
+					userinfo["enemyhp"] = random.randint(40, 60)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+				
+
+				# THE FOREST DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Goblin":
 					userinfo["enemyhp"] = random.randint(50, 70)
-				elif userinfo["selected_enemy"] in ["Zombie", "Phantasm"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Zombie":
 					userinfo["enemyhp"] = random.randint(60, 80)
-				elif userinfo["selected_enemy"] in ["The Corrupted", "The Accursed", "Elder Dragon"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "Phantasm":
 					userinfo["enemyhp"] = random.randint(70, 90)
-				elif userinfo["selected_enemy"] in ["Hades", "Ebony Guardian", "Harpy"]:
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+				# EBONY MOUNTAINS DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades":
+					userinfo["enemyhp"] = random.randint(70, 90)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Ebony Guardian":
 					userinfo["enemyhp"] = random.randint(80, 100)
-				elif userinfo["selected_enemy"] in ["Dormammu", "Ettin", "Skeleton"]: 
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+					
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "The Accursed":
 					userinfo["enemyhp"] = random.randint(90, 110)
-				elif userinfo["selected_enemy"] in ["The Nameless King", "Largos", "Deathclaw", "Lizardmen"]: 
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# TOWN OF ARKINA DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
+					userinfo["enemyhp"] = random.randint(90, 110)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Harpy":
 					userinfo["enemyhp"] = random.randint(100, 120)
-				elif userinfo["selected_enemy"] in ["Saurian", "The Venomous","Giant", "Death Knight", "Ice Wolves"]: 
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "The Nameless King":
 					userinfo["enemyhp"] = random.randint(110, 130)
-				elif userinfo["selected_enemy"] in ["Frost Orc", "Frost Goblin"]: 
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Zulanthu DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Saurian" or userinfo["selected_enemy"] == "Deathclaw":
+					userinfo["enemyhp"] = random.randint(90, 110)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Largos":
+					userinfo["enemyhp"] = random.randint(100, 120)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "The Venomous":
+					userinfo["enemyhp"] = random.randint(110, 130)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+						
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Lost City DONE
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Skeleton" or userinfo["selected_enemy"] == "Lizardmen":
 					userinfo["enemyhp"] = random.randint(120, 140)
-				elif userinfo["selected_enemy"] in ["Frost Dragon"]: 
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+						
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Giant":
 					userinfo["enemyhp"] = random.randint(130, 150)
 
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "Death Knight":
+					userinfo["enemyhp"] = random.randint(140, 160)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+						
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Drenheim Done
+				# Normal monsters
+				elif userinfo["selected_enemy"] == "Ice Wolves" or userinfo["selected_enemy"] == "Frost Goblin":
+					userinfo["enemyhp"] = random.randint(150, 170)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+						
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+
+				# Hard monsters
+				elif userinfo["selected_enemy"] == "Frost Orc":
+					userinfo["enemyhp"] = random.randint(160, 180)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+				# Boss	
+				elif userinfo["selected_enemy"] == "Frost Dragon":
+					userinfo["enemyhp"] = random.randint(170, 190)
+
+					Uncommon = (int((userinfo["enemyhp"] / 100) * 20))
+					Rare = (int((userinfo["enemyhp"] / 100) * 30))
+					Legendary  = (int((userinfo["enemyhp"] / 100) * 40))
+					Mythical = (int((userinfo["enemyhp"] / 100) * 50))
+						
+					if userinfo["enemydifficulty"] == "Uncommon":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Uncommon
+						
+					elif userinfo["enemydifficulty"] == "Rare":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Rare
+						
+					elif userinfo["enemydifficulty"] == "Legendary":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Legendary
+							
+					elif userinfo["enemydifficulty"] == "Mythical":
+						userinfo["enemyhp"] = userinfo["enemyhp"] + Mythical
+
+				
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			elif answer1 == "n" or answer1 == "N" or answer1 == "no" or answer1 == "No":
 				funanswer = randchoice([fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["run"]["run1"]["translation"], fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["run"]["run2"]["translation"], fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["run"]["run3"]["translation"], fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["run"]["run4"]["translation"], fileIO(f"data/languages/{language}.json", "load")["fight"]["wander"]["run"]["run5"]["translation"]])
@@ -1290,10 +1906,12 @@ class fight(commands.Cog):
 		#YOUR PROTECTION IS BASED ON THE ARMOR YOURE HOLDING
 		youdef = 0
 
-		if userinfo["class"] == "Paladin":
+		if userinfo["class"] == "Knight":
 			youdef += random.randint(5, 10)
-		elif userinfo["class"] == "Knight":
+		elif userinfo["class"] == "Paladin":
 			youdef += random.randint(8, 15)
+		elif userinfo["class"] == "Grand Paladin":
+			youdef += random.randint(11, 20)
 
 # - - Common Armor - -
 #		if userinfo["wearing"] == "Chainmail Armor":
@@ -1334,6 +1952,7 @@ class fight(commands.Cog):
 		enemygold = random.randint(30, 60)
 		xpgain = random.randint(10, 15)
 
+		
 		#GUILD BOOST
 
 
@@ -1357,80 +1976,789 @@ class fight(commands.Cog):
 		if effectiveguildbonus >= 200:
 			effectiveguildbonus == 200
 
-		if userinfo["selected_enemy"] == "Rachi":
-			enemydmg += random.randint(2, 10)
-			enemygold = random.randint(10, 15) + (effectiveguildbonus)
-			goldlost = random.randint(20, 60)
-			xpgain = random.randint(5, 20)
-		if userinfo["selected_enemy"] == "Draugr":
-			enemydmg += random.randint(2, 10)
-			enemygold = random.randint(10, 15) + (effectiveguildbonus)
-			goldlost = random.randint(20, 60)
-			xpgain = random.randint(7, 20)
-		elif userinfo["selected_enemy"] == "Debin" or userinfo["selected_enemy"] == "Stalker":
+		# DMG goes up by 2 with dificulty
+		# gold goes up by 3 with difficulty
+		# goldlost goes up with 5 with difficulty
+		# exp gopes up by 2 with dicciculty
+		# each stat goes up with 2 per locaiton
+		# soo location 2 everything goes up with 4  
+
+
+		# GOLDEN TEMPLE
+		if userinfo["selected_enemy"] == "Rachi" or userinfo["selected_enemy"] == "Debin" or userinfo["selected_enemy"] == "Oofer":
 			enemydmg += random.randint(5, 10)
-			enemygold = random.randint(15, 20) + (effectiveguildbonus)
-			goldlost = random.randint(30, 70)
-			xpgain = random.randint(10, 25)
-		elif userinfo["selected_enemy"] == "Oofer" or userinfo["selected_enemy"] == "Souleater" or userinfo["selected_enemy"] == "Wyvern":
-			enemydmg += random.randint(5, 15)
-			enemygold = random.randint(20, 25) + (effectiveguildbonus)
-			goldlost = random.randint(40, 80)
-			xpgain = random.randint(15, 25)
-		elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Phantasm":
+			enemygold = random.randint(10, 30) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			expgain = random.randint(5, 25)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg += random.randint(5, 10)
+				enemygold = random.randint(10, 30) + (effectiveguildbonus)
+				goldlost = (int(enemygold * 2))
+				xpgain = random.randint(5, 25)
+
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			if userinfo["enemydifficulty"] == "Rare":
+				enemydmg += random.randint(5, 10)
+				enemygold = random.randint(10, 30) + (effectiveguildbonus)
+				goldlost = (int(enemygold * 2))
+				xpgain = random.randint(5, 25)
+
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			if userinfo["enemydifficulty"] == "Legendary":
+				enemydmg += random.randint(5, 10)
+				enemygold = random.randint(10, 30) + (effectiveguildbonus)
+				goldlost = (int(enemygold * 2))
+				xpgain = random.randint(5, 25)
+
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))	
+
+			if userinfo["enemydifficulty"] == "Mythical":
+				enemydmg += random.randint(5, 10)
+				enemygold = random.randint(10, 30) + (effectiveguildbonus)
+				goldlost = (int(enemygold * 2))
+				xpgain = random.randint(5, 25)
+
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+
+		# GOLDEN TEMPLE
+		elif userinfo["selected_enemy"] == "Wyvern":
 			enemydmg += random.randint(10, 15)
-			enemygold = random.randint(20, 30) + (effectiveguildbonus)
-			goldlost = random.randint(90, 160)
-			xpgain = random.randint(15, 30)
-		elif userinfo["selected_enemy"] == "Goblin" or userinfo["selected_enemy"] == "Fire Golem":
-			enemydmg += random.randint(10, 20)
-			enemygold = random.randint(25, 35) + (effectiveguildbonus)
-			goldlost = random.randint(90, 160)
-			xpgain = random.randint(20, 35)
-		elif userinfo["selected_enemy"] == "Zombie":
-			enemydmg += random.randint(15, 20)
-			enemygold = random.randint(25, 40) + (effectiveguildbonus)
-			goldlost = random.randint(90, 160)
-			xpgain = random.randint(25, 35)
-		elif userinfo["selected_enemy"] == "The Corrupted":
-			enemydmg += random.randint(15, 30)
-			enemygold = random.randint(30, 50) + (effectiveguildbonus)
-			goldlost = random.randint(100, 180)
-			xpgain = random.randint(30, 40)
-		elif userinfo["selected_enemy"] == "Ebony Guardian" or userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades" or userinfo["selected_enemy"] == "Skeleton":
+			enemygold = random.randint(15, 35) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(10, 30)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+
+		# GOLDEN TEMPLE
+		elif  userinfo["selected_enemy"] == "Fire Golem":
 			enemydmg += random.randint(20, 30)
+			enemygold = random.randint(25, 50) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(20, 40)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# SAKER KEEP
+		elif userinfo["selected_enemy"] == "Draugr" or userinfo["selected_enemy"] == "Stalker":
+			enemydmg += random.randint(15, 20)
+			enemygold = random.randint(20, 40) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(15, 35)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# SAKER KEEP
+		elif userinfo["selected_enemy"] == "Souleater":
+			enemydmg += random.randint(20, 25)
+			enemygold = random.randint(25, 45) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(20, 40)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# SAKER KEEP
+		elif userinfo["selected_enemy"] == "The Corrupted":
+			enemydmg += random.randint(30, 40)
 			enemygold = random.randint(35, 55) + (effectiveguildbonus)
-			goldlost = random.randint(100, 190)
-			xpgain = random.randint(35, 45)
-		elif userinfo["selected_enemy"] == "The Accursed" or userinfo["selected_enemy"] == "Harpy" or userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
-			enemydmg += random.randint(20, 40)
-			enemygold = random.randint(40, 55) + (effectiveguildbonus)
-			goldlost = random.randint(150, 200)
-			xpgain = random.randint(35, 45)
-		elif userinfo["selected_enemy"] == "The Nameless King" or userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian" or userinfo["selected_enemy"] == "Lizardmen":
-			enemydmg += random.randint(25, 40)
-			enemygold = random.randint(45, 60) + (effectiveguildbonus)
-			goldlost = random.randint(160, 220)
-			xpgain = random.randint(40, 50)
-		elif userinfo["selected_enemy"] == "Largos" or userinfo["selected_enemy"] == "The Venomous"  or userinfo["selected_enemy"] == "Giant" or userinfo["selected_enemy"] == "Ice Wolves":
-			enemydmg += random.randint(25, 50)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(30, 50)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# THE FOREST
+		elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Goblin":
+			enemydmg += random.randint(25, 30)
+			enemygold = random.randint(30, 50) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(25, 45)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# THE FOREST
+		elif userinfo["selected_enemy"] == "Zombie":
+			enemydmg += random.randint(30, 35)
+			enemygold = random.randint(35, 55) + (effectiveguildbonus)
+			goldlost = (int((int(enemygold * 2))))
+			xpgain = random.randint(30, 50)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# THE FOREST
+		elif userinfo["selected_enemy"] == "Phantasm":
+			enemydmg += random.randint(40, 50)
 			enemygold = random.randint(45, 65) + (effectiveguildbonus)
-			goldlost = random.randint(170, 240)
-			xpgain = random.randint(40, 55)
-		elif userinfo["selected_enemy"] == "Death Knight" or userinfo["selected_enemy"] == "Frost Orc" or userinfo["selected_enemy"] == "Frost Goblin":
-			enemydmg += random.randint(30, 55)
-			enemygold = random.randint(50, 65) + (effectiveguildbonus)
-			goldlost = random.randint(200, 260)
-			xpgain = random.randint(45, 60)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(40, 60)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# EBONY MOUNTAINS
+		elif userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades":
+			enemydmg += random.randint(35, 40)
+			enemygold = random.randint(40, 60) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(35, 55)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			if userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+			# EBONY MOUNTAINS
+		elif userinfo["selected_enemy"] == "Ebony Guardian":
+			enemydmg += random.randint(40, 45)
+			enemygold = random.randint(45, 65) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(40, 60)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# EBONY MOUNTAINS
+		elif userinfo["selected_enemy"] == "The Accursed" :
+			enemydmg += random.randint(50, 60)
+			enemygold = random.randint(55, 75) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(50, 70)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# TOWNSHIP OF ARKINA
+		elif userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
+			enemydmg += random.randint(45, 50)
+			enemygold = random.randint(50, 70) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(45, 65)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# TOWNSHIP OF ARKINA
+		elif userinfo["selected_enemy"] == "Harpy":
+			enemydmg += random.randint(50, 55)
+			enemygold = random.randint(55, 75) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(50, 70)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# TOWNSHIP OF ARKINA
+		elif userinfo["selected_enemy"] == "The Nameless King":
+			enemydmg += random.randint(60, 70)
+			enemygold = random.randint(65, 85) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(60, 80)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# ZULANTHU
+		elif userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian":
+			enemydmg += random.randint(55, 65)
+			enemygold = random.randint(60, 80) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(55, 75)
+			
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# ZULANTHU
+		elif userinfo["selected_enemy"] == "Largos":
+			enemydmg += random.randint(60, 70)
+			enemygold = random.randint(65, 85) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(60, 80)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# ZULANTHU
+		elif userinfo["selected_enemy"] == "The Venomous":
+			enemydmg += random.randint(70, 80)
+			enemygold = random.randint(75, 95) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(70, 90)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# LOST CITY
+		elif userinfo["selected_enemy"] == "Skeleton" or userinfo["selected_enemy"] == "Lizardmen":
+			enemydmg += random.randint(65, 75)
+			enemygold = random.randint(70, 90) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(65, 85)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# LOST CITY
+		elif userinfo["selected_enemy"] == "Giant":
+			enemydmg += random.randint(70, 80)
+			enemygold = random.randint(75, 95) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(70, 90)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# LOST CITY
+		elif userinfo["selected_enemy"] == "Death Knight": 
+			enemydmg += random.randint(80, 90)
+			enemygold = random.randint(85, 105) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(80, 100)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# DRENHEIM
+		elif userinfo["selected_enemy"] == "Ice Wolves" or userinfo["selected_enemy"] == "Frost Goblin":
+			enemydmg += random.randint(75, 85)
+			enemygold = random.randint(80, 100) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(75, 95)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# DRENHEIM
+		elif userinfo["selected_enemy"] == "Frost Orc":
+			enemydmg += random.randint(80, 90)
+			enemygold = random.randint(85, 105) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(80, 100)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		# DRENHEIM
 		elif userinfo["selected_enemy"] == "Frost Dragon":
-			enemydmg += random.randint(35, 60)
-			enemygold = random.randint(55, 70) + (effectiveguildbonus)
-			goldlost = random.randint(230, 290)
-			xpgain = random.randint(50, 65)
+			enemydmg += random.randint(90, 100)
+			enemygold = random.randint(95, 115) + (effectiveguildbonus)
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(90, 110)
+
+			if userinfo["enemydifficulty"] == "Uncommon":
+				enemydmg = (int((enemydmg / 100) * 120))
+				enemygold = (int((enemygold / 100) * 120))
+				goldlost = (int((goldlost / 100) * 120))
+				xpgain = (int((xpgain / 100) * 120))
+
+			elif userinfo["enemydifficulty"] == "Rare":
+				enemydmg = (int((enemydmg / 100) * 130))
+				enemygold = (int((enemygold / 100) * 130))
+				goldlost = (int((goldlost / 100) * 130))
+				xpgain = (int((xpgain / 100) * 130))
+
+			elif userinfo["enemydifficulty"] == "Legendary":
+				enemydmg = (int((enemydmg / 100) * 140))
+				enemygold = (int((enemygold / 100) * 140))
+				goldlost = (int((goldlost / 100) * 140))
+				xpgain = (int((xpgain / 100) * 140))
+
+			elif userinfo["enemydifficulty"] == "Mythical":
+				enemydmg = (int((enemydmg / 100) * 150))
+				enemygold = (int((enemygold / 100) * 150))
+				goldlost = (int((goldlost / 100) * 150))
+				xpgain = (int((xpgain / 100) * 150))
+
+		
+
 		elif userinfo["selected_enemy"] == "None":
 			return 
 
-		
+		enemyinfo = "Location", userinfo["location"], "Enemy name", userinfo["selected_enemy"], "Enemy difficulty", userinfo["enemydifficulty"], "Enemydmg", enemydmg, "Enemy gold", enemygold, "Gold lost", goldlost, "xpgain", xpgain
+		print(enemyinfo)
+
+
 			#YOUR SKILL OPTIONS LIST
 		skill_list = [i for i in userinfo["skills_learned"]]
 		show_list = []
@@ -2749,6 +4077,7 @@ class fight(commands.Cog):
 				userinfo["health"] = 0
 			userinfo["health"] = 0
 			userinfo["selected_enemy"] = "None"
+			userinfo["enemydifficulty"] == "None"
 			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
 			userinfo["deaths"] = userinfo["deaths"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -2762,6 +4091,7 @@ class fight(commands.Cog):
 			if userinfo["health"] < 0:
 				userinfo["health"] = 0
 			userinfo["selected_enemy"] = "None"
+			userinfo["enemydifficulty"] == "None"
 			userinfo["deaths"] = userinfo["deaths"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -2776,7 +4106,7 @@ class fight(commands.Cog):
 				except:
 					
 					pass
-			if userinfo["selected_enemy"] == "Goblin":
+			elif userinfo["selected_enemy"] == "Goblin":
 				try:
 					mission = "Kill 100 Goblins"
 					await self._guild_mission_check(user, guild, mission, 1)
@@ -2785,230 +4115,295 @@ class fight(commands.Cog):
 					pass
 
 
-			if userinfo["selected_enemy"] == "Rachi":
+			elif userinfo["selected_enemy"] == "Rachi":
 				try:
 					userinfo["Rachikilled"] = userinfo["Rachikilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
+
+				if userinfo["questname"] == "Rachi I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
 					
-			if userinfo["selected_enemy"] == "Draugr":
+			elif userinfo["selected_enemy"] == "Draugr":
 				try:
 					userinfo["Draugrkilled"] = userinfo["Draugrkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
-			if userinfo["selected_enemy"] == "Debin":
+
+				if userinfo["questname"] == "Draugr I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Debin":
 				try:
 					userinfo["Debinkilled"] = userinfo["Debinkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Stalker":
+				if userinfo["questname"] == "Debin I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Stalker":
 				try:
 					userinfo["Stalkerkilled"] = userinfo["Stalkerkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Fire Golem":
+				if userinfo["questname"] == "Stalker I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+
+			elif userinfo["selected_enemy"] == "Fire Golem":
 				try:
 					userinfo["FireGolemkilled"] = userinfo["FireGolemkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Wyvern":
+				if userinfo["questname"] == "Fire Golem I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 5:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Wyvern":
 				try:
 					userinfo["Wyvernkilled"] = userinfo["Wyvernkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Oofer":
+				if userinfo["questname"] == "Wyvern I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Oofer":
 				try:
 					userinfo["Ooferkilled"] = userinfo["Ooferkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Souleater":
+				if userinfo["questname"] == "Oofer I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Souleater":
 				try:
 					userinfo["Souleaterkilled"] = userinfo["Souleaterkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Wolf":
+				if userinfo["questname"] == "Souleater I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "Wolf":
 				try:
 					userinfo["Wolfkilled"] = userinfo["Wolfkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Goblin":
+			elif userinfo["selected_enemy"] == "Goblin":
 				try:
 					userinfo["Goblinkilled"] = userinfo["Goblinkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Zombie":
+			elif userinfo["selected_enemy"] == "Zombie":
 				try:
 					userinfo["Zombiekilled"] = userinfo["Zombiekilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Phantasm":
+			elif userinfo["selected_enemy"] == "Phantasm":
 				try:
 					userinfo["Phantasmkilled"] = userinfo["Phantasmkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "The Corrupted":
+			elif userinfo["selected_enemy"] == "The Corrupted":
 				try:
 					userinfo["TheCorruptedkilled"] = userinfo["TheCorruptedkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "The Accursed":
+				if userinfo["questname"] == "The Corrupted I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 5:
+						await ctx.send("Quest Updated!")
+					pass
+
+			elif userinfo["selected_enemy"] == "The Accursed":
 				try:
 					userinfo["TheAccursedkilled"] = userinfo["TheAccursedkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Elder Dragon":
+			elif userinfo["selected_enemy"] == "Elder Dragon":
 				try:
 					userinfo["ElderDragonkilled"] = userinfo["ElderDragonkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Hades":
+			elif userinfo["selected_enemy"] == "Hades":
 				try:
 					userinfo["Hadeskilled"] = userinfo["Hadeskilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Ebony Guardian":
+			elif userinfo["selected_enemy"] == "Ebony Guardian":
 				try:
 					userinfo["EbonyGuardiankilled"] = userinfo["EbonyGuardiankilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Harpy":
+			elif userinfo["selected_enemy"] == "Harpy":
 				try:
 					userinfo["Harpykilled"] = userinfo["Harpykilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Dormammu":
+			elif userinfo["selected_enemy"] == "Dormammu":
 				try:
 					userinfo["Dormammukilled"] = userinfo["Dormammukilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Ettin":
+			elif userinfo["selected_enemy"] == "Ettin":
 				try:
 					userinfo["Ettinkilled"] = userinfo["Ettinkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "The Nameless King":
+			elif userinfo["selected_enemy"] == "The Nameless King":
 				try:
 					userinfo["TheNamelessKingkilled"] = userinfo["TheNamelessKingkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Largos":
+			elif userinfo["selected_enemy"] == "Largos":
 				try:
 					userinfo["Largoskilled"] = userinfo["Largoskilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Death Claw":
+			elif userinfo["selected_enemy"] == "Death Claw":
 				try:
 					userinfo["Deathclawilled"] = userinfo["Deathclawilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Saurian":
+			elif userinfo["selected_enemy"] == "Saurian":
 				try:
 					userinfo["Sauriankilled"] = userinfo["Sauriankilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "The venemous":
+			elif userinfo["selected_enemy"] == "The venemous":
 				try:
 					userinfo["TheVenomouskilled"] = userinfo["TheVenomouskilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Skeleton":
+			elif userinfo["selected_enemy"] == "Skeleton":
 				try:
 					userinfo["Skeletonkilled"] = userinfo["Skeletonkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Lizardmen":
+			elif userinfo["selected_enemy"] == "Lizardmen":
 				try:
 					userinfo["Lizardmenkilled"] = userinfo["Lizardmenkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Giant":
+			elif userinfo["selected_enemy"] == "Giant":
 				try:
 					userinfo["Giantkilled"] = userinfo["Giantkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Death Knight":
+			elif userinfo["selected_enemy"] == "Death Knight":
 				try:
 					userinfo["DeathKnightkilled"] = userinfo["DeathKnightkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Ice Wolves":
+			elif userinfo["selected_enemy"] == "Ice Wolves":
 				try:
 					userinfo["IceWolveskilled"] = userinfo["IceWolveskilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Frost Orc":
+			elif userinfo["selected_enemy"] == "Frost Orc":
 				try:
 					userinfo["FrostOrckilled"] = userinfo["FrostOrckilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Frost Goblin":
+			elif userinfo["selected_enemy"] == "Frost Goblin":
 				try:
 					userinfo["FrostGoblinkilled"] = userinfo["FrostGoblinkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
 
-			if userinfo["selected_enemy"] == "Frost Dragon":
+			elif userinfo["selected_enemy"] == "Frost Dragon":
 				try:
 					userinfo["FrostDragonkilled"] = userinfo["FrostDragonkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -3016,6 +4411,7 @@ class fight(commands.Cog):
 					pass
 
 			userinfo["selected_enemy"] = "None"
+			userinfo["enemydifficulty"] = "None"
 			userinfo["gold"] = userinfo["gold"] + int(enemygold)
 			userinfo["exp"] = userinfo["exp"] + xpgain
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -3025,7 +4421,7 @@ class fight(commands.Cog):
 				em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["crate"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				userinfo["lootbag"] = userinfo["lootbag"] + 1
-			if lootbag == 1:
+			elif lootbag == 1:
 				userinfo = db.users.find_one({ "_id": user.id })
 				em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["key"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
@@ -3251,10 +4647,12 @@ class fight(commands.Cog):
 		#YOUR PROTECTION IS BASED ON THE ARMOR YOURE HOLDING
 		enemydef = 0
 
-		if enemyinfo["class"] == "Paladin":
-			enemydef += random.randint(5, 10)
-		elif enemyinfo["class"] == "Knight":
-			enemydef += random.randint(8, 15)
+		if userinfo["class"] == "Knight":
+			youdef += random.randint(5, 10)
+		elif userinfo["class"] == "Paladin":
+			youdef += random.randint(8, 15)
+		elif userinfo["class"] == "Grand Paladin":
+			youdef += random.randint(11, 20)
 
 # - - Common Armor - -
 #		if enemyinfo["wearing"] == "Chainmail Armor":

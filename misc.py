@@ -72,7 +72,7 @@ class misc(commands.Cog):
 	@commands.check(developer)
 	async def bap(self, ctx):
 		print('boop')
-		em = discord.Embed(title="\n", description="🎉Thank you for 350K Users! 🎉",color=discord.Colour(0xffffff))	
+		em = discord.Embed(title="\n", description="🎉Thank you for 360K Users! 🎉",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
 	@commands.command(pass_context=True, no_pm=True)

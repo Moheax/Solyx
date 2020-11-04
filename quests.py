@@ -915,7 +915,7 @@ class quests(commands.Cog):
 				except:
 					return
 			
-			newquest = "Guild"
+			newquest = "Guild I"
 			userinfo["questname"] = newquest
 			userinfo["questscompleted"].append(oldquest)
 			userinfo["questprogress"] = 0
@@ -925,7 +925,7 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			userinfo["keys"] = userinfo["keys"] + keygain
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
-			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Not Made yet!".format(newquest), color=discord.Colour(0xffffff)) 
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Represent a guild\nCheck guild info\nCheck guild mission\nCheck guild donate function.".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["lvl"] = userinfo["lvl"] + 1
@@ -944,6 +944,719 @@ class quests(commands.Cog):
 				
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			return
+
+		
+		elif userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 4 and userinfo["questprogress"] >= 1:
+			oldquest = "Guild I"
+
+			expgain = 80
+			goldgain = 80
+			crategain = 5
+			keygain = 5
+			hpgain = 3
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Shop II"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Try and sell a item in the Shop".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Shop II" and userinfo["questprogress"] >= 1:
+			oldquest = "Shop II"
+
+			expgain = 85
+			goldgain = 85
+			crategain = 5
+			keygain = 5
+			hpgain = 3
+			exppgain = 1
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Market I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at the market!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Market I" and userinfo["questprogress"] >= 1:
+			oldquest = "Market I"
+
+			expgain = 90
+			goldgain = 90
+			crategain = 5
+			keygain = 5
+			hpgain = 4
+			exppgain = 2
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Guild II"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Donate 1000g to your guild!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Guild II" and userinfo["questprogress"] >= 1000:
+			oldquest = "Guild II"
+
+			expgain = 95
+			goldgain = 95
+			crategain = 6
+			keygain = 6
+			hpgain = 5
+			exppgain = 3
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Rachi I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Rachi's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Rachi I" and userinfo["questprogress"] >= 10:
+			oldquest = "Rachi I"
+
+			expgain = 100
+			goldgain = 100
+			crategain = 6
+			keygain = 6
+			hpgain = 5
+			exppgain = 4
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Debin I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Debin's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Debin I" and userinfo["questprogress"] >= 10:
+			oldquest = "Debin I"
+
+			expgain = 100
+			goldgain = 100
+			crategain = 6
+			keygain = 6
+			hpgain = 5
+			exppgain = 4
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Oofer I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Oofer's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Oofer I" and userinfo["questprogress"] >= 10:
+			oldquest = "Oofer I"
+
+			expgain = 100
+			goldgain = 100
+			crategain = 6
+			keygain = 6
+			hpgain = 5
+			exppgain = 4
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Wyvern I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Wyvern's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Wyvern I" and userinfo["questprogress"] >= 10:
+			oldquest = "Wyvern I"
+
+			expgain = 100
+			goldgain = 100
+			crategain = 6
+			keygain = 6
+			hpgain = 5
+			exppgain = 4
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Fire Golem I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 5 Fire Golem's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Fire Golem I" and userinfo["questprogress"] >= 5:
+			oldquest = "Fire Golem I"
+
+			expgain = 110
+			goldgain = 110
+			crategain = 7
+			keygain = 7
+			hpgain = 6
+			exppgain = 5
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Travel I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTravel to Saker Keep!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+				
+				
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Travel I" and userinfo["questprogress"] >= 1:
+			oldquest = "Travel I"
+
+			expgain = 120
+			goldgain = 120
+			crategain = 7
+			keygain = 7
+			hpgain = 6
+			exppgain = 6
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Draugr I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Draugr's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+		
+	
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Draugr I" and userinfo["questprogress"] >= 10:
+			oldquest = "Draugr I"
+
+			expgain = 130
+			goldgain = 130
+			crategain = 8
+			keygain = 8
+			hpgain = 7
+			exppgain = 7
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Stalker I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Stalker's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		
+		elif userinfo["questname"] == "Stalker I" and userinfo["questprogress"] >= 10:
+			oldquest = "Stalker I"
+
+			expgain = 130
+			goldgain = 130
+			crategain = 8
+			keygain = 8
+			hpgain = 7
+			exppgain = 7
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Souleater I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Souleater's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		
+		elif userinfo["questname"] == "Souleater I" and userinfo["questprogress"] >= 10:
+			oldquest = "Souleater I"
+
+			expgain = 130
+			goldgain = 130
+			crategain = 8
+			keygain = 8
+			hpgain = 7
+			exppgain = 7
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "The Corrupted I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Stalker's!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		
+		elif userinfo["questname"] == "The Corrupted I" and userinfo["questprogress"] >= 10:
+			oldquest = "The Corrupted I"
+
+			expgain = 130
+			goldgain = 130
+			crategain = 8
+			keygain = 8
+			hpgain = 7
+			exppgain = 7
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Reforge I"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**NOT MADE YET!!**\n**Objective**\nReforge a item!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
 
 		else:
 			if userinfo["questname"] == "Basic A":
@@ -1092,7 +1805,7 @@ class quests(commands.Cog):
 			elif userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 1:
 				userinfo["questprogress"] = 0
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(title="Health acquisition", description="**Objective**\nBuy 5 health potions.\nType {}buy hp <amount>\n\nUse 1 hp potion\nType {}heal".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Health acquisition", description="**Objective**\nUse 1 hp potion\nType {}heal".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="Part 2/2\n{}/1 health potions used".format(userinfo["questprogress"]), inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
@@ -1145,7 +1858,7 @@ class quests(commands.Cog):
 
 			elif userinfo["questname"] == "Equip" and userinfo["questpart"] == 1:
 				userinfo["questprogress"] = 0
-				em = discord.Embed(title="Equip", description="**Objective**\nEquip a weapon\nType {}equip weapon <number>\n Equip a armor piece.\nType {}equip armor <number>".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Equip", description="**Objective**\n Equip a armor piece.\nType {}equip armor <number>".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="Part 2/2\nEquip a armor piece", inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
@@ -1211,7 +1924,7 @@ class quests(commands.Cog):
 
 			elif userinfo["questname"] == "Shop I" and userinfo["questpart"] == 1:
 				userinfo["questprogress"] = 0
-				em = discord.Embed(title="Shop I", description="**Objective**\nCheck the weapon shop\nType {}shop or {}shop weapons\nCheck the armor shop\nType {}shop armor\nBuy a weapon\nType {}shop buy <weapon name>\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Shop I", description="**Objective**\nCheck the armor shop\nType {}shop armor\nBuy a weapon\nType {}shop buy <weapon name>\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="part 2/4\nArmor shop not checked.", inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
@@ -1225,7 +1938,7 @@ class quests(commands.Cog):
 
 			elif userinfo["questname"] == "Shop I" and userinfo["questpart"] == 2:
 				userinfo["questprogress"] = 0
-				em = discord.Embed(title="Shop I", description="**Objective**\nCheck the weapon shop\nType {}shop or {}shop weapons\nCheck the armor shop\nType {}shop armor\nBuy a weapon\nType {}shop buy <weapon name>\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Shop I", description="**Objective**\nBuy a weapon\nType {}shop buy <weapon name>\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="part 3/4\nNo weapon bought.", inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
@@ -1239,7 +1952,7 @@ class quests(commands.Cog):
 
 			elif userinfo["questname"] == "Shop I" and userinfo["questpart"] == 3:
 				userinfo["questprogress"] = 0
-				em = discord.Embed(title="Shop I", description="**Objective**\nCheck the weapon shop\nType {}shop or {}shop weapons\nCheck the armor shop\nType {}shop armor\nBuy a weapon\nType {}shop buy <weapon name>\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Shop I", description="**Objective**\nBuy a piece of armor\nType {}shop buy <armor name>".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="part 4/4\nNo armor bought", inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
@@ -1277,9 +1990,221 @@ class quests(commands.Cog):
 					except:
 						return
 
-			elif userinfo["questname"] == "Guild":
-				em = discord.Embed(title="Check Profile", description="**Objective**\nNot made yet.\nType {} / {} ".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
-				em.add_field(name="Progress", value="leaderboard unopened", inline=False)
+			elif userinfo["questname"] == "Guild I" and userinfo["questpart"] == 0:
+				userinfo["questprogress"] = 0
+				em = discord.Embed(title="Guild", description="**Objective**\nRepresent a guild.\nType {}guild or {}guild represent\nCheck the Guild info.\nType {}guild info\nCheck the guild mission.\nType {}guild mission\nCheck the guild donate function\nType {}Guild donate".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="part 1/4\nNo Guild represented.", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Guild I" and userinfo["questpart"] == 1:
+				userinfo["questprogress"] = 0
+				em = discord.Embed(title="Guild", description="**Objective**\nCheck the Guild info.\nType {}guild info\nCheck the guild mission.\nType {}guild mission\nCheck the guild donate function\nType {}Guild donate".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="part 2/4\nGuild info not checked.", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Guild I" and userinfo["questpart"] == 2:
+				userinfo["questprogress"] = 0
+				em = discord.Embed(title="Guild", description="**Objective**\nCheck the guild mission.\nType {}guild mission\nCheck the guild donate function\nType {}Guild donate".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="part 3/4\nGuild mission not checked.", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Guild I" and userinfo["questpart"] == 3:
+				userinfo["questprogress"] = 0
+				em = discord.Embed(title="Guild", description="**Objective**\nCheck the guild donate function\nType {}Guild donate 1\nside note: you have to donate 1 gold for it to register.".format(ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="part 4/4\nGuild donate function unopened.", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Shop II":
+				em = discord.Embed(title="Shop II", description="**Objective**\nSell a item in the shop!\nType {}Shop sell <number>".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="No item bought", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Market I":
+				em = discord.Embed(title="Market I", description="**Objective**\nTry and list a item on the market!\nType {}market sell <number> <price>".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="No item listed", inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:	
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Guild II":
+				em = discord.Embed(title="Guild II", description="**Objective**\nDonate 1000g to your guild!\nType {}guild donate 1000 / {}guild donate <amount>".format(ctx.prefix, ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/1000 <:Gold:639484869809930251> Donated".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Rachi I":
+				em = discord.Embed(title="Rachi I", description="**Objective**\nSlay 10 Rachi's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Debin I":
+				em = discord.Embed(title="Debin I", description="**Objective**\nSlay 10 Debin's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Oofer I":
+				em = discord.Embed(title="Oofer I", description="**Objective**\nSlay 10 Oofer's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Wyvern I":
+				em = discord.Embed(title="Wyvern I", description="**Objective**\nSlay 10 Wyvern's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Fire Golem I":
+				em = discord.Embed(title="Fire Golem I", description="**Objective**\nSlay 10 Fire Golem's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/5 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Travel I":
+				em = discord.Embed(title="Travel I", description="**Objective**\nTravel to location 2 Saker keep\nMin level requirement is 10\nType {}Travel".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="Not traveled yet".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Draugr I":
+				em = discord.Embed(title="Draugr I", description="**Objective**\nSlay 10 Draugr's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Stalker I":
+				em = discord.Embed(title="Stalker I", description="**Objective**\nSlay 10 Stalker's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Souleater I":
+				em = discord.Embed(title="Souleater I", description="**Objective**\nSlay 10 Souleater's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/10 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "The Corrupted I":
+				em = discord.Embed(title="Fire Golem I", description="**Objective**\nSlay 10 Corrupted's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="{}/5 Slain".format(userinfo["questprogress"]), inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
 					await ctx.send(embed=em)
