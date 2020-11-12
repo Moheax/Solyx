@@ -135,7 +135,7 @@ class guild(commands.Cog):
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Is now representing"+guild.name)
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Is now representing "+guild.name)
 
 		user = ctx.message.author
 		guild = ctx.message.guild
@@ -217,16 +217,19 @@ class guild(commands.Cog):
 		if guildinfo["title"] == "Big Boys" and guildinfo["lvl"] >= 3:
 			guildinfo["title"] = "Real Deal"
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-		try:
-
+		
+		try: 
 			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
 			await ctx.send(embed=em)
-			return
 		except:
-			pass
-		em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** ~\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
-		em.set_thumbnail(url=guild.icon_url)
+			try:
+				em = discord.Embed(title="<:ShieldBug:649157223905492992>Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** Error\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+				em.set_thumbnail(url=guild.icon_url)
+				await ctx.send(embed=em)
+				return
+			except:
+				return
 		try:
 			await ctx.send(embed=em)
 		except:
@@ -879,20 +882,10 @@ class guild(commands.Cog):
 				await ctx.send("Quest Updated!")
 			pass
 
-		try:
-			if guildinfo["mission"] == "Donate 35000 gold to your guild":
-				if not guildinfo["mission"] == "Donate 35000 gold to your guild":
-					pass
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + amount
-				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-				pass
-			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-				pass
-		except:
-			print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-			pass
+
+		if guildinfo["mission"] == "Donate 35000 gold to your guild":
+			guildinfo["missionprogress"] = guildinfo["missionprogress"] + amount
+			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
 
 		userinfo["gold"] = userinfo["gold"] - amount

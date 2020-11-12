@@ -77,7 +77,7 @@ class command(commands.Cog):
 			e.add_field(name="{}stats".format(ctx.prefix), value="See your statistics", inline=True)
 			e.add_field(name="{}profile".format(ctx.prefix), value="Show your profile card", inline=False)
 			e.add_field(name="{}rank".format(ctx.prefix), value="Show your rank card", inline=False)
-			e.add_field(name="{}market".format(ctx.prefix), value="Sell abd buy items on the market", inline=False)
+			e.add_field(name="{}market".format(ctx.prefix), value="Sell and buy items on the market", inline=False)
 			e.add_field(name="{}equip".format(ctx.prefix), value="Equip a weapon or a piece of armor", inline=False)
 			e.add_field(name="{}sell".format(ctx.prefix), value="Sell an item", inline=False)
 			e.add_field(name="{}crate".format(ctx.prefix), value="Open a crate", inline=False)

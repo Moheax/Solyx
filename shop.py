@@ -464,6 +464,27 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You bought the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 
+			elif item == "Reinforced Crossbow" or item == "reinforced crossbow":
+				itemobj = {"name": "Reinforced Crossbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+				cost = 7000
+				value = cost - userinfo["gold"]
+				if userinfo["gold"] < cost:
+					em = discord.Embed(description="You need {} more gold to buy this item.".format(value), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
+						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questpart"] = userinfo["questpart"] + 1
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						if userinfo["questprogress"] >= 1:
+							await ctx.send("Quest Updated!")
+						pass
+					userinfo["gold"] = userinfo["gold"] - cost
+					userinfo["inventory"].append(itemobj)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You bought the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+
 			elif item == "Oblivion" or item == "oblivion":
 				itemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
 				cost = 2000
@@ -829,6 +850,15 @@ class shop(commands.Cog):
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
+		elif itemname == "Reinforced Crossbow":
+			cost = 700
+			value = cost + userinfo["gold"]
+			userinfo["gold"] = userinfo["gold"] + cost
+			userinfo["inventory"].remove(item)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
 		elif itemname == "Mithril Sword":
 			cost = 700
 			value = cost + userinfo["gold"]
@@ -1115,7 +1145,7 @@ class shop(commands.Cog):
 			em.add_field(name="Excalibur <:Legendary:639425368167809065>", value="Not buyable")
 			em.add_field(name="Twilight <:Legendary:639425368167809065>", value="Not buyable")
 			await ctx.send(embed=em)
-		elif Class == "Thief" or Class == "Mesmer" or Class == "Rogue" or Class == "High rogue" or Class == "Adept Mesmer":
+		elif Class == "Thief" or Class == "Mesmer" or Class == "Rogue" or Class == "High Rogue" or Class == "Adept Mesmer":
 			em = discord.Embed(title="Weapon list for the {} class".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Abaddon Dagger <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Rusted Short Sword <:Common:573784881012932618>", value="2,000 gold")
@@ -1160,7 +1190,7 @@ class shop(commands.Cog):
 
 		Class = userinfo["class"]
 
-		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger" or Class == "Night Assassin" or Class == "Skilled Ranger" or Class == "High rogue" or Class == "Adept Mesmer" or Class == "Master Samurai" or Class == "Grand Paladin" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":
+		if Class == "Mesmer" or Class == "Assassin" or Class == "Thief" or Class == "Archer" or Class == "Gladiator" or Class == "Mage" or Class == "Necromancer" or Class == "Rogue"or  Class == "Paladin" or Class == "Knight" or Class == "Elementalist" or Class == "Ranger" or Class == "Night Assassin" or Class == "Skilled Ranger" or Class == "High Rogue" or Class == "Adept Mesmer" or Class == "Master Samurai" or Class == "Grand Paladin" or Class == "Developed Necromancer" or Class == "Adequate Elementalist":
 			em = discord.Embed(title="Armor list for the {} class ".format(Class), description="Common:<:Common:573784881012932618> Rare:<:Rare:573784880815538186> Legendary:<:Legendary:639425368167809065> Mythical:<:Mythical:573784881386225694>", color=discord.Colour(0xffffff))
 			em.add_field(name="Leather Armor <:Common:573784881012932618>", value="2,000 gold")
 			em.add_field(name="Banded Armor <:Common:573784881012932618>", value="2,000 gold")

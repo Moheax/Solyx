@@ -17,19 +17,19 @@ class autorest(commands.Cog):
 			message = '-help', users
 			activity = discord.Game(name=message)
 			await self.bot.change_presence(status=discord.Status.online, activity=activity)
-			await asyncio.sleep(60)
+			
 
 			for restinfo in db.users.find({}):
 				idowo = restinfo["_id"]
-				if not restinfo["health"] >= 100:
+				if not restinfo["health"] >= restinfo["MaxHealth"]:
 					randomhpgain = random.randint(1, 3)
 
-					if restinfo["health"] + randomhpgain > 100:
-						restinfo["health"] = 100
+					if restinfo["health"] + randomhpgain > restinfo["MaxHealth"]:
+						restinfo["health"] = restinfo["MaxHealth"]
 					else:
 						restinfo["health"] = restinfo["health"] + randomhpgain
 					db.users.replace_one({"_id": idowo}, restinfo, upsert=True)
-
+					
 
 			await asyncio.sleep(60)
 

@@ -147,7 +147,7 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
-		elif topic == "Branded Metal" or topic == "branded metal" or topic == "Branded Metal Armor" or topic == "branded metal":
+		elif topic == "Branded Metal" or topic == "branded metal" or topic == "Branded Metal Armor" or topic == "branded metal armor":
 			embed=discord.Embed(title="**Branded Metal Armor**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
@@ -208,106 +208,626 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 			
 		elif topic == "Phantasm" or topic == "phantasm" or  topic == "Phantasm" or topic == "phantasm":
+			minHp = 70
+			maxHp = 90
+			
+			minDmg = 40
+			maxDmg = 50
+
+			minGold = 45
+			maxGold = 65
+
+			minExp = 40
+			maxExp = 60
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Phantasm**", description="**<:ShieldCheck:560804135545602078>Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/BbBmEOF.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="The Forest", inline=False)
-			embed.add_field(name="**Health**", value="60Hp - 80Hp", inline=False)
-			embed.add_field(name="**Damage**", value="10Dmg - 15Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="20G  - 30G", inline=False)
-			embed.add_field(name="**Experience**", value="15Exp - 30Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The Phantasm has long protected The Forest. The Monks prayed and offered sacrifices to keep it satisfied. The Phantasm resides near hidden lakes throughout the forest, as the water is it's life source. As the praying monks became extinct it no longer has any peace. Whenever the Phantasm feels threatened it gathers dark clouds and density into an eerie storm. It uses it's long slithering body to smother its threats. And guides the lightning of the storm onto it's foes.", inline=False)
 			embed.set_footer(text="Submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Fire Golem" or topic == "fire golem":
+			minHp = 40
+			maxHp = 60
+			
+			minDmg = 20
+			maxDmg = 30
+
+			minGold = 25
+			maxGold = 50
+
+			minExp = 20
+			maxExp = 40
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Fire Golem**", description="**<:ShieldCheck:560804135545602078>Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/c7f23f41-5bd8-4b82-a00c-d61b0cfb0160/d9p8w3t-e2e0278a-7b05-4d6b-9a69-c50f3f005126.png/v1/fill/w_700,h_331,q_70,strp/fire_golem_by_sourshade_d9p8w3t-350t.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
-			embed.add_field(name="**Health**", value="30Hp - 50Hp", inline=False)
-			embed.add_field(name="**Damage**", value="10Dmg - 20Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="25G  - 35G", inline=False)
-			embed.add_field(name="**Experience**", value="20Exp - 35Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The fire golem's name speaks for itself. The golems arose from the depths of a volcano, summoned by an ancient group of druids to protect the Golden Temple. The golem's bodies are made from magnetized lava rock. built to withstand high pressure and has strong resistance against piercing attacks. Long have the golems been asleep. But the increase of wandering adventurers have woken them once more. The golems have no feelings and only one objective in mind. To kill tresspassers.", inline=False)
 			embed.set_footer(text="Submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "corrupted" or topic == "the corrupted" or topic == "The Corrupted" or topic == "Corrupted":
+			minHp = 40
+			maxHp = 60
+			
+			minDmg = 30
+			maxDmg = 40
+
+			minGold = 35
+			maxGold = 55
+
+			minExp = 30
+			maxExp = 50
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			
 			embed=discord.Embed(title="**The Corrupted**", description="**<:ShieldCheck:560804135545602078>Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/oTi3K3q.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Saker Keep", inline=False)
-			embed.add_field(name="**Health**", value="70Hp - 90Hp", inline=False)
-			embed.add_field(name="**Damage**", value="15 - 30Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="30G  - 50G", inline=False)
-			embed.add_field(name="**Experience**", value="30Exp - 40Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The Corrupted originally came from a relatively peaceful race of dragons. Their emerald green scales became a very wanted loot amongst adventurers. The adventurers betrayed the race it's trust and slaughtered almost all of the dragons. The survivors went into a frenzy. No longer able to tell any difference between living beings. The Corrupted kill blindly. Their snake like fangs have teared trough many houses and castles alike. Their horns grow as they kill, and their roaring can be heard from afar. Now they roam the ruins of Saker Keep.", inline=False)
 			embed.set_footer(text="Submitted by AceTheBear223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "The Accursed" or topic == "Accursed" or topic == "the accursed" or topic == "accursed":
+			minHp = 90
+			maxHp = 110
+			
+			minDmg = 50
+			maxDmg = 60
+
+			minGold = 55
+			maxGold = 75
+
+			minExp = 50
+			maxExp = 70
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**The Accursed**", description="**:book:Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
-			embed.add_field(name="**Health**", value="70Hp - 90Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="40G  - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "The Nameless King" or topic == "the nameless king" or topic == "Nameless King" or topic == "nameless king":
+			minHp = 110
+			maxHp = 130
+			
+			minDmg = 60
+			maxDmg = 70
+
+			minGold = 65
+			maxGold = 85
+
+			minExp = 60
+			maxExp = 80
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**The Nameless King**", description="**:book:Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Township of Arkina", inline=False)
-			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G  - 60G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 50Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "The Venomous" or topic == "the venomous" or topic == "Venomous" or topic == "venomous":
+			minHp = 110
+			maxHp = 130
+			
+			minDmg = 70
+			maxDmg = 80
+
+			minGold = 75
+			maxGold = 95
+
+			minExp = 70
+			maxExp = 90
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**The Venomous**", description="**:book:Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.pinimg.com/originals/d3/5e/fb/d35efb16a4e1aeee4e0119c8a2257fca.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 55Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Death Knight" or topic == "death knight":
+			minHp = 140
+			maxHp = 160
+			
+			minDmg = 80
+			maxDmg = 90
+
+			minGold = 85
+			maxGold = 105
+
+			minExp = 80
+			maxExp = 100
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Death Knight**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/ELd7Ll5.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Lost city", inline=False)
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="45Dmg - 66Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="35G  - 37G", inline=False)
-			embed.add_field(name="**Experience**", value="45Exp - 60Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
-
+			
 		elif topic == "Frost Dragon" or topic == "frost dragon":
+			minHp = 170
+			maxHp = 190
+			
+			minDmg = 90
+			maxDmg = 100
+
+			minGold = 95
+			maxGold = 115
+
+			minExp = 90
+			maxExp = 110
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Frost Dragon**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://cdn.wallpapersafari.com/11/55/3hBQ9Z.jpg")
 			embed.add_field(name="**Type**", value="Boss", inline=False)
 			embed.add_field(name="**Place**", value="Drenheim", inline=False)
-			embed.add_field(name="**Health**", value="130Hp - 150Hp", inline=False)
-			embed.add_field(name="**Damage**", value="35Dmg - 60Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="55G  - 70G", inline=False)
-			embed.add_field(name="**Experience**", value="50Exp - 65Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The Frost Dragon was said to be a living fossil, a strong type of dragon that a great hero once had slain and put a spell on. This spell caused a never ending life cycle that made the dragon into a bone-like creature, It was once found at the Ebony mountain looking for frozen caves to be its den and the Frost Dragon ended up at ""Drenheim"" known to be the coldest place of Solyx.", inline=False)
 			embed.set_footer(text="Submitted by 𝓗𝓲𝓻𝓸#9377\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -504,7 +1024,7 @@ class wiki(commands.Cog):
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/752638205869949168.png?v=1")
 			embed.add_field(name="**Description**", value="Respected amongst Knights and Paladins.", inline=False)
 			embed.add_field(name="**Skills**", value="Swing, Fussilade, Blockade", inline=False)
-			embed.add_field(name="<:ShieldCross:560804112548233217>**Special**", value="8 - 14 Reduced enemy damage.", inline=False)
+			embed.add_field(name="**Special**", value="8 - 14 Reduced enemy damage.", inline=False)
 			embed.add_field(name="**Specialization**", value="None yet!", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -636,7 +1156,7 @@ class wiki(commands.Cog):
 			embed.add_field(name="Level", value="level of the guild not Nitro boost.", inline=False)
 			embed.add_field(name="Exp", value="the guild Exp.", inline=False)
 			embed.add_field(name="Bonus", value="Guild Bonus (check {}wiki guild bonus).".format(ctx.prefix), inline=False)
-			embed.add_field(name="Health", value="the guild HP If the guild hp reaches 0 the stats get reset back to 0\n level, exp and bonus.\n to keep the hp up, complete missions!.", inline=False)
+			embed.add_field(name="Health", value="the guild HP If the guild Hp reaches 0 the stats get reset back to 0\n level, exp and bonus.\n to keep the Hp up, complete missions!.", inline=False)
 			await ctx.send(embed=embed)
 
 		elif topic == "Guild Represent" or topic == "Represent" or topic == "guild represent" or topic == "represent":
@@ -705,10 +1225,10 @@ class wiki(commands.Cog):
 			embed=discord.Embed(title="**Health Potion**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573577125064605706.png?v=1")
 			embed.add_field(name="Usage", value="Just type {}heal<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
-			embed.add_field(name="Buy", value="To buy it type {}buy hp <amount>\nThe price changes on your level".format(ctx.prefix), inline=False)
+			embed.add_field(name="Buy", value="To buy it type {}buy Hp <amount>\nThe price changes on your level".format(ctx.prefix), inline=False)
 			embed.add_field(name="Price", value="Level 0+ = 5G\nLevel 10+ = 10G\nLevel 30+ = 15G\nLevel  50+ = 20G\nLevel  70+ = 25G".format(ctx.prefix, ctx.prefix, ctx.prefix), inline=False)
 			embed.add_field(name="How to get", value="You can get Health potions with {}daily, {}vote and {}lb".format(ctx.prefix, ctx.prefix, ctx.prefix), inline=False)
-			embed.add_field(name="Stats", value="Minor health potions will heal you between 25 and 55 hp\nDaily will get you 2 to 5 Health potions.\nMore health potions will be added later.".format(ctx.prefix), inline=False)
+			embed.add_field(name="Stats", value="Minor health potions will heal you between 25 and 55 Hp\nDaily will get you 2 to 5 Health potions.\nMore health potions will be added later.".format(ctx.prefix), inline=False)
 			embed.set_footer(text="G = Gold, HP = Health, Level = User level.")
 			await ctx.send(embed=embed)
 
@@ -748,326 +1268,1951 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 
 		elif topic == "Rachi" or topic == "rachi":
+			minHp = 10
+			maxHp = 30
+			
+			minDmg = 5
+			maxDmg = 10
+
+			minGold = 10
+			maxGold = 30
+
+			minExp = 5
+			maxExp = 25
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Rachi**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
-			embed.add_field(name="**Health**", value="10Hp - 30Hp", inline=False)
-			embed.add_field(name="**Damage**", value="2Dmg - 10Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="10G - 15G", inline=False)
-			embed.add_field(name="**Experience**", value="5Exp - 20Exp", inline=False)
+
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Debin" or topic == "debin":
+			minHp = 10
+			maxHp = 30
+			
+			minDmg = 5
+			maxDmg = 10
+
+			minGold = 10
+			maxGold = 30
+
+			minExp = 5
+			maxExp = 25
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Debin**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
-			embed.add_field(name="**Health**", value="20Hp - 40Hp", inline=False)
-			embed.add_field(name="**Damage**", value="5Dmg - 10Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="15G - 20G", inline=False)
-			embed.add_field(name="**Experience**", value="10Exp - 25Exp", inline=False)
+
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Oofer" or topic == "oofer":
+			minHp = 10
+			maxHp = 30
+			
+			minDmg = 5
+			maxDmg = 10
+
+			minGold = 10
+			maxGold = 30
+
+			minExp = 5
+			maxExp = 25
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Oofer**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
-			embed.add_field(name="**Health**", value="40Hp - 60Hp", inline=False)
-			embed.add_field(name="**Damage**", value="5Dmg - 15Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="20G - 25G", inline=False)
-			embed.add_field(name="**Experience**", value="15Exp - 25Exp", inline=False)
+
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Wyvern" or topic == "wyvern":
+			minHp = 30
+			maxHp = 50
+			
+			minDmg = 10
+			maxDmg = 15
+
+			minGold = 15
+			maxGold = 35
+
+			minExp = 10
+			maxExp = 30
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Wyvern**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
-			embed.add_field(name="**Health**", value="30Hp - 50Hp", inline=False)
-			embed.add_field(name="**Damage**", value="5Dmg - 15Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="20G - 25G", inline=False)
-			embed.add_field(name="**Experience**", value="15Exp - 25Exp", inline=False)
+
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Wolf" or topic == "wolf":
+			minHp = 50
+			maxHp = 70
+			
+			minDmg = 25
+			maxDmg = 30
+
+			minGold = 30
+			maxGold = 50
+
+			minExp = 25
+			maxExp = 45
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Wolf**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="The Forest", inline=False)
-			embed.add_field(name="**Health**", value="50Hp - 70Hp", inline=False)
-			embed.add_field(name="**Damage**", value="10Dmg - 15Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="20G - 30G", inline=False)
-			embed.add_field(name="**Experience**", value="15Exp - 30Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Goblin" or topic == "goblin":
+			minHp = 50
+			maxHp = 70
+			
+			minDmg = 25
+			maxDmg = 30
+
+			minGold = 30
+			maxGold = 50
+
+			minExp = 25
+			maxExp = 45
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Goblin**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="The Forest", inline=False)
-			embed.add_field(name="**Health**", value="50Hp - 70Hp", inline=False)
-			embed.add_field(name="**Damage**", value="10Dmg - 20Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="25G - 35G", inline=False)
-			embed.add_field(name="**Experience**", value="20Exp - 35Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Zombie" or topic == "zombie":
+			minHp = 60
+			maxHp = 80
+			
+			minDmg = 30
+			maxDmg = 35
+
+			minGold = 35
+			maxGold = 55
+
+			minExp = 30
+			maxExp = 50
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Zombie**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="The Forest", inline=False)
-			embed.add_field(name="**Health**", value="60Hp - 80Hp", inline=False)
-			embed.add_field(name="**Damage**", value="15Dmg - 20Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="25G - 40G", inline=False)
-			embed.add_field(name="**Experience**", value="25Exp - 35Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Draugr" or topic == "draugr":
+			minHp = 20
+			maxHp = 40
+			
+			minDmg = 15
+			maxDmg = 20
+
+			minGold = 20
+			maxGold = 40
+
+			minExp = 15
+			maxExp = 35
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Draugr**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Saker Keep", inline=False)
-			embed.add_field(name="**Health**", value="10Hp - 30Hp", inline=False)
-			embed.add_field(name="**Damage**", value="2Dmg - 10Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="10G - 15G", inline=False)
-			embed.add_field(name="**Experience**", value="7Exp - 20Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Stalker" or topic == "stalker":
+			minHp = 20
+			maxHp = 40
+			
+			minDmg = 15
+			maxDmg = 20
+
+			minGold = 20
+			maxGold = 40
+
+			minExp = 15
+			maxExp = 35
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Stalker**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Saker Keep", inline=False)
-			embed.add_field(name="**Health**", value="20Hp - 40Hp", inline=False)
-			embed.add_field(name="**Damage**", value="5Dmg - 10Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="15G - 20G", inline=False)
-			embed.add_field(name="**Experience**", value="10Exp - 25Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Souleater" or topic == "souleater":
+			minHp = 40
+			maxHp = 60
+			
+			minDmg = 20
+			maxDmg = 25
+
+			minGold = 25
+			maxGold = 45
+
+			minExp = 20
+			maxExp = 40
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Souleater**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Saker Keep", inline=False)
-			embed.add_field(name="**Health**", value="40Hp - 60Hp", inline=False)
-			embed.add_field(name="**Damage**", value="5Dmg - 15Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="20G - 25G", inline=False)
-			embed.add_field(name="**Experience**", value="15Exp - 25Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The soul eater is darker than the night and almost impossible to see. Trust me, you don't even want to see it. The soul eater manifests itself as your worst nightmare and will consume your soul, leaving behind nothing but a dead shell that was once your body.", inline=False)
 			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Elder Dragon" or topic == "elder dragon":
+			minHp = 70
+			maxHp = 90
+			
+			minDmg = 35
+			maxDmg = 40
+
+			minGold = 40
+			maxGold = 60
+
+			minExp = 35
+			maxExp = 55
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Souleater**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
-			embed.add_field(name="**Health**", value="70Hp - 90Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 30Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="35G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Hades" or topic == "hades":
+			minHp = 70
+			maxHp = 90
+			
+			minDmg = 35
+			maxDmg = 40
+
+			minGold = 40
+			maxGold = 60
+
+			minExp = 35
+			maxExp = 55
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Hades**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
-			embed.add_field(name="**Health**", value="80Hp - 100Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 30Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="35G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Ebony Guardian" or topic == "ebony guardian":
+			minHp = 80
+			maxHp = 100
+			
+			minDmg = 40
+			maxDmg = 45
+
+			minGold = 45
+			maxGold = 65
+
+			minExp = 40
+			maxExp = 60
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Ebony Guardian**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
-			embed.add_field(name="**Health**", value="80Hp - 100Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 30Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="35G  - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Harpy" or topic == "harpy":
+			minHp = 100
+			maxHp = 120
+			
+			minDmg = 50
+			maxDmg = 55
+
+			minGold = 55
+			maxGold = 75
+
+			minExp = 50
+			maxExp = 70
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Harpy**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
-			embed.add_field(name="**Health**", value="80Hp - 100Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="40G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 55Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Some of you may know this name from Greek myths, Stories about a creature that lived in the mountains. It looked like a woman with wings instead of arms and sharp claws instead of feet. The sole purpose of this creature is to punish evildoers using their claws and overwhelming speed to make deep cuts.", inline=False)
 			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 						
 		elif topic == "Dormammu" or topic == "dormammu":
+			minHp = 90
+			maxHp = 110
+			
+			minDmg = 45
+			maxDmg = 50
+
+			minGold = 50
+			maxGold = 70
+
+			minExp = 45
+			maxExp = 65
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Dormammu**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Township of Arkina", inline=False)
-			embed.add_field(name="**Health**", value="90Hp - 110Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="40G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Ettin" or topic == "ettin":
+			minHp = 90
+			maxHp = 110
+			
+			minDmg = 45
+			maxDmg = 50
+
+			minGold = 50
+			maxGold = 70
+
+			minExp = 45
+			maxExp = 65
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Ettin**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Township of Arkina", inline=False)
-			embed.add_field(name="**Health**", value="90Hp - 110Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="40G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)	
 			
 		elif topic == "Largos" or topic == "largos":
+			minHp = 100
+			maxHp = 120
+			
+			minDmg = 60
+			maxDmg = 70
+
+			minGold = 65
+			maxGold = 85
+
+			minExp = 60
+			maxExp = 80
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Largos**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
-			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G - 65G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 55Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="The largos are an Aquatic race from the depths of the Neverending ocean. They are silent and smart killers. Only few adventurers have ever seen them and lived to report it. All sightings of them so far looked like tall humanoid monsters with pale sea-blue skin and big thin frills attached at the base of their neck for swimming. Largos' always wear masks, their true faces are unknown. For it is wiser to slay them at first opportunity than to try and look underneath. Any adventurers that made such mistake did not live to tell. ", inline=False)
 			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Deathclaw" or topic == "deathclaw":
+			minHp = 90
+			maxHp = 110
+			
+			minDmg = 55
+			maxDmg = 65
+
+			minGold = 60
+			maxGold = 80
+
+			minExp = 55
+			maxExp = 75
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Deathclaw**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
-			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G - 60G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 60Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Death claw is a dragon knight, equipped with legendary unbreakable iron claws and tough barbaric armor. Death claw is highly trained and intends to kill with one quick and clean strike.", inline=False)
 			embed.set_footer(text="Submitted by DragonHunter#9380\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Saurian" or topic == "saurian":
+			minHp = 90
+			maxHp = 110
+			
+			minDmg = 55
+			maxDmg = 65
+
+			minGold = 60
+			maxGold = 80
+
+			minExp = 55
+			maxExp = 75
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Saurian**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="45Dmg - 60Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="28G  - 31G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 50Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Skeleton" or topic == "skeleton":
+			minHp = 120
+			maxHp = 140
+			
+			minDmg = 65
+			maxDmg = 75
+
+			minGold = 70
+			maxGold = 90
+
+			minExp = 65
+			maxExp = 85
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Skeleton**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Lost city", inline=False)
-			embed.add_field(name="**Health**", value="90Hp - 110Hp", inline=False)
-			embed.add_field(name="**Damage**", value="20Dmg - 30Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="35G - 55G", inline=False)
-			embed.add_field(name="**Experience**", value="35Exp - 45Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Lizardmen" or topic == "lizardmen":
+			minHp = 120
+			maxHp = 140
+			
+			minDmg = 65
+			maxDmg = 75
+
+			minGold = 70
+			maxGold = 90
+
+			minExp = 65
+			maxExp = 85
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Lizardmen**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Lost City", inline=False)
-			embed.add_field(name="**Health**", value="100Hp - 120Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 40Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G  - 60G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 50Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Giant" or topic == "giant":
+			minHp = 130
+			maxHp = 150
+			
+			minDmg = 70
+			maxDmg = 80
+
+			minGold = 75
+			maxGold = 95
+
+			minExp = 70
+			maxExp = 90
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Giant**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Lost City", inline=False)
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G - 65G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 55Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Ice Wolves" or topic == "ice wolves":
+			minHp = 150
+			maxHp = 170
+			
+			minDmg = 75
+			maxDmg = 85
+
+			minGold = 80
+			maxGold = 100
+
+			minExp = 75
+			maxExp = 95
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**Ice Wolves**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Drenheim", inline=False)
-			embed.add_field(name="**Health**", value="110Hp - 130Hp", inline=False)
-			embed.add_field(name="**Damage**", value="25Dmg - 50Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="45G - 65G", inline=False)
-			embed.add_field(name="**Experience**", value="40Exp - 55Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Frost Orc" or topic == "frost orc":
+			minHp = 160
+			maxHp = 180
+			
+			minDmg = 80
+			maxDmg = 90
+
+			minGold = 85
+			maxGold = 105
+
+			minExp = 80
+			maxExp = 100
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**frost Orc**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Drenheim", inline=False)
-			embed.add_field(name="**Health**", value="120Hp - 140Hp", inline=False)
-			embed.add_field(name="**Damage**", value="30Dmg - 55Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="50G - 65G", inline=False)
-			embed.add_field(name="**Experience**", value="45Exp - 60Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Frost Goblin" or topic == "frost goblin":
+			minHp = 150
+			maxHp = 170
+			
+			minDmg = 75
+			maxDmg = 85
+
+			minGold = 80
+			maxGold = 100
+
+			minExp = 75
+			maxExp = 95
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
 			embed=discord.Embed(title="**frost Goblin**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Drenheim", inline=False)
-			embed.add_field(name="**Health**", value="120Hp - 140Hp", inline=False)
-			embed.add_field(name="**Damage**", value="30Dmg - 55Dmg", inline=False)
-			embed.add_field(name="**Gold**", value="50G - 65G", inline=False)
-			embed.add_field(name="**Experience**", value="45Exp - 60Exp", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -1131,115 +3276,106 @@ class wiki(commands.Cog):
 		elif topic == "Swing" or topic == "swing":
 			embed=discord.Embed(title="**Swing skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="Knight, samurai, Paladin", inline=False)
-			embed.add_field(name="**Skill**", value="The wielder brings the weapon up to just about shoulder height and swings it down with immense strength onto it's foe", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Knight, Paladin, Grand Paladin, Samurai, Master Samurai", inline=False)
+			embed.add_field(name="**Skill**", value="None", inline=False)
+			embed.add_field(name="Back Story", value="The wielder brings the weapon up to just above shoulder height and swings it down with immense strength onto it's foes", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Stab" or topic == "stab":
 			embed=discord.Embed(title="**Stab skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Thief, Rogue, High rogue, Mesmer, Adept Mesmer", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The wielder pierces their opponent with a blade in an attempt to locate and hit a weak spot, doing severe damage if successful", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Shoot" or topic == "shoot":	
 			embed=discord.Embed(title="**Shoot skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Archer, Assassin, Night Assassin, Ranger, Skilled Ranger", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value=" The wielder launches a deadly projectile towards their foe, having the advantage of a longer range but they have to mind area circumstances, such as wind speed and direction to aim with deathly precision.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Cast" or topic == "cast":
 			embed=discord.Embed(title="**Cast skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Mage, Necromancer, Developed Necromancer, Elementalist, Adequate Elementalist", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="The wielder gathers concentrated energy and gives it shape with their mind to send it to their enemy,  piercing their physical defenses. ", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Parry" or topic == "parry":
-			embed=discord.Embed(title="**Parry skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Parry skill**", description="**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Rogue, High Rogue", inline=False)
+			embed.add_field(name="**Skill**", value="Block the incoming attack and stun the enemy for 1 turn.\nHas a 3 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder blocks an incoming attack, minimizing damage to self, while taking advantage of the opening in the enemy's attention span and slicing into a unguarded area.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Distort" or topic == "distort":
-			embed=discord.Embed(title="**Distort skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Distort skill**", description="**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Mesmer, Adept Mesmer", inline=False)
+			embed.add_field(name="**Skill**", value="Distorsts the enemy for 50% less damage.\nHas a 2 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder uses a spell to distort space and time, little is known wether this is actual magic or a distraction technique, nonetheless it allows for the wielder to take advantage and hit the distraced enemy with a fierce blow.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Reap" or topic == "reap":
 			embed=discord.Embed(title="**Reap skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Necromancer, Developed Necromancer", inline=False)
+			embed.add_field(name="**Skill**", value="Reap has 30% health steal, enemy lose 30% of current hp and adds it to user. Has a 3 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder slices into the vital energy of their foe, taking some as it spills. This energy revitalizes the wielder in the midst of battle.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Overload" or topic == "overload":
 			embed=discord.Embed(title="**Overload skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Elementalist, Adequate Elementalist", inline=False)
+			embed.add_field(name="**Skill**", value="Overload Causes to deal 40% extra dmg to enemies but damages the user 50% of overload damage. Has a 2 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder casts a powerful elemental burst strong enough to cause damage to the wielder themself. However, the wielder is prepared for this, but the enemy is definetly not.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Fusillade" or topic == "fusillade":
 			embed=discord.Embed(title="**Fusillade skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Paladin, Grand Paladin", inline=False)
+			embed.add_field(name="**Skill**", value="Fusillade deals a series hits 3x 50% original damage,  doing 150% dmg total 4 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder signs their enemies' death penalty as they use their weapon to mark their end.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
-		elif topic == "Protude" or topic == "protude":
+		elif topic == "Protrude" or topic == "protrude":
 			embed=discord.Embed(title="**Protude skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="**For**", value="Samurai, Master Samurai", inline=False)
+			embed.add_field(name="**Skill**", value="Protrude Deals a critical strike to the enemy core dealing 140% damage. Has a 3 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="The wielder stabs the entire length of their blade through the core of the enemy, the blade protruding from the enemies back.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Strike" or topic == "strike":
 			embed=discord.Embed(title="**Strike skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Ranger, Skilled Ranger", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.add_field(name="Back Story", value="Strike the enemy with a arrow to the knee.", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Corrupt" or topic == "corrupt":
 			embed=discord.Embed(title="**Corrupt skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
-			await ctx.send(embed=embed)
-		
-		elif topic == "Corrupt" or topic == "corrupt":
-			embed=discord.Embed(title="**Corrupt skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
-			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Assassin, Night Assassin", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1248,7 +3384,7 @@ class wiki(commands.Cog):
 		elif topic == "Rupture" or topic == "rupture":
 			embed=discord.Embed(title="**Rupture skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="High Rogue", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1257,7 +3393,7 @@ class wiki(commands.Cog):
 		elif topic == "Warp" or topic == "warp":
 			embed=discord.Embed(title="**Warp skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Adept Mesmer", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1266,7 +3402,7 @@ class wiki(commands.Cog):
 		elif topic == "Arise" or topic == "arise":
 			embed=discord.Embed(title="**Arise skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Developed Necromancer", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1275,7 +3411,7 @@ class wiki(commands.Cog):
 		elif topic == "Surge" or topic == "surge":
 			embed=discord.Embed(title="**Corrupt skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Adequeate Elementalist", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1284,7 +3420,7 @@ class wiki(commands.Cog):
 		elif topic == "Slice" or topic == "slice":
 			embed=discord.Embed(title="**Slice skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Master Samurai", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1293,7 +3429,7 @@ class wiki(commands.Cog):
 		elif topic == "Blockade" or topic == "blockade":
 			embed=discord.Embed(title="**Blockade skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Grand Paladin", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1302,7 +3438,7 @@ class wiki(commands.Cog):
 		elif topic == "Sneak" or topic == "sneak":
 			embed=discord.Embed(title="**Sneak skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Night Assassin", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1311,7 +3447,7 @@ class wiki(commands.Cog):
 		elif topic == "Snipe" or topic == "snipe":
 			embed=discord.Embed(title="**Snipe skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
-			embed.add_field(name="**For**", value="None", inline=False)
+			embed.add_field(name="**For**", value="Skilled Ranger", inline=False)
 			embed.add_field(name="**Skill**", value="None", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")

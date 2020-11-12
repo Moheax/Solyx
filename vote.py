@@ -115,7 +115,7 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 			else:
-				votemtp = "360K Users 2x multiplier"
+				votemtp = "370K users 2X multiplier! 2 days" # New merch! 1.1X multiplier
 				if userinfo["role"] == "Donator":
 					votegold = random.randint(700, 1000)
 					votehp = random.randint(3, 8)
@@ -265,29 +265,29 @@ app = Quart(__name__)
 
 @app.route('/', methods=["POST", "GET"])
 async def votes_webhook():
-    if request.method == 'GET':
-        return abort(400)
-    if request.method == 'POST':
-        if not request.headers.get('authorization') == "387317544228487168":
-            return
-        data = (await request.json)
-        print("VOTE: {}".format(data["user"]))
+	if request.method == 'GET':
+		return abort(400)
+	if request.method == 'POST':
+		if not request.headers.get('authorization') == "387317544228487168":
+			return
+		data = (await request.json)
+		print("VOTE: {}".format(data["user"]))
 
-        userinfo = db.users.find_one({"_id": int(data['user'])})
-        if not userinfo:
-            return 
+		userinfo = db.users.find_one({"_id": int(data['user'])})
+		if not userinfo:
+			return 
 
-        userinfo["vote_info"] = True
-        db.users.replace_one({"_id": int(data['user'])}, userinfo, upsert=True)
+		userinfo["vote_info"] = True
+		db.users.replace_one({"_id": int(data['user'])}, userinfo, upsert=True)
 
-        return 
+		return 
 
-    else:
-        return abort(400)
+	else:
+		return abort(400)
 
 
 if __name__ == "__main__":
-    app.run(host="83.82.139.228", port=int(8084), debug=False)
+	app.run(host="83.82.139.228", port=int(8084), debug=False)
 
 def setup(bot):
 	global logger

@@ -5,7 +5,7 @@ import datetime
 from random import choice as randchoice
 from discord.ext import commands
 from utils.db import db
-from utils.defaults import userdata
+from utils.defaults import userdata, titledata
 from utils import checks
 import asyncio
 from utils.dataIO import fileIO
@@ -53,15 +53,49 @@ class quests(commands.Cog):
 
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
-
+		titlesinfo = db.titles.find_one({ "_id": user.id })
 		
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/En.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-		 
+
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
+
+		# QUEST TITLE CHECKS
+
+		# Rookie Contractor 10
+	
+		if "Health acquisition" in userinfo["questscompleted"] and not "Rookie Contractor" in titlesinfo["titles_list"]:
+			newtitle = "Rookie Contractor"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)	
+		# Novice Contractor 25
+		if "Debin I" in userinfo["questscompleted"] and not "Novice Contractor" in titlesinfo["titles_list"]:
+			newtitle = "Novice Contractor"
+			if not newtitle in titlesinfo["titles_list"]:
+				titlesinfo["titles_list"].append(newtitle)
+				titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+				db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+				em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+				try:
+					await user.send(embed=em)
+				except:
+					await ctx.send(embed=em)
+		
+					
+		# Aspiring Contractor 50			
+		# Trusted Contractor 75
+		# Famed Contractor 100
+		# Noble Contractor 150
 
 		if userinfo["questname"] == "Basic A" and userinfo["questprogress"] >= 1:
 			oldquest = "Basic A"
@@ -685,7 +719,7 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			userinfo["keys"] = userinfo["keys"] + keygain
-			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fight 25 times. NOT MADE YET!!!!!!".format(newquest), color=discord.Colour(0xffffff)) 
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fight 25 times.".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["lvl"] = userinfo["lvl"] + 1
@@ -732,7 +766,7 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			userinfo["keys"] = userinfo["keys"] + keygain
-			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Discorver the usefullness of wiki!".format(newquest), color=discord.Colour(0xffffff)) 
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Discover the usefulness of wiki!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["lvl"] = userinfo["lvl"] + 1
@@ -1587,7 +1621,7 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Stalker's!".format(newquest), color=discord.Colour(0xffffff)) 
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Corrupted's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["lvl"] = userinfo["lvl"] + 1
@@ -1607,7 +1641,7 @@ class quests(commands.Cog):
 			return
 
 		
-		elif userinfo["questname"] == "The Corrupted I" and userinfo["questprogress"] >= 10:
+		elif userinfo["questname"] == "The Corrupted I" and userinfo["questprogress"] >= 5:
 			oldquest = "The Corrupted I"
 
 			expgain = 130
@@ -1656,6 +1690,16 @@ class quests(commands.Cog):
 
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			return
+
+
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+		# 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 
 		else:
@@ -2203,7 +2247,7 @@ class quests(commands.Cog):
 						return
 
 			elif userinfo["questname"] == "The Corrupted I":
-				em = discord.Embed(title="Fire Golem I", description="**Objective**\nSlay 10 Corrupted's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="The Corrupted I", description="**Objective**\nSlay 10 Corrupted's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="{}/5 Slain".format(userinfo["questprogress"]), inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:

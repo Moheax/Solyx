@@ -46,7 +46,7 @@ class health(commands.Cog):
 		if battleinfo["battle_active"] == "True":
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["inbattle"]["translation"])
 			return
-		if userinfo["health"] == 100:
+		if userinfo["health"] == userinfo["MaxHealth"]:
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["fullhp"]["translation"])
 			return
 		if userinfo["hp_potions"] > 0:
@@ -60,11 +60,11 @@ class health(commands.Cog):
 
 			gain = random.randint(25, 55)
 			userinfo["health"] = userinfo["health"] + gain
-			if userinfo["health"] > 100:
-				userinfo["health"] = 100
+			if userinfo["health"] >= userinfo["MaxHealth"]:
+				userinfo["health"] = userinfo["MaxHealth"]
 			userinfo["hp_potions"] = userinfo["hp_potions"] - 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["healed"]["translation"], description="+{} HP".format(gain), color=discord.Colour(0xffffff))
+			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["heal"]["healed"]["translation"], description="+{} <:HealthHeart:560845406750375937>".format(gain), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
@@ -106,7 +106,7 @@ class health(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-		em = discord.Embed(description=":heart: {}".format(userinfo["health"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(description="<:HealthHeart:560845406750375937> {}".format(userinfo["health"]), color=discord.Colour(0xffffff))
 		em.set_author(name=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["author"]["translation"].format(userinfo["name"]), icon_url=user.avatar_url)
 		em.set_footer(text=fileIO(f"data/languages/EN.json", "load")["rpg"]["health"]["footer"]["translation"].format(ctx.prefix))
 		try:
