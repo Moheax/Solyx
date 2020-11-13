@@ -171,18 +171,43 @@ class titles(commands.Cog):
 
 		
 		titlesinfo = db.titles.find_one({ "_id": user.id })
-		# Over here, list_a is the first half of the _members list
-		# and list_b is the second half. If _members is an empty
-		# array, it just returns "None", otherwise it will join the
-		# _members list with "\n"
-		_titles = [i for i in titlesinfo["titles_list"]]
-		list = "\n".join(_titles) if _titles else "None"
+
+		_titles = titlesinfo["titles_list"]
+		
+		list1 = ""
+		list2 = ""
+
+		for i, x in enumerate(range(0, 100)):
+			try:
+				item = _titles[i]
+				
+				if i <= 49 and i >= 0:	
+					list1 += "{} - {}\n".format(i + 1, item)
+				
+				if i <= 100 and i >= 50:	
+					list2 += "{} - {}\n".format(i + 1, item)	
+			except:
+				pass
+		
+
+		
+
 
 		em = discord.Embed(title="{}'s Titles".format(user.name), color=discord.Colour(0xffffff))
-		em.add_field(name="Titles", value=list, inline=True)
+		em.add_field(name="Titles", value=list1, inline=True)
+		em2 = discord.Embed(title="{}'s Titles 2".format(user.name), color=discord.Colour(0xffffff))
+		em2.add_field(name="Titles", value=list2, inline=True)
 		try:
-			await ctx.send(embed=em)
+			try:
+				await ctx.send(embed=em)
+			except:
+				pass
+			try:
+				await ctx.send(embed=em2)
+			except:
+				pass
 		except:
+
 			try:
 				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 				return

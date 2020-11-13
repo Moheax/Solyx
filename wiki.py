@@ -1224,6 +1224,7 @@ class wiki(commands.Cog):
 		elif topic == "Health" or topic == "health" or topic == "Health potion" or topic == "health potion" or topic == "Health potions" or topic == "health potions":
 			embed=discord.Embed(title="**Health Potion**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573577125064605706.png?v=1")
+			embed.add_field(name="User Hp", value="User hp increases by level, level 0-100 (steps of 25 level) increase of 2 hp. after level 100 hp increases with 10hp every 50 levels.".format(ctx.prefix), inline=False)
 			embed.add_field(name="Usage", value="Just type {}heal<:ThumbsUp:560804155321614347>".format(ctx.prefix), inline=False)
 			embed.add_field(name="Buy", value="To buy it type {}buy Hp <amount>\nThe price changes on your level".format(ctx.prefix), inline=False)
 			embed.add_field(name="Price", value="Level 0+ = 5G\nLevel 10+ = 10G\nLevel 30+ = 15G\nLevel  50+ = 20G\nLevel  70+ = 25G".format(ctx.prefix, ctx.prefix, ctx.prefix), inline=False)
@@ -3367,8 +3368,8 @@ class wiki(commands.Cog):
 			embed=discord.Embed(title="**Strike skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
 			embed.add_field(name="**For**", value="Ranger, Skilled Ranger", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
-			embed.add_field(name="Back Story", value="Strike the enemy with a arrow to the knee.", inline=False)
+			embed.add_field(name="**Skill**", value="Strike Deals a critical hit to the knee immobilizing them for 2 turns while dealing 50% damage. has a 6 turn cooldown.", inline=False)
+			embed.add_field(name="Back Story", value="Strike the enemy with an arrow to the knee.", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
@@ -3376,7 +3377,7 @@ class wiki(commands.Cog):
 			embed=discord.Embed(title="**Corrupt skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
 			embed.add_field(name="**For**", value="Assassin, Night Assassin", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
+			embed.add_field(name="**Skill**", value="Corrupt now debuffs the enemy, taking 30% extra damage, for 2 turns, debuff ends when enemy dies, has a 4 turn cooldown", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3385,7 +3386,7 @@ class wiki(commands.Cog):
 			embed=discord.Embed(title="**Rupture skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
 			embed.add_field(name="**For**", value="High Rogue", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
+			embed.add_field(name="**Skill**", value="Rupture the enemy's artery 2 turns dealing 25% current hp bleeding dmg.  4 turn cooldown.", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3474,10 +3475,16 @@ class wiki(commands.Cog):
 		elif topic == "achievement titles" or topic == "Achievement Titles":
 			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="Achievement titles", value="1. Legendary - obtained at first legendary item.\n2. Twice Told Legend - obtained at second legendary item.\n3. Uncoordinated - Get 15 deaths...\n4. Unhandy - Get 30 deaths...\n5 Clumsy - Get 60 deaths...\n6. Unskillful - Get 90 deaths...\n7. Inexpert - Get 120 deaths...\n8. I'm playing the game wrong... - ???\n9. Broke - Have 0 gold!\n10. Poor - have 500+ gold.\n11. Rich - have 10.000+ gold.\n12. Wealthy - Have 100.000+ gold.\n13. Millionaire - Have 1.000.000+ gold!\n14 Peek-A-Boo - Place top 5 in 2020 Halloween event!".format(ctx.prefix), inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Achievement titles", value="1. Legendary - obtained at first legendary item.\n2. Twice Told Legend - obtained at second legendary item.\n3. Uncoordinated - Get 15 deaths...\n4. Unhandy - Get 30 deaths...\n5 Clumsy - Get 60 deaths...\n6. Unskillful - Get 90 deaths...\n7. Inexpert - Get 120 deaths...\n8. I'm playing the game wrong... - ???\n9. Broke - Have 0 gold!\n10. Poor - have 500+ gold.\n11. Rich - have 10.000+ gold.\n12. Wealthy - Have 100.000+ gold.\n13. Millionaire - Have 1.000.000+ gold!\n14. Rookie Contractor - Finish 10 Quests.\n15. Novice Contractor - Finish 25 Quests.\n16. Aspiring Contractor - Finish 50 Quests.\n17.Trusted Contractor - Finish 75 Quests.\n18. Famed Contractor - Finish 100 Quests.\n 19. Noble Contractor - Finish 150 Quests.\n20. Peek-A-Boo - Place top 5 in 2020 Halloween event!".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Type -wiki achievement titles 2 for page 2\nSubmitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
+		elif topic == "achievement titles 2" or topic == "Achievement Titles 2":
+			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url=user.avatar_url)
+			embed.add_field(name="Achievement titles 2", value="21. Monster Slayer - Have a total of 500 Kills.\n22. Monster Hunter - Have a total of 1000 Kills.\n23. Monster Killer - Have a total of 2000 Kills.\n24. Monster Executioner - Have a total of 4000 Kills.\n25. Monster Exterminator - Have a total of 8000 Kills.\n".format(ctx.prefix), inline=False)
+			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 		elif topic == "Monster Titles" or topic == "monster titles":
 			embed=discord.Embed(title="**Monster Titles 1**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)

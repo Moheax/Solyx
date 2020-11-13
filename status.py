@@ -80,7 +80,7 @@ class status(commands.Cog):
 			item3 = ""
 			item4 = ""
 
-		em = discord.Embed(description="**Name:** {}\n**Race:** {}\n**Class:** {}\n**Title:** {}\n**Guild:** {}\n\n**Level:** {}\n**Exp:** {}/{}\n**Health:** {}".format(userinfo["name"], userinfo["race"], userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(description="**Name:** {}\n**Race:** {}\n**Class:** {}\n**Title:** {}\n**Guild:** {}\n\n**Level:** {}\n**Exp:** {} / {}\n**Health:** {} / {}".format(userinfo["name"], userinfo["race"], userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
 		em.add_field(name="Equipment", value="**Weapon:** {}\n**Weapon Damage:** {}-{}\n\n**Armor:** {}\n**Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
 		em.add_field(name="History", value="**Kills:** {}\n**Deaths:** {}".format(userinfo["enemieskilled"], userinfo["deaths"]), inline=False)
 		em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)

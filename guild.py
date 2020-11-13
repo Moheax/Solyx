@@ -401,8 +401,7 @@ class guild(commands.Cog):
 		guildinfo["tag"] = tag
 		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 
-		userinfo["GuildTag"] = tag
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		
 		
 		
 		em = discord.Embed(title="Guild Tag Changed", description="{} changed the tag of {} to [{}]!".format(author.mention, guild.name, tag), color=discord.Colour(0xffffff))

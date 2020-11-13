@@ -89,6 +89,7 @@ class misc(commands.Cog):
 		user = ctx.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		userinfo["SkillCooldown1"] = 0
+		userinfo["SkillCooldown2"] = 0
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Deny Cooldown Complete", description="Skill Cooldown removed.",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)

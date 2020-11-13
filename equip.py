@@ -137,11 +137,15 @@ class equip(commands.Cog):
 				await ctx.send("Quest Updated!")
 			pass
 
-
-		userinfo["inventory"].append(userinfo["equip"])
-		userinfo["equip"] = "None"
-		userinfo["equip"] = item
-		userinfo["inventory"].remove(item)
+		if userinfo["equip"] == "None":
+			userinfo["equip"] = item
+			userinfo["inventory"].remove(item)
+		else:
+			userinfo["inventory"].append(userinfo["equip"])
+			userinfo["equip"] = "None"
+			userinfo["equip"] = item
+			userinfo["inventory"].remove(item)
+		
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
 		try:
@@ -204,10 +208,15 @@ class equip(commands.Cog):
 			pass
 
 		if type == "armor":
-			userinfo["inventory"].append(userinfo["wearing"])
-			userinfo["wearing"] = "None"
-			userinfo["wearing"] = item
-			userinfo["inventory"].remove(item)
+			if userinfo["wearing"] == "None":
+				userinfo["wearing"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["wearing"])
+				userinfo["wearing"] = "None"
+				userinfo["wearing"] = item
+				userinfo["inventory"].remove(item)
+
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title="Item Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
 			try:
