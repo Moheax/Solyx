@@ -115,7 +115,7 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 			else:
-				votemtp = "370K users 2X multiplier! 2 days" # New merch! 1.1X multiplier
+				votemtp = "2X rewards 380K users!! " # New merch! 1.1X multiplier
 				if userinfo["role"] == "Donator":
 					votegold = random.randint(700, 1000)
 					votehp = random.randint(3, 8)

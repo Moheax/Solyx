@@ -700,7 +700,7 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 
 			elif item == "Branded Metal Armor" or item == "branded metal armor":
-				itemobj = {"name": "Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
+				itemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "price": 2300, "description": "?!", "image": "None"}
 				cost = 7000
 				value = cost - userinfo["gold"]
 				if userinfo["gold"] < cost:

@@ -1,33 +1,38 @@
-import json
-
-import aiohttp
 import dbl
+import discord
 from discord.ext import commands, tasks
 
+import asyncio
+import logging
 
-class api(commands.Cog):
+
+class TopGG(commands.Cog):
+    """Handles interactions with the top.gg API"""
+
     def __init__(self, bot):
-
         self.bot = bot
-        self.topgg_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5NTkyODkxNDA0NTMwNDg0NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNTk2OTg1NTUyfQ.eAogWCDxTv_qYa22RVr7uaQUB6dzWGVxnzRFypDXOcY'  # top.gg token
+        self.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQ5NTkyODkxNDA0NTMwNDg0NyIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA1NDgxNzcwfQ.nNyRlcOlF_urWUlEDgMOI4WzVXG45MbZUFVzOsFO7kQ' # set this to your DBL token
+        self.dblpy = dbl.DBLClient(self.bot, self.token)
 
-    @tasks.loop(seconds=1800)  # 30 min
-    async def post(self):
-        if not self.bot.post_wait:
-            self.bot.post_wait = True
+    # The decorator below will work only on discord.py 1.1.0+
+    # In case your discord.py version is below that, you can use self.bot.loop.create_task(self.update_stats())
 
-            guildcount = dbl.DBLClient(self.bot, self.token, autopost=True)
+    @tasks.loop(minutes=30.0)
+    async def update_stats(self):
+        """This function runs every 30 minutes to automatically update your server count"""
+        logger.info('Attempting to post server count')
+        try:
+            post_guild_count = 5862
+            await self.dblpy.post_guild_count()
+            logger.info('Posted server count ({})'.format(self.dblpy.guild_count()))
+        except Exception as e:
+            logger.exception('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
 
-            topgg_url = 'https://top.gg/api/bots/BOT_ID/stats'
-            topgg_data = {"shard_count": self.bot.shard_count, "server_count": guildcount}
-            topgg_headers = {'Authorization': self.topgg_token, 'Content-Type': 'application/json'}
-            try:
-                async with aiohttp.ClientSession() as aioclient:
-                    response = await aioclient.post(topgg_url, data=json.dumps(topgg_data), headers=topgg_headers)
-            except:
-                pass
+        # if you are not using the tasks extension, put the line below
 
+        await asyncio.sleep(1800)
 
 def setup(bot):
-    n = api(bot)
-    bot.add_cog(n)
+    global logger
+    logger = logging.getLogger('bot')
+    bot.add_cog(TopGG(bot)) 

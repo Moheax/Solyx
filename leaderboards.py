@@ -77,7 +77,17 @@ class leaderboard(commands.Cog):
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
 
-
+		em1 = discord.Embed(description="Gathering leaderboard info <:Solyx:560809141766193152>", color=discord.Colour(0xffffff))
+		
+					
+		try:
+			await ctx.send(embed=em1)
+		except:
+			try:
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+				return
+			except:
+				return
 		users = []
 		user_stat = None
 		title = "Players Leaderboard\n"

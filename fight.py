@@ -189,7 +189,7 @@ class fight(commands.Cog):
 		titlesinfo = db.titles.find_one({ "_id": user.id })
 		if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 			userinfo["lvl"] = userinfo["lvl"] + 1
-			userinfo["health"] = 100
+			userinfo["health"] = userinfo["MaxHealth"]
 			userinfo["exp"] = 0
 			em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 			await ctx.send(embed=em)
@@ -2919,7 +2919,7 @@ class fight(commands.Cog):
 			enemydmg -= youdef	
 			
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -2928,7 +2928,16 @@ class fight(commands.Cog):
 			# Acutal fight msg.
 			if userinfo["EnemyStun"] > 0:
 				enemydmg = 0
-
+				enemyhp = userinfo["enemyhp"]
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				#if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
@@ -2942,6 +2951,37 @@ class fight(commands.Cog):
 						return
 					except:
 						return
+
+			elif userinfo["Buff1"] == "Surge":
+				youdmg = 0
+				enemyhp = userinfo["enemyhp"]
+				# user dmg 
+				userhealth = userhealth - enemydmg
+
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				#if item has no image none gets added.
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				# Tries to send msg.
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+
 			elif userinfo["Buff1"] == "Arise" and userinfo["Buff1Time"] > 0 :
 				
 				enemyhp = userinfo["enemyhp"]
@@ -2962,9 +3002,7 @@ class fight(commands.Cog):
 				if enemyhp < 0:
 					enemyhp = 0
 
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
+			
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 3
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n** {} uses {} and hits {} for {} damage.\n The army of skeletons attacks.\nDealing {} damage each\nDealing a total of {} damage.\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], youdmg, hit, totaldmg, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
@@ -3022,7 +3060,7 @@ class fight(commands.Cog):
 			
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -3149,31 +3187,23 @@ class fight(commands.Cog):
 			move = "Swing"
 			# Users HP
 			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Users HP after dmg taken.
-			userhealth = userhealth - enemydmg
-			# Enemys Hp after userdmg
-			enemyhp = userinfo["enemyhp"] - youdmg
+			
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
+			lootbag = random.randint(1, 30)
+	
 	
 			# Acutal fight msg.
 			if userinfo["EnemyStun"] > 0:
 				enemydmg = 0
-
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				#if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
@@ -3187,7 +3217,95 @@ class fight(commands.Cog):
 						return
 					except:
 						return
+			if userinfo["Buff1"] == "Blockade":
+				#add buff and timer
+				userinfo["Buff1"] = "Blockade"
+				userinfo["Buff1Time"] = 2
+				# debuff
+				youdmg = int((youdmg/ 100) * 85)
+				# deals dmg to enemy
+				enemyhp = enemyhp - youdmg 
+				# Users Defense
+				youdef = youdef * 2
+				enemydmg -= youdef	
+				
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# Set skill cooldown.
+				userinfo["SkillCooldown2"] = 5
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense. {} uses {} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+			elif userinfo["Buff1"] == "Slice":
+
+				enemyhp = userinfo["enemyhp"]
+				# Bleeding dmg
+				Bleeding = int((enemyhp/ 100) * 25)
+				
+				# deals dmg to enemy
+				enemyhp = enemyhp - youdmg - Bleeding
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+
+				bufftime = userinfo["Buff1Time"]
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				#if item has no image none gets added.
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				# Tries to send msg.
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 			else:
+				# Users Defense
+				enemydmg -= youdef	
+				# Users HP after dmg taken.
+				userhealth = userhealth - enemydmg
+				# Enemys Hp after userdmg
+				enemyhp = userinfo["enemyhp"] - youdmg
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If UserHealth is More then Maxhealth its Maxhealth
+				if userhealth >= userinfo["MaxHealth"]:
+					userhealth = userinfo["MaxHealth"]
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				#if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
@@ -3219,7 +3337,7 @@ class fight(commands.Cog):
 			
 
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -3356,7 +3474,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -3504,7 +3622,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
 				userhealth = userinfo["MaxHealth"]
@@ -3610,7 +3728,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -3733,7 +3851,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -3744,7 +3862,15 @@ class fight(commands.Cog):
 		
 			if userinfo["EnemyStun"] > 0:
 				enemydmg = 0
-
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
 				#if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
@@ -3759,6 +3885,36 @@ class fight(commands.Cog):
 					except:
 						return
 
+			
+			elif userinfo["Buff1"] == "Surge":
+				youdmg = 0
+				enemyhp = userinfo["enemyhp"]
+				# user dmg 
+				userhealth = userhealth - enemydmg
+
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				#if item has no image none gets added.
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				# Tries to send msg.
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
 			elif userinfo["SkillCooldown1"] == 0:
 				overloaddmg = int((youdmg / 100) * 40)
@@ -3822,7 +3978,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -3845,7 +4001,43 @@ class fight(commands.Cog):
 						return
 					except:
 						return
-			
+			if userinfo["Buff1"] == "Blockade":
+				
+				# debuff
+				youdmg = int((youdmg/ 100) * 85)
+				hit = int((youdmg / 100) * 50)
+				# deals dmg to enemy
+				totaldmg = hit + hit + hit
+				enemyhp = enemyhp - totaldmg
+				# Users Defense
+				youdef = youdef * 2
+				enemydmg -= youdef	
+				
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# Set skill cooldown.
+				userinfo["SkillCooldown2"] = 5
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n{} hits {} for {} damage**\n**{} uses {} and does a series of hits.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],userinfo["name"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+
 			elif userinfo["SkillCooldown1"] == 0:
 				hit = int((youdmg / 100) * 50)
 				
@@ -3877,6 +4069,7 @@ class fight(commands.Cog):
 						return
 					except:
 						return
+			
 			else:
 				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"]+ 1 
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
@@ -3904,7 +4097,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -3926,7 +4119,41 @@ class fight(commands.Cog):
 						return
 					except:
 						return
-			
+			elif userinfo["Buff1"] == "Slice":
+
+				enemyhp = userinfo["enemyhp"]
+				# Bleeding dmg
+				Bleeding = int((enemyhp/ 100) * 25)
+				youdmg = int((youdmg / 100) * 140)
+				# deals dmg to enemy
+				enemyhp = enemyhp - youdmg - Bleeding
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+
+				bufftime = userinfo["Buff1Time"]
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {}  and has a Critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				#if item has no image none gets added.
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				# Tries to send msg.
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+
 			elif userinfo["SkillCooldown1"] == 0:
 				youdmg = int((youdmg / 100) * 140)
 				
@@ -3986,7 +4213,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -4061,7 +4288,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -4113,6 +4340,7 @@ class fight(commands.Cog):
 
 			else:
 				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -4141,7 +4369,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -4194,6 +4422,7 @@ class fight(commands.Cog):
 
 			else:
 				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -4221,7 +4450,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 			
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -4267,6 +4496,7 @@ class fight(commands.Cog):
 						return
 			else:
 				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -4281,7 +4511,7 @@ class fight(commands.Cog):
 		
 
 		elif answer2 == "Arise" or answer2 == "arise":
-			# Arise A  small army of 5 Skeletons dealing 30% your dmg for 2 turns, Has a 5 turn cooldown 
+			# Arise A small army of 5 Skeletons dealing 30% your dmg for 2 turns, Has a 5 turn cooldown 
 
 
 			# Move user makes
@@ -4293,7 +4523,7 @@ class fight(commands.Cog):
 			# Enemy Hp
 			enemyhp = userinfo["enemyhp"]
 			# Lootbag chance.
-			lootbag = random.randint(1, 15)
+			lootbag = random.randint(1, 30)
 
 			# If UserHealth is More then Maxhealth its Maxhealth
 			if userhealth >= userinfo["MaxHealth"]:
@@ -4353,6 +4583,7 @@ class fight(commands.Cog):
 						return
 			else:
 				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -4367,48 +4598,253 @@ class fight(commands.Cog):
 			
 
 		elif answer2 == "Surge" or answer2 == "surge":
-			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-					em1.set_thumbnail(url=userinfo["equip"]["image"])
+			# Surge Causes the user to get a massice power surge dealing 3 times normal damage but stunning themself after the attack for 1 turn.
+
+			# Move user makes
+			move = "Surge"
+			# Users HP
+			userhealth = userinfo["health"]
+			# Users Defense
+			enemydmg -= youdef	
+			# Enemy Hp
+			enemyhp = userinfo["enemyhp"]
+			# Lootbag chance.
+			lootbag = random.randint(1, 30)
+
+			# If UserHealth is More then Maxhealth its Maxhealth
+			if userhealth >= userinfo["MaxHealth"]:
+				userhealth = userinfo["MaxHealth"]
+
+			
+			if userinfo["EnemyStun"] > 0:
+				enemydmg = 0
+
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				#if item has no image none gets added.
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				# Tries to send msg.
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
 					try:
-						await skillmsg.edit(embed=em1)
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
 					except:
-						try:
-							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-							return
-						except:
-							return
-			return
+						return
+			
+			elif userinfo["SkillCooldown2"] == 0:
+				
+				
+
+				youdmg = youdmg * 3
+			
+				userhealth = userhealth - enemydmg 
+				enemyhp = userinfo["enemyhp"] - youdmg
+
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# Set skill cooldown.
+				userinfo["SkillCooldown2"] = 4
+				userinfo["Buff1"] = "Surge"
+				userinfo["Buff1Time"] = 2
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} gains a power surge and triples their damage.\n total damage {}Hp\nBut stun yourself for 1 turn.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], youdmg,   userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
+
+			else:
+				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
+				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return	
 
 
 		elif answer2 == "Slice" or answer2 == "slice":
-			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-					em1.set_thumbnail(url=userinfo["equip"]["image"])
+			# SLice causes 2 round bleeding effect(25% current health), 30% increased damage 4 turn cooldown.
+			# If enemy stunned no dmg
+			if userinfo["EnemyStun"] > 0:
+				enemydmg = 0 
+			# Move user makes
+			move = "Slice"
+			# Users HP
+			userhealth = userinfo["health"]
+			# Users Defense
+			enemydmg -= youdef	
+			# Enemy Hp
+			enemyhp = userinfo["enemyhp"]
+			# Lootbag chance.
+			lootbag = random.randint(1, 30)
+			# If enemydmg is lower then 0 its 0
+			if enemydmg < 0:
+				enemydmg = 0
+			# If User health is lower then 0 its 0
+			if userhealth < 0:
+				userhealth = 0
+			# If enemyhealth is lower then 0 its 0
+			if enemyhp < 0:
+				enemyhp = 0
+			# If UserHealth is More then Maxhealth its Maxhealth
+			if userhealth >= userinfo["MaxHealth"]:
+				userhealth = userinfo["MaxHealth"]
+
+			# Acutal fight msg.
+			if userinfo["SkillCooldown2"] == 0:
+				#add buff and timer
+				userinfo["Buff1"] = "Slice"
+				userinfo["Buff1Time"] = 2
+				# crit
+				youdmg += int((youdmg/ 100) * 30)
+				# Bleeding dmg
+				Bleeding = int((enemyhp/ 100) * 25)
+				# Bleeding time
+				bufftime = 2
+				# deals dmg to enemy
+				enemyhp = enemyhp - youdmg - Bleeding
+				
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# Set skill cooldown.
+				userinfo["SkillCooldown2"] = 4
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Slices {}\n causing bleeding effect for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
 					try:
-						await skillmsg.edit(embed=em1)
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
 					except:
-						try:
-							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-							return
-						except:
-							return
-			return
+						return
+
+			else:
+				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
+				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
 
 		elif answer2 == "Blockade" or answer2 == "blockade":
-			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
-			if not userinfo["equip"]["image"] == "None":
-					em1.set_thumbnail(url=userinfo["equip"]["image"])
+			# Blockade Dubbles your armor for 2 turns! dealing 15% less damage. 5 turn cooldown.
+			# If enemy stunned no dmg
+			if userinfo["EnemyStun"] > 0:
+				enemydmg = 0 
+			# Move user makes
+			move = "Blockade"
+			# Users HP
+			userhealth = userinfo["health"]
+			
+			# Enemy Hp
+			enemyhp = userinfo["enemyhp"]
+			# Lootbag chance.
+			lootbag = random.randint(1, 30)
+			# If enemydmg is lower then 0 its 0
+			if enemydmg < 0:
+				enemydmg = 0
+			# If User health is lower then 0 its 0
+			if userhealth < 0:
+				userhealth = 0
+			# If enemyhealth is lower then 0 its 0
+			if enemyhp < 0:
+				enemyhp = 0
+			# If UserHealth is More then Maxhealth its Maxhealth
+			if userhealth >= userinfo["MaxHealth"]:
+				userhealth = userinfo["MaxHealth"]
+
+			# Acutal fight msg.
+			if userinfo["SkillCooldown2"] == 0:
+				#add buff and timer
+				userinfo["Buff1"] = "Blockade"
+				userinfo["Buff1Time"] = 2
+				# debuff
+				youdmg = int((youdmg/ 100) * 85)
+				# deals dmg to enemy
+				enemyhp = enemyhp - youdmg 
+				# Users Defense
+				youdef = youdef * 2
+				enemydmg -= youdef	
+				
+				# If enemydmg is lower then 0 its 0
+				if enemydmg < 0:
+					enemydmg = 0
+				# user dmg 
+				userhealth = userhealth - enemydmg
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+				# Set skill cooldown.
+				userinfo["SkillCooldown2"] = 5
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Dubbles their defense for 2 turns.\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
 					try:
-						await skillmsg.edit(embed=em1)
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
 					except:
-						try:
-							await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-							return
-						except:
-							return
-			return
+						return
+
+			else:
+				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"]+ 1 
+				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
+				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
+				if not userinfo["equip"]["image"] == "None":
+					em4.set_thumbnail(url=userinfo["equip"]["image"])
+				try:
+					await skillmsg.edit(embed=em4)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+						return
+					except:
+						return
 
 		elif answer2 == "Sneak" or answer2 == "sneak":
 			em1 = discord.Embed(description="This Skill hasnt been made yet! Sorry.", color=discord.Colour(0xffffff))
@@ -4469,7 +4905,7 @@ class fight(commands.Cog):
 		if userinfo["Buff1Time"] <= 0:
 			userinfo["Buff1"] = "None"
 			userinfo["Buff1Time"] = 0
-		print(enemyhp)
+		
 		userinfo["health"] = userhealth
 		userinfo["enemyhp"] = enemyhp
 
@@ -5355,8 +5791,8 @@ class fight(commands.Cog):
 
 	async def _heal_reaction(self, ctx, user, msg):
 		userinfo = db.users.find_one({ "_id": user.id })
-		if userinfo["health"] == 100:
-			em = discord.Embed(description="<:HealingPotion:573577125064605706> You already have 100 HP!", color=discord.Colour(0xffffff))
+		if userinfo["health"] == userinfo["MaxHealth"]:
+			em = discord.Embed(description="<:HealingPotion:573577125064605706> You already have {} HP!".format(userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
 			await msg.edit(embed=em)
 			return
 		if userinfo["hp_potions"] > 0:
