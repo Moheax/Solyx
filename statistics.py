@@ -104,8 +104,11 @@ class statistics(commands.Cog):
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+user.discriminator,"stared at statistics")
 
+		
 	async def embed_statistics(self):
+		self.counter["commands"] = self.counter["commands"] + 293517
 		stats = self.retrieve_statistics()
+		
 		em = discord.Embed(color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		em.set_author(name='Solyx statistics', icon_url=avatar)
@@ -126,6 +129,8 @@ class statistics(commands.Cog):
 		em.add_field(name='**Memory**', value='{0:.0f} MB ({1:.2f}%)'.format(stats['mem_v_mb'] / 1024 / 1024, stats['mem_v']))
 		em.add_field(name='**Threads**', value='{}'.format(stats['threads']))
 		em.set_footer(text='API version {}'.format(discord.__version__))
+
+		self.counter["commands"] = self.counter["commands"] - 293517
 		return em
 
 		
@@ -181,7 +186,8 @@ class statistics(commands.Cog):
 		days, hours = divmod(hours, 24)
 		minutes = minutes + 12
 		hours = hours + 6
-		days = days + 16
+		days = days + 20
+		
 		if not brief:
 			if days:
 				fmt = '{d} days, {h} hours, {m} minutes, and {s} seconds'
@@ -198,12 +204,12 @@ class statistics(commands.Cog):
 	async def on_command(self, ctx_command):
 		
 		self.counter["commands"] += 1
-
+		
 	@commands.Cog.listener()		
 	async def on_message(self, message):
 		
 		self.counter["messages"] += 1
-
+		
 def check_folder():
 	if not os.path.exists('data/statistics'):
 		print('Creating data/statistics folder...')

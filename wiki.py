@@ -3440,7 +3440,7 @@ class wiki(commands.Cog):
 			embed=discord.Embed(title="**Sneak skill**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=guild.icon_url)
 			embed.add_field(name="**For**", value="Night Assassin", inline=False)
-			embed.add_field(name="**Skill**", value="None", inline=False)
+			embed.add_field(name="**Skill**", value="Sneak around your enemy and delivering a critical hit dealing 150% and not taking any dmg! 4 turn cooldown.", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)

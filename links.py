@@ -112,6 +112,32 @@ class links(commands.Cog):
 		except:
 			await ctx.send(ctx.message.channel, "I cound't send the message.")
 
+	@commands.command(pass_context=True, name="patreon")
+	@commands.cooldown(1, 10, commands.BucketType.user)
+	async def _patreon(self, ctx):
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the website!")
+
+		#Website
+		color = 0xffffff
+		embed = discord.Embed(colour=color)
+		embed.add_field(name="Check out the Solyx patreon!", value="Click [here](https://www.patreon.com/Solyx?fan_landing=true) to visit the patreon site!")
+		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+		try:
+			await ctx.send(ctx.message.author.mention, embed=embed)
+		except:
+			await ctx.send(ctx.message.channel, "I cound't send the message.")
+
 	@commands.command(pass_context=True, name="botstatus")
 	@commands.cooldown(1, 20, commands.BucketType.user)
 	async def _botstatus(self, ctx):

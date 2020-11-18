@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 
+import dbl
 import asyncio
 import datetime
 import random
@@ -34,6 +35,7 @@ class vote(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	@commands.guild_only()
 	async def vote(self, ctx):
+	
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
 
