@@ -84,6 +84,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -155,6 +162,13 @@ class reforge(commands.Cog):
 			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
@@ -228,6 +242,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -299,6 +320,13 @@ class reforge(commands.Cog):
 			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
@@ -372,6 +400,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -443,6 +478,13 @@ class reforge(commands.Cog):
 			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
@@ -516,6 +558,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -586,6 +635,13 @@ class reforge(commands.Cog):
 			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
@@ -658,6 +714,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -729,6 +792,13 @@ class reforge(commands.Cog):
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
+
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])
 					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to reforge!**".format(neededgold))
@@ -799,6 +869,13 @@ class reforge(commands.Cog):
 			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if userinfo["questname"] == "Reforge I":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
+						await ctx.send("Quest Updated!")
+					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
 					neededgold = int(cost) - int(userinfo["gold"])

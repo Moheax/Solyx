@@ -39,7 +39,7 @@ class links(commands.Cog):
 		
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Donate to solyx!", value="You can check out the donation options by clicking [here](https://donatebot.io/checkout/559328647639728128)!")
+		embed.add_field(name="Donate to solyx!", value="You can check out the donation options by clicking [here](https://www.patreon.com/Solyx?fan_landing=true)!")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)

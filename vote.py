@@ -104,11 +104,11 @@ class vote(commands.Cog):
 			# Weekend multiplier is in effect
 			if userinfo["voted"] == "weekend":
 				votemtp = "×2 Weekend multiplier"
-				if userinfo["role"] == "Donator":
+				if userinfo["role"] == "patreon2":
 					votegold = random.randint(700, 1000)
 					votehp = random.randint(3, 8)
 					votelb = random.randint(10, 15)
-				elif userinfo["role"] == "Subscriber":
+				elif userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
 					votegold = random.randint(750, 1200)
 					votehp = random.randint(4, 8)
 					votelb = random.randint(13, 22)
@@ -118,11 +118,11 @@ class vote(commands.Cog):
 					votelb = random.randint(9, 12)
 			else:
 				votemtp = "2X rewards 380K users!! " # New merch! 1.1X multiplier
-				if userinfo["role"] == "Donator":
+				if userinfo["role"] == "patreon2":
 					votegold = random.randint(700, 1000)
 					votehp = random.randint(3, 8)
 					votelb = random.randint(10, 15)
-				elif userinfo["role"] == "Subscriber":
+				elif  userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
 					votegold = random.randint(750, 1200)
 					votehp = random.randint(4, 8)
 					votelb = random.randint(13, 22)
@@ -131,11 +131,11 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 
-				#if userinfo["role"] == "Donator":
+				#if userinfo["role"] == "patreon2":
 				#	votegold = random.randint(360, 600)
 				#	votehp = random.randint(3, 5)
 				#	votelb = random.randint(7, 13)
-				#elif userinfo["role"] == "Subscriber":
+				#elif userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
 				#	votegold = random.randint(450, 750)
 				#	votehp = random.randint(4, 7)
 				#	votelb = random.randint(9, 18)

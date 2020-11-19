@@ -786,6 +786,7 @@ class shop(commands.Cog):
 				await ctx.send("Quest Updated!")
 			pass
 		itemname = item["name"]
+		itemrarity = item["rarity"]
 
 		if itemname == "Sclerite Sword":
 			cost = 400
@@ -1104,6 +1105,10 @@ class shop(commands.Cog):
 			userinfo["inventory"].remove(item)
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		if itemrarity == "Legendary":
+			em = discord.Embed(description="<:ShieldCross:560804112548233217> **You cant sell legendary items\n<:Legendary:639425368167809065> {} is a legendary item.**".format(itemname), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 	@shop.command(name="weapons", pass_context=True)

@@ -54,7 +54,6 @@ class quests(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })
-		
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/En.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -1672,7 +1671,157 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**NOT MADE YET!!**\n**Objective**\nReforge a item!".format(newquest), color=discord.Colour(0xffffff)) 
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nReforge a item!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Reforge I" and userinfo["questprogress"] >= 1:
+			oldquest = "Reforge I"
+
+			expgain = 135
+			goldgain = 135
+			crategain = 9
+			keygain = 9
+			hpgain = 8
+			exppgain = 8
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Support Server"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nJoin the support server to stay  up-to-date with updates\n and if necessary some support!!\nJoin [here](https://discord.gg/9b3KkJvJea)".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "Support Server" and userinfo["questprogress"] >= 1:
+			oldquest = "Support Server"
+
+			expgain = 140
+			goldgain = 140
+			crategain = 10
+			keygain = 10
+			hpgain = 9
+			exppgain = 9
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "On the hunt!"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nHunt down a Rare Wyvern\n They have been spotted in the golden temple!".format(newquest), color=discord.Colour(0xffffff)) 
+			await ctx.send(embed=em)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				userinfo["exp"] = 0
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			return
+
+		elif userinfo["questname"] == "On the hunt!" and userinfo["questprogress"] >= 1:
+			oldquest = "On the hunt!"
+
+			expgain = 145
+			goldgain = 145
+			crategain = 10
+			keygain = 10
+			hpgain = 10
+			exppgain = 10
+
+			em = discord.Embed(title="Quest Completed", description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+			
+			newquest = "Claim your loot!"
+			userinfo["questname"] = newquest
+			userinfo["questscompleted"].append(oldquest)
+			userinfo["questprogress"] = 0
+			userinfo["questpart"] = 0
+			userinfo["exp"] = userinfo["exp"] + expgain
+			userinfo["gold"] = userinfo["gold"] + goldgain
+			userinfo["lootbag"] = userinfo["lootbag"] + crategain
+			userinfo["keys"] = userinfo["keys"] + keygain
+			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
+			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
+			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nOpen 10 lootbags\n you earned it!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["lvl"] = userinfo["lvl"] + 1
@@ -2249,6 +2398,59 @@ class quests(commands.Cog):
 			elif userinfo["questname"] == "The Corrupted I":
 				em = discord.Embed(title="The Corrupted I", description="**Objective**\nSlay 10 Corrupted's \nType {}Fight".format(ctx.prefix), color=discord.Colour(0xffffff))
 				em.add_field(name="Progress", value="{}/5 Slain".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "Reforge I":
+				em = discord.Embed(title="Reforge I", description="**Objective**\nReforge 1 item.\nType {}Reforge <Number>".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="No item reforged.".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+					
+			elif userinfo["questname"] == "Support Server":
+				em = discord.Embed(title="Support Server", description="**Objective**\nJoin the support server [here](https://discord.gg/9b3KkJvJea).".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="If you want to join its free! :P\n You can leave after!\nQuest done!".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+
+			elif userinfo["questname"] == "On the hunt!":
+				em = discord.Embed(title="On the hunt!", description="**Objective**\nHunt down a Rare Wyvern\n They have been spotted in the golden temple!\ntype {}travel 1 to go to the golden temple.".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Progress", value="Rare Wyvern not killed.".format(userinfo["questprogress"]), inline=False)
+				em.set_thumbnail(url=user.avatar_url)
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+			else:
+				em = discord.Embed(title="Quest not made", description="You have finished the last quest for now!".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em.add_field(name="Info", value="New quests will be added in the future!".format(userinfo["questprogress"]), inline=False)
 				em.set_thumbnail(url=user.avatar_url)
 				try:
 					await ctx.send(embed=em)

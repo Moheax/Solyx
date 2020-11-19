@@ -3017,7 +3017,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else: 
-
+				enemyhp = userinfo["enemyhp"]
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
@@ -3191,7 +3191,7 @@ class fight(commands.Cog):
 			# Lootbag chance.
 			lootbag = random.randint(1, 30)
 	
-	
+			enemyhp = userinfo["enemyhp"]
 			# Acutal fight msg.
 			if userinfo["EnemyStun"] > 0:
 				enemydmg = 0
@@ -5169,6 +5169,13 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
+						await ctx.send("Quest Updated!")
+					pass
+
+				elif userinfo["questname"] == "On the hunt!" and userinfo["enemydifficulty"] == "Rare":
+					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					if userinfo["questprogress"] >= 1:
 						await ctx.send("Quest Updated!")
 					pass
 
