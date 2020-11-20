@@ -129,14 +129,19 @@ class links(commands.Cog):
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the website!")
 
 		#Website
-		color = 0xffffff
-		embed = discord.Embed(colour=color)
-		embed.add_field(name="Check out the Solyx patreon!", value="Click [here](https://www.patreon.com/Solyx?fan_landing=true) to visit the patreon site!")
-		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
-		try:
-			await ctx.send(ctx.message.author.mention, embed=embed)
-		except:
-			await ctx.send(ctx.message.channel, "I cound't send the message.")
+
+	
+		embed=discord.Embed(title="Solyx Patreon list!", color=discord.Colour(0xffffff))
+		
+		embed.add_field(name="Mythical Patreon ", value="<@157614072525881344>\n\n_ _", inline=False)
+		embed.add_field(name="Legendary Patreon", value="Become the first!\n\n_ _", inline=False)			
+		embed.add_field(name="Rare Patreon", value="Become the first!\n\n_ _", inline=False)
+		embed.add_field(name="Common Patreon", value="<@370160829053796352>\n\n_ _", inline=False)
+		embed.add_field(name="Become a patreon!", value="Click [here](https://www.patreon.com/Solyx?fan_landing=true) to visit the patreon site!", inline=False)
+		embed.set_footer(text="Many Many thanks to these people!")
+		embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/560845406750375937.png?v=1")
+		await ctx.send(embed=embed)
+		
 
 	@commands.command(pass_context=True, name="botstatus")
 	@commands.cooldown(1, 20, commands.BucketType.user)

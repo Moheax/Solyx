@@ -22,8 +22,7 @@ class exp(commands.Cog):
 
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 2, commands.BucketType.user)
-
-	async def exp(self, ctx):
+	async def exp(self, ctx, amount: int):
 
 		guild = ctx.guild
 
@@ -47,17 +46,106 @@ class exp(commands.Cog):
 		if battleinfo["battle_active"] == "True":
 			await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["exp"]["inbattle"]["translation"])
 			return
-		if userinfo["exp_potions"] > 0:
-			gain = random.randint(40, 75)
+
+
+		if userinfo["role"] == "Player":
+			if amount == 1:
+				times = 1
+
+			if amount == 2 and userinfo["lvl"] >= 100:
+				times = 2
+
+			if amount == 2 and not userinfo["lvl"] >= 100:
+				em = discord.Embed(description="Reach level 100+ to use 2 Exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+			if amount == 3 and userinfo["lvl"] >= 200:
+				times = 3
+
+			if amount == 3 and not userinfo["lvl"] >= 200:
+				em = discord.Embed(description="Reach level 200+ to open 3 Exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+			if amount >= 4:
+				em = discord.Embed(description="You cant open more then 3 Exp potions!\n Become a patreon to use more exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+		if userinfo["role"] == "patreon2":
+
+			times = amount
+
+			if amount >= 4:
+				em = discord.Embed(description="You cant open more then 3 Exp potions!\n Become a higher tier patreon use more exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+		if userinfo["role"] == "patreon3":
+
+			times = amount
+
+			if amount >= 5:
+				em = discord.Embed(description="You cant open more then 4 Exp potions!\n Become a higher tier patreon use more exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+
+		if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
+
+			times = amount 
+		
+			
+			if amount >= 6:
+				em = discord.Embed(description="You cant open more then 5 Exp potions!\n Become a higher tier patreon use more exp potions!", color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+				return
+
+
+
+
+
+
+		if userinfo["exp_potions"] > amount:
+
+			gain = 0
+			for i in range(amount):
+				gain = gain + random.randint(40, 75)		
 			userinfo["exp"] = userinfo["exp"] + gain
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+					await ctx.send(embed=em)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
+					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+						userinfo["lvl"] = userinfo["lvl"] + 1
+						userinfo["health"] = 100
+						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+						await ctx.send(embed=em)
+						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+						await asyncio.sleep(0.3)
+						if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+							userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+							userinfo["lvl"] = userinfo["lvl"] + 1
+							userinfo["health"] = 100
+							em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+							await ctx.send(embed=em)
+				
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			userinfo["exp_potions"] = userinfo["exp_potions"] - 1
+			userinfo["exp_potions"] = userinfo["exp_potions"] - amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["exp"]["expused"]["translation"], description="+{} Exp!".format(gain), color=discord.Colour(0xffffff))
 			try:

@@ -117,21 +117,23 @@ class quests(commands.Cog):
 			userinfo["exp"] = userinfo["exp"] + expgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open your Inventory!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Basic B" and userinfo["questprogress"] >= 1:
@@ -158,21 +160,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Start your first fight!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Basic C" and userinfo["questprogress"] >= 1:
@@ -199,21 +203,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Wood!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Gathering Wood I" and userinfo["questprogress"] >= 5:
@@ -240,21 +246,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Stone!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Gathering Stone I" and userinfo["questprogress"] >= 5:
@@ -281,21 +289,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 2 Metal!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Gathering Metal I" and userinfo["questprogress"] >= 2:
@@ -322,21 +332,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fish 5 times!".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Gathering Fish I" and userinfo["questprogress"] >= 5:
@@ -363,21 +375,23 @@ class quests(commands.Cog):
 			userinfo["gold"] = userinfo["gold"] + goldgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Wood!".format(newquest), color=discord.Colour(0xffffff)) # MAKE WOOD TRADER I 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Wood Trader I" and userinfo["questprogress"] >= 10:
@@ -406,22 +420,25 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Stone!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
+
 		elif userinfo["questname"] == "Stone Trader I" and userinfo["questprogress"] >= 10:
 			oldquest = "Stone Trader I"
 
@@ -448,21 +465,23 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 5 Metal!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Metal Trader I" and userinfo["questprogress"] >= 5:
@@ -491,21 +510,23 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nBuy 5 Hp potions!\nUse 1 Hp potions".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Health acquisition" and userinfo["questpart"] == 2 and userinfo["questprogress"] >= 1:
@@ -535,22 +556,23 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open 10 crates".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Unboxing I"  and userinfo["questprogress"] >= 10:
@@ -580,22 +602,23 @@ class quests(commands.Cog):
 			userinfo["lootbag"] = userinfo["lootbag"] + crategain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTry and collect your daily reward!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Daily I"  and userinfo["questprogress"] >= 1:
@@ -627,22 +650,23 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Equip a weapon.".format(newquest), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 		elif userinfo["questname"] == "Equip" and userinfo["questpart"] == 2 and userinfo["questprogress"] >= 1:
 			oldquest = "Equip"
@@ -673,22 +697,23 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Vote for solyx to get extra rewards!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Vote I"  and userinfo["questprogress"] >= 1:
@@ -720,22 +745,23 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fight 25 times.".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Fight I"  and userinfo["questprogress"] >= 25:
@@ -767,22 +793,23 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Discover the usefulness of wiki!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Wiki Check"  and userinfo["questprogress"] >= 1:
@@ -814,22 +841,23 @@ class quests(commands.Cog):
 			userinfo["keys"] = userinfo["keys"] + keygain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Visit the shop and buy weapon and armor!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 4 and userinfo["questprogress"] >= 1:
@@ -863,22 +891,23 @@ class quests(commands.Cog):
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at your visual profile!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Check Profile"  and userinfo["questprogress"] >= 1:
@@ -912,21 +941,23 @@ class quests(commands.Cog):
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Check out the leaderboard!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Leaderboard"  and userinfo["questprogress"] >= 1:
@@ -960,22 +991,23 @@ class quests(commands.Cog):
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Represent a guild\nCheck guild info\nCheck guild mission\nCheck guild donate function.".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		
@@ -1010,22 +1042,23 @@ class quests(commands.Cog):
 			userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Try and sell a item in the Shop".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Shop II" and userinfo["questprogress"] >= 1:
@@ -1061,22 +1094,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at the market!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Market I" and userinfo["questprogress"] >= 1:
@@ -1112,22 +1146,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Donate 1000g to your guild!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Guild II" and userinfo["questprogress"] >= 1000:
@@ -1163,22 +1198,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Rachi's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Rachi I" and userinfo["questprogress"] >= 10:
@@ -1214,22 +1250,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Debin's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)		
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Debin I" and userinfo["questprogress"] >= 10:
@@ -1265,22 +1302,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Oofer's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Oofer I" and userinfo["questprogress"] >= 10:
@@ -1316,22 +1354,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Wyvern's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Wyvern I" and userinfo["questprogress"] >= 10:
@@ -1367,22 +1406,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 5 Fire Golem's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Fire Golem I" and userinfo["questprogress"] >= 5:
@@ -1418,22 +1458,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTravel to Saker Keep!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-				
-				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Travel I" and userinfo["questprogress"] >= 1:
@@ -1469,22 +1510,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Draugr's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-		
-	
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Draugr I" and userinfo["questprogress"] >= 10:
@@ -1520,21 +1562,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Stalker's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		
@@ -1571,21 +1615,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Souleater's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		
@@ -1622,21 +1668,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Corrupted's!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		
@@ -1673,21 +1721,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nReforge a item!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Reforge I" and userinfo["questprogress"] >= 1:
@@ -1723,21 +1773,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nJoin the support server to stay  up-to-date with updates\n and if necessary some support!!\nJoin [here](https://discord.gg/9b3KkJvJea)".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "Support Server" and userinfo["questprogress"] >= 1:
@@ -1773,21 +1825,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nHunt down a Rare Wyvern\n They have been spotted in the golden temple!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 		elif userinfo["questname"] == "On the hunt!" and userinfo["questprogress"] >= 1:
@@ -1823,21 +1877,23 @@ class quests(commands.Cog):
 			userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
 			em = discord.Embed(title="New Quest!", description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nOpen 10 lootbags\n you earned it!".format(newquest), color=discord.Colour(0xffffff)) 
 			await ctx.send(embed=em)
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
 				userinfo["health"] = 100
-				userinfo["exp"] = 0
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				try:
+				await ctx.send(embed=em)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				await asyncio.sleep(0.3)
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = 100
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
-
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					await asyncio.sleep(0.3)
 			return
 
 

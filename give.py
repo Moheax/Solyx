@@ -527,7 +527,7 @@ class give(commands.Cog):
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 
-			em = discord.Embed(title="Gold given: {}".format(amount), description="{} ({}) got {} Exp potions from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em = discord.Embed(title="Exp potions given: {}".format(amount), description="{} ({}) got {} Exp potions from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/770044187348566046.png?v=1")
 			await ctx.send(self.bot.get_channel('643899016156938260'), embed=em)
 

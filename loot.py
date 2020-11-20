@@ -1449,26 +1449,13 @@ class loot(commands.Cog):
 
 		elif userinfo["role"] == "patreon4":
 
-			if amount == 1:
-				times = 1
-
-			if amount == 2:
-				times = 2
-			
-			if amount == 3:
-				times = 3
-			
-			if amount == 4:
-				times = 4
-	
-			if amount == 5:
-				times = 5
+			times == amount 
 
 			if amount >= 6:
 				em = discord.Embed(description="You cant open more then 5 crates!\n Become a higher tier patreon to open more crates!", color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
-			print("amount",amount)
+			
 			if userinfo["questname"] == "Unboxing I":
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1792,6 +1779,19 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
+		else:
+			em = discord.Embed(description="<:ShieldBroken:649157253701566474> Something went wrong..\nyou have been refunded crates and keys.", color=discord.Colour(0xffffff))
+			userinfo["keys"] = userinfo["keys"] + amount
+			userinfo["lootbag"] = userinfo["lootbag"] + amount
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+				except:
+					pass
+			pass
 def setup(bot):
 	n = loot(bot)
 	bot.add_cog(n)

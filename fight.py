@@ -188,12 +188,19 @@ class fight(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		titlesinfo = db.titles.find_one({ "_id": user.id })
 		if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+			userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 			userinfo["lvl"] = userinfo["lvl"] + 1
-			userinfo["health"] = userinfo["MaxHealth"]
-			userinfo["exp"] = 0
+			userinfo["health"] = 100
 			em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 			await ctx.send(embed=em)
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = 100
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				await ctx.send(embed=em)
+			
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 
 
@@ -1283,7 +1290,8 @@ class fight(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-		if userinfo and userinfo["blacklisted"] == "True":
+
+		if userinfo["blacklisted"] == "True":
 			return
 
 
@@ -3218,9 +3226,8 @@ class fight(commands.Cog):
 					except:
 						return
 			if userinfo["Buff1"] == "Blockade":
-				#add buff and timer
-				userinfo["Buff1"] = "Blockade"
-				userinfo["Buff1Time"] = 2
+				
+				
 				# debuff
 				youdmg = int((youdmg/ 100) * 85)
 				# deals dmg to enemy
@@ -5907,6 +5914,7 @@ class fight(commands.Cog):
 			db.users.replace_one({ "_id": enemyid }, enemyinfo, upsert=True)
 			db.battles.replace_one({ "_id": enemyid }, enemybattleinfo, upsert=True)
 
+			await self._level_up_check_user(ctx, user)
 
 	async def _heal_reaction(self, ctx, user, msg):
 		userinfo = db.users.find_one({ "_id": user.id })
