@@ -77,13 +77,13 @@ class wiki(commands.Cog):
 		elif topic == "2" or topic =="page 2" or topic == "page 2/4" or topic =="2/4":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 2/3".format(ctx.prefix, ctx.prefix), inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Armor", value="Chainmail, Barbaric, Pit Fighter, Banded, Leather, Iron, Branded Metal,        Wolf Fur, Enchanted Steel, Bane Of The Goblin Lord, Nighstalker Mantle, Hephaestus Armor, ", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Armor", value="Chainmail, Barbaric, Pit Fighter, Banded, Leather, Iron, Branded Metal,        Wolf Fur, Enchanted Steel, Bane Of The Goblin Lord, Nighstalker Mantle, Hephaestus Armor, Robe of the Ancient", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Bosses", value="Phantasm, Fire Golem, The Corrupted, The Accursed, The Nameless King, The Venomous, Death Knight, Frost Dragon", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Classes", value="Archer, Knight, Mage, Thief, Assassin, Ranger, Samurai, Paladin, Necromancer, Elementalist, Rogue, Mesmer", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Daily", value="Daily/Checkin, Vote", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Equip", value="Weapons, armor", inline=False)			
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Fighting", value="PVE, PVP", inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Gathering", value="Chop, Mine, Wood, Stone, Metal, Fish", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Gathering", value="Chop, Mine, Wood, Stone, Metal, Fish, Planks, Bricks, Iron Plates", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Guild", value="Info, Represent, Mission, Donate, Promote, Demote, Tag", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -204,6 +204,16 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Rarity**", value="Legendary", inline=False)
 			embed.add_field(name="**Defense**", value="16 - 27", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Robe of the Ancient" or topic == "robe of the ancient":
+			embed=discord.Embed(title="**Robe of the Ancient**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.discordapp.com/attachments/594343589534760991/775749656604573696/HOOD.png")
+			embed.add_field(name="**Type**", value="Armor", inline=False)
+			embed.add_field(name="**Rarity**", value="Event", inline=False)
+			embed.add_field(name="**Defense**", value="20 - 30", inline=False)
+			embed.add_field(name="Info", value="Earned by winning the Story teller event!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
@@ -1143,6 +1153,30 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCross:560804112548233217>**Crates**", value="With the {}crate/{}lb you gather 1 metal.".format(ctx.prefix, ctx.prefix), inline=False)
 			embed.add_field(name="<:ShieldCross:560804112548233217>**Daily**", value="With the {}daily/{}checkin you gather 3 to 9 metal.".format(ctx.prefix, ctx.prefix), inline=False)
 			embed.add_field(name="<:ShieldCross:560804112548233217>**Vote**", value="With the {}vote you gather 4 to 10 metal.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+		
+		elif topic == "Planks" or topic == "planks":
+			embed=discord.Embed(title="**Planks**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/780992714463510530.png?v=1")
+			embed.add_field(name="**Gathering**", value="The only way to get planks is by sawing them in the sawmill", inline=False)
+			embed.add_field(name="**Usage**", value="Type {}saw".format(ctx.prefix), inline=False)
+			embed.add_field(name="**sawing**", value="You can saw every 20 minutes, 3 wood = 2 planks.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+		
+		elif topic == "Bricks" or topic == "bricks":
+			embed=discord.Embed(title="**Bricks**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/780999521249263616.png?v=1")
+			embed.add_field(name="**Gathering**", value="The only way to get bricks is by using the masonry", inline=False)
+			embed.add_field(name="**Usage**", value="Type {}mason".format(ctx.prefix), inline=False)
+			embed.add_field(name="**mason**", value="You can mason every 20 minutes, 5 stone = 4 bricks.", inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Iron plates" or topic == "iron plates":
+			embed=discord.Embed(title="**Iron plates**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/781003325675012146.png?v=1")
+			embed.add_field(name="**Gathering**", value="The only way to get iron plates is by using the smeltery", inline=False)
+			embed.add_field(name="**Usage**", value="Type {}smelt".format(ctx.prefix), inline=False)
+			embed.add_field(name="**smelt**", value="You can smelt every 20 minutes, 5 metal = 4 iront plates.", inline=False)
 			await ctx.send(embed=embed)
 
 		elif topic == "info" or topic == "Info" or topic == " Guild Info" or topic == "guild info":
@@ -3482,7 +3516,7 @@ class wiki(commands.Cog):
 		elif topic == "achievement titles 2" or topic == "Achievement Titles 2":
 			embed=discord.Embed(title="**Achievement Titles**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
-			embed.add_field(name="Achievement titles 2", value="21. Monster Slayer - Have a total of 500 Kills.\n22. Monster Hunter - Have a total of 1000 Kills.\n23. Monster Killer - Have a total of 2000 Kills.\n24. Monster Executioner - Have a total of 4000 Kills.\n25. Monster Exterminator - Have a total of 8000 Kills.\n".format(ctx.prefix), inline=False)
+			embed.add_field(name="Achievement titles 2", value="21. Monster Slayer - Have a total of 500 Kills.\n22. Monster Hunter - Have a total of 1000 Kills.\n23. Monster Killer - Have a total of 2000 Kills.\n24. Monster Executioner - Have a total of 4000 Kills.\n25. Monster Exterminator - Have a total of 8000 Kills.\n26. Storyteller - Be one of the 3 winners in a story teller event!".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 		elif topic == "Monster Titles" or topic == "monster titles":
@@ -3521,7 +3555,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/xyrgOth.jpg")
 			embed.add_field(name="**Monsters**", value="Draugr, Stalker, Souleater",inline=False)
 			embed.add_field(name="**Boss**", value="The Corrupted", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 5", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 10", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3531,7 +3565,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/FAHXOLl.jpg")
 			embed.add_field(name="**Monsters**", value="Wolf, Goblin, Zombie",inline=False)
 			embed.add_field(name="**Boss**", value="Phantasm", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 10", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 20", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3541,7 +3575,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/pPd5s9r.jpg")
 			embed.add_field(name="**Monsters**", value="Elder Dragon, Hades, Ebony Guardian",inline=False)
 			embed.add_field(name="**Boss**", value="The Accursed", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 20", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 40", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3551,7 +3585,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/lypzFbu.jpg")
 			embed.add_field(name="**Monsters**", value="Harpy, Dormammu, Ettin",inline=False)
 			embed.add_field(name="**Boss**", value="The Nameless King", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 40", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 60", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3561,7 +3595,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/GEvABaS.jpg")
 			embed.add_field(name="**Monsters**", value="Largos, Deathclaw, Saurian",inline=False)
 			embed.add_field(name="**Boss**", value="The Venomous", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 60", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 90", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3571,7 +3605,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/cBo113x.jpg")
 			embed.add_field(name="**Monsters**", value="Skeleton, Lizardmen, Giant", inline=False)
 			embed.add_field(name="**Boss**", value="Death Knight!", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 90", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 120", inline=False)
 			embed.add_field(name="Back Story", value="There was war raging between humans and dragons and it ended up with humans losing.\nThis place has been forgotten for a century!\nUntil one archaeologist found it during the research of finding an ancient city.", inline=False)
 			embed.set_footer(text="Submitted by Khael#6854 \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3581,7 +3615,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/AVBSEfQ.jpg")
 			embed.add_field(name="**Monsters**", value="Ice Wolves, Frost Orc, Frost Goblin", inline=False)
 			embed.add_field(name="**Boss**", value="Frost Dragon", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 120", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 150", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3591,7 +3625,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/A5pbtEB.jpg")
 			embed.add_field(name="**Monsters**", value="Cleared out!", inline=False)
 			embed.add_field(name="**Boss**", value="Beaten!", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 150", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 200", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3601,7 +3635,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/BwKaOW9.jpg")
 			embed.add_field(name="**Monsters**", value="Cleared Out!",inline=False)
 			embed.add_field(name="**Boss**", value="Beaten!", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 200", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 250", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3611,7 +3645,7 @@ class wiki(commands.Cog):
 			embed.set_image(url="https://i.imgur.com/duqlXae.jpg")
 			embed.add_field(name="**Monsters**", value="Cleared Out!",inline=False)
 			embed.add_field(name="**Boss**", value="Beaten!", inline=False)
-			embed.add_field(name="**Unlock**", value="Level 250", inline=False)
+			embed.add_field(name="**Unlock**", value="Level 300", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
@@ -3619,7 +3653,8 @@ class wiki(commands.Cog):
 		elif topic == "4" or topic =="page 4/4":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 4".format(ctx.prefix, ctx.prefix), inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=True)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Buildings", value="Camp, Sawmill, Masonry, Smeltery,", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
@@ -3855,7 +3890,46 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
+		elif topic == "Camp" or topic == "camp":
+			embed=discord.Embed(title="**Camp**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Type**", value="building", inline=False)
+			embed.add_field(name="**For**", value="Needed to make work stations.", inline=False)
+			embed.add_field(name="**Costs**", value="\n<:Gold:639484869809930251> 10000\n<:Wood:573574660185260042> 150\n<:Stone:573574662525550593> 100\n<:Metal:573574661108006915> 50", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
+		
+		elif topic == "Sawmill" or topic == "sawmill":
+			embed=discord.Embed(title="**Sawmill**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Type**", value="Work station", inline=False)
+			embed.add_field(name="**For**", value="Needed to make planks.", inline=False)
+			embed.add_field(name="**Costs**", value="\n<:Gold:639484869809930251> 10000\n<:Wood:573574660185260042> 250\n<:Stone:573574662525550593> 150\n<:Metal:573574661108006915> 100", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+		
+		elif topic == "Masonry" or topic == "masonry":
+			embed=discord.Embed(title="**Masonry**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Type**", value="Work station", inline=False)
+			embed.add_field(name="**For**", value="Needed to make bricks.", inline=False)
+			embed.add_field(name="**Costs**", value="\n<:Gold:639484869809930251> 10000\n<:Wood:573574660185260042> 150\n<:Stone:573574662525550593> 250\n<:Metal:573574661108006915> 100\n<:PlanksbyMaxie:780992714463510530> 50", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "Smeltery" or topic == "smeltery":
+			embed=discord.Embed(title="**Smeltery**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Type**", value="Work station", inline=False)
+			embed.add_field(name="**For**", value="Needed to make iron plates.", inline=False)
+			embed.add_field(name="**Costs**", value="\n<:Gold:639484869809930251> 10000\n<:Wood:573574660185260042> 150\n<:Stone:573574662525550593> 100\n<:Metal:573574661108006915> 150\n<:PlanksbyMaxie:780992714463510530> 75\n<:BricksbyMaxie:780999521249263616> 100", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 
 		elif topic == "test" or topic == "testing":
 			title="<:ShieldBug:649157223905492992>Test123"

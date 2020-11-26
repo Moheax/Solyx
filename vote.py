@@ -31,7 +31,7 @@ class vote(commands.Cog):
 
 # - - - Vote - - - its doing a big dumb and idk why pls help ;-;	
 
-	@commands.group(no_pm=True, aliases=["claim"], invoke_without_command=True)
+	@commands.group(no_pm=True, invoke_without_command=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	@commands.guild_only()
 	async def vote(self, ctx):
@@ -74,7 +74,7 @@ class vote(commands.Cog):
 		delta = float(curr_time) - float(userinfo["vote_block"])
 		seconds = 43200 - delta
 		m, s = divmod(seconds, 60)
-		h, m = divmod(m, 60)
+		h, m = divmod(m, 60)	
 		# The actual vote stuff
 		if seconds <= 0:
 			if userinfo["voted"] == "False":
@@ -98,7 +98,7 @@ class vote(commands.Cog):
 						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 
 
-			await asyncio.sleep(random.randint(37, 64))
+			
 
 
 			# Weekend multiplier is in effect
@@ -117,32 +117,32 @@ class vote(commands.Cog):
 					votehp = random.randint(4, 7)
 					votelb = random.randint(9, 12)
 			else:
-				votemtp = "2X rewards 380K users!! " # New merch! 1.1X multiplier
-				if userinfo["role"] == "patreon2":
-					votegold = random.randint(700, 1000)
-					votehp = random.randint(3, 8)
-					votelb = random.randint(10, 15)
-				elif  userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
-					votegold = random.randint(750, 1200)
-					votehp = random.randint(4, 8)
-					votelb = random.randint(13, 22)
-				else:
-					votegold = random.randint(500, 900)
-					votehp = random.randint(4, 7)
-					votelb = random.randint(9, 12)
-
+				votemtp = "patreon site launched! 1.1X multiplier! " # New merch! 1.1X multiplier
 				#if userinfo["role"] == "patreon2":
-				#	votegold = random.randint(360, 600)
-				#	votehp = random.randint(3, 5)
-				#	votelb = random.randint(7, 13)
-				#elif userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
-				#	votegold = random.randint(450, 750)
-				#	votehp = random.randint(4, 7)
-				#	votelb = random.randint(9, 18)
+				#	votegold = random.randint(700, 1000)
+				#	votehp = random.randint(3, 8)
+				#	votelb = random.randint(10, 15)
+				#elif  userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
+				#	votegold = random.randint(750, 1200)
+				#	votehp = random.randint(4, 8)
+				#	votelb = random.randint(13, 22)
 				#else:
-				#	votegold = random.randint(300, 500)
-				#	votehp = random.randint(2, 5)
-				#	votelb = random.randint(6, 10)
+				#	votegold = random.randint(500, 900)
+				#	votehp = random.randint(4, 7)
+				#	votelb = random.randint(9, 12)
+					
+				if userinfo["role"] == "patreon2":
+					votegold = random.randint(360, 600)
+					votehp = random.randint(3, 5)
+					votelb = random.randint(7, 13)
+				elif userinfo["role"] == "patreon3" or userinfo["role"] == "patreon4":
+					votegold = random.randint(450, 750)
+					votehp = random.randint(4, 7)
+					votelb = random.randint(9, 18)
+				else:
+					votegold = random.randint(300, 500)
+					votehp = random.randint(2, 5)
+					votelb = random.randint(6, 10)
 
 			userinfo["lootbag"] = userinfo["lootbag"] + votelb
 			userinfo["keys"] = userinfo["keys"] + votelb
@@ -151,6 +151,8 @@ class vote(commands.Cog):
 			userinfo["vote_block"] = curr_time
 			userinfo["voted"] = "False"
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+
+			await asyncio.sleep(random.randint(37, 64))
 
 			# Reward embed
 			em = discord.Embed(title="Vote Reward", description="{}\n<:Gold:639484869809930251> **{}**\n<:HealingPotion:573577125064605706> **{}**\n<:Crate:639425690072252426> **{}**\n<:Key:573780034355986432> **{}**\n\n[**New Merch!**](https://teespring.com/stores/solyx-2)\n[**Website**](https://solyxbot.webflow.io/)".format(votemtp, votegold, votehp, votelb, votelb), color=discord.Colour(0xffffff))

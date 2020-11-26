@@ -54,7 +54,7 @@ class loot(commands.Cog):
 			await ctx.send(embed=em)
 			return
 
-		if userinfo["role"] == "Player" or userinfo["role"] == "Developer":
+		if userinfo["role"] == "Player":
 			if amount == 1:
 				times = 1
 
@@ -105,8 +105,7 @@ class loot(commands.Cog):
 					return
 				return
 
-			userinfo["keys"] = userinfo["keys"] - amount
-			userinfo["lootbag"] = userinfo["lootbag"] - amount
+			
 			if amount == 1: 
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["opening"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
@@ -141,6 +140,8 @@ class loot(commands.Cog):
 			for i in range(times):
 				
 				await asyncio.sleep(0.6)
+				userinfo["keys"] = userinfo["keys"] - 1
+				userinfo["lootbag"] = userinfo["lootbag"] - 1
 				try:
 					chance = random.randint(1, 1000)
 					legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
@@ -197,6 +198,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						userinfo["inventory"].append(legendaryitemobj)
@@ -208,6 +215,12 @@ class loot(commands.Cog):
 							try:
 								await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						if "Legendary" in titlesinfo["titles_list"]:
@@ -222,7 +235,12 @@ class loot(commands.Cog):
 									await ctx.send(user, embed=em)
 									pass
 								except:
-									
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
 									pass
 
 						legendarytitle = "Legendary"
@@ -236,7 +254,12 @@ class loot(commands.Cog):
 								await ctx.send(user, embed=em)
 								pass
 							except:
-								
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 						return
 
@@ -285,6 +308,12 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
 							pass
 
 					if common == "Sclerite Sword":
@@ -350,7 +379,13 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
-							pass
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
+						pass
 
 
 					if chance < 300 and chance > 50:
@@ -364,6 +399,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Metal":
@@ -375,6 +416,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Wood":
@@ -386,6 +433,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 					
@@ -413,7 +466,7 @@ class loot(commands.Cog):
 
 
 
-		elif userinfo["role"] == "patreon1":
+		elif userinfo["role"] == "patreon1" or userinfo["role"] == "Developer":
 
 			times = amount
 
@@ -448,8 +501,7 @@ class loot(commands.Cog):
 					return
 				return
 
-			userinfo["keys"] = userinfo["keys"] - amount
-			userinfo["lootbag"] = userinfo["lootbag"] - amount
+
 
 			if amount == 1: 
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["opening"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
@@ -485,6 +537,8 @@ class loot(commands.Cog):
 			for i in range(times):
 				
 				await asyncio.sleep(0.6)
+				userinfo["keys"] = userinfo["keys"] - 1
+				userinfo["lootbag"] = userinfo["lootbag"] - 1
 				try:
 					chance = random.randint(1, 1000)
 					legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
@@ -541,6 +595,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						userinfo["inventory"].append(legendaryitemobj)
@@ -552,6 +612,12 @@ class loot(commands.Cog):
 							try:
 								await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						if "Legendary" in titlesinfo["titles_list"]:
@@ -566,7 +632,12 @@ class loot(commands.Cog):
 									await ctx.send(user, embed=em)
 									pass
 								except:
-									
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
 									pass
 
 						legendarytitle = "Legendary"
@@ -580,7 +651,12 @@ class loot(commands.Cog):
 								await ctx.send(user, embed=em)
 								pass
 							except:
-								
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 						return
 
@@ -629,6 +705,12 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
 							pass
 
 					if common == "Sclerite Sword":
@@ -694,7 +776,13 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
-							pass
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
+						pass
 
 
 					if chance < 300 and chance > 50:
@@ -708,6 +796,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Metal":
@@ -719,6 +813,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Wood":
@@ -730,6 +830,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 					
@@ -791,8 +897,7 @@ class loot(commands.Cog):
 					return
 				return
 
-			userinfo["keys"] = userinfo["keys"] - amount
-			userinfo["lootbag"] = userinfo["lootbag"] - amount
+		
 
 			if amount == 1: 
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["opening"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
@@ -828,6 +933,8 @@ class loot(commands.Cog):
 			for i in range(times):
 				
 				await asyncio.sleep(0.6)
+				userinfo["keys"] = userinfo["keys"] - 1
+				userinfo["lootbag"] = userinfo["lootbag"] - 1
 				try:
 					chance = random.randint(1, 1000)
 					legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
@@ -884,6 +991,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						userinfo["inventory"].append(legendaryitemobj)
@@ -895,6 +1008,12 @@ class loot(commands.Cog):
 							try:
 								await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						if "Legendary" in titlesinfo["titles_list"]:
@@ -909,7 +1028,12 @@ class loot(commands.Cog):
 									await ctx.send(user, embed=em)
 									pass
 								except:
-									
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
 									pass
 
 						legendarytitle = "Legendary"
@@ -923,7 +1047,12 @@ class loot(commands.Cog):
 								await ctx.send(user, embed=em)
 								pass
 							except:
-								
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 						return
 
@@ -972,6 +1101,12 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
 							pass
 
 					if common == "Sclerite Sword":
@@ -1037,7 +1172,13 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
-							pass
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
+						pass
 
 
 					if chance < 300 and chance > 50:
@@ -1051,6 +1192,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Metal":
@@ -1062,6 +1209,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Wood":
@@ -1073,6 +1226,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 					
@@ -1135,8 +1294,7 @@ class loot(commands.Cog):
 					return
 				return
 
-			userinfo["keys"] = userinfo["keys"] - amount
-			userinfo["lootbag"] = userinfo["lootbag"] - amount
+	
 
 			if amount == 1: 
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["opening"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
@@ -1172,6 +1330,8 @@ class loot(commands.Cog):
 			for i in range(times):
 				
 				await asyncio.sleep(0.6)
+				userinfo["keys"] = userinfo["keys"] - 1
+				userinfo["lootbag"] = userinfo["lootbag"] - 1
 				try:
 					chance = random.randint(1, 1000)
 					legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
@@ -1228,6 +1388,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						userinfo["inventory"].append(legendaryitemobj)
@@ -1239,6 +1405,12 @@ class loot(commands.Cog):
 							try:
 								await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						if "Legendary" in titlesinfo["titles_list"]:
@@ -1253,7 +1425,12 @@ class loot(commands.Cog):
 									await ctx.send(user, embed=em)
 									pass
 								except:
-									
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
 									pass
 
 						legendarytitle = "Legendary"
@@ -1267,7 +1444,12 @@ class loot(commands.Cog):
 								await ctx.send(user, embed=em)
 								pass
 							except:
-								
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 						return
 
@@ -1316,6 +1498,12 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
 							pass
 
 					if common == "Sclerite Sword":
@@ -1381,7 +1569,13 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
-							pass
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
+						pass
 
 
 					if chance < 300 and chance > 50:
@@ -1395,6 +1589,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Metal":
@@ -1406,6 +1606,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Wood":
@@ -1417,6 +1623,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 					
@@ -1449,10 +1661,10 @@ class loot(commands.Cog):
 
 		elif userinfo["role"] == "patreon4":
 
-			times == amount 
+			times = amount 
 
 			if amount >= 6:
-				em = discord.Embed(description="You cant open more then 5 crates!\n Become a higher tier patreon to open more crates!", color=discord.Colour(0xffffff))
+				em = discord.Embed(description="You cant open more then 5 crates!", color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 			
@@ -1482,8 +1694,7 @@ class loot(commands.Cog):
 					return
 				return
 
-			userinfo["keys"] = userinfo["keys"] - amount
-			userinfo["lootbag"] = userinfo["lootbag"] - amount
+		
 
 			if amount == 1: 
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["opening"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
@@ -1519,6 +1730,8 @@ class loot(commands.Cog):
 			for i in range(times):
 				
 				await asyncio.sleep(0.6)
+				userinfo["keys"] = userinfo["keys"] - 1
+				userinfo["lootbag"] = userinfo["lootbag"] - 1
 				try:
 					chance = random.randint(1, 1000)
 					legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
@@ -1575,6 +1788,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						userinfo["inventory"].append(legendaryitemobj)
@@ -1586,6 +1805,12 @@ class loot(commands.Cog):
 							try:
 								await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						if "Legendary" in titlesinfo["titles_list"]:
@@ -1600,7 +1825,12 @@ class loot(commands.Cog):
 									await ctx.send(user, embed=em)
 									pass
 								except:
-									
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
 									pass
 
 						legendarytitle = "Legendary"
@@ -1614,7 +1844,12 @@ class loot(commands.Cog):
 								await ctx.send(user, embed=em)
 								pass
 							except:
-								
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 						return
 
@@ -1663,6 +1898,12 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
 							pass
 
 					if common == "Sclerite Sword":
@@ -1728,7 +1969,13 @@ class loot(commands.Cog):
 							await ctx.send(embed=em)
 							pass
 						except:
-							pass
+							userinfo["keys"] = userinfo["keys"] + 1
+							userinfo["lootbag"] = userinfo["lootbag"] + 1
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+							em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+							await ctx.send(embed=em)
+						pass
 
 
 					if chance < 300 and chance > 50:
@@ -1742,6 +1989,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Metal":
@@ -1753,6 +2006,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 						elif material == "Wood":
@@ -1764,6 +2023,12 @@ class loot(commands.Cog):
 								await ctx.send(embed=em)
 								pass
 							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
 								pass
 
 					

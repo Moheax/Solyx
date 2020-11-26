@@ -495,7 +495,7 @@ class guild(commands.Cog):
 		guild = ctx.message.guild
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
-		randommission = randchoice(["Collect 200 wood", "Collect 120 metal", "Collect 160 stone", "Check-in 10 times", "Kill 400 Oofers", "Kill 100 Goblins", "Open 250 Lootbags", "Donate 35000 gold to your guild"]) 
+		randommission = randchoice(["Collect 200 wood", "Collect 120 metal", "Collect 160 stone", "Check-in 10 times", "Kill 100 Oofers", "Kill 100 Goblins", "Open 250 Lootbags", "Donate 35000 gold to your guild"]) 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
@@ -540,7 +540,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -551,6 +551,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -570,7 +571,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -581,6 +582,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -600,7 +602,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -611,6 +613,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -630,7 +633,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -641,6 +644,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -660,7 +664,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -671,6 +675,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -690,7 +695,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -701,12 +706,13 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
-		elif guildinfo["mission"] == "Kill 400 Oofers" and guildinfo["missionprogress"] >= 400:
+		elif guildinfo["mission"] == "Kill 100 Oofers" and guildinfo["missionprogress"] >= 100:
 			reward1 = random.randint(20, 50)
-			em = discord.Embed(title="Mission Completed", description="Your guild completed the Kill 400 Oofers mission and got {} :sparkles: as a reward!".format(reward1), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Mission Completed", description="Your guild completed the Kill 100 Oofers mission and got {} :sparkles: as a reward!".format(reward1), color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
@@ -720,7 +726,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -731,6 +737,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -750,7 +757,7 @@ class guild(commands.Cog):
 			guildinfo["missionprogress"] = 0
 			guildinfo["health"] = 100
 			guildinfo["exp"] = guildinfo["exp"] + reward1
-			if guildinfo["exp"] >= guildinfo["lvl"]:
+			if guildinfo["exp"] >= 100 + ((guildinfo["lvl"] + 1) * 3.5):
 				em = discord.Embed(title="Guild Level Up", description=":tada: **{} gained a level!** :tada:".format(guildinfo["name"]), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -761,6 +768,7 @@ class guild(commands.Cog):
 					except:
 						return
 				guildinfo["lvl"] = guildinfo["lvl"] + 1
+				guildinfo["exp"] = 0
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return
 
@@ -790,7 +798,7 @@ class guild(commands.Cog):
 				mdescription = guildinfo["mission"]
 				mprogress = guildinfo["missionprogress"]
 
-			elif guildinfo["mission"] == "Kill 400 Oofers":
+			elif guildinfo["mission"] == "Kill 100 Oofers":
 				mtitle = "Monster Hunter"
 				mdescription = guildinfo["mission"]
 				mprogress = guildinfo["missionprogress"]
@@ -890,7 +898,17 @@ class guild(commands.Cog):
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		gmembercount = len(guild.members)
-		taxes = amount / 10000
+
+		if guildinfo["lvl"] <= 10:
+			taxes = amount / 1000
+		if guildinfo["lvl"] <= 20:
+			taxes = amount / 2500
+		if guildinfo["lvl"] <= 30:
+			taxes = amount / 5000
+		if guildinfo["lvl"] <= 40:
+			taxes = amount / 10000
+		if guildinfo["lvl"] >= 40:	
+			taxes = amount / 15000
 		finalamt = taxes / (1 * 1)
 		guildinfo["bonus"] = guildinfo["bonus"] + finalamt
 		db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
@@ -951,18 +969,79 @@ class guild(commands.Cog):
 				idowo = guildinfo["_id"]
 				try:
 					if guildinfo["health"] <= 0:
-						guildinfo["bonus"] = 0
-						guildinfo["lvl"] = 0
-						guildinfo["exp"] = 0
-						guildinfo["gold"] = 0
-						guildinfo["stone"] = 0
-						guildinfo["metal"] = 0
-						guildinfo["wood"] = 0
-						guildinfo["title"] = "None"
-						guildinfo["inventory"] = []
-						db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
+						try:
+							if guildinfo["lvl"] <= 10:
+								guildinfo["bonus"] -= 1
+								if guildinfo["bonus"] <= 0:
+									guildinfo["bonus"] = 0
+								guildinfo["lvl"] -= 1
+								if guildinfo["lvl"] <= 0:
+									guildinfo["lvl"] = 0
+								guildinfo["exp"] = 0
+								guildinfo["gold"] = 0
+								guildinfo["stone"] = 0
+								guildinfo["metal"] = 0
+								guildinfo["wood"] = 0
+								guildinfo["inventory"] = []
+							if guildinfo["lvl"] <= 20:
+								guildinfo["bonus"] -= 2
+								if guildinfo["bonus"] <= 0:
+									guildinfo["bonus"] = 0
+								guildinfo["lvl"] -= 1
+								if guildinfo["lvl"] <= 0:
+									guildinfo["lvl"] = 0
+								guildinfo["exp"] = 0
+								guildinfo["gold"] = 0
+								guildinfo["stone"] = 0
+								guildinfo["metal"] = 0
+								guildinfo["wood"] = 0
+								guildinfo["inventory"] = []
+							if guildinfo["lvl"] <= 30:
+								guildinfo["bonus"] -= 1
+								if guildinfo["bonus"] <= 0:
+									guildinfo["bonus"] = 0
+								guildinfo["lvl"] -= 1
+								if guildinfo["lvl"] <= 0:
+									guildinfo["lvl"] = 0
+								guildinfo["exp"] = 0
+								guildinfo["gold"] = 0
+								guildinfo["stone"] = 0
+								guildinfo["metal"] = 0
+								guildinfo["wood"] = 0
+								guildinfo["inventory"] = []
+							if guildinfo["lvl"] <= 40:
+								guildinfo["bonus"] -= 4
+								if guildinfo["bonus"] <= 0:
+									guildinfo["bonus"] = 0
+								guildinfo["lvl"] -= 1
+								if guildinfo["lvl"] <= 0:
+									guildinfo["lvl"] = 0
+								guildinfo["exp"] = 0
+								guildinfo["gold"] = 0
+								guildinfo["stone"] = 0
+								guildinfo["metal"] = 0
+								guildinfo["wood"] = 0
+								guildinfo["inventory"] = []
+							if guildinfo["lvl"] >= 40:	
+								guildinfo["bonus"] -= 5
+								if guildinfo["bonus"] <= 0:
+									guildinfo["bonus"] = 0
+								guildinfo["lvl"] -= 1
+								if guildinfo["lvl"] <= 0:
+									guildinfo["lvl"] = 0
+								guildinfo["exp"] = 0
+								guildinfo["gold"] = 0
+								guildinfo["stone"] = 0
+								guildinfo["metal"] = 0
+								guildinfo["wood"] = 0
+								guildinfo["inventory"] = []
+							db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
+						except:
+							pass
 					else:
 						guildinfo["health"] = guildinfo["health"] - random.randint(0, 2)
+						if guildinfo["health"] < 0:
+							 guildinfo["health"] = 0
 						db.servers.replace_one({ "_id": idowo }, guildinfo, upsert=True)
 				except:
 					try:

@@ -73,7 +73,7 @@ class misc(commands.Cog):
 	@commands.check(developer)
 	async def bap(self, ctx):
 		print('boop')
-		em = discord.Embed(title="\n", description="🎉Thank you for 390K Users! 🎉",color=discord.Colour(0xffffff))	
+		em = discord.Embed(title="\n", description="🎉Thank you sooo much for 400K Users!!!!!!!!!!!!!!!!!! 🎉",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
 	@commands.command(pass_context=True, no_pm=True)
@@ -126,8 +126,16 @@ class misc(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		userinfo["SkillCooldown1"] = 0
 		userinfo["SkillCooldown2"] = 0
+		userinfo["monthlyrewards"] = 0
+		userinfo["daily_block"] = 0
+		userinfo["vote_block"] = 0
+		userinfo["mine_block"] = 0
+		userinfo["chop_block"] = 0
+		userinfo["saw_block"] = 0
+		userinfo["mason_block"] = 0
+		userinfo["smelt_block"] = 0
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title="Deny Cooldown Complete", description="Skill Cooldown removed.",color=discord.Colour(0xffffff))	
+		em = discord.Embed(title="Deny Cooldown Complete", description="Cooldowns removed.",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
 	@commands.command(pass_context=True, no_pm=True)

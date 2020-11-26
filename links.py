@@ -111,36 +111,6 @@ class links(commands.Cog):
 			await ctx.send(ctx.message.author.mention, embed=embed)
 		except:
 			await ctx.send(ctx.message.channel, "I cound't send the message.")
-
-	@commands.command(pass_context=True, name="patreon")
-	@commands.cooldown(1, 10, commands.BucketType.user)
-	async def _patreon(self, ctx):
-
-		guild = ctx.guild
-
-		channel = ctx.message.channel
-
-		user = ctx.message.author
-
-		now = datetime.datetime.now()
-
-		current_time = now.strftime("%H:%M:%S")
-
-		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the website!")
-
-		#Website
-
-	
-		embed=discord.Embed(title="Solyx Patreon list!", color=discord.Colour(0xffffff))
-		
-		embed.add_field(name="Mythical Patreon ", value="<@157614072525881344>\n\n_ _", inline=False)
-		embed.add_field(name="Legendary Patreon", value="Become the first!\n\n_ _", inline=False)			
-		embed.add_field(name="Rare Patreon", value="Become the first!\n\n_ _", inline=False)
-		embed.add_field(name="Common Patreon", value="<@370160829053796352>\n\n_ _", inline=False)
-		embed.add_field(name="Become a patreon!", value="Click [here](https://www.patreon.com/Solyx?fan_landing=true) to visit the patreon site!", inline=False)
-		embed.set_footer(text="Many Many thanks to these people!")
-		embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/560845406750375937.png?v=1")
-		await ctx.send(embed=embed)
 		
 
 	@commands.command(pass_context=True, name="botstatus")
@@ -158,16 +128,28 @@ class links(commands.Cog):
 		current_time = now.strftime("%H:%M:%S")
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has asked for the botstatus")
-		
-		#Bot status page
+
 		color = 0xffffff
 		embed = discord.Embed(colour=color)
-		embed.add_field(name="Check out the Solyx status page!", value="Click [here](https://solyxbot.webflow.io/) to visit the status page!")
+		embed.add_field(name="<:ShieldCross:560804112548233217> Commad Disabled <:ShieldCross:560804112548233217>\n_ _", value="The botstatus page is under maintance.")
 		embed.set_thumbnail(url=ctx.bot.user.avatar_url)
 		try:
 			await ctx.send(ctx.message.author.mention, embed=embed)
+			return
 		except:
 			await ctx.send(ctx.message.channel, "I cound't send the message.")
+		
+		try: #Bot status page
+			color = 0xffffff
+			embed = discord.Embed(colour=color)
+			embed.add_field(name="Check out the Solyx status page!", value="Click [here](https://solyxbot.webflow.io/) to visit the status page!")
+			embed.set_thumbnail(url=ctx.bot.user.avatar_url)
+			try:
+				await ctx.send(ctx.message.author.mention, embed=embed)
+			except:
+				await ctx.send(ctx.message.channel, "I cound't send the message.")
+		except:
+			return
 
 	@commands.command(pass_context=True, name="support")
 	@commands.cooldown(1, 10, commands.BucketType.user)

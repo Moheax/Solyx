@@ -98,7 +98,7 @@ class exp(commands.Cog):
 		
 			
 			if amount >= 6:
-				em = discord.Embed(description="You cant open more then 5 Exp potions!\n Become a higher tier patreon use more exp potions!", color=discord.Colour(0xffffff))
+				em = discord.Embed(description="You cant open more then 5 Exp potions!", color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
@@ -107,7 +107,7 @@ class exp(commands.Cog):
 
 
 
-		if userinfo["exp_potions"] > amount:
+		if userinfo["exp_potions"] >= amount:
 
 			gain = 0
 			for i in range(amount):

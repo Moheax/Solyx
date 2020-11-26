@@ -7,10 +7,13 @@ from utils.defaults import guilddata, userdata
 from utils import checks
 from discord.ext import commands
 from utils.dataIO import fileIO
+from utils.checks import staff, developer, owner
 
 class staff(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
+
+
 
 	async def on_user_ban(self, user):
 		user = ctx.message.author

@@ -83,7 +83,7 @@ class equip(commands.Cog):
 		swordable = ["Knight", "Paladin", "Samurai","Master Samurai", "Grand Paladin"]
 		bowable = ["Archer", "Ranger", "Assassin", "Night Assassin", "Skilled Ranger"]
 		staffable = ["Mage", "Elementalist", "Necromancer", "Ranger", "Developed Necromancer", "Adequate Elementalist","Skilled Ranger"]
-		maceable = ["Paladin", "Rogue", "Samurai", "Master Samurai", "Grand Paladin", "High rogue"]
+		maceable = ["Paladin","Knight", "Rogue", "Samurai", "Master Samurai", "Grand Paladin", "High rogue"]
 		daggerable = ["Thief", "Mesmer", "Rogue", "High Rogue", "Adept Mesmer"]
 		gunable = ["Assassin", "Necromancer", "Mesmer", "Adept Mesmer"]
 		armorable = [""]

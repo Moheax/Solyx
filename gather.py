@@ -139,7 +139,15 @@ class gather(commands.Cog):
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["mine_block"])
 
-		if delta >= 600.0 and delta > 0:
+		cooldowntime = 600
+		
+
+		if userinfo["role"] == "patreon3":
+			cooldowntime = 480
+		if userinfo["role"] == "patreon4":
+			cooldowntime = 300
+
+		if delta >= cooldowntime and delta > 0:
 
 			try: 
 				if guildinfo["mission"] == "Collect 120 metal":
@@ -188,7 +196,7 @@ class gather(commands.Cog):
 			await ctx.send(embed=em)
 		else:
 			# calulate time left
-			seconds = 600 - delta
+			seconds = cooldowntime - delta
 			m, s = divmod(seconds, 60)
 			h, m = divmod(m, 60)
 			em = discord.Embed(title=":hourglass: You can't mine yet!", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
@@ -232,7 +240,17 @@ class gather(commands.Cog):
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["chop_block"])
 
-		if delta >= 600.0 and delta > 0:
+
+		cooldowntime = 600
+		
+
+		if userinfo["role"] == "patreon3":
+			cooldowntime = 480
+		if userinfo["role"] == "patreon4":
+			cooldowntime = 300
+
+
+		if delta >= cooldowntime and delta > 0:
 
 			try:
 				if guildinfo["mission"] == "Collect 200 wood":
@@ -263,7 +281,7 @@ class gather(commands.Cog):
 			await ctx.send(embed=em)
 		else:
 			# calulate time left
-			seconds = 600 - delta
+			seconds = cooldowntime - delta
 			m, s = divmod(seconds, 60)
 			h, m = divmod(m, 60)
 			em = discord.Embed(title=":hourglass: You can't chop yet!", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
