@@ -110,6 +110,7 @@ class traps(commands.Cog):
 						userinfo["stone"] = userinfo["stone"] - stone
 						userinfo["metal"] = userinfo["metal"] - metal
 						userinfo["trap"] = 1
+						userinfo["trap1"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -181,6 +182,7 @@ class traps(commands.Cog):
 						userinfo["metal"] = userinfo["metal"] - metal
 						userinfo["planks"] = userinfo["planks"] - planks
 						userinfo["trap"] = 2
+						userinfo["trap2"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -258,6 +260,7 @@ class traps(commands.Cog):
 						userinfo["planks"] = userinfo["planks"] - planks
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["trap"] = 3
+						userinfo["trap3"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -343,6 +346,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 4
+						userinfo["trap4"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -438,6 +442,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 5
+						userinfo["trap5"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -533,6 +538,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 6
+						userinfo["trap6"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -628,6 +634,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 7
+						userinfo["trap7"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -734,6 +741,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 8
+						userinfo["trap8"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -839,6 +847,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 9
+						userinfo["trap9"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -945,6 +954,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 10
+						userinfo["trap10"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -1051,6 +1061,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 11
+						userinfo["trap11"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -1157,6 +1168,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 12
+						userinfo["trap12"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -1262,6 +1274,7 @@ class traps(commands.Cog):
 						userinfo["bricks"] = userinfo["bricks"] - bricks
 						userinfo["iron_plates"] = userinfo["iron_plates"] - iron_plates
 						userinfo["trap"] = 13
+						userinfo["trap13"] = 10
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
@@ -1332,46 +1345,46 @@ class traps(commands.Cog):
 		if delta >= cooldowntime and delta > 0:
 			
 			if userinfo["trap"] >= 1 and userinfo["trap1"] == 0:
-				em = discord.Embed(title="Trap 1 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 1 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 2 and  userinfo["trap2"] == 0:
-				em = discord.Embed(title="Trap 2 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 2 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 3 and  userinfo["trap3"] == 0:
-				em = discord.Embed(title="Trap 3 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 3 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 4 and  userinfo["trap4"] == 0:
-				em = discord.Embed(title="Trap 4 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 4 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 5 and  userinfo["trap5"] == 0:
-				em = discord.Embed(title="Trap 5 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 5 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 6 and  userinfo["trap6"] == 0:
-				em = discord.Embed(title="Trap 6 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 6 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 7 and  userinfo["trap7"] == 0:
-				em = discord.Embed(title="Trap 7 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 7 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 8 and  userinfo["trap8"] == 0:
-				em = discord.Embed(title="Trap 8 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 8 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 9 and  userinfo["trap9"] == 0:
-				em = discord.Embed(title="Trap 9 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 9 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 10 and  userinfo["trap10"] == 0:
-				em = discord.Embed(title="Trap 10 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 10 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 11 and  userinfo["trap11"] == 0:
-				em = discord.Embed(title="Trap 11 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 11 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 12 and  userinfo["trap12"] == 0:
-				em = discord.Embed(title="Trap 12 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 12 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 			if userinfo["trap"] >= 13 and  userinfo["trap13"] == 0:
-				em = discord.Embed(title="Trap 13 has broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trap 13 is broken!", description="Fix your broken trap with {}trap repair".format(ctx.prefix), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 
-	
+			await asyncio.sleep(1)
 			try:
 				if userinfo["trap"] >= 1:	
 					if userinfo["location"] == "Golden Temple":
@@ -1388,23 +1401,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 
 					elif userinfo["location"] == "Saker Keep":
@@ -1421,23 +1434,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 		
 					elif userinfo["location"] == "The Forest":
@@ -1454,23 +1467,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 				
 					elif userinfo["location"] == "Ebony Mountains":
@@ -1487,23 +1500,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 
 					elif userinfo["location"] == "Township of Arkina":
@@ -1520,23 +1533,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 
 					elif userinfo["location"] == "Zulanthu":
@@ -1553,23 +1566,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 
 					elif userinfo["location"] == "Lost City":
@@ -1586,23 +1599,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 				
 					elif userinfo["location"] == "Drenheim":
@@ -1620,23 +1633,23 @@ class traps(commands.Cog):
 
 						userinfo["enemydifficulty"] = "Common"
 						if Difficulty >= 99:
-							difficulty = "<:Mythical:573784881386225694> Mythical " 
+							difficulty = "<:Mythical:573784881386225694> " 
 							diff ="Mythical"
 
 						elif Difficulty <= 99 and Difficulty >= 90:
-							difficulty = "<:Legendary:639425368167809065> Legendary " 
+							difficulty = "<:Legendary:639425368167809065> " 
 							diff = "Legendary"
 
 						elif Difficulty <= 90 and Difficulty >= 70:
-							difficulty = "<:Rare:573784880815538186> Rare " 
+							difficulty = "<:Rare:573784880815538186>" 
 							diff = "Rare"
 
 						elif Difficulty <= 70 and Difficulty >= 50:
-							difficulty = "<:Uncommon:641361853817159685> Uncommon "
+							difficulty = "<:Uncommon:641361853817159685>"
 							diff = "Uncommon"
 
 						elif Difficulty <= 50 and Difficulty >= 0:
-							difficulty = "<:Common:573784881012932618> Common " 
+							difficulty = "<:Common:573784881012932618> " 
 							diff = "Common"
 
 					trap1 = debi
@@ -1658,23 +1671,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 
 						elif userinfo["location"] == "Saker Keep":
@@ -1691,23 +1704,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 		
 						elif userinfo["location"] == "The Forest":
@@ -1724,23 +1737,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 				
 						elif userinfo["location"] == "Ebony Mountains":
@@ -1757,23 +1770,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 
 						elif userinfo["location"] == "Township of Arkina":
@@ -1790,23 +1803,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 
 						elif userinfo["location"] == "Zulanthu":
@@ -1823,23 +1836,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 
 						elif userinfo["location"] == "Lost City":
@@ -1856,23 +1869,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 				
 						elif userinfo["location"] == "Drenheim":
@@ -1890,23 +1903,23 @@ class traps(commands.Cog):
 
 							userinfo["enemydifficulty"] = "Common"
 							if Difficulty >= 99:
-								difficulty = "<:Mythical:573784881386225694> Mythical " 
+								difficulty = "<:Mythical:573784881386225694> " 
 								diff ="Mythical"
 
 							elif Difficulty <= 99 and Difficulty >= 90:
-								difficulty = "<:Legendary:639425368167809065> Legendary " 
+								difficulty = "<:Legendary:639425368167809065> " 
 								diff = "Legendary"
 
 							elif Difficulty <= 90 and Difficulty >= 70:
-								difficulty = "<:Rare:573784880815538186> Rare " 
+								difficulty = "<:Rare:573784880815538186>" 
 								diff = "Rare"
 
 							elif Difficulty <= 70 and Difficulty >= 50:
-								difficulty = "<:Uncommon:641361853817159685> Uncommon "
+								difficulty = "<:Uncommon:641361853817159685>"
 								diff = "Uncommon"
 
 							elif Difficulty <= 50 and Difficulty >= 0:
-								difficulty = "<:Common:573784881012932618> Common " 
+								difficulty = "<:Common:573784881012932618> " 
 								diff = "Common"
 
 						trap2 = debi
@@ -1928,23 +1941,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 
 							elif userinfo["location"] == "Saker Keep":
@@ -1961,23 +1974,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 		
 							elif userinfo["location"] == "The Forest":
@@ -1994,23 +2007,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 				
 							elif userinfo["location"] == "Ebony Mountains":
@@ -2027,23 +2040,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 
 							elif userinfo["location"] == "Township of Arkina":
@@ -2060,23 +2073,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 
 							elif userinfo["location"] == "Zulanthu":
@@ -2093,23 +2106,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 
 							elif userinfo["location"] == "Lost City":
@@ -2126,23 +2139,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 				
 							elif userinfo["location"] == "Drenheim":
@@ -2160,23 +2173,23 @@ class traps(commands.Cog):
 
 								userinfo["enemydifficulty"] = "Common"
 								if Difficulty >= 99:
-									difficulty = "<:Mythical:573784881386225694> Mythical " 
+									difficulty = "<:Mythical:573784881386225694> " 
 									diff ="Mythical"
 
 								elif Difficulty <= 99 and Difficulty >= 90:
-									difficulty = "<:Legendary:639425368167809065> Legendary " 
+									difficulty = "<:Legendary:639425368167809065> " 
 									diff = "Legendary"
 
 								elif Difficulty <= 90 and Difficulty >= 70:
-									difficulty = "<:Rare:573784880815538186> Rare " 
+									difficulty = "<:Rare:573784880815538186>" 
 									diff = "Rare"
 
 								elif Difficulty <= 70 and Difficulty >= 50:
-									difficulty = "<:Uncommon:641361853817159685> Uncommon "
+									difficulty = "<:Uncommon:641361853817159685>"
 									diff = "Uncommon"
 
 								elif Difficulty <= 50 and Difficulty >= 0:
-									difficulty = "<:Common:573784881012932618> Common " 
+									difficulty = "<:Common:573784881012932618> " 
 									diff = "Common"
 
 							trap3 = debi
@@ -2198,23 +2211,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 
 								elif userinfo["location"] == "Saker Keep":
@@ -2231,23 +2244,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 		
 								elif userinfo["location"] == "The Forest":
@@ -2264,23 +2277,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 				
 								elif userinfo["location"] == "Ebony Mountains":
@@ -2297,23 +2310,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 
 								elif userinfo["location"] == "Township of Arkina":
@@ -2330,23 +2343,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 
 								elif userinfo["location"] == "Zulanthu":
@@ -2363,23 +2376,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 
 								elif userinfo["location"] == "Lost City":
@@ -2396,23 +2409,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 				
 								elif userinfo["location"] == "Drenheim":
@@ -2430,23 +2443,23 @@ class traps(commands.Cog):
 
 									userinfo["enemydifficulty"] = "Common"
 									if Difficulty >= 99:
-										difficulty = "<:Mythical:573784881386225694> Mythical " 
+										difficulty = "<:Mythical:573784881386225694> " 
 										diff ="Mythical"
 
 									elif Difficulty <= 99 and Difficulty >= 90:
-										difficulty = "<:Legendary:639425368167809065> Legendary " 
+										difficulty = "<:Legendary:639425368167809065> " 
 										diff = "Legendary"
 
 									elif Difficulty <= 90 and Difficulty >= 70:
-										difficulty = "<:Rare:573784880815538186> Rare " 
+										difficulty = "<:Rare:573784880815538186>" 
 										diff = "Rare"
 
 									elif Difficulty <= 70 and Difficulty >= 50:
-										difficulty = "<:Uncommon:641361853817159685> Uncommon "
+										difficulty = "<:Uncommon:641361853817159685>"
 										diff = "Uncommon"
 
 									elif Difficulty <= 50 and Difficulty >= 0:
-										difficulty = "<:Common:573784881012932618> Common " 
+										difficulty = "<:Common:573784881012932618> " 
 										diff = "Common"
 
 								trap4 = debi
@@ -2468,23 +2481,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 
 									elif userinfo["location"] == "Saker Keep":
@@ -2501,23 +2514,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 		
 									elif userinfo["location"] == "The Forest":
@@ -2534,23 +2547,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 				
 									elif userinfo["location"] == "Ebony Mountains":
@@ -2567,23 +2580,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 
 									elif userinfo["location"] == "Township of Arkina":
@@ -2600,23 +2613,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 
 									elif userinfo["location"] == "Zulanthu":
@@ -2633,23 +2646,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 
 									elif userinfo["location"] == "Lost City":
@@ -2666,23 +2679,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 				
 									elif userinfo["location"] == "Drenheim":
@@ -2700,23 +2713,23 @@ class traps(commands.Cog):
 
 										userinfo["enemydifficulty"] = "Common"
 										if Difficulty >= 99:
-											difficulty = "<:Mythical:573784881386225694> Mythical " 
+											difficulty = "<:Mythical:573784881386225694> " 
 											diff ="Mythical"
 
 										elif Difficulty <= 99 and Difficulty >= 90:
-											difficulty = "<:Legendary:639425368167809065> Legendary " 
+											difficulty = "<:Legendary:639425368167809065> " 
 											diff = "Legendary"
 
 										elif Difficulty <= 90 and Difficulty >= 70:
-											difficulty = "<:Rare:573784880815538186> Rare " 
+											difficulty = "<:Rare:573784880815538186>" 
 											diff = "Rare"
 
 										elif Difficulty <= 70 and Difficulty >= 50:
-											difficulty = "<:Uncommon:641361853817159685> Uncommon "
+											difficulty = "<:Uncommon:641361853817159685>"
 											diff = "Uncommon"
 
 										elif Difficulty <= 50 and Difficulty >= 0:
-											difficulty = "<:Common:573784881012932618> Common " 
+											difficulty = "<:Common:573784881012932618> " 
 											diff = "Common"
 
 									trap5 = debi
@@ -2738,23 +2751,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 
 										elif userinfo["location"] == "Saker Keep":
@@ -2771,23 +2784,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 		
 										elif userinfo["location"] == "The Forest":
@@ -2804,23 +2817,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 				
 										elif userinfo["location"] == "Ebony Mountains":
@@ -2837,23 +2850,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 
 										elif userinfo["location"] == "Township of Arkina":
@@ -2870,23 +2883,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 
 										elif userinfo["location"] == "Zulanthu":
@@ -2903,23 +2916,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 
 										elif userinfo["location"] == "Lost City":
@@ -2936,23 +2949,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 				
 										elif userinfo["location"] == "Drenheim":
@@ -2970,23 +2983,23 @@ class traps(commands.Cog):
 
 											userinfo["enemydifficulty"] = "Common"
 											if Difficulty >= 99:
-												difficulty = "<:Mythical:573784881386225694> Mythical " 
+												difficulty = "<:Mythical:573784881386225694> " 
 												diff ="Mythical"
 
 											elif Difficulty <= 99 and Difficulty >= 90:
-												difficulty = "<:Legendary:639425368167809065> Legendary " 
+												difficulty = "<:Legendary:639425368167809065> " 
 												diff = "Legendary"
 
 											elif Difficulty <= 90 and Difficulty >= 70:
-												difficulty = "<:Rare:573784880815538186> Rare " 
+												difficulty = "<:Rare:573784880815538186>" 
 												diff = "Rare"
 
 											elif Difficulty <= 70 and Difficulty >= 50:
-												difficulty = "<:Uncommon:641361853817159685> Uncommon "
+												difficulty = "<:Uncommon:641361853817159685>"
 												diff = "Uncommon"
 
 											elif Difficulty <= 50 and Difficulty >= 0:
-												difficulty = "<:Common:573784881012932618> Common " 
+												difficulty = "<:Common:573784881012932618> " 
 												diff = "Common"
 
 										trap6 = debi
@@ -3008,23 +3021,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 
 											elif userinfo["location"] == "Saker Keep":
@@ -3041,23 +3054,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 		
 											elif userinfo["location"] == "The Forest":
@@ -3074,23 +3087,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 				
 											elif userinfo["location"] == "Ebony Mountains":
@@ -3107,23 +3120,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 
 											elif userinfo["location"] == "Township of Arkina":
@@ -3140,23 +3153,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 
 											elif userinfo["location"] == "Zulanthu":
@@ -3173,23 +3186,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 
 											elif userinfo["location"] == "Lost City":
@@ -3206,23 +3219,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 				
 											elif userinfo["location"] == "Drenheim":
@@ -3240,23 +3253,23 @@ class traps(commands.Cog):
 
 												userinfo["enemydifficulty"] = "Common"
 												if Difficulty >= 99:
-													difficulty = "<:Mythical:573784881386225694> Mythical " 
+													difficulty = "<:Mythical:573784881386225694> " 
 													diff ="Mythical"
 
 												elif Difficulty <= 99 and Difficulty >= 90:
-													difficulty = "<:Legendary:639425368167809065> Legendary " 
+													difficulty = "<:Legendary:639425368167809065> " 
 													diff = "Legendary"
 
 												elif Difficulty <= 90 and Difficulty >= 70:
-													difficulty = "<:Rare:573784880815538186> Rare " 
+													difficulty = "<:Rare:573784880815538186>" 
 													diff = "Rare"
 
 												elif Difficulty <= 70 and Difficulty >= 50:
-													difficulty = "<:Uncommon:641361853817159685> Uncommon "
+													difficulty = "<:Uncommon:641361853817159685>"
 													diff = "Uncommon"
 
 												elif Difficulty <= 50 and Difficulty >= 0:
-													difficulty = "<:Common:573784881012932618> Common " 
+													difficulty = "<:Common:573784881012932618> " 
 													diff = "Common"
 
 											trap7 = debi
@@ -3278,23 +3291,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 
 												elif userinfo["location"] == "Saker Keep":
@@ -3311,23 +3324,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 		
 												elif userinfo["location"] == "The Forest":
@@ -3344,23 +3357,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 				
 												elif userinfo["location"] == "Ebony Mountains":
@@ -3377,23 +3390,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 
 												elif userinfo["location"] == "Township of Arkina":
@@ -3410,23 +3423,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 
 												elif userinfo["location"] == "Zulanthu":
@@ -3443,23 +3456,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 
 												elif userinfo["location"] == "Lost City":
@@ -3476,23 +3489,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 				
 												elif userinfo["location"] == "Drenheim":
@@ -3510,23 +3523,23 @@ class traps(commands.Cog):
 
 													userinfo["enemydifficulty"] = "Common"
 													if Difficulty >= 99:
-														difficulty = "<:Mythical:573784881386225694> Mythical " 
+														difficulty = "<:Mythical:573784881386225694> " 
 														diff ="Mythical"
 
 													elif Difficulty <= 99 and Difficulty >= 90:
-														difficulty = "<:Legendary:639425368167809065> Legendary " 
+														difficulty = "<:Legendary:639425368167809065> " 
 														diff = "Legendary"
 
 													elif Difficulty <= 90 and Difficulty >= 70:
-														difficulty = "<:Rare:573784880815538186> Rare " 
+														difficulty = "<:Rare:573784880815538186>" 
 														diff = "Rare"
 
 													elif Difficulty <= 70 and Difficulty >= 50:
-														difficulty = "<:Uncommon:641361853817159685> Uncommon "
+														difficulty = "<:Uncommon:641361853817159685>"
 														diff = "Uncommon"
 
 													elif Difficulty <= 50 and Difficulty >= 0:
-														difficulty = "<:Common:573784881012932618> Common " 
+														difficulty = "<:Common:573784881012932618> " 
 														diff = "Common"
 
 												trap8 = debi
@@ -3549,23 +3562,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 
 													elif userinfo["location"] == "Saker Keep":
@@ -3582,23 +3595,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 		
 													elif userinfo["location"] == "The Forest":
@@ -3615,23 +3628,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 				
 													elif userinfo["location"] == "Ebony Mountains":
@@ -3648,23 +3661,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 
 													elif userinfo["location"] == "Township of Arkina":
@@ -3681,23 +3694,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 
 													elif userinfo["location"] == "Zulanthu":
@@ -3714,23 +3727,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 
 													elif userinfo["location"] == "Lost City":
@@ -3747,23 +3760,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 				
 													elif userinfo["location"] == "Drenheim":
@@ -3781,23 +3794,23 @@ class traps(commands.Cog):
 
 														userinfo["enemydifficulty"] = "Common"
 														if Difficulty >= 99:
-															difficulty = "<:Mythical:573784881386225694> Mythical " 
+															difficulty = "<:Mythical:573784881386225694> " 
 															diff ="Mythical"
 
 														elif Difficulty <= 99 and Difficulty >= 90:
-															difficulty = "<:Legendary:639425368167809065> Legendary " 
+															difficulty = "<:Legendary:639425368167809065> " 
 															diff = "Legendary"
 
 														elif Difficulty <= 90 and Difficulty >= 70:
-															difficulty = "<:Rare:573784880815538186> Rare " 
+															difficulty = "<:Rare:573784880815538186>" 
 															diff = "Rare"
 
 														elif Difficulty <= 70 and Difficulty >= 50:
-															difficulty = "<:Uncommon:641361853817159685> Uncommon "
+															difficulty = "<:Uncommon:641361853817159685>"
 															diff = "Uncommon"
 
 														elif Difficulty <= 50 and Difficulty >= 0:
-															difficulty = "<:Common:573784881012932618> Common " 
+															difficulty = "<:Common:573784881012932618> " 
 															diff = "Common"
 
 													trap9 = debi
@@ -3819,23 +3832,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 
 														elif userinfo["location"] == "Saker Keep":
@@ -3852,23 +3865,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 		
 														elif userinfo["location"] == "The Forest":
@@ -3885,23 +3898,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 				
 														elif userinfo["location"] == "Ebony Mountains":
@@ -3918,23 +3931,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 
 														elif userinfo["location"] == "Township of Arkina":
@@ -3951,23 +3964,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 
 														elif userinfo["location"] == "Zulanthu":
@@ -3984,23 +3997,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 
 														elif userinfo["location"] == "Lost City":
@@ -4017,23 +4030,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 				
 														elif userinfo["location"] == "Drenheim":
@@ -4051,23 +4064,23 @@ class traps(commands.Cog):
 
 															userinfo["enemydifficulty"] = "Common"
 															if Difficulty >= 99:
-																difficulty = "<:Mythical:573784881386225694> Mythical " 
+																difficulty = "<:Mythical:573784881386225694> " 
 																diff ="Mythical"
 
 															elif Difficulty <= 99 and Difficulty >= 90:
-																difficulty = "<:Legendary:639425368167809065> Legendary " 
+																difficulty = "<:Legendary:639425368167809065> " 
 																diff = "Legendary"
 
 															elif Difficulty <= 90 and Difficulty >= 70:
-																difficulty = "<:Rare:573784880815538186> Rare " 
+																difficulty = "<:Rare:573784880815538186>" 
 																diff = "Rare"
 
 															elif Difficulty <= 70 and Difficulty >= 50:
-																difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																difficulty = "<:Uncommon:641361853817159685>"
 																diff = "Uncommon"
 
 															elif Difficulty <= 50 and Difficulty >= 0:
-																difficulty = "<:Common:573784881012932618> Common " 
+																difficulty = "<:Common:573784881012932618> " 
 																diff = "Common"
 
 														trap10 = debi
@@ -4089,23 +4102,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 
 															elif userinfo["location"] == "Saker Keep":
@@ -4122,23 +4135,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 		
 															elif userinfo["location"] == "The Forest":
@@ -4155,23 +4168,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 				
 															elif userinfo["location"] == "Ebony Mountains":
@@ -4188,23 +4201,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 
 															elif userinfo["location"] == "Township of Arkina":
@@ -4221,23 +4234,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 
 															elif userinfo["location"] == "Zulanthu":
@@ -4254,23 +4267,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 
 															elif userinfo["location"] == "Lost City":
@@ -4287,23 +4300,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 															elif userinfo["location"] == "Drenheim":
 					
@@ -4320,23 +4333,23 @@ class traps(commands.Cog):
 
 																userinfo["enemydifficulty"] = "Common"
 																if Difficulty >= 99:
-																	difficulty = "<:Mythical:573784881386225694> Mythical " 
+																	difficulty = "<:Mythical:573784881386225694> " 
 																	diff ="Mythical"
 
 																elif Difficulty <= 99 and Difficulty >= 90:
-																	difficulty = "<:Legendary:639425368167809065> Legendary " 
+																	difficulty = "<:Legendary:639425368167809065> " 
 																	diff = "Legendary"
 
 																elif Difficulty <= 90 and Difficulty >= 70:
-																	difficulty = "<:Rare:573784880815538186> Rare " 
+																	difficulty = "<:Rare:573784880815538186>" 
 																	diff = "Rare"
 
 																elif Difficulty <= 70 and Difficulty >= 50:
-																	difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																	difficulty = "<:Uncommon:641361853817159685>"
 																	diff = "Uncommon"
 
 																elif Difficulty <= 50 and Difficulty >= 0:
-																	difficulty = "<:Common:573784881012932618> Common " 
+																	difficulty = "<:Common:573784881012932618> " 
 																	diff = "Common"
 
 
@@ -4360,23 +4373,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 
 																elif userinfo["location"] == "Saker Keep":
@@ -4393,23 +4406,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 		
 																elif userinfo["location"] == "The Forest":
@@ -4426,23 +4439,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 				
 																elif userinfo["location"] == "Ebony Mountains":
@@ -4459,23 +4472,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 
 																elif userinfo["location"] == "Township of Arkina":
@@ -4492,23 +4505,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 
 																elif userinfo["location"] == "Zulanthu":
@@ -4525,23 +4538,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 
 																elif userinfo["location"] == "Lost City":
@@ -4558,23 +4571,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"
 				
 																elif userinfo["location"] == "Drenheim":
@@ -4592,23 +4605,23 @@ class traps(commands.Cog):
 
 																	userinfo["enemydifficulty"] = "Common"
 																	if Difficulty >= 99:
-																		difficulty = "<:Mythical:573784881386225694> Mythical " 
+																		difficulty = "<:Mythical:573784881386225694> " 
 																		diff ="Mythical"
 
 																	elif Difficulty <= 99 and Difficulty >= 90:
-																		difficulty = "<:Legendary:639425368167809065> Legendary " 
+																		difficulty = "<:Legendary:639425368167809065> " 
 																		diff = "Legendary"
 
 																	elif Difficulty <= 90 and Difficulty >= 70:
-																		difficulty = "<:Rare:573784880815538186> Rare " 
+																		difficulty = "<:Rare:573784880815538186>" 
 																		diff = "Rare"
 
 																	elif Difficulty <= 70 and Difficulty >= 50:
-																		difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																		difficulty = "<:Uncommon:641361853817159685>"
 																		diff = "Uncommon"
 
 																	elif Difficulty <= 50 and Difficulty >= 0:
-																		difficulty = "<:Common:573784881012932618> Common " 
+																		difficulty = "<:Common:573784881012932618> " 
 																		diff = "Common"	
 
 																trap12 = debi
@@ -4630,23 +4643,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 
 																	elif userinfo["location"] == "Saker Keep":
@@ -4663,23 +4676,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 		
 																	elif userinfo["location"] == "The Forest":
@@ -4696,23 +4709,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 				
 																	elif userinfo["location"] == "Ebony Mountains":
@@ -4729,23 +4742,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 
 																	elif userinfo["location"] == "Township of Arkina":
@@ -4762,23 +4775,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 
 																	elif userinfo["location"] == "Zulanthu":
@@ -4795,23 +4808,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 
 																	elif userinfo["location"] == "Lost City":
@@ -4828,23 +4841,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 				
 																	elif userinfo["location"] == "Drenheim":
@@ -4862,23 +4875,23 @@ class traps(commands.Cog):
 
 																		userinfo["enemydifficulty"] = "Common"
 																		if Difficulty >= 99:
-																			difficulty = "<:Mythical:573784881386225694> Mythical " 
+																			difficulty = "<:Mythical:573784881386225694> " 
 																			diff ="Mythical"
 
 																		elif Difficulty <= 99 and Difficulty >= 90:
-																			difficulty = "<:Legendary:639425368167809065> Legendary " 
+																			difficulty = "<:Legendary:639425368167809065> " 
 																			diff = "Legendary"
 
 																		elif Difficulty <= 90 and Difficulty >= 70:
-																			difficulty = "<:Rare:573784880815538186> Rare " 
+																			difficulty = "<:Rare:573784880815538186>" 
 																			diff = "Rare"
 
 																		elif Difficulty <= 70 and Difficulty >= 50:
-																			difficulty = "<:Uncommon:641361853817159685> Uncommon "
+																			difficulty = "<:Uncommon:641361853817159685>"
 																			diff = "Uncommon"
 
 																		elif Difficulty <= 50 and Difficulty >= 0:
-																			difficulty = "<:Common:573784881012932618> Common " 
+																			difficulty = "<:Common:573784881012932618> " 
 																			diff = "Common"	
 				
 																	trap13 = debi
@@ -5378,7 +5391,7 @@ class traps(commands.Cog):
 					trap1xpgain = (int((trap1xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap1 == "Ice Wolves" or trap1 == "Frost Goblin":
+			elif trap1 == "Ice Wolf" or trap1 == "Frost Goblin":
 				trap1enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap1xpgain = random.randint(75, 95)
 
@@ -5898,7 +5911,7 @@ class traps(commands.Cog):
 					trap2xpgain = (int((trap2xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap2 == "Ice Wolves" or trap2 == "Frost Goblin":
+			elif trap2 == "Ice Wolf" or trap2 == "Frost Goblin":
 				trap2enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap2xpgain = random.randint(75, 95)
 
@@ -6422,7 +6435,7 @@ class traps(commands.Cog):
 					trap3xpgain = (int((trap3xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap3 == "Ice Wolves" or trap3 == "Frost Goblin":
+			elif trap3 == "Ice Wolf" or trap3 == "Frost Goblin":
 				trap3enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap3xpgain = random.randint(75, 95)
 
@@ -6944,7 +6957,7 @@ class traps(commands.Cog):
 					trap4xpgain = (int((trap4xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap4 == "Ice Wolves" or trap4 == "Frost Goblin":
+			elif trap4 == "Ice Wolf" or trap4 == "Frost Goblin":
 				trap4enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap4xpgain = random.randint(75, 95)
 
@@ -7468,7 +7481,7 @@ class traps(commands.Cog):
 					trap5xpgain = (int((trap5xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap5 == "Ice Wolves" or trap5 == "Frost Goblin":
+			elif trap5 == "Ice Wolf" or trap5 == "Frost Goblin":
 				trap5enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap5xpgain = random.randint(75, 95)
 
@@ -7990,7 +8003,7 @@ class traps(commands.Cog):
 					trap6xpgain = (int((trap6xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap6 == "Ice Wolves" or trap6 == "Frost Goblin":
+			elif trap6 == "Ice Wolf" or trap6 == "Frost Goblin":
 				trap6enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap6xpgain = random.randint(75, 95)
 
@@ -8511,7 +8524,7 @@ class traps(commands.Cog):
 					trap7xpgain = (int((trap7xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap7 == "Ice Wolves" or trap7 == "Frost Goblin":
+			elif trap7 == "Ice Wolf" or trap7 == "Frost Goblin":
 				trap7enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap7xpgain = random.randint(75, 95)
 
@@ -9032,7 +9045,7 @@ class traps(commands.Cog):
 					trap8xpgain = (int((trap8xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap8 == "Ice Wolves" or trap8 == "Frost Goblin":
+			elif trap8 == "Ice Wolf" or trap8 == "Frost Goblin":
 				trap8enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap8xpgain = random.randint(75, 95)
 
@@ -9554,7 +9567,7 @@ class traps(commands.Cog):
 					trap9xpgain = (int((trap9xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap9 == "Ice Wolves" or trap9 == "Frost Goblin":
+			elif trap9 == "Ice Wolf" or trap9 == "Frost Goblin":
 				trap9enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap9xpgain = random.randint(75, 95)
 
@@ -10076,7 +10089,7 @@ class traps(commands.Cog):
 					trap10xpgain = (int((trap10xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap10 == "Ice Wolves" or trap10 == "Frost Goblin":
+			elif trap10 == "Ice Wolf" or trap10 == "Frost Goblin":
 				trap10enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap10xpgain = random.randint(75, 95)
 
@@ -10598,7 +10611,7 @@ class traps(commands.Cog):
 					trap11xpgain = (int((trap11xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap11 == "Ice Wolves" or trap11 == "Frost Goblin":
+			elif trap11 == "Ice Wolf" or trap11 == "Frost Goblin":
 				trap11enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap11xpgain = random.randint(75, 95)
 
@@ -11120,7 +11133,7 @@ class traps(commands.Cog):
 					trap12xpgain = (int((trap12xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap12 == "Ice Wolves" or trap12 == "Frost Goblin":
+			elif trap12 == "Ice Wolf" or trap12 == "Frost Goblin":
 				trap12enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap12xpgain = random.randint(75, 95)
 
@@ -11642,7 +11655,7 @@ class traps(commands.Cog):
 					trap13xpgain = (int((trap13xpgain / 100) * 150))
 
 			# DRENHEIM
-			elif trap13 == "Ice Wolves" or trap13 == "Frost Goblin":
+			elif trap13 == "Ice Wolf" or trap13 == "Frost Goblin":
 				trap13enemygold = random.randint(80, 100) + (effectiveguildbonus)
 				trap13xpgain = random.randint(75, 95)
 
@@ -11703,36 +11716,331 @@ class traps(commands.Cog):
 				elif trap13diff == "Mythical":
 					trap13enemygold = (int((trap13enemygold / 100) * 150))
 					trap13xpgain = (int((trap13xpgain / 100) * 150))
+			
+
+			list = ""
+			list1 = ""
+			list2 = ""
+			list3 = ""
+			list4 = ""
+			list5 = ""
 
 
+			if userinfo["trap1"] >= 0 and userinfo["trap"] >= 1:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 1**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap1difficulty, trap1, int(trap1enemygold), int(trap1xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap1"] -= 1
+					if userinfo["trap1"] == 0:
+						list2 += "**Trap 1**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 1**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 1**\n Has Broken.\n_ _\n"
+					userinfo["trap1"] == 0
+				pass
+			if userinfo["trap2"] >= 0 and userinfo["trap"] >= 2:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 2**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap2difficulty, trap2, int(trap2enemygold), int(trap2xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap2"] -= 1
+					if userinfo["trap2"] == 0:
+						list2 += "**Trap 2**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 2**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 2**\n Has Broken.\n_ _\n"
+					userinfo["trap2"] == 0
+				pass
+			if userinfo["trap3"] >= 0 and userinfo["trap"] >= 3:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 3**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap3difficulty, trap3, int(trap3enemygold), int(trap3xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap3"] -= 1
+					if userinfo["trap3"] == 0:
+						list2 += "**Trap 3**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 3**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 3**\n Has Broken.\n_ _\n"
+					userinfo["trap3"] == 0
+				pass
+			if userinfo["trap4"] >= 0 and userinfo["trap"] >= 4:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 4**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap4difficulty, trap4, int(trap4enemygold), int(trap4xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap4"] -= 1
+					if userinfo["trap4"] == 0:
+						list2 += "**Trap 4**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 4**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 4**\n Has Broken.\n_ _\n"
+					userinfo["trap4"] == 0
+				pass
+			if userinfo["trap5"] >= 0 and userinfo["trap"] >= 5:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 5**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap5difficulty, trap5, int(trap5enemygold), int(trap5xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap5"] -= 1
+					if userinfo["trap5"] == 0:
+						list2 += "**Trap 5 **\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 5**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 5**\n Has Broken.\n_ _\n"
+					userinfo["trap5"] == 0
+				pass
+			if userinfo["trap6"] >= 0 and userinfo["trap"] >= 6:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 6**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap6difficulty, trap6, int(trap6enemygold), int(trap6xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap6"] -= 1
+					if userinfo["trap6"] == 0:
+						list2 += "**Trap 6**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 6**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 6**\n Has Broken.\n_ _\n"
+					userinfo["trap6"] == 0
+				pass
+			if userinfo["trap7"] >= 0 and userinfo["trap"] >= 7:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list += "**Trap 7**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap7difficulty, trap7, int(trap7enemygold), int(trap7xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap7"] -= 1
+					if userinfo["trap7"] == 0:
+						list2 += "**Trap 7**\n Has Broken.\n_ _\n"
+					else:
+						list1 += "**Trap 7**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list2 += "**Trap 7**\n Has Broken.\n_ _\n"
+					userinfo["trap7"] == 0
+				pass
+			if userinfo["trap8"] >= 0 and userinfo["trap"] >= 8:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 8**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap8difficulty, trap8, int(trap8enemygold), int(trap8xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap8"] -= 1
+					if userinfo["trap8"] == 0:
+						list5 += "**Trap 8**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 8**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 8**\n Has Broken.\n_ _\n"
+					userinfo["trap8"] == 0
+				pass
+			if userinfo["trap9"] >= 0 and userinfo["trap"] >= 9:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 9**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap9difficulty, trap9, int(trap9enemygold), int(trap9xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap9"] -= 1
+					if userinfo["trap9"] == 0:
+						list5 += "**Trap 9**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 9**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 9**\n Has Broken.\n_ _\n"
+					userinfo["trap9"] == 0
+				pass
+			if userinfo["trap10"] >= 0 and userinfo["trap"] >= 10:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 10**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap10difficulty, trap10, int(trap10enemygold), int(trap10xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap10"] -= 1
+					if userinfo["trap10"] == 0:
+						list5 += "**Trap 10**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 10**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 10**\n Has Broken.\n_ _\n"
+					userinfo["trap10"] == 0
+				pass
+			if userinfo["trap11"] >= 0 and userinfo["trap"] >= 11:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 11**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap11difficulty, trap11, int(trap11enemygold), int(trap11xpgain))
+				if chance <= 20 and chance >=5:
+					userinfo["trap11"] -= 1
+					if userinfo["trap11"] == 0:
+						list5 += "**Trap 11**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 11**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 11**\n Has Broken.\n_ _\n"
+					userinfo["trap11"] == 0
+				pass
+			if userinfo["trap12"] >= 0 and userinfo["trap"] >= 12:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 12**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap12difficulty, trap12, int(trap12enemygold), int(trap12xpgain))
+				if chance <= 20 and chance >=5:	
+					userinfo["trap12"] -= 1
+					if userinfo["trap12"] == 0:
+						list5 += "**Trap 12**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 12**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 12**\n Has Broken.\n_ _\n"
+					userinfo["trap12"] == 0
+				pass
+			if userinfo["trap13"] >= 0 and userinfo["trap"] >= 13:
+				chance = random.randint(1, 100)
+				if chance >= 20:
+					list3 += "**Trap 13**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap13difficulty, trap13, int(trap13enemygold), int(trap13xpgain))
+				if chance <= 20 and chance >=5:					
+					userinfo["trap13"] -= 1
+					if userinfo["trap13"] == 0:
+						list5 += "**Trap 13**\n Has Broken.\n_ _\n"
+					else:
+						list4 += "**Trap 13**\n Has failed.\n_ _\n"
+				if chance <= 5 :
+					list5 += "**Trap 13**\n Has Broken.\n_ _\n"
+					userinfo["trap13"] == 0
+				pass
 
-			print("monster:", trap1, "Difficulty", trap1diff, "Difficulty text.", trap1difficulty, "Gold", trap1enemygold, "Exp", trap1xpgain )
-			print("monster:", trap2, "Difficulty", trap2diff, "Difficulty text.", trap2difficulty, "Gold", trap2enemygold, "Exp", trap2xpgain)
-			print("monster:", trap3, "Difficulty", trap3diff, "Difficulty text.", trap3difficulty, "Gold", trap3enemygold, "Exp", trap3xpgain) 
-			print("monster:", trap4, "Difficulty", trap4diff, "Difficulty text.", trap4difficulty, "Gold", trap4enemygold, "Exp", trap4xpgain)
-			print("monster:", trap5, "Difficulty", trap5diff, "Difficulty text.", trap5difficulty, "Gold", trap5enemygold, "Exp", trap5xpgain)
-			print("monster:", trap6, "Difficulty", trap6diff, "Difficulty text.", trap6difficulty, "Gold", trap6enemygold, "Exp", trap6xpgain)
-			print("monster:", trap7, "Difficulty", trap7diff, "Difficulty text.", trap7difficulty, "Gold", trap7enemygold, "Exp", trap7xpgain)
-			print("monster:", trap8, "Difficulty", trap8diff, "Difficulty text.", trap8difficulty, "Gold", trap8enemygold, "Exp", trap8xpgain)
-			print("monster:", trap9, "Difficulty", trap9diff, "Difficulty text.", trap9difficulty, "Gold", trap9enemygold, "Exp", trap9xpgain)
-			print("monster:", trap10, "Difficulty", trap10diff, "Difficulty text.", trap10difficulty, "Gold", trap10enemygold, "Exp", trap10xpgain) 
-			print("monster:", trap11, "Difficulty", trap11diff, "Difficulty text.", trap11difficulty, "Gold", trap11enemygold, "Exp", trap11xpgain)
-			print("monster:", trap12, "Difficulty", trap12diff, "Difficulty text.", trap12difficulty, "Gold", trap12enemygold, "Exp", trap12xpgain)
-			print("monster:", trap13, "Difficulty", trap13diff, "Difficulty text.", trap13difficulty, "Gold", trap13enemygold, "Exp", trap13xpgain)
-			return
+			#userinfo["trap_block"] = curr_time
+			#db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 
+			list += "_ _\n"
+			list1 += "_ _\n"
+			list2 += "_ _\n"
+			list3 += "_ _\n"
+			list4 += "_ _\n"
+			list5 += "_ _\n"
 
+
+		
+			em = discord.Embed(color=discord.Colour(0xffffff))
+			em.set_author(name="{}'s Traps".format(userinfo["name"]), icon_url=user.avatar_url)
+			try:
+				em.add_field(name="Succesfull Traps", value=list)
+			except:
+				pass
+			try:
+				em.add_field(name="Failed Traps", value=list1)
+			except:
+				pass
+			try:
+				em.add_field(name="Broken Traps", value=list2)
+			except:
+				pass
+
+			em2 = discord.Embed(color=discord.Colour(0xffffff))
+			em2.set_author(name="{}'s Traps 2nd page".format(userinfo["name"]), icon_url=user.avatar_url)
+			try:
+				em2.add_field(name="Succesfull Traps", value=list3)
+			except:
+				pass
+			try:
+				em2.add_field(name="Failed Traps", value=list4)
+			except:
+				pass
+			try:
+				em2.add_field(name="Broken Traps", value=list5)
+			except:
+				pass
+			await ctx.send(embed=em)
+			await ctx.send(embed=em2)
+
+			totalgold = int(trap1enemygold) + int(trap2enemygold) +  int(trap3enemygold) +  int(trap4enemygold) +  int(trap5enemygold) +  int(trap6enemygold) +  int(trap7enemygold) +  int(trap8enemygold) +  int(trap9enemygold) +  int(trap10enemygold) +  int(trap11enemygold) +  int(trap12enemygold) +  int(trap13enemygold)
+			totalexp = int(trap1xpgain) + int(trap2xpgain) +  int(trap3xpgain) +  int(trap4xpgain) +  int(trap5xpgain) +  int(trap6xpgain) +  int(trap7xpgain) +  int(trap8xpgain) +  int(trap9xpgain) +  int(trap10xpgain) +  int(trap11xpgain) +  int(trap12xpgain) +  int(trap13xpgain)
+
+			em = discord.Embed(color=discord.Colour(0xffffff))
+			em.set_author(name="{}'s total rewards".format(userinfo["name"]), icon_url=user.avatar_url)
+			try:
+				em.add_field(name="You have earned!", value="\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**".format(totalgold, totalexp))
+			except:
+				pass
+		
+			await ctx.send(embed=em)
+
+			userinfo["gold"] += totalgold
+			userinfo["exp"] += totalexp
+
+
+			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+				userinfo["lvl"] = userinfo["lvl"] + 1
+				userinfo["health"] = userinfo["MaxHealth"]
+				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+				await ctx.send(embed=em)
+
+				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+					userinfo["lvl"] = userinfo["lvl"] + 1
+					userinfo["health"] = userinfo["MaxHealth"]
+					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+					await ctx.send(embed=em)
+
+					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+						userinfo["lvl"] = userinfo["lvl"] + 1
+						userinfo["health"] = userinfo["MaxHealth"]
+						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+						await ctx.send(embed=em)
+
+						if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+							userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+							userinfo["lvl"] = userinfo["lvl"] + 1
+							userinfo["health"] = userinfo["MaxHealth"]
+							em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+							await ctx.send(embed=em)
+
+							if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+								userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+								userinfo["lvl"] = userinfo["lvl"] + 1
+								userinfo["health"] = userinfo["MaxHealth"]
+								em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+								await ctx.send(embed=em)
+
+								if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+									userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+									userinfo["lvl"] = userinfo["lvl"] + 1
+									userinfo["health"] = userinfo["MaxHealth"]
+									em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+									await ctx.send(embed=em)
+
+									if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+										userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+										userinfo["lvl"] = userinfo["lvl"] + 1
+										userinfo["health"] = userinfo["MaxHealth"]
+										em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+										await ctx.send(embed=em)
+
+										if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+											userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+											userinfo["lvl"] = userinfo["lvl"] + 1
+											userinfo["health"] = userinfo["MaxHealth"]
+											em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+											await ctx.send(embed=em)
+
+											if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+												userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+												userinfo["lvl"] = userinfo["lvl"] + 1
+												userinfo["health"] = userinfo["MaxHealth"]
+												em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+												await ctx.send(embed=em)
 			userinfo["trap_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(title="!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
-			await ctx.send(embed=em)
+			
 		else:
 			# calulate time left
 			seconds = cooldowntime - delta
 			m, s = divmod(seconds, 60)
 			h, m = divmod(m, 60)
-			em = discord.Embed(title=":hourglass: You can't chop yet!", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
+			em = discord.Embed(title=":hourglass: You can't check your traps yet!\n", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
 			except:
@@ -11741,7 +12049,126 @@ class traps(commands.Cog):
 				except:
 					return
 
+	@_traps.group(name="repair", pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def _repair(self, ctx):
+		"""Repair broken traps!"""
+		user = ctx.author
+		userinfo = db.users.find_one({ "_id": user.id })
+		amount = 0
+		if userinfo["trap"] >= 1 and userinfo["trap1"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 2 and  userinfo["trap2"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 3 and  userinfo["trap3"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 4 and  userinfo["trap4"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 5 and  userinfo["trap5"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 6 and  userinfo["trap6"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 7 and  userinfo["trap7"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 8 and  userinfo["trap8"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 9 and  userinfo["trap9"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 10 and  userinfo["trap10"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 11 and  userinfo["trap11"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 12 and  userinfo["trap12"] <= 0:
+			amount += 1
+		if userinfo["trap"] >= 13 and  userinfo["trap13"] <= 0:
+			amount += 1
 
+		try:
+			cost = 100 * amount
+			wood = 5 * amount
+			stone = 5 * amount
+			metal = 2 * amount
+
+
+			em = discord.Embed(title="Want to repair your traps?", description="You have {} broken traps\nThis will cost you:\n<:Gold:639484869809930251> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n\n Type yes to build!".format(amount, cost, wood, stone, metal), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+
+			answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
+
+			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+
+				if not int(userinfo["gold"]) >= int(cost):
+					neededgold = int(cost) - int(userinfo["gold"])
+					await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to repair your traps!**".format(neededgold))
+					return
+
+				if not int(userinfo["wood"]) >= int(wood):
+					neededwood = int(wood) - int(userinfo["wood"])
+					await ctx.send("<:Solyx:560809141766193152> **| You need {} more wood to repair your traps!**".format(neededwood))
+					return
+
+				if not int(userinfo["stone"]) >= int(stone):
+					neededstone = int(stone) - int(userinfo["stone"])
+					await ctx.send("<:Solyx:560809141766193152> **| You need {} more stone to repair your traps!**".format(neededstone))
+					return
+
+				if not int(userinfo["metal"]) >= int(metal):
+					neededmetal = int(metal) - int(userinfo["metal"])
+					await ctx.send("<:Solyx:560809141766193152> **| You need {} more metal to repair your traps!**".format(neededmetal))
+					return
+
+
+				userinfo["gold"] = userinfo["gold"] - cost
+				userinfo["wood"] = userinfo["wood"] - wood
+				userinfo["stone"] = userinfo["stone"] - stone
+				userinfo["metal"] = userinfo["metal"] - metal
+				if userinfo["trap"] >= 1 and userinfo["trap1"] == 0:
+					userinfo["trap1"] = 10
+				if userinfo["trap"] >= 2 and  userinfo["trap2"] == 0:
+					userinfo["trap2"] = 10
+				if userinfo["trap"] >= 3 and  userinfo["trap3"] == 0:
+					userinfo["trap3"] = 10
+				if userinfo["trap"] >= 4 and  userinfo["trap4"] == 0:
+					userinfo["trap4"] = 10
+				if userinfo["trap"] >= 5 and  userinfo["trap5"] == 0:
+					userinfo["trap5"] = 10
+				if userinfo["trap"] >= 6 and  userinfo["trap6"] == 0:
+					userinfo["trap6"] = 10
+				if userinfo["trap"] >= 7 and  userinfo["trap7"] == 0:
+					userinfo["trap7"] = 10
+				if userinfo["trap"] >= 8 and  userinfo["trap8"] == 0:
+					userinfo["trap8"] = 10
+				if userinfo["trap"] >= 9 and  userinfo["trap9"] == 0:
+					userinfo["trap9"] = 10
+				if userinfo["trap"] >= 10 and  userinfo["trap10"] == 0:
+					userinfo["trap10"] = 10
+				if userinfo["trap"] >= 11 and  userinfo["trap11"] == 0:
+					userinfo["trap11"] = 10
+				if userinfo["trap"] >= 12 and  userinfo["trap12"] == 0:
+					userinfo["trap12"] = 10
+				if userinfo["trap"] >= 13 and  userinfo["trap13"] == 0:
+					userinfo["trap13"] = 10
+
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+				em = discord.Embed(title="Traps repaired!", description="You have succesfully repaired all your traps!".format(ctx.prefix), color=discord.Colour(0xffffff))
+				try:
+					await ctx.send(embed=em)
+				except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						return
+					except:
+						return
+		except:
+			return
 
 	async def check_answer(self, ctx, valid_options):
 		def pred(m):

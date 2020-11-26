@@ -82,7 +82,7 @@ class inventory(commands.Cog):
 		em = discord.Embed(color=discord.Colour(0xffffff))
 		em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n<:PlanksbyMaxie:780992714463510530> {}\n<:BricksbyMaxie:780999521249263616> {}\n<:IronPlatebyMaxie:781003325675012146> {}\n".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"], userinfo["planks"], userinfo["bricks"], userinfo["iron_plates"]), inline=True)
 		em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n<:ExpBottle:770044187348566046> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"], userinfo["exp_potions"]), inline=True)
-		em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}".format(camp, sawmill, masonry, smeltery), inline=True)
+		em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}\n **Traps:** {}".format(camp, sawmill, masonry, smeltery,userinfo["trap"]), inline=True)
 		em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
 		em.set_footer(text="Type | -vote | and vote for extra rewards!")
 		try:

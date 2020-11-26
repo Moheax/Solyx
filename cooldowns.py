@@ -196,6 +196,29 @@ class cooldowns(commands.Cog):
 		except:
 			pass
 		try:
+			if userinfo["trap"] >= 1:
+				curr_time = time.time()
+				delta = float(curr_time) - float(userinfo["trap_block"])
+
+			
+				cooldowntime = 3600
+		
+
+				if userinfo["role"] == "patreon3":
+					cooldowntime = 2880
+				if userinfo["role"] == "patreon4":
+					cooldowntime = 1800
+
+				if delta >= cooldowntime and delta > 0:
+					embed.add_field(name="Traps", value="You cna check your traps again!!\n\n_ _", inline=False)
+				else:
+					seconds = cooldowntime - delta
+					m, s = divmod(seconds, 60)
+					h, m = divmod(m, 60)
+					embed.add_field(name="Traps", value=":hourglass: You can't check your traps for another  "+ str(round(m)) + " minutes and " + str(round(s)) + " seconds.\n\n_ _", inline=False)
+		except:
+			pass
+		try:
 			curr_time = time.time()
 			delta = float(curr_time) - float(userinfo["vote_block"])
 
