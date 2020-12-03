@@ -1294,6 +1294,16 @@ class fight(commands.Cog):
 		if userinfo["blacklisted"] == "True":
 			return
 
+		if userinfo["axelvl"] == 0:
+			userinfo["axelvl"] = 1
+		if userinfo["pickaxelvl"] == 0:
+			userinfo["pickaxelvl"] = 1
+		if userinfo["sawlvl"] == 0:
+			userinfo["sawlvl"] = 1
+		if userinfo["chisellvl"] == 0:
+			userinfo["chisellvl"] = 1
+		if userinfo["hammerlvl"] == 0:
+			userinfo["hammerlvl"] = 1
 
 		if userinfo["questname"] == "Basic C":
 			userinfo["questprogress"] = userinfo["questprogress"] + 1

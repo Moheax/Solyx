@@ -135,10 +135,7 @@ class loot(commands.Cog):
 			goldgain = goldmul * 3 + userinfo["lvl"]
 
 			# Crate 1
-
-			await asyncio.sleep(0.3)
-			for i in range(times):
-				
+			if amount>= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -454,14 +451,638 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
+				if amount>= 2:
+					await asyncio.sleep(0.6)
+					userinfo["keys"] = userinfo["keys"] - 1
+					userinfo["lootbag"] = userinfo["lootbag"] - 1
+					try:
+						chance = random.randint(1, 1000)
+						legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+						rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+						common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+						material = randchoice(["Stone", "Metal", "Wood"])
 
 
+						if legendary == "Excalibur":
+							legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+						elif legendary == "Twilight":
+							legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+						elif legendary == "Devil's Kiss":
+							legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+						elif legendary == "Hawkeye":
+							legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+						elif legendary == "Solarflare":
+							legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+						elif legendary == "Thunderguard":
+							legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+						elif legendary == "Doomblade":
+							legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+						elif legendary == "Deathraze":
+							legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+						elif legendary == "Soulreaper":
+							legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+						elif legendary == "Nightstalker Mantle":
+							legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Bane Of The Goblin Lord":
+							legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Hephaestus Armor":
+							legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+						if chance > 990:
+			
+							if legendary == "exp":
+								expgained = random.randint(1, 3)
+								userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							userinfo["inventory"].append(legendaryitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if "Legendary" in titlesinfo["titles_list"]:
+								legendary2title = "Twice Told Legend"
+								if not legendary2title in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendary2title)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+							legendarytitle = "Legendary"
+							if not legendarytitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(legendarytitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+								em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+								try:
+									await ctx.send(user, embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+							return
+
+						if rare == "Iron Claws":
+							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+						elif rare == "Iron Mace":
+							rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+						elif rare == "Curved Dagger":
+							rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+						elif rare == "Tomb of Water":
+							rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+						elif rare == "Spiked Mace":
+							rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+						elif rare == "Mithril Sword":
+							rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+						elif rare == "Etched Longbow":
+							rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+						elif rare == "Verdant Bow":
+							rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+						elif rare == "Iron Armor":
+							rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Branded Metal Armor":
+							rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Wolf Fur":
+							rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Enchanted Steel Armor":
+							rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
 
 
+						if chance < 950 and chance > 700:
+							userinfo["inventory"].append(rareitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+								pass
+
+						if common == "Sclerite Sword":
+							commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+						elif common == "Iron Greatsword":
+							commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+						elif common == "Abaddon Dagger":
+							commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+						elif common == "Rusted Short Sword":
+							commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+						elif common == "Makeshift Shortbow":
+							commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+						elif common == "Obsidian Longbow":
+							commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+						elif common == "Concealed Blade":
+							commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+						elif common == "Tomb of Fire":
+							commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+						elif common == "Scroll of Blizzards":
+							commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+						elif common ==  "Glyphic Bow":
+							commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+						elif common == "Oblivion":
+							commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+						elif common == "Staff of Milos":
+							commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+						elif common == "Calcite Staff":
+							commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+						elif common == "Leather Armor":
+							commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Banded Armor":
+							commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Pit Fighter Armor":
+							commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Chainmail Armor":
+							commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Barbaric Armor":
+							commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						if chance < 700 and chance > 300:
+
+							userinfo["inventory"].append(commonitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+							pass
 
 
+						if chance < 300 and chance > 50:
+
+							if material == "Stone":
+								mined_stone = random.randint(1, 5)
+								userinfo["stone"] = userinfo["stone"] + mined_stone
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Metal":
+								mined_metal= random.randint(1, 2)
+								userinfo["metal"] = userinfo["metal"] + mined_metal
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Wood":
+								chopped = random.randint(1, 5)
+								userinfo["wood"] = userinfo["wood"] + chopped
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+					
+						
+					except:
+						em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+						try:
+							await ctx.send(embed=em)
+						except:
+							try:
+								await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+							except:
+								pass
+						pass
+					if amount>= 3:
+						await asyncio.sleep(0.6)
+						userinfo["keys"] = userinfo["keys"] - 1
+						userinfo["lootbag"] = userinfo["lootbag"] - 1
+						try:
+							chance = random.randint(1, 1000)
+							legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+							rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+							common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+							material = randchoice(["Stone", "Metal", "Wood"])
 
 
+							if legendary == "Excalibur":
+								legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+							elif legendary == "Twilight":
+								legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+							elif legendary == "Devil's Kiss":
+								legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+							elif legendary == "Hawkeye":
+								legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+							elif legendary == "Solarflare":
+								legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+							elif legendary == "Thunderguard":
+								legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+							elif legendary == "Doomblade":
+								legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+							elif legendary == "Deathraze":
+								legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+							elif legendary == "Soulreaper":
+								legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+							elif legendary == "Nightstalker Mantle":
+								legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Bane Of The Goblin Lord":
+								legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Hephaestus Armor":
+								legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+							if chance > 990:
+			
+								if legendary == "exp":
+									expgained = random.randint(1, 3)
+									userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								userinfo["inventory"].append(legendaryitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if "Legendary" in titlesinfo["titles_list"]:
+									legendary2title = "Twice Told Legend"
+									if not legendary2title in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendary2title)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+								legendarytitle = "Legendary"
+								if not legendarytitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendarytitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+								return
+
+							if rare == "Iron Claws":
+								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+							elif rare == "Iron Mace":
+								rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+							elif rare == "Curved Dagger":
+								rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+							elif rare == "Tomb of Water":
+								rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+							elif rare == "Spiked Mace":
+								rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+							elif rare == "Mithril Sword":
+								rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+							elif rare == "Etched Longbow":
+								rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+							elif rare == "Verdant Bow":
+								rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+							elif rare == "Iron Armor":
+								rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Branded Metal Armor":
+								rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Wolf Fur":
+								rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Enchanted Steel Armor":
+								rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+							if chance < 950 and chance > 700:
+								userinfo["inventory"].append(rareitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if common == "Sclerite Sword":
+								commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+							elif common == "Iron Greatsword":
+								commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+							elif common == "Abaddon Dagger":
+								commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+							elif common == "Rusted Short Sword":
+								commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+							elif common == "Makeshift Shortbow":
+								commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+							elif common == "Obsidian Longbow":
+								commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+							elif common == "Concealed Blade":
+								commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+							elif common == "Tomb of Fire":
+								commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+							elif common == "Scroll of Blizzards":
+								commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+							elif common ==  "Glyphic Bow":
+								commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+							elif common == "Oblivion":
+								commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+							elif common == "Staff of Milos":
+								commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+							elif common == "Calcite Staff":
+								commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+							elif common == "Leather Armor":
+								commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Banded Armor":
+								commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Pit Fighter Armor":
+								commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Chainmail Armor":
+								commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Barbaric Armor":
+								commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							if chance < 700 and chance > 300:
+
+								userinfo["inventory"].append(commonitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+								pass
+
+
+							if chance < 300 and chance > 50:
+
+								if material == "Stone":
+									mined_stone = random.randint(1, 5)
+									userinfo["stone"] = userinfo["stone"] + mined_stone
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Metal":
+									mined_metal= random.randint(1, 2)
+									userinfo["metal"] = userinfo["metal"] + mined_metal
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Wood":
+									chopped = random.randint(1, 5)
+									userinfo["wood"] = userinfo["wood"] + chopped
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+					
+						
+						except:
+							em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+								except:
+									pass
+							pass
 
 
 
@@ -532,10 +1153,8 @@ class loot(commands.Cog):
 			goldgain = goldmul * 3 + userinfo["lvl"]
 			
 			# Crate 1
-
-			await asyncio.sleep(0.3)
-			for i in range(times):
-				
+	# Crate 1
+			if amount>= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -851,6 +1470,639 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
+				if amount>= 2:
+					await asyncio.sleep(0.6)
+					userinfo["keys"] = userinfo["keys"] - 1
+					userinfo["lootbag"] = userinfo["lootbag"] - 1
+					try:
+						chance = random.randint(1, 1000)
+						legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+						rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+						common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+						material = randchoice(["Stone", "Metal", "Wood"])
+
+
+						if legendary == "Excalibur":
+							legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+						elif legendary == "Twilight":
+							legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+						elif legendary == "Devil's Kiss":
+							legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+						elif legendary == "Hawkeye":
+							legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+						elif legendary == "Solarflare":
+							legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+						elif legendary == "Thunderguard":
+							legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+						elif legendary == "Doomblade":
+							legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+						elif legendary == "Deathraze":
+							legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+						elif legendary == "Soulreaper":
+							legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+						elif legendary == "Nightstalker Mantle":
+							legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Bane Of The Goblin Lord":
+							legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Hephaestus Armor":
+							legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+						if chance > 990:
+			
+							if legendary == "exp":
+								expgained = random.randint(1, 3)
+								userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							userinfo["inventory"].append(legendaryitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if "Legendary" in titlesinfo["titles_list"]:
+								legendary2title = "Twice Told Legend"
+								if not legendary2title in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendary2title)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+							legendarytitle = "Legendary"
+							if not legendarytitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(legendarytitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+								em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+								try:
+									await ctx.send(user, embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+							return
+
+						if rare == "Iron Claws":
+							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+						elif rare == "Iron Mace":
+							rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+						elif rare == "Curved Dagger":
+							rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+						elif rare == "Tomb of Water":
+							rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+						elif rare == "Spiked Mace":
+							rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+						elif rare == "Mithril Sword":
+							rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+						elif rare == "Etched Longbow":
+							rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+						elif rare == "Verdant Bow":
+							rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+						elif rare == "Iron Armor":
+							rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Branded Metal Armor":
+							rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Wolf Fur":
+							rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Enchanted Steel Armor":
+							rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+						if chance < 950 and chance > 700:
+							userinfo["inventory"].append(rareitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+								pass
+
+						if common == "Sclerite Sword":
+							commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+						elif common == "Iron Greatsword":
+							commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+						elif common == "Abaddon Dagger":
+							commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+						elif common == "Rusted Short Sword":
+							commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+						elif common == "Makeshift Shortbow":
+							commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+						elif common == "Obsidian Longbow":
+							commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+						elif common == "Concealed Blade":
+							commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+						elif common == "Tomb of Fire":
+							commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+						elif common == "Scroll of Blizzards":
+							commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+						elif common ==  "Glyphic Bow":
+							commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+						elif common == "Oblivion":
+							commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+						elif common == "Staff of Milos":
+							commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+						elif common == "Calcite Staff":
+							commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+						elif common == "Leather Armor":
+							commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Banded Armor":
+							commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Pit Fighter Armor":
+							commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Chainmail Armor":
+							commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Barbaric Armor":
+							commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						if chance < 700 and chance > 300:
+
+							userinfo["inventory"].append(commonitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+							pass
+
+
+						if chance < 300 and chance > 50:
+
+							if material == "Stone":
+								mined_stone = random.randint(1, 5)
+								userinfo["stone"] = userinfo["stone"] + mined_stone
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Metal":
+								mined_metal= random.randint(1, 2)
+								userinfo["metal"] = userinfo["metal"] + mined_metal
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Wood":
+								chopped = random.randint(1, 5)
+								userinfo["wood"] = userinfo["wood"] + chopped
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+					
+						
+					except:
+						em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+						try:
+							await ctx.send(embed=em)
+						except:
+							try:
+								await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+							except:
+								pass
+						pass
+					if amount>= 3:
+						await asyncio.sleep(0.6)
+						userinfo["keys"] = userinfo["keys"] - 1
+						userinfo["lootbag"] = userinfo["lootbag"] - 1
+						try:
+							chance = random.randint(1, 1000)
+							legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+							rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+							common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+							material = randchoice(["Stone", "Metal", "Wood"])
+
+
+							if legendary == "Excalibur":
+								legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+							elif legendary == "Twilight":
+								legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+							elif legendary == "Devil's Kiss":
+								legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+							elif legendary == "Hawkeye":
+								legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+							elif legendary == "Solarflare":
+								legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+							elif legendary == "Thunderguard":
+								legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+							elif legendary == "Doomblade":
+								legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+							elif legendary == "Deathraze":
+								legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+							elif legendary == "Soulreaper":
+								legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+							elif legendary == "Nightstalker Mantle":
+								legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Bane Of The Goblin Lord":
+								legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Hephaestus Armor":
+								legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+							if chance > 990:
+			
+								if legendary == "exp":
+									expgained = random.randint(1, 3)
+									userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								userinfo["inventory"].append(legendaryitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if "Legendary" in titlesinfo["titles_list"]:
+									legendary2title = "Twice Told Legend"
+									if not legendary2title in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendary2title)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+								legendarytitle = "Legendary"
+								if not legendarytitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendarytitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+								return
+
+							if rare == "Iron Claws":
+								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+							elif rare == "Iron Mace":
+								rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+							elif rare == "Curved Dagger":
+								rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+							elif rare == "Tomb of Water":
+								rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+							elif rare == "Spiked Mace":
+								rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+							elif rare == "Mithril Sword":
+								rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+							elif rare == "Etched Longbow":
+								rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+							elif rare == "Verdant Bow":
+								rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+							elif rare == "Iron Armor":
+								rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Branded Metal Armor":
+								rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Wolf Fur":
+								rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Enchanted Steel Armor":
+								rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+							if chance < 950 and chance > 700:
+								userinfo["inventory"].append(rareitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if common == "Sclerite Sword":
+								commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+							elif common == "Iron Greatsword":
+								commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+							elif common == "Abaddon Dagger":
+								commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+							elif common == "Rusted Short Sword":
+								commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+							elif common == "Makeshift Shortbow":
+								commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+							elif common == "Obsidian Longbow":
+								commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+							elif common == "Concealed Blade":
+								commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+							elif common == "Tomb of Fire":
+								commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+							elif common == "Scroll of Blizzards":
+								commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+							elif common ==  "Glyphic Bow":
+								commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+							elif common == "Oblivion":
+								commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+							elif common == "Staff of Milos":
+								commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+							elif common == "Calcite Staff":
+								commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+							elif common == "Leather Armor":
+								commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Banded Armor":
+								commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Pit Fighter Armor":
+								commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Chainmail Armor":
+								commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Barbaric Armor":
+								commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							if chance < 700 and chance > 300:
+
+								userinfo["inventory"].append(commonitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+								pass
+
+
+							if chance < 300 and chance > 50:
+
+								if material == "Stone":
+									mined_stone = random.randint(1, 5)
+									userinfo["stone"] = userinfo["stone"] + mined_stone
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Metal":
+									mined_metal= random.randint(1, 2)
+									userinfo["metal"] = userinfo["metal"] + mined_metal
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Wood":
+									chopped = random.randint(1, 5)
+									userinfo["wood"] = userinfo["wood"] + chopped
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+					
+						
+						except:
+							em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+								except:
+									pass
+							pass
+
 
 
 
@@ -928,10 +2180,8 @@ class loot(commands.Cog):
 			goldgain = goldmul * 3 + userinfo["lvl"]
 			
 			# Crate 1
-
-			await asyncio.sleep(0.3)
-			for i in range(times):
-				
+	# Crate 1
+			if amount>= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -1247,7 +2497,638 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
+				if amount>= 2:
+					await asyncio.sleep(0.6)
+					userinfo["keys"] = userinfo["keys"] - 1
+					userinfo["lootbag"] = userinfo["lootbag"] - 1
+					try:
+						chance = random.randint(1, 1000)
+						legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+						rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+						common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+						material = randchoice(["Stone", "Metal", "Wood"])
 
+
+						if legendary == "Excalibur":
+							legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+						elif legendary == "Twilight":
+							legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+						elif legendary == "Devil's Kiss":
+							legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+						elif legendary == "Hawkeye":
+							legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+						elif legendary == "Solarflare":
+							legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+						elif legendary == "Thunderguard":
+							legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+						elif legendary == "Doomblade":
+							legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+						elif legendary == "Deathraze":
+							legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+						elif legendary == "Soulreaper":
+							legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+						elif legendary == "Nightstalker Mantle":
+							legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Bane Of The Goblin Lord":
+							legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Hephaestus Armor":
+							legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+						if chance > 990:
+			
+							if legendary == "exp":
+								expgained = random.randint(1, 3)
+								userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							userinfo["inventory"].append(legendaryitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if "Legendary" in titlesinfo["titles_list"]:
+								legendary2title = "Twice Told Legend"
+								if not legendary2title in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendary2title)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+							legendarytitle = "Legendary"
+							if not legendarytitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(legendarytitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+								em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+								try:
+									await ctx.send(user, embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+							return
+
+						if rare == "Iron Claws":
+							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+						elif rare == "Iron Mace":
+							rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+						elif rare == "Curved Dagger":
+							rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+						elif rare == "Tomb of Water":
+							rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+						elif rare == "Spiked Mace":
+							rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+						elif rare == "Mithril Sword":
+							rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+						elif rare == "Etched Longbow":
+							rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+						elif rare == "Verdant Bow":
+							rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+						elif rare == "Iron Armor":
+							rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Branded Metal Armor":
+							rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Wolf Fur":
+							rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Enchanted Steel Armor":
+							rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+						if chance < 950 and chance > 700:
+							userinfo["inventory"].append(rareitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+								pass
+
+						if common == "Sclerite Sword":
+							commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+						elif common == "Iron Greatsword":
+							commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+						elif common == "Abaddon Dagger":
+							commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+						elif common == "Rusted Short Sword":
+							commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+						elif common == "Makeshift Shortbow":
+							commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+						elif common == "Obsidian Longbow":
+							commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+						elif common == "Concealed Blade":
+							commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+						elif common == "Tomb of Fire":
+							commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+						elif common == "Scroll of Blizzards":
+							commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+						elif common ==  "Glyphic Bow":
+							commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+						elif common == "Oblivion":
+							commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+						elif common == "Staff of Milos":
+							commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+						elif common == "Calcite Staff":
+							commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+						elif common == "Leather Armor":
+							commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Banded Armor":
+							commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Pit Fighter Armor":
+							commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Chainmail Armor":
+							commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Barbaric Armor":
+							commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						if chance < 700 and chance > 300:
+
+							userinfo["inventory"].append(commonitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+							pass
+
+
+						if chance < 300 and chance > 50:
+
+							if material == "Stone":
+								mined_stone = random.randint(1, 5)
+								userinfo["stone"] = userinfo["stone"] + mined_stone
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Metal":
+								mined_metal= random.randint(1, 2)
+								userinfo["metal"] = userinfo["metal"] + mined_metal
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Wood":
+								chopped = random.randint(1, 5)
+								userinfo["wood"] = userinfo["wood"] + chopped
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+					
+						
+					except:
+						em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+						try:
+							await ctx.send(embed=em)
+						except:
+							try:
+								await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+							except:
+								pass
+						pass
+					if amount>= 3:
+						await asyncio.sleep(0.6)
+						userinfo["keys"] = userinfo["keys"] - 1
+						userinfo["lootbag"] = userinfo["lootbag"] - 1
+						try:
+							chance = random.randint(1, 1000)
+							legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+							rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+							common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+							material = randchoice(["Stone", "Metal", "Wood"])
+
+
+							if legendary == "Excalibur":
+								legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+							elif legendary == "Twilight":
+								legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+							elif legendary == "Devil's Kiss":
+								legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+							elif legendary == "Hawkeye":
+								legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+							elif legendary == "Solarflare":
+								legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+							elif legendary == "Thunderguard":
+								legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+							elif legendary == "Doomblade":
+								legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+							elif legendary == "Deathraze":
+								legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+							elif legendary == "Soulreaper":
+								legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+							elif legendary == "Nightstalker Mantle":
+								legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Bane Of The Goblin Lord":
+								legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Hephaestus Armor":
+								legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+							if chance > 990:
+			
+								if legendary == "exp":
+									expgained = random.randint(1, 3)
+									userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								userinfo["inventory"].append(legendaryitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if "Legendary" in titlesinfo["titles_list"]:
+									legendary2title = "Twice Told Legend"
+									if not legendary2title in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendary2title)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+								legendarytitle = "Legendary"
+								if not legendarytitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendarytitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+								return
+
+							if rare == "Iron Claws":
+								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+							elif rare == "Iron Mace":
+								rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+							elif rare == "Curved Dagger":
+								rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+							elif rare == "Tomb of Water":
+								rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+							elif rare == "Spiked Mace":
+								rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+							elif rare == "Mithril Sword":
+								rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+							elif rare == "Etched Longbow":
+								rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+							elif rare == "Verdant Bow":
+								rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+							elif rare == "Iron Armor":
+								rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Branded Metal Armor":
+								rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Wolf Fur":
+								rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Enchanted Steel Armor":
+								rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+							if chance < 950 and chance > 700:
+								userinfo["inventory"].append(rareitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if common == "Sclerite Sword":
+								commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+							elif common == "Iron Greatsword":
+								commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+							elif common == "Abaddon Dagger":
+								commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+							elif common == "Rusted Short Sword":
+								commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+							elif common == "Makeshift Shortbow":
+								commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+							elif common == "Obsidian Longbow":
+								commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+							elif common == "Concealed Blade":
+								commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+							elif common == "Tomb of Fire":
+								commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+							elif common == "Scroll of Blizzards":
+								commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+							elif common ==  "Glyphic Bow":
+								commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+							elif common == "Oblivion":
+								commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+							elif common == "Staff of Milos":
+								commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+							elif common == "Calcite Staff":
+								commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+							elif common == "Leather Armor":
+								commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Banded Armor":
+								commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Pit Fighter Armor":
+								commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Chainmail Armor":
+								commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Barbaric Armor":
+								commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							if chance < 700 and chance > 300:
+
+								userinfo["inventory"].append(commonitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+								pass
+
+
+							if chance < 300 and chance > 50:
+
+								if material == "Stone":
+									mined_stone = random.randint(1, 5)
+									userinfo["stone"] = userinfo["stone"] + mined_stone
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Metal":
+									mined_metal= random.randint(1, 2)
+									userinfo["metal"] = userinfo["metal"] + mined_metal
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Wood":
+									chopped = random.randint(1, 5)
+									userinfo["wood"] = userinfo["wood"] + chopped
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+					
+						
+						except:
+							em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+								except:
+									pass
+							pass
 
 
 
@@ -1323,12 +3204,8 @@ class loot(commands.Cog):
 
 			goldmul = random.randint(12, 28)
 			goldgain = goldmul * 3 + userinfo["lvl"]
-			
-			# Crate 1
-
-			await asyncio.sleep(0.3)
-			for i in range(times):
-				
+				# Crate 1
+			if amount>= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -1644,8 +3521,954 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
-				
+				if amount>= 2:
+					await asyncio.sleep(0.6)
+					userinfo["keys"] = userinfo["keys"] - 1
+					userinfo["lootbag"] = userinfo["lootbag"] - 1
+					try:
+						chance = random.randint(1, 1000)
+						legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+						rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+						common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+						material = randchoice(["Stone", "Metal", "Wood"])
 
+
+						if legendary == "Excalibur":
+							legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+						elif legendary == "Twilight":
+							legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+						elif legendary == "Devil's Kiss":
+							legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+						elif legendary == "Hawkeye":
+							legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+						elif legendary == "Solarflare":
+							legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+						elif legendary == "Thunderguard":
+							legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+						elif legendary == "Doomblade":
+							legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+						elif legendary == "Deathraze":
+							legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+						elif legendary == "Soulreaper":
+							legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+						elif legendary == "Nightstalker Mantle":
+							legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Bane Of The Goblin Lord":
+							legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Hephaestus Armor":
+							legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+						if chance > 990:
+			
+							if legendary == "exp":
+								expgained = random.randint(1, 3)
+								userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							userinfo["inventory"].append(legendaryitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if "Legendary" in titlesinfo["titles_list"]:
+								legendary2title = "Twice Told Legend"
+								if not legendary2title in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendary2title)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+							legendarytitle = "Legendary"
+							if not legendarytitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(legendarytitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+								em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+								try:
+									await ctx.send(user, embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+							return
+
+						if rare == "Iron Claws":
+							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+						elif rare == "Iron Mace":
+							rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+						elif rare == "Curved Dagger":
+							rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+						elif rare == "Tomb of Water":
+							rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+						elif rare == "Spiked Mace":
+							rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+						elif rare == "Mithril Sword":
+							rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+						elif rare == "Etched Longbow":
+							rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+						elif rare == "Verdant Bow":
+							rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+						elif rare == "Iron Armor":
+							rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Branded Metal Armor":
+							rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Wolf Fur":
+							rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Enchanted Steel Armor":
+							rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+						if chance < 950 and chance > 700:
+							userinfo["inventory"].append(rareitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+								pass
+
+						if common == "Sclerite Sword":
+							commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+						elif common == "Iron Greatsword":
+							commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+						elif common == "Abaddon Dagger":
+							commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+						elif common == "Rusted Short Sword":
+							commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+						elif common == "Makeshift Shortbow":
+							commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+						elif common == "Obsidian Longbow":
+							commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+						elif common == "Concealed Blade":
+							commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+						elif common == "Tomb of Fire":
+							commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+						elif common == "Scroll of Blizzards":
+							commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+						elif common ==  "Glyphic Bow":
+							commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+						elif common == "Oblivion":
+							commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+						elif common == "Staff of Milos":
+							commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+						elif common == "Calcite Staff":
+							commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+						elif common == "Leather Armor":
+							commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Banded Armor":
+							commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Pit Fighter Armor":
+							commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Chainmail Armor":
+							commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Barbaric Armor":
+							commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						if chance < 700 and chance > 300:
+
+							userinfo["inventory"].append(commonitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+							pass
+
+
+						if chance < 300 and chance > 50:
+
+							if material == "Stone":
+								mined_stone = random.randint(1, 5)
+								userinfo["stone"] = userinfo["stone"] + mined_stone
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Metal":
+								mined_metal= random.randint(1, 2)
+								userinfo["metal"] = userinfo["metal"] + mined_metal
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Wood":
+								chopped = random.randint(1, 5)
+								userinfo["wood"] = userinfo["wood"] + chopped
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+					
+						
+					except:
+						em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+						try:
+							await ctx.send(embed=em)
+						except:
+							try:
+								await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+							except:
+								pass
+						pass
+					if amount>= 3:
+						await asyncio.sleep(0.6)
+						userinfo["keys"] = userinfo["keys"] - 1
+						userinfo["lootbag"] = userinfo["lootbag"] - 1
+						try:
+							chance = random.randint(1, 1000)
+							legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+							rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+							common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+							material = randchoice(["Stone", "Metal", "Wood"])
+
+
+							if legendary == "Excalibur":
+								legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+							elif legendary == "Twilight":
+								legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+							elif legendary == "Devil's Kiss":
+								legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+							elif legendary == "Hawkeye":
+								legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+							elif legendary == "Solarflare":
+								legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+							elif legendary == "Thunderguard":
+								legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+							elif legendary == "Doomblade":
+								legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+							elif legendary == "Deathraze":
+								legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+							elif legendary == "Soulreaper":
+								legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+							elif legendary == "Nightstalker Mantle":
+								legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Bane Of The Goblin Lord":
+								legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Hephaestus Armor":
+								legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+							if chance > 990:
+			
+								if legendary == "exp":
+									expgained = random.randint(1, 3)
+									userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								userinfo["inventory"].append(legendaryitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if "Legendary" in titlesinfo["titles_list"]:
+									legendary2title = "Twice Told Legend"
+									if not legendary2title in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendary2title)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+								legendarytitle = "Legendary"
+								if not legendarytitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendarytitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+								return
+
+							if rare == "Iron Claws":
+								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+							elif rare == "Iron Mace":
+								rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+							elif rare == "Curved Dagger":
+								rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+							elif rare == "Tomb of Water":
+								rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+							elif rare == "Spiked Mace":
+								rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+							elif rare == "Mithril Sword":
+								rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+							elif rare == "Etched Longbow":
+								rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+							elif rare == "Verdant Bow":
+								rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+							elif rare == "Iron Armor":
+								rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Branded Metal Armor":
+								rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Wolf Fur":
+								rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Enchanted Steel Armor":
+								rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+							if chance < 950 and chance > 700:
+								userinfo["inventory"].append(rareitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if common == "Sclerite Sword":
+								commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+							elif common == "Iron Greatsword":
+								commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+							elif common == "Abaddon Dagger":
+								commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+							elif common == "Rusted Short Sword":
+								commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+							elif common == "Makeshift Shortbow":
+								commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+							elif common == "Obsidian Longbow":
+								commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+							elif common == "Concealed Blade":
+								commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+							elif common == "Tomb of Fire":
+								commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+							elif common == "Scroll of Blizzards":
+								commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+							elif common ==  "Glyphic Bow":
+								commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+							elif common == "Oblivion":
+								commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+							elif common == "Staff of Milos":
+								commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+							elif common == "Calcite Staff":
+								commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+							elif common == "Leather Armor":
+								commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Banded Armor":
+								commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Pit Fighter Armor":
+								commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Chainmail Armor":
+								commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Barbaric Armor":
+								commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							if chance < 700 and chance > 300:
+
+								userinfo["inventory"].append(commonitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+								pass
+
+
+							if chance < 300 and chance > 50:
+
+								if material == "Stone":
+									mined_stone = random.randint(1, 5)
+									userinfo["stone"] = userinfo["stone"] + mined_stone
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Metal":
+									mined_metal= random.randint(1, 2)
+									userinfo["metal"] = userinfo["metal"] + mined_metal
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Wood":
+									chopped = random.randint(1, 5)
+									userinfo["wood"] = userinfo["wood"] + chopped
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+					
+						
+						except:
+							em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+								except:
+									pass
+							pass
+						if amount>= 4:
+							await asyncio.sleep(0.6)
+							userinfo["keys"] = userinfo["keys"] - 1
+							userinfo["lootbag"] = userinfo["lootbag"] - 1
+							try:
+								chance = random.randint(1, 1000)
+								legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+								rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+								common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+								material = randchoice(["Stone", "Metal", "Wood"])
+
+
+								if legendary == "Excalibur":
+									legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+								elif legendary == "Twilight":
+									legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+								elif legendary == "Devil's Kiss":
+									legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+								elif legendary == "Hawkeye":
+									legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+								elif legendary == "Solarflare":
+									legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+								elif legendary == "Thunderguard":
+									legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+								elif legendary == "Doomblade":
+									legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+								elif legendary == "Deathraze":
+									legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+								elif legendary == "Soulreaper":
+									legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+								elif legendary == "Nightstalker Mantle":
+									legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+								elif legendary == "Bane Of The Goblin Lord":
+									legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+								elif legendary == "Hephaestus Armor":
+									legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+								if chance > 990:
+			
+									if legendary == "exp":
+										expgained = random.randint(1, 3)
+										userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									userinfo["inventory"].append(legendaryitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+									except:
+										try:
+											await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									if "Legendary" in titlesinfo["titles_list"]:
+										legendary2title = "Twice Told Legend"
+										if not legendary2title in titlesinfo["titles_list"]:
+											titlesinfo["titles_list"].append(legendary2title)
+											titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+											db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+											em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+											em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+											try:
+												await ctx.send(user, embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+									legendarytitle = "Legendary"
+									if not legendarytitle in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendarytitle)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+									return
+
+								if rare == "Iron Claws":
+									rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+								elif rare == "Iron Mace":
+									rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+								elif rare == "Curved Dagger":
+									rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+								elif rare == "Tomb of Water":
+									rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+								elif rare == "Spiked Mace":
+									rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+								elif rare == "Mithril Sword":
+									rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+								elif rare == "Etched Longbow":
+									rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+								elif rare == "Verdant Bow":
+									rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+								elif rare == "Iron Armor":
+									rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Branded Metal Armor":
+									rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Wolf Fur":
+									rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Enchanted Steel Armor":
+									rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+								if chance < 950 and chance > 700:
+									userinfo["inventory"].append(rareitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if common == "Sclerite Sword":
+									commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+								elif common == "Iron Greatsword":
+									commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+								elif common == "Abaddon Dagger":
+									commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+								elif common == "Rusted Short Sword":
+									commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+								elif common == "Makeshift Shortbow":
+									commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+								elif common == "Obsidian Longbow":
+									commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+								elif common == "Concealed Blade":
+									commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+								elif common == "Tomb of Fire":
+									commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+								elif common == "Scroll of Blizzards":
+									commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+								elif common ==  "Glyphic Bow":
+									commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+								elif common == "Oblivion":
+									commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+								elif common == "Staff of Milos":
+									commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+								elif common == "Calcite Staff":
+									commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+								elif common == "Leather Armor":
+									commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Banded Armor":
+									commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Pit Fighter Armor":
+									commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Chainmail Armor":
+									commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Barbaric Armor":
+									commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								if chance < 700 and chance > 300:
+
+									userinfo["inventory"].append(commonitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+									pass
+
+
+								if chance < 300 and chance > 50:
+
+									if material == "Stone":
+										mined_stone = random.randint(1, 5)
+										userinfo["stone"] = userinfo["stone"] + mined_stone
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									elif material == "Metal":
+										mined_metal= random.randint(1, 2)
+										userinfo["metal"] = userinfo["metal"] + mined_metal
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									elif material == "Wood":
+										chopped = random.randint(1, 5)
+										userinfo["wood"] = userinfo["wood"] + chopped
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+					
+						
+							except:
+								em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+									except:
+										pass
+								pass
 
 
 
@@ -1724,11 +4547,8 @@ class loot(commands.Cog):
 			goldmul = random.randint(12, 28)
 			goldgain = goldmul * 3 + userinfo["lvl"]
 			
-			# Crate 1
-
-			await asyncio.sleep(0.3)
-			for i in range(times):
-				
+				# Crate 1
+			if amount>= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -2044,19 +4864,1270 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
-		else:
-			em = discord.Embed(description="<:ShieldBroken:649157253701566474> Something went wrong..\nyou have been refunded crates and keys.", color=discord.Colour(0xffffff))
-			userinfo["keys"] = userinfo["keys"] + amount
-			userinfo["lootbag"] = userinfo["lootbag"] + amount
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			try:
-				await ctx.send(embed=em)
-			except:
-				try:
-					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-				except:
-					pass
-			pass
+				if amount>= 2:
+					await asyncio.sleep(0.6)
+					userinfo["keys"] = userinfo["keys"] - 1
+					userinfo["lootbag"] = userinfo["lootbag"] - 1
+					try:
+						chance = random.randint(1, 1000)
+						legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+						rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+						common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+						material = randchoice(["Stone", "Metal", "Wood"])
+
+
+						if legendary == "Excalibur":
+							legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+						elif legendary == "Twilight":
+							legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+						elif legendary == "Devil's Kiss":
+							legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+						elif legendary == "Hawkeye":
+							legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+						elif legendary == "Solarflare":
+							legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+						elif legendary == "Thunderguard":
+							legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+						elif legendary == "Doomblade":
+							legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+						elif legendary == "Deathraze":
+							legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+						elif legendary == "Soulreaper":
+							legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+						elif legendary == "Nightstalker Mantle":
+							legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Bane Of The Goblin Lord":
+							legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+						elif legendary == "Hephaestus Armor":
+							legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+						if chance > 990:
+			
+							if legendary == "exp":
+								expgained = random.randint(1, 3)
+								userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							userinfo["inventory"].append(legendaryitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if "Legendary" in titlesinfo["titles_list"]:
+								legendary2title = "Twice Told Legend"
+								if not legendary2title in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendary2title)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+							legendarytitle = "Legendary"
+							if not legendarytitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(legendarytitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+								em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+								try:
+									await ctx.send(user, embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+							return
+
+						if rare == "Iron Claws":
+							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+						elif rare == "Iron Mace":
+							rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+						elif rare == "Curved Dagger":
+							rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+						elif rare == "Tomb of Water":
+							rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+						elif rare == "Spiked Mace":
+							rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+						elif rare == "Mithril Sword":
+							rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+						elif rare == "Etched Longbow":
+							rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+						elif rare == "Verdant Bow":
+							rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+						elif rare == "Iron Armor":
+							rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Branded Metal Armor":
+							rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Wolf Fur":
+							rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif rare == "Enchanted Steel Armor":
+							rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+						if chance < 950 and chance > 700:
+							userinfo["inventory"].append(rareitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+								pass
+
+						if common == "Sclerite Sword":
+							commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+						elif common == "Iron Greatsword":
+							commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+						elif common == "Abaddon Dagger":
+							commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+						elif common == "Rusted Short Sword":
+							commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+						elif common == "Makeshift Shortbow":
+							commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+						elif common == "Obsidian Longbow":
+							commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+						elif common == "Concealed Blade":
+							commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+						elif common == "Tomb of Fire":
+							commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+						elif common == "Scroll of Blizzards":
+							commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+						elif common ==  "Glyphic Bow":
+							commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+						elif common == "Oblivion":
+							commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+						elif common == "Staff of Milos":
+							commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+						elif common == "Calcite Staff":
+							commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+						elif common == "Leather Armor":
+							commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Banded Armor":
+							commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Pit Fighter Armor":
+							commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Chainmail Armor":
+							commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						elif common == "Barbaric Armor":
+							commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+						if chance < 700 and chance > 300:
+
+							userinfo["inventory"].append(commonitemobj)
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+							em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+							try:
+								await ctx.send(embed=em)
+								pass
+							except:
+								userinfo["keys"] = userinfo["keys"] + 1
+								userinfo["lootbag"] = userinfo["lootbag"] + 1
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+								await ctx.send(embed=em)
+							pass
+
+
+						if chance < 300 and chance > 50:
+
+							if material == "Stone":
+								mined_stone = random.randint(1, 5)
+								userinfo["stone"] = userinfo["stone"] + mined_stone
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Metal":
+								mined_metal= random.randint(1, 2)
+								userinfo["metal"] = userinfo["metal"] + mined_metal
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							elif material == "Wood":
+								chopped = random.randint(1, 5)
+								userinfo["wood"] = userinfo["wood"] + chopped
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+					
+						
+					except:
+						em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+						try:
+							await ctx.send(embed=em)
+						except:
+							try:
+								await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+							except:
+								pass
+						pass
+					if amount>= 3:
+						await asyncio.sleep(0.6)
+						userinfo["keys"] = userinfo["keys"] - 1
+						userinfo["lootbag"] = userinfo["lootbag"] - 1
+						try:
+							chance = random.randint(1, 1000)
+							legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+							rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+							common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+							material = randchoice(["Stone", "Metal", "Wood"])
+
+
+							if legendary == "Excalibur":
+								legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+							elif legendary == "Twilight":
+								legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+							elif legendary == "Devil's Kiss":
+								legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+							elif legendary == "Hawkeye":
+								legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+							elif legendary == "Solarflare":
+								legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+							elif legendary == "Thunderguard":
+								legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+							elif legendary == "Doomblade":
+								legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+							elif legendary == "Deathraze":
+								legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+							elif legendary == "Soulreaper":
+								legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+							elif legendary == "Nightstalker Mantle":
+								legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Bane Of The Goblin Lord":
+								legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+							elif legendary == "Hephaestus Armor":
+								legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+							if chance > 990:
+			
+								if legendary == "exp":
+									expgained = random.randint(1, 3)
+									userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								userinfo["inventory"].append(legendaryitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if "Legendary" in titlesinfo["titles_list"]:
+									legendary2title = "Twice Told Legend"
+									if not legendary2title in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendary2title)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+								legendarytitle = "Legendary"
+								if not legendarytitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(legendarytitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+									em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+									try:
+										await ctx.send(user, embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+								return
+
+							if rare == "Iron Claws":
+								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+							elif rare == "Iron Mace":
+								rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+							elif rare == "Curved Dagger":
+								rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+							elif rare == "Tomb of Water":
+								rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+							elif rare == "Spiked Mace":
+								rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+							elif rare == "Mithril Sword":
+								rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+							elif rare == "Etched Longbow":
+								rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+							elif rare == "Verdant Bow":
+								rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+							elif rare == "Iron Armor":
+								rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Branded Metal Armor":
+								rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Wolf Fur":
+								rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif rare == "Enchanted Steel Armor":
+								rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+							if chance < 950 and chance > 700:
+								userinfo["inventory"].append(rareitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+									pass
+
+							if common == "Sclerite Sword":
+								commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+							elif common == "Iron Greatsword":
+								commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+							elif common == "Abaddon Dagger":
+								commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+							elif common == "Rusted Short Sword":
+								commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+							elif common == "Makeshift Shortbow":
+								commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+							elif common == "Obsidian Longbow":
+								commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+							elif common == "Concealed Blade":
+								commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+							elif common == "Tomb of Fire":
+								commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+							elif common == "Scroll of Blizzards":
+								commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+							elif common ==  "Glyphic Bow":
+								commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+							elif common == "Oblivion":
+								commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+							elif common == "Staff of Milos":
+								commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+							elif common == "Calcite Staff":
+								commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+							elif common == "Leather Armor":
+								commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Banded Armor":
+								commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Pit Fighter Armor":
+								commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Chainmail Armor":
+								commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							elif common == "Barbaric Armor":
+								commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+							if chance < 700 and chance > 300:
+
+								userinfo["inventory"].append(commonitemobj)
+								db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+								try:
+									await ctx.send(embed=em)
+									pass
+								except:
+									userinfo["keys"] = userinfo["keys"] + 1
+									userinfo["lootbag"] = userinfo["lootbag"] + 1
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+									await ctx.send(embed=em)
+								pass
+
+
+							if chance < 300 and chance > 50:
+
+								if material == "Stone":
+									mined_stone = random.randint(1, 5)
+									userinfo["stone"] = userinfo["stone"] + mined_stone
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Metal":
+									mined_metal= random.randint(1, 2)
+									userinfo["metal"] = userinfo["metal"] + mined_metal
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								elif material == "Wood":
+									chopped = random.randint(1, 5)
+									userinfo["wood"] = userinfo["wood"] + chopped
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+					
+						
+						except:
+							em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+							try:
+								await ctx.send(embed=em)
+							except:
+								try:
+									await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+								except:
+									pass
+							pass
+						if amount>= 4:
+							await asyncio.sleep(0.6)
+							userinfo["keys"] = userinfo["keys"] - 1
+							userinfo["lootbag"] = userinfo["lootbag"] - 1
+							try:
+								chance = random.randint(1, 1000)
+								legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+								rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+								common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+								material = randchoice(["Stone", "Metal", "Wood"])
+
+
+								if legendary == "Excalibur":
+									legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+								elif legendary == "Twilight":
+									legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+								elif legendary == "Devil's Kiss":
+									legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+								elif legendary == "Hawkeye":
+									legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+								elif legendary == "Solarflare":
+									legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+								elif legendary == "Thunderguard":
+									legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+								elif legendary == "Doomblade":
+									legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+								elif legendary == "Deathraze":
+									legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+								elif legendary == "Soulreaper":
+									legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+								elif legendary == "Nightstalker Mantle":
+									legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+								elif legendary == "Bane Of The Goblin Lord":
+									legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+								elif legendary == "Hephaestus Armor":
+									legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+								if chance > 990:
+			
+									if legendary == "exp":
+										expgained = random.randint(1, 3)
+										userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									userinfo["inventory"].append(legendaryitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+									except:
+										try:
+											await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									if "Legendary" in titlesinfo["titles_list"]:
+										legendary2title = "Twice Told Legend"
+										if not legendary2title in titlesinfo["titles_list"]:
+											titlesinfo["titles_list"].append(legendary2title)
+											titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+											db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+											em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+											em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+											try:
+												await ctx.send(user, embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+									legendarytitle = "Legendary"
+									if not legendarytitle in titlesinfo["titles_list"]:
+										titlesinfo["titles_list"].append(legendarytitle)
+										titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+										db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+										em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+										em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+										try:
+											await ctx.send(user, embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+									return
+
+								if rare == "Iron Claws":
+									rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+								elif rare == "Iron Mace":
+									rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+								elif rare == "Curved Dagger":
+									rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+								elif rare == "Tomb of Water":
+									rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+								elif rare == "Spiked Mace":
+									rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+								elif rare == "Mithril Sword":
+									rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+								elif rare == "Etched Longbow":
+									rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+								elif rare == "Verdant Bow":
+									rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+								elif rare == "Iron Armor":
+									rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Branded Metal Armor":
+									rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Wolf Fur":
+									rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif rare == "Enchanted Steel Armor":
+									rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+								if chance < 950 and chance > 700:
+									userinfo["inventory"].append(rareitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+										pass
+
+								if common == "Sclerite Sword":
+									commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+								elif common == "Iron Greatsword":
+									commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+								elif common == "Abaddon Dagger":
+									commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+								elif common == "Rusted Short Sword":
+									commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+								elif common == "Makeshift Shortbow":
+									commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+								elif common == "Obsidian Longbow":
+									commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+								elif common == "Concealed Blade":
+									commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+								elif common == "Tomb of Fire":
+									commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+								elif common == "Scroll of Blizzards":
+									commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+								elif common ==  "Glyphic Bow":
+									commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+								elif common == "Oblivion":
+									commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+								elif common == "Staff of Milos":
+									commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+								elif common == "Calcite Staff":
+									commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+								elif common == "Leather Armor":
+									commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Banded Armor":
+									commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Pit Fighter Armor":
+									commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Chainmail Armor":
+									commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								elif common == "Barbaric Armor":
+									commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+								if chance < 700 and chance > 300:
+
+									userinfo["inventory"].append(commonitemobj)
+									db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+									em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+									try:
+										await ctx.send(embed=em)
+										pass
+									except:
+										userinfo["keys"] = userinfo["keys"] + 1
+										userinfo["lootbag"] = userinfo["lootbag"] + 1
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+										await ctx.send(embed=em)
+									pass
+
+
+								if chance < 300 and chance > 50:
+
+									if material == "Stone":
+										mined_stone = random.randint(1, 5)
+										userinfo["stone"] = userinfo["stone"] + mined_stone
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									elif material == "Metal":
+										mined_metal= random.randint(1, 2)
+										userinfo["metal"] = userinfo["metal"] + mined_metal
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									elif material == "Wood":
+										chopped = random.randint(1, 5)
+										userinfo["wood"] = userinfo["wood"] + chopped
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+					
+						
+							except:
+								em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+								try:
+									await ctx.send(embed=em)
+								except:
+									try:
+										await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+									except:
+										pass
+								pass
+							if amount>= 5:
+								await asyncio.sleep(0.6)
+								userinfo["keys"] = userinfo["keys"] - 1
+								userinfo["lootbag"] = userinfo["lootbag"] - 1
+								try:
+									chance = random.randint(1, 1000)
+									legendary = randchoice(["Excalibur", "Twilight", "Devil's Kiss", "Hawkeye", "Solarflare", "Thunderguard", "Doomblade", "Deathraze", "Soulreaper", "Nightstalker Mantle", "Bane Of The Goblin Lord", "Hephaestus Armor", "exp"])
+									rare = randchoice(["Iron Claws", "Iron Mace", "Tomb of Water", "Curved Dagger", "Spiked Mace", "Mithril Sword", "Etched Longbow", "Verdant Bow"])
+									common = randchoice(["Sclerite Sword", "Iron Greatsword", "Concealed Blade", "Abaddon Dagger", "Rusted Short Sword", "Makeshift Shortbow", "Obsidian Longbow", "Glyphic Bow", "Tomb of Fire", "Scroll of Blizzards", "Oblivion", "Staff of Milos", "Calcite Staff", "Leather Armor", "Banded Armor", "Pit Fighter Armor", "Chainmail Armor", "Barbaric Armor"])
+									material = randchoice(["Stone", "Metal", "Wood"])
+
+
+									if legendary == "Excalibur":
+										legendaryitemobj = {"name": "Excalibur", "type": "sword", "rarity": "Legendary", "stats_min": 25, "stats_max": 41, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/mnQAA1X.png"}
+
+									elif legendary == "Twilight":
+										legendaryitemobj = {"name": "Twilight", "type": "sword", "rarity": "Legendary", "stats_min": 31, "stats_max": 40, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/HFH7ugZ.png"}
+
+									elif legendary == "Devil's Kiss":
+										legendaryitemobj = {"name": "Devil's Kiss", "type": "bow", "rarity": "Legendary", "stats_min": 25, "stats_max": 37, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/59tnHA8.png"}
+
+									elif legendary == "Hawkeye":
+										legendaryitemobj = {"name": "Hawkeye", "type": "bow", "rarity": "Legendary", "stats_min": 32, "stats_max": 44, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/dnkLTAj.png"}
+
+									elif legendary == "Solarflare":
+										legendaryitemobj = {"name": "Solarflare", "type": "staff", "rarity": "Legendary", "stats_min": 27, "stats_max": 51, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/ZP2KxJl.png"}
+
+									elif legendary == "Thunderguard":
+										legendaryitemobj = {"name": "Thunderguard", "type": "staff", "rarity": "Legendary", "stats_min": 29, "stats_max": 39, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/XXSZylz.png"}
+
+									elif legendary == "Doomblade":
+										legendaryitemobj = {"name": "Doomblade", "type": "dagger", "rarity": "Legendary", "stats_min": 31, "stats_max": 48, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/kFHHkyu.png"}
+
+									elif legendary == "Deathraze":
+										legendaryitemobj = {"name": "Deathraze", "type": "dagger", "rarity": "Legendary", "stats_min": 32, "stats_max": 52, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/2jRAyud.png"}
+
+									elif legendary == "Soulreaper":
+										legendaryitemobj = {"name": "Soulreaper", "type": "dagger", "rarity": "Legendary", "stats_min": 27, "stats_max": 46, "refinement": "Normal", "description": "?!",  "image": "https://i.imgur.com/xpmTArc.png"}
+
+									elif legendary == "Nightstalker Mantle":
+										legendaryitemobj = {"name": "Nightstalker Mantle", "type": "armor", "rarity": "Legendary", "stats_min": 12, "stats_max": 28, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+									elif legendary == "Bane Of The Goblin Lord":
+										legendaryitemobj = {"name": "Bane Of The Goblin Lord", "type": "armor", "rarity": "Legendary", "stats_min": 20, "stats_max": 25, "refinement": "Normal", "description": "?!",  "image": "None"}
+
+									elif legendary == "Hephaestus Armor":
+										legendaryitemobj = {"name": "Hephaestus Armor", "type": "armor", "rarity": "Legendary", "stats_min": 16, "stats_max": 27, "refinement": "Normal", "description": "?!",  "image": "None"}
+		
+
+									if chance > 990:
+			
+										if legendary == "exp":
+											expgained = random.randint(1, 3)
+											userinfo["exp_potions"] = userinfo["exp_potions"] + expgained
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											em = discord.Embed(title="<:ExpBottle:770044187348566046>You find some Experience Potions!", description="+" + str(expgained) + " Experience Potions! <:ExpBottle:770044187348566046>", color=discord.Colour(0xffffff))
+											try:
+												await ctx.send(embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+										userinfo["inventory"].append(legendaryitemobj)
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary), color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+										except:
+											try:
+												await ctx.send(fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["legendary"]["description"]["translation"].format(legendary))
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+										if "Legendary" in titlesinfo["titles_list"]:
+											legendary2title = "Twice Told Legend"
+											if not legendary2title in titlesinfo["titles_list"]:
+												titlesinfo["titles_list"].append(legendary2title)
+												titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+												db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+												em = discord.Embed(title="New Title", description=legendary2title, color=discord.Colour(0x00ff00))
+												em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+												try:
+													await ctx.send(user, embed=em)
+													pass
+												except:
+													userinfo["keys"] = userinfo["keys"] + 1
+													userinfo["lootbag"] = userinfo["lootbag"] + 1
+													db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+													print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+													em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+													await ctx.send(embed=em)
+													pass
+
+										legendarytitle = "Legendary"
+										if not legendarytitle in titlesinfo["titles_list"]:
+											titlesinfo["titles_list"].append(legendarytitle)
+											titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+											db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
+											em = discord.Embed(title="New Title", description=legendarytitle, color=discord.Colour(0x00ff00))
+											em.set_thumbnail(url="https://i.imgur.com/nJBlCei.png")
+											try:
+												await ctx.send(user, embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+										return
+
+									if rare == "Iron Claws":
+										rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
+
+									elif rare == "Iron Mace":
+										rareitemobj = {"name": "Iron Mace", "type": "mace", "rarity": "Rare", "stats_min": 20, "stats_max": 30, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/eMGSaS5.png"}
+
+									elif rare == "Curved Dagger":
+										rareitemobj = {"name": "Curved Dagger", "type": "dagger", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/31mYMgk.png"}
+
+									elif rare == "Tomb of Water":
+										rareitemobj = {"name": "Tomb of Water", "type": "staff", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/H7Umwgs.png"}
+
+									elif rare == "Spiked Mace":
+										rareitemobj = {"name": "Spiked Mace", "type": "mace", "rarity": "Rare", "stats_min": 5, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3PZfnkC.png"}
+
+									elif rare == "Mithril Sword":
+										rareitemobj = {"name": "Mithril Sword", "type": "sword", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/UNc4JeO.png"}
+
+									elif rare == "Etched Longbow":
+										rareitemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
+
+									elif rare == "Verdant Bow":
+										rareitemobj = {"name": "Verdant Bow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/3EyPeH2.png"}
+
+									elif rare == "Iron Armor":
+										rareitemobj = {"name": "Iron Armor", "type": "armor", "rarity": "Rare", "stats_min": 14, "stats_max": 16, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif rare == "Branded Metal Armor":
+										rareitemobj = {"name": "Branded Metal Armor", "type": "armor", "rarity": "Rare", "stats_min": 13, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif rare == "Wolf Fur":
+										rareitemobj = {"name": "Wolf Fur", "type": "armor", "rarity": "Rare", "stats_min": 1, "stats_max": 24, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif rare == "Enchanted Steel Armor":
+										rareitemobj = {"name": "Enchanted Steel Armor", "type": "armor", "rarity": "Rare", "stats_min": 12, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "None"}
+
+
+									if chance < 950 and chance > 700:
+										userinfo["inventory"].append(rareitemobj)
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["rare"]["description"]["translation"].format(rare), color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+											pass
+
+									if common == "Sclerite Sword":
+										commonitemobj = {"name": "Sclerite Sword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Evoke3O.png"}
+
+									elif common == "Iron Greatsword":
+										commonitemobj = {"name": "Iron Greatsword", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/TlKPvfz.png"}
+
+									elif common == "Abaddon Dagger":
+										commonitemobj ={"name": "Abaddon Dagger", "type": "dagger", "rarity": "Common", "stats_min": 3, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/yNkqfOo.png"}
+
+									elif common == "Rusted Short Sword":
+										commonitemobj = {"name": "Rusted Short Sword", "type": "dagger", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/Ox1CXhJ.png"}
+
+									elif common == "Makeshift Shortbow":
+										commonitemobj = {"name": "Makeshift Shortbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/IDwPClu.png"}
+
+									elif common == "Obsidian Longbow":
+										commonitemobj = {"name": "Obsidian Longbow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/0LEmcAH.png"}
+
+									elif common == "Concealed Blade":
+										commonitemobj = {"name": "Concealed Blade", "type": "sword", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/dQ6Qt1J.png"}
+
+									elif common == "Tomb of Fire":
+										commonitemobj = {"name": "Tomb of Fire", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/xOtnEZO.png"}
+
+									elif common == "Scroll of Blizzards":
+										commonitemobj = {"name": "Scroll of Blizzards", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/5dbmIRN.png"}
+
+									elif common ==  "Glyphic Bow":
+										commonitemobj ={"name": "Glyphic Bow", "type": "bow", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/DzHgPl4.png"}
+
+									elif common == "Oblivion":
+										commonitemobj = {"name": "Oblivion", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/jVIN9in.png"}
+
+									elif common == "Staff of Milos":
+										commonitemobj = {"name": "Staff of Milos", "type": "staff", "rarity": "Common", "stats_min": 2, "stats_max": 18, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/9Lakl7u.png"}
+
+									elif common == "Calcite Staff":
+										commonitemobj = {"name": "Calcite Staff", "type": "staff", "rarity": "Common", "stats_min": 4, "stats_max": 17, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/ZRV97xu.png"}
+
+									elif common == "Leather Armor":
+										commonitemobj = {"name": "Leather Armor", "type": "armor", "rarity": "Common", "stats_min": 3, "stats_max": 8, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif common == "Banded Armor":
+										commonitemobj = {"name": "Banded Armor", "type": "armor", "rarity": "Common", "stats_min": 1, "stats_max": 10, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif common == "Pit Fighter Armor":
+										commonitemobj = {"name": "Pit Fighter Armor", "type": "armor", "rarity": "Common", "stats_min": 4, "stats_max": 9, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif common == "Chainmail Armor":
+										commonitemobj = {"name": "Chainmail Armor", "type": "armor", "rarity": "Common", "stats_min": 2, "stats_max": 12, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									elif common == "Barbaric Armor":
+										commonitemobj = {"name": "Barbaric Armor", "type": "armor", "rarity": "Common", "stats_min": 5, "stats_max": 7, "refinement": "Normal", "description": "?!", "image": "None"}
+
+									if chance < 700 and chance > 300:
+
+										userinfo["inventory"].append(commonitemobj)
+										db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+										em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["common"]["description"]["translation"].format(common), color=discord.Colour(0xffffff))
+										try:
+											await ctx.send(embed=em)
+											pass
+										except:
+											userinfo["keys"] = userinfo["keys"] + 1
+											userinfo["lootbag"] = userinfo["lootbag"] + 1
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+											await ctx.send(embed=em)
+										pass
+
+
+									if chance < 300 and chance > 50:
+
+										if material == "Stone":
+											mined_stone = random.randint(1, 5)
+											userinfo["stone"] = userinfo["stone"] + mined_stone
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_stone) + " Stone <:Stone:573574662525550593>", color=discord.Colour(0xffffff))
+											try:
+												await ctx.send(embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+										elif material == "Metal":
+											mined_metal= random.randint(1, 2)
+											userinfo["metal"] = userinfo["metal"] + mined_metal
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(mined_metal) + " Metal <:Metal:573574661108006915>", color=discord.Colour(0xffffff))
+											try:
+												await ctx.send(embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+										elif material == "Wood":
+											chopped = random.randint(1, 5)
+											userinfo["wood"] = userinfo["wood"] + chopped
+											db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+											em = discord.Embed(title="<:Crate:639425690072252426>You find some materials!", description="+" + str(chopped) + " Wood <:Wood:573574660185260042>", color=discord.Colour(0xffffff))
+											try:
+												await ctx.send(embed=em)
+												pass
+											except:
+												userinfo["keys"] = userinfo["keys"] + 1
+												userinfo["lootbag"] = userinfo["lootbag"] + 1
+												db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+												print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has failed to open"+amount+"Crates, has been refunded 1 key and crate")
+												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
+												await ctx.send(embed=em)
+												pass
+
+					
+						
+								except:
+									em = discord.Embed(description="<:Crate:639425690072252426> The crate didn't contain anything!", color=discord.Colour(0xffffff))
+					
+									try:
+										await ctx.send(embed=em)
+									except:
+										try:
+											await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+										except:
+											pass
+									pass
 def setup(bot):
 	n = loot(bot)
 	bot.add_cog(n)

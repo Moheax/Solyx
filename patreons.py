@@ -113,12 +113,15 @@ class patreons(commands.Cog):
 
 					list1 += "Open 2 crates at the same time!\n"
 					list1 += "Use 2 Exp potions at the same time!\n"
+					list1 += "Sell 2 items at a time (not needing to be level 100+)!\n"
+					list1 += "Have a total of 7 traps (not needing to be level 100+)!\n"
+					list1 += "Sneak peek at upcoming events.\n"
 
 					list2 += "<:GoldBars:573781770709893130>2500 Gold\n"
-					list2 += "<:Crate:639425690072252426>15 crates\n"
-					list2 += "<:Key:573780034355986432>15 keys\n"
+					list2 += "<:Crate:639425690072252426>15 Crates\n"
+					list2 += "<:Key:573780034355986432>15 Keys\n"
 					list2 += "<:HealingPotion:573577125064605706>25 Health Potions\n"
-					list2 += "<:ExpBottle:770044187348566046>25 Experience Potions\n"
+					list2 += "<:ExpBottle:770044187348566046>25 Experience potions\n"
 
 					embed=discord.Embed(color=discord.Colour(0x26b644))
 					try:	
@@ -165,16 +168,18 @@ class patreons(commands.Cog):
 
 					list1 += "Open 3 crates at the same time!\n"
 					list1 += "Use 3 Exp potions at the same time!\n"
+					list1 += "Sell 3 items at a time (not needing to be level 100+)!\n"
+					list1 += "Have a total of 9 traps (not needing to be level 100+)!\n"
 					list1 += "1.2X daily rewards!\n"
 					list1 += "1.2X vote rewards!\n"
-					list1 += "Sneak peak at upcoming events.\n"
+					list1 += "Sneak peek at upcoming events.\n"
 					list1 += "4th spot in support server.\n"
 
 					list2 += "<:GoldBars:573781770709893130>5000 Gold\n"
-					list2 += "<:Crate:639425690072252426>25 crates\n"
-					list2 += "<:Key:573780034355986432>25 keys\n"
+					list2 += "<:Crate:639425690072252426>25 Crates\n"
+					list2 += "<:Key:573780034355986432>25 Keys\n"
 					list2 += "<:HealingPotion:573577125064605706>25 Health Potions\n"
-					list2 += "<:ExpBottle:770044187348566046>25 Experience Potions\n"
+					list2 += "<:ExpBottle:770044187348566046>25 Experience potions\n"
 
 					embed=discord.Embed(color=discord.Colour(0x26b644))
 					try:	
@@ -220,16 +225,19 @@ class patreons(commands.Cog):
 
 					list1 += "Open 4 crates at the same time!\n"
 					list1 += "Use 4 Exp potions at the same time!\n"
+					list1 += "Sell 4 items at a time (not needing to be level 100+)!\n"
+					list1 += "Have a total of 11 traps (not needing to be level 100+)!\n"
+					list1 += "Have a 20% cooldown reduction! on mining, fishing, traps, saw, mason and smelt!!!\n"
 					list1 += "1.5X daily rewards!\n"
 					list1 += "1.5X vote rewards!\n"
-					list1 += "Sneak peak at upcoming events.\n"
+					list1 += "Sneak peek at upcoming events.\n"
 					list1 += "3rd spot in support server.\n"
 
 					list2 += "<:GoldBars:573781770709893130>12000  Gold\n"
-					list2 += "<:Crate:639425690072252426>40 crates\n"
-					list2 += "<:Key:573780034355986432>40 keys\n"
+					list2 += "<:Crate:639425690072252426>40 Crates\n"
+					list2 += "<:Key:573780034355986432>40 Keys\n"
 					list2 += "<:HealingPotion:573577125064605706>40 Health Potions\n"
-					list2 += "<:ExpBottle:770044187348566046>40 Experience Potions\n"
+					list2 += "<:ExpBottle:770044187348566046>40 Experience potions\n"
 
 					embed=discord.Embed(color=discord.Colour(0x26b644))
 					try:	
@@ -279,16 +287,19 @@ class patreons(commands.Cog):
 
 					list1 += "Open 5 crates at the same time!\n"
 					list1 += "Use 5 Exp potions at the same time!\n"
+					list1 += "Sell 5 items at a time (not needing to be level 100+)!\n"
+					list1 += "Have a total of 13 traps (not needing to be level 100+)!\n"
+					list1 += "Have a 50% cooldown reduction! on mining, fishing, traps, saw, mason and smelt!!!\n"
 					list1 += "1.5X daily rewards!\n"
 					list1 += "1.5X vote rewards!\n"
 					list1 += "Sneak peak at upcoming events.\n"
-					list1 += "2rd spot in support server.\n"
+					list1 += "2nd spot in support server.\n"
 
 					list2 += "<:GoldBars:573781770709893130>20000  Gold\n"
-					list2 += "<:Crate:639425690072252426>50 crates\n"
-					list2 += "<:Key:573780034355986432>50 keys\n"
+					list2 += "<:Crate:639425690072252426>50 Crates\n"
+					list2 += "<:Key:573780034355986432>50 Keys\n"
 					list2 += "<:HealingPotion:573577125064605706>50 Health Potions\n"
-					list2 += "<:ExpBottle:770044187348566046>50 Experience Potions\n"
+					list2 += "<:ExpBottle:770044187348566046>50 Experience potions\n"
 
 					embed=discord.Embed(color=discord.Colour(0x26b644))
 					try:	
@@ -308,7 +319,7 @@ class patreons(commands.Cog):
 					await ctx.send(embed=embed)		
 
 
-					userinfo["gold"] += 50000
+					userinfo["gold"] += 20000
 					userinfo["lootbag"] += 50
 					userinfo["keys"] += 50
 					userinfo["hp_potions"] += 50

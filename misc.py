@@ -79,6 +79,53 @@ class misc(commands.Cog):
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	@commands.check(developer)
+	async def solyxshutdown(self, ctx):
+		print('boop')
+		em = discord.Embed(title="\n", description="Understood, Shutting down.",color=discord.Colour(0xffffff))	
+		await ctx.send(embed=em)
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def steal(self, ctx):
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+ 
+		chance = random.randint(1, 100)
+		if chance >= 50:
+			
+		
+			print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has booped solyx")
+			em = discord.Embed(title="You got caught?!", description="-1 gold",color=discord.Colour(0xffffff))	
+			await ctx.send(embed=em)
+			userinfo["gold"] -= 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		
+		if chance <= 50:
+			
+		
+			print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has booped solyx")
+			em = discord.Embed(title="You stolen something?!", description="+1 gold",color=discord.Colour(0xffffff))	
+			await ctx.send(embed=em)
+			userinfo["gold"] += 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.check(developer)
 	async def users(self, ctx):
 		totalusers = db.users.count()
 		print(totalusers)
@@ -134,6 +181,7 @@ class misc(commands.Cog):
 		userinfo["saw_block"] = 0
 		userinfo["mason_block"] = 0
 		userinfo["smelt_block"] = 0
+		userinfo["trap_block"] = 0
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Deny Cooldown Complete", description="Cooldowns removed.",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)

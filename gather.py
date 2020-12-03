@@ -125,6 +125,7 @@ class gather(commands.Cog):
 
 		mined_metal = random.randint(0, 2)
 		mined_rock = random.randint(1, 5)
+
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
@@ -134,7 +135,39 @@ class gather(commands.Cog):
 
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
+		if userinfo["pickaxelvl"] == 0:
+			userinfo["pickaxelvl"] = 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		if userinfo["pickaxelvl"] == 2:
+			mined_metal = random.randint(2, 4)
+			mined_rock = random.randint(3, 7)
+		if userinfo["pickaxelvl"] == 3:
+			mined_metal = random.randint(4, 6)
+			mined_rock = random.randint(5, 9)
+		if userinfo["pickaxelvl"] == 4:
+			mined_metal = random.randint(6, 8)
+			mined_rock = random.randint(7, 11)
+		if userinfo["pickaxelvl"] == 5:
+			mined_metal = random.randint(8, 10)
+			mined_rock = random.randint(9, 13)
+		if userinfo["pickaxelvl"] == 6:
+			mined_metal = random.randint(10, 12)
+			mined_rock = random.randint(11, 15)
+		if userinfo["pickaxelvl"] == 7:
+			mined_metal = random.randint(11, 14)
+			mined_rock = random.randint(12, 17)
+		if userinfo["pickaxelvl"] == 8:
+			mined_metal = random.randint(12, 16)
+			mined_rock = random.randint(13, 19)
+		if userinfo["pickaxelvl"] == 9:
+			mined_metal = random.randint(13, 18)
+			mined_rock = random.randint(14, 21)
+		if userinfo["pickaxelvl"] == 10:
+			mined_metal = random.randint(14, 20)
+			mined_rock = random.randint(15, 23)
 
+
+	
 
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["mine_block"])
@@ -158,7 +191,7 @@ class gather(commands.Cog):
 					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 					pass
 				except:
-					print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 					pass
 
 				if guildinfo["mission"] == "Collect 160 Stone":
@@ -169,7 +202,7 @@ class gather(commands.Cog):
 					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 					pass
 				except:
-					print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 					pass
 			except:
 				pass
@@ -198,7 +231,6 @@ class gather(commands.Cog):
 			# calulate time left
 			seconds = cooldowntime - delta
 			m, s = divmod(seconds, 60)
-			h, m = divmod(m, 60)
 			em = discord.Embed(title=":hourglass: You can't mine yet!", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
@@ -228,14 +260,42 @@ class gather(commands.Cog):
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has chopped wood")
 
 		chopped = random.randint(1, 5)
+
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
+
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
+
+		if userinfo["axelvl"] == 0:
+			userinfo["axelvl"] = 1
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		if userinfo["axelvl"] == 2:
+			chopped = random.randint(3, 7)
+		if userinfo["axelvl"] == 3:
+			chopped = random.randint(5, 9)
+		if userinfo["axelvl"] == 4:
+			chopped = random.randint(7, 11)
+		if userinfo["axelvl"] == 5:
+			chopped = random.randint(9, 13)
+		if userinfo["axelvl"] == 6:
+			chopped = random.randint(11, 15)
+		if userinfo["axelvl"] == 7:
+			chopped = random.randint(12, 17)
+		if userinfo["axelvl"] == 8:
+			chopped = random.randint(13, 19)
+		if userinfo["axelvl"] == 9:
+			chopped = random.randint(14, 21)
+		if userinfo["axelvl"] == 10:
+			chopped = random.randint(15, 23)
+
+
+		
+		
 
 		curr_time = time.time()
 		delta = float(curr_time) - float(userinfo["chop_block"])
@@ -261,10 +321,10 @@ class gather(commands.Cog):
 					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 					pass
 				except:
-					print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 					pass
 			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
 		
 			if userinfo["questname"] == "Gathering Wood I":
@@ -283,7 +343,6 @@ class gather(commands.Cog):
 			# calulate time left
 			seconds = cooldowntime - delta
 			m, s = divmod(seconds, 60)
-			h, m = divmod(m, 60)
 			em = discord.Embed(title=":hourglass: You can't chop yet!", description="" + str(round(m)) + " Minutes and " + str(round(s)) + " seconds", color=discord.Colour(0xffffff))
 			try:
 				await ctx.send(embed=em)
@@ -295,7 +354,6 @@ class gather(commands.Cog):
 
 	async def _guild_mission_check(self, user, guild, mission, chopped, mined_metal, mined_rock):
 		guild = ctx.guild
-		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
 		if guild == "None":
@@ -309,7 +367,7 @@ class gather(commands.Cog):
 				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				return
 			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				return
 
 		elif mission == "Collect 120 metal":
@@ -320,7 +378,7 @@ class gather(commands.Cog):
 				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				return
 			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				return
 
 		elif mission == "Collect 160 Stone":
@@ -331,7 +389,7 @@ class gather(commands.Cog):
 				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 				return
 			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				return
 
 		else:
