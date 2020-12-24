@@ -6,6 +6,7 @@ import asyncio
 import random
 import math
 import operator
+import pymongo
 
 from time import time
 
@@ -91,36 +92,24 @@ class leaderboard(commands.Cog):
 		users = []
 		user_stat = None
 		title = "Players Leaderboard\n"
-		for userinfo in db.users.find({}):
+		for userinfo in db.users.find({"lvl" : {"$exists": True}}).sort([("lvl", pymongo.DESCENDING)]).limit(100):
 			try:
-				users.append((userinfo["guild"], userinfo["name"], userinfo["lvl"], userinfo["exp"]))
+				users.append((userinfo["name"], userinfo["lvl"]))
 			except:
 				pass
 
 		icon_url = self.bot.user.avatar_url
-		sorted_list = sorted(users, key=operator.itemgetter(2), reverse=True)
-		# multiple page support	
-		page = 1
-		per_page = 10
-		pages = math.ceil(len(sorted_list)/per_page)
-		for option in options:
-			if str(option).isdigit():
-				if page >= 1 and int(option) <= pages:
-					page = int(str(option))
-				else:
-					await ctx.send("<:Solyx:560809141766193152> **| Not a valid page number.**")
-					return
-				break
+		
+		print(users)
 
 		msg = ""
-		rank = 1 + per_page*(page-1)
-		start_index = per_page*page - per_page
-		end_index = per_page*page
+		rank = 1
 
 		default_label = "⠀"
 		special_labels = ["🟃", "🟇", "🟍"]
 
-		for single_user in sorted_list[start_index:end_index]:
+		for single_user in users:
+			print(single_user)
 			if rank-1 < len(special_labels):
 				label = special_labels[rank-1]
 			else:
@@ -142,7 +131,7 @@ class leaderboard(commands.Cog):
 		em = discord.Embed(colour=discord.Colour(0xeb3f21))
 		em.set_author(name=title, icon_url = icon_url)
 		em.add_field(name="Rank		   Name\n", value=msg)
-		em.set_footer(text="Page {}/{} | Your rank: {}".format(page, pages, await self._find_user_rank(ctx.message.author)))
+		em.set_footer(text="Your rank: {}".format(await self._find_user_rank(ctx.message.author)))
 		try:
 			await ctx.send(embed=em)
 		except:

@@ -258,7 +258,7 @@ class loot(commands.Cog):
 								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 								await ctx.send(embed=em)
 								pass
-						return
+						pass
 
 					if rare == "Iron Claws":
 						rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -574,7 +574,7 @@ class loot(commands.Cog):
 									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 									await ctx.send(embed=em)
 									pass
-							return
+							pass
 
 						if rare == "Iron Claws":
 							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -890,7 +890,7 @@ class loot(commands.Cog):
 										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 										await ctx.send(embed=em)
 										pass
-								return
+								pass
 
 							if rare == "Iron Claws":
 								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -1091,7 +1091,7 @@ class loot(commands.Cog):
 
 			times = amount
 
-			if amount >= 3:
+			if amount >= 4:
 				em = discord.Embed(description="You cant open more then 3 crates!\n Become a higher tier patreon to open more crates!", color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
@@ -1154,7 +1154,7 @@ class loot(commands.Cog):
 			
 			# Crate 1
 	# Crate 1
-			if amount>= 1:
+			if amount >= 1:
 				await asyncio.sleep(0.6)
 				userinfo["keys"] = userinfo["keys"] - 1
 				userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -1277,7 +1277,7 @@ class loot(commands.Cog):
 								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 								await ctx.send(embed=em)
 								pass
-						return
+						pass
 
 					if rare == "Iron Claws":
 						rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -1470,7 +1470,7 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
-				if amount>= 2:
+				if amount >= 2:
 					await asyncio.sleep(0.6)
 					userinfo["keys"] = userinfo["keys"] - 1
 					userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -1593,7 +1593,7 @@ class loot(commands.Cog):
 									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 									await ctx.send(embed=em)
 									pass
-							return
+							pass
 
 						if rare == "Iron Claws":
 							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -1786,7 +1786,7 @@ class loot(commands.Cog):
 							except:
 								pass
 						pass
-					if amount>= 3:
+					if amount >= 3:
 						await asyncio.sleep(0.6)
 						userinfo["keys"] = userinfo["keys"] - 1
 						userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -1909,7 +1909,7 @@ class loot(commands.Cog):
 										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 										await ctx.send(embed=em)
 										pass
-								return
+								pass
 
 							if rare == "Iron Claws":
 								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -2304,7 +2304,7 @@ class loot(commands.Cog):
 								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 								await ctx.send(embed=em)
 								pass
-						return
+						pass
 
 					if rare == "Iron Claws":
 						rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -2620,7 +2620,7 @@ class loot(commands.Cog):
 									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 									await ctx.send(embed=em)
 									pass
-							return
+							pass
 
 						if rare == "Iron Claws":
 							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -2936,7 +2936,7 @@ class loot(commands.Cog):
 										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 										await ctx.send(embed=em)
 										pass
-								return
+								pass
 
 							if rare == "Iron Claws":
 								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -3328,7 +3328,7 @@ class loot(commands.Cog):
 								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 								await ctx.send(embed=em)
 								pass
-						return
+						pass
 
 					if rare == "Iron Claws":
 						rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -3521,7 +3521,7 @@ class loot(commands.Cog):
 						except:
 							pass
 					pass
-				if amount>= 2:
+				if amount >= 2:
 					await asyncio.sleep(0.6)
 					userinfo["keys"] = userinfo["keys"] - 1
 					userinfo["lootbag"] = userinfo["lootbag"] - 1
@@ -3644,7 +3644,7 @@ class loot(commands.Cog):
 									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 									await ctx.send(embed=em)
 									pass
-							return
+							pass
 
 						if rare == "Iron Claws":
 							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -3960,7 +3960,7 @@ class loot(commands.Cog):
 										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 										await ctx.send(embed=em)
 										pass
-								return
+								pass
 
 							if rare == "Iron Claws":
 								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -4276,7 +4276,7 @@ class loot(commands.Cog):
 											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 											await ctx.send(embed=em)
 											pass
-									return
+									pass
 
 								if rare == "Iron Claws":
 									rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -4671,7 +4671,7 @@ class loot(commands.Cog):
 								em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 								await ctx.send(embed=em)
 								pass
-						return
+						pass
 
 					if rare == "Iron Claws":
 						rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -4987,7 +4987,7 @@ class loot(commands.Cog):
 									em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 									await ctx.send(embed=em)
 									pass
-							return
+							pass
 
 						if rare == "Iron Claws":
 							rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -5303,7 +5303,7 @@ class loot(commands.Cog):
 										em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 										await ctx.send(embed=em)
 										pass
-								return
+								pass
 
 							if rare == "Iron Claws":
 								rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -5619,7 +5619,7 @@ class loot(commands.Cog):
 											em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 											await ctx.send(embed=em)
 											pass
-									return
+									pass
 
 								if rare == "Iron Claws":
 									rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}
@@ -5935,7 +5935,7 @@ class loot(commands.Cog):
 												em = discord.Embed(title="Crate Error", description="You have been refunded 1 crate and 1 key", color=discord.Colour(0xffffff))
 												await ctx.send(embed=em)
 												pass
-										return
+										pass
 
 									if rare == "Iron Claws":
 										rareitemobj = {"name": "Iron Claws", "type": "dagger", "rarity": "Rare", "stats_min": 24, "stats_max": 28, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/lrk0y5p.png"}

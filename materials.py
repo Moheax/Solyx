@@ -44,54 +44,62 @@ class materials(commands.Cog):
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
 		if userinfo["sawmill"] == "False":
-			em = discord.Embed(description="You have to build a sawmill first!\ntype {}build sawmill".format(ctx.prefix), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You have to built a sawmill first!\ntype {}build sawmill".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
 
+
+		limit = userinfo["sawlvl"]
+		limit2 = userinfo["sawlvl"] + 1
+		limit3 = userinfo["sawlvl"] + 2
+		limit4 = userinfo["sawlvl"] + 3
+		limit5 = userinfo["sawlvl"] + 4
+		limit6 = userinfo["sawlvl"] + 5
+
 		if userinfo["role"] == "Player":
-			if amount == 1:
+			if amount == limit:
 				pass
 
-			if amount == 2 and userinfo["lvl"] >= 100:
+			if amount == limit2 and userinfo["lvl"] >= 100:
 				pass
 
-			if amount == 2 and not userinfo["lvl"] >= 100:
-				em = discord.Embed(description="Reach level 100+ to saw 2 logs at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 100:
+				em = discord.Embed(description="Reach level 100+ to saw {} logs at once!".format(limit2), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount == 3 and userinfo["lvl"] >= 200:
+			if amount == limit3 and userinfo["lvl"] >= 200:
 				pass
 
-			if amount == 3 and not userinfo["lvl"] >= 200:
-				em = discord.Embed(description="Reach level 200+ to saw 2 logs at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 200:
+				em = discord.Embed(description="Reach level 200+ to saw {} logs at once!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant saw more then 3 logs!\n Become a patreon to saw more logs!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant saw more then {} logs!\n Become a patreon to saw more logs!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon2":
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant saw more then 3 logs!\n Become a higher tier patreon to saw more logs!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant saw more then {} logs!\n Become a higher tier patreon to saw more logs!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon3":
 
-			if amount >= 5:
-				em = discord.Embed(description="You cant saw more then 4 logs!\n Become a higher tier patreon to saw more logs!", color=discord.Colour(0xffffff))
+			if amount >= limit5:
+				em = discord.Embed(description="You cant saw more then {} logs!\n Become a higher tier patreon to saw more logs!".format(limit4), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 
 		if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
 
-			if amount >= 6:
-				em = discord.Embed(description="You cant saw more then 5 logs!", color=discord.Colour(0xffffff))
+			if amount >= limit6:
+				em = discord.Embed(description="You cant saw more then {} logs!".format(limit5), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
@@ -139,7 +147,7 @@ class materials(commands.Cog):
 				except:
 					return
 
-	@commands.command(pass_context=True, no_pm=True)
+	@commands.command(pass_context=True, aliases=["chisel"], no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def mason(self, ctx, amount:int):
 
@@ -167,56 +175,65 @@ class materials(commands.Cog):
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
 		if userinfo["masonry"] == "False":
-			em = discord.Embed(description="You have to build a masonry first!\ntype {}build masonry".format(ctx.prefix), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You have to built a masonry first!\ntype {}build masonry".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
 
+
+		limit = userinfo["chisellvl"]
+		limit2 = userinfo["chisellvl"] + 1
+		limit3 = userinfo["chisellvl"] + 2
+		limit4 = userinfo["chisellvl"] + 3
+		limit5 = userinfo["chisellvl"] + 4
+		limit6 = userinfo["chisellvl"] + 5
+
 		if userinfo["role"] == "Player":
-			if amount == 1:
+			if amount == limit:
 				pass
 
-			if amount == 2 and userinfo["lvl"] >= 100:
+			if amount == limit2 and userinfo["lvl"] >= 100:
 				pass
 
-			if amount == 2 and not userinfo["lvl"] >= 100:
-				em = discord.Embed(description="Reach level 100+ to make 2 bricks at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 100:
+				em = discord.Embed(description="Reach level 100+ to chisel {} bricks at once!".format(limit2), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount == 3 and userinfo["lvl"] >= 200:
+			if amount == limit3 and userinfo["lvl"] >= 200:
 				pass
 
-			if amount == 3 and not userinfo["lvl"] >= 200:
-				em = discord.Embed(description="Reach level 200+ to make 2 bricks at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 200:
+				em = discord.Embed(description="Reach level 200+ to chisel {} bricks at once!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant make more then 3 bricks!\n Become a patreon to make more bricks!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant chisel more then {} bricks!\n Become a patreon to chisel more bricks!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon2":
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant make more then 3 bricks!\n Become a higher tier patreon to make more bricks!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant chisel more then {} bricks!\n Become a higher tier patreon to chisel more bricks!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon3":
 
-			if amount >= 5:
-				em = discord.Embed(description="You cant make more then 4 bricks!\n Become a higher tier patreon to make more bricks!", color=discord.Colour(0xffffff))
+			if amount >= limit5:
+				em = discord.Embed(description="You cant chisel more then {} bricks!\n Become a higher tier patreon to chisel more bricks!".format(limit4), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 
 		if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
 
-			if amount >= 6:
-				em = discord.Embed(description="You cant make more then 5 bricks!", color=discord.Colour(0xffffff))
+			if amount >= limit6:
+				em = discord.Embed(description="You cant chisel more then {} bricks!".format(limit5), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
+
 
 
 		used_stone = amount * 5
@@ -261,7 +278,7 @@ class materials(commands.Cog):
 				except:
 					return
 
-	@commands.command(pass_context=True, no_pm=True)
+	@commands.command(pass_context=True, aliases=["hammer"], no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def smelt(self, ctx, amount:int):
 
@@ -289,54 +306,63 @@ class materials(commands.Cog):
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
 		if userinfo["smeltery"] == "False":
-			em = discord.Embed(description="You have to build a smeltery first!\ntype {}build smeltery".format(ctx.prefix), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="You have to built a smeltery first!\ntype {}build smeltery".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
 
+
+
+		limit = userinfo["chisellvl"]
+		limit2 = userinfo["chisellvl"] + 1
+		limit3 = userinfo["chisellvl"] + 2
+		limit4 = userinfo["chisellvl"] + 3
+		limit5 = userinfo["chisellvl"] + 4
+		limit6 = userinfo["chisellvl"] + 5
+
 		if userinfo["role"] == "Player":
-			if amount == 1:
+			if amount == limit:
 				pass
 
-			if amount == 2 and userinfo["lvl"] >= 100:
+			if amount == limit2 and userinfo["lvl"] >= 100:
 				pass
 
-			if amount == 2 and not userinfo["lvl"] >= 100:
-				em = discord.Embed(description="Reach level 100+ to make 2 iron plates at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 100:
+				em = discord.Embed(description="Reach level 100+ to smelt{} iron plants at once!".format(limit2), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount == 3 and userinfo["lvl"] >= 200:
+			if amount == limit3 and userinfo["lvl"] >= 200:
 				pass
 
-			if amount == 3 and not userinfo["lvl"] >= 200:
-				em = discord.Embed(description="Reach level 200+ to make 2 iron plates at once!", color=discord.Colour(0xffffff))
+			if amount == limit3 and not userinfo["lvl"] >= 200:
+				em = discord.Embed(description="Reach level 200+ to smelt {} iron plants at once!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant make more then 3 iron plates!\n Become a patreon to make more iron plates!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant smelt more then {} iron plants!\n Become a patreon to smelt more iron plants!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon2":
 
-			if amount >= 4:
-				em = discord.Embed(description="You cant make more then 3 iron plates!\n Become a higher tier patreon to make more iron plates!", color=discord.Colour(0xffffff))
+			if amount >= limit4:
+				em = discord.Embed(description="You cant smelt more then {} iron plants!\n Become a higher tier patreon to smelt more iron plants!".format(limit3), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 		if userinfo["role"] == "patreon3":
 
-			if amount >= 5:
-				em = discord.Embed(description="You cant make more then 4 iron plates!\n Become a higher tier patreon to make more iron plates!", color=discord.Colour(0xffffff))
+			if amount >= limit5:
+				em = discord.Embed(description="You cant smelt more then {} iron plants!\n Become a higher tier patreon to smelt more iron plants!".format(limit4), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 
 
 		if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
 
-			if amount >= 6:
-				em = discord.Embed(description="You cant make more then 5 iron plates!", color=discord.Colour(0xffffff))
+			if amount >= limit6:
+				em = discord.Embed(description="You cant smelt more then {} iron plants!".format(limit5), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 				return
 

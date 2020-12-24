@@ -62,7 +62,7 @@ class building(commands.Cog):
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
 		if userinfo["camp"] == "True":
-			em = discord.Embed(title="Already built!", description="You already have a camp build!", color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Already built!", description="You already have a camp built!", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
 
@@ -114,7 +114,7 @@ class building(commands.Cog):
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="Camp build!", description="You have succesfully build your camp!\nstart building crafting stations!", color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Camp build!", description="You have succesfully built your camp!\nstart building craft stations!", color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 				except:
@@ -152,7 +152,7 @@ class building(commands.Cog):
 			return
 
 		if userinfo["sawmill"] == "True":
-			em = discord.Embed(title="Already built!", description="You already have a sawmill build!", color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Already built!", description="You already have a sawmill built!", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 		try:
@@ -203,7 +203,7 @@ class building(commands.Cog):
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="sawmill build!", description="You have succesfully build your sawmill!\nstart making planks out of wood!\ntype {}saw <amount>\n3 wood = 2 planks!".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="sawmill build!", description="You have succesfully built your sawmill!\nstart making planks out of wood!\ntype {}saw <amount>\n3 wood = 2 planks!".format(ctx.prefix), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 				except:
@@ -299,7 +299,7 @@ class building(commands.Cog):
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="masonry build!", description="You have succesfully build your masonry!\nstart making bricks out of stone!\ntype {}mason <amount>\n5 stone = 4 bricks!".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="masonry build!", description="You have succesfully built your masonry!\nstart making bricks out of stone!\ntype {}mason <amount>\n5 stone = 4 bricks!".format(ctx.prefix), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 				except:
@@ -402,7 +402,7 @@ class building(commands.Cog):
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="smeltery build!", description="You have succesfully build your smeltery!\nstart making iron plates out of metal!\ntype {}smelt <amount>\n5 metal = 4 iron plates!".format(ctx.prefix), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="smeltery build!", description="You have succesfully built your smeltery!\nstart making iron plates out of metal!\ntype {}smelt <amount>\n5 metal = 4 iron plates!".format(ctx.prefix), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 				except:

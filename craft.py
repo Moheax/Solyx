@@ -985,7 +985,7 @@ class craft(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 2 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now earn 2 more wood per chop!".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 2 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now have +1 min gain, +2 max gain stone and metal per mine!".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1057,7 +1057,7 @@ class craft(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 3 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now earn 2 more wood per chop!".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 3 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now have +1 min gain, +2 max gain stone and metal per mine!".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1136,7 +1136,7 @@ class craft(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 4 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now earn 2 more wood per chop!".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 4 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now have +1 min gain, +2 max gain stone and metal per mine!".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1222,7 +1222,7 @@ class craft(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 5 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now earn 2 more wood per chop!".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="<:Pickaxe:573574740640530471>  Pickaxe level 5 crafted!", description="You have succesfully upgraded your pickaxe!\nYou now have +1 min gain, +2 max gain stone and metal per mine!".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1769,7 +1769,7 @@ class craft(commands.Cog):
 	@_craft.group(name="Saw", aliases=["saw"], pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _saw(self, ctx):
-		"""Upgrade your saw! to make more planks"""
+		"""Upgrade your saw! To make more planks"""
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
@@ -2632,7 +2632,7 @@ class craft(commands.Cog):
 	@_craft.group(name="Chisel", aliases=["chisel"], pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _chisel(self, ctx):
-		"""Upgrade your chisel! to make more planks"""
+		"""Upgrade your chisel! To make more bricks"""
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]
@@ -3495,7 +3495,7 @@ class craft(commands.Cog):
 	@_craft.group(name="Hammer", aliases=["hammer"], pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _hammer(self, ctx):
-		"""Upgrade your hammer! to make more planks"""
+		"""Upgrade your hammer! To make more iron plates"""
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
 		language = languageinfo["language"]

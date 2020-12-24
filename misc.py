@@ -126,11 +126,20 @@ class misc(commands.Cog):
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	@commands.check(developer)
-	async def users(self, ctx):
+	async def users(self, ctx,):
 		totalusers = db.users.count()
 		print(totalusers)
 		await ctx.send(totalusers)
 
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.check(developer)
+	async def shards(self, ctx):
+		print("Shards: {}".format(self.bot.shard_count))
+		em = discord.Embed(title="Shards", description="Shards Count: {}".format(self.bot.shard_count),color=discord.Colour(0xffffff))	
+		await ctx.send(embed=em)
+		
+		
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	@commands.check(developer)
@@ -182,6 +191,10 @@ class misc(commands.Cog):
 		userinfo["mason_block"] = 0
 		userinfo["smelt_block"] = 0
 		userinfo["trap_block"] = 0
+		try:
+			userinfo["trader_block"] = 0
+		except:
+			pass
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Deny Cooldown Complete", description="Cooldowns removed.",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)

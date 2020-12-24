@@ -114,7 +114,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your first trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your first trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -186,7 +186,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your second trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your second trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -264,7 +264,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 3rd trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 3rd trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -350,7 +350,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 4th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 4th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -446,7 +446,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 5th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 5th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -542,7 +542,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 6th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 6th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -638,7 +638,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 7th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 7th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -745,7 +745,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 8th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 8th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -851,7 +851,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 9th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 9th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -958,7 +958,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 10th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 10th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1065,7 +1065,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 11th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 11th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1172,7 +1172,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your 12th trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your 12th trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -1278,7 +1278,7 @@ class traps(commands.Cog):
 
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-						em = discord.Embed(title="Trap build!", description="You have succesfully build your last trap!\nYou can check your trap every hour to see if it catched a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper then building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
+						em = discord.Embed(title="Trap build!", description="You have succesfully build your last trap!\nYou can check your trap every hour to see if it caught a monster.\ncertain patreon tiers have shorter cooldowns!\ntraps can fail or break you would need to replace them, this will be a lot cheaper than building one. \n{}wiki traps for more info.".format(ctx.prefix), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
 							return
@@ -11726,17 +11726,18 @@ class traps(commands.Cog):
 			list4 = ""
 			list5 = ""
 
-
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["trap1"] >= 0 and userinfo["trap"] >= 1:
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 1**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap1difficulty, trap1, int(trap1enemygold), int(trap1xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >=6:
 					userinfo["trap1"] -= 1
 					if userinfo["trap1"] == 0:
 						list2 += "**Trap 1**\n Has Broken.\n_ _\n"
 						trap1enemygold = 0
-						trap1xpgain = 0 
+						trap1xpgain = 0
+						userinfo["trap1"] = 0
 					else:
 						list1 += "**Trap 1**\n Has failed.\n_ _\n"
 						trap1enemygold = 0
@@ -11754,7 +11755,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 2**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap2difficulty, trap2, int(trap2enemygold), int(trap2xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap2"] -= 1
 					if userinfo["trap2"] == 0:
 						list2 += "**Trap 2**\n Has Broken.\n_ _\n"
@@ -11777,7 +11778,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 3**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap3difficulty, trap3, int(trap3enemygold), int(trap3xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap3"] -= 1
 					if userinfo["trap3"] == 0:
 						list2 += "**Trap 3**\n Has Broken.\n_ _\n"
@@ -11800,7 +11801,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 4**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap4difficulty, trap4, int(trap4enemygold), int(trap4xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap4"] -= 1
 					if userinfo["trap4"] == 0:
 						list2 += "**Trap 4**\n Has Broken.\n_ _\n"
@@ -11823,7 +11824,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 5**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap5difficulty, trap5, int(trap5enemygold), int(trap5xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap5"] -= 1
 					if userinfo["trap5"] == 0:
 						list2 += "**Trap 5 **\n Has Broken.\n_ _\n"
@@ -11846,7 +11847,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 6**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap6difficulty, trap6, int(trap6enemygold), int(trap6xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap6"] -= 1
 					if userinfo["trap6"] == 0:
 						list2 += "**Trap 6**\n Has Broken.\n_ _\n"
@@ -11869,7 +11870,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 7**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap7difficulty, trap7, int(trap7enemygold), int(trap7xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap7"] -= 1
 					if userinfo["trap7"] == 0:
 						list2 += "**Trap 7**\n Has Broken.\n_ _\n"
@@ -11892,7 +11893,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 8**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap8difficulty, trap8, int(trap8enemygold), int(trap8xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap8"] -= 1
 					if userinfo["trap8"] == 0:
 						list5 += "**Trap 8**\n Has Broken.\n_ _\n"
@@ -11915,7 +11916,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 9**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap9difficulty, trap9, int(trap9enemygold), int(trap9xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap9"] -= 1
 					if userinfo["trap9"] == 0:
 						list5 += "**Trap 9**\n Has Broken.\n_ _\n"
@@ -11938,7 +11939,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 10**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap10difficulty, trap10, int(trap10enemygold), int(trap10xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap10"] -= 1
 					if userinfo["trap10"] == 0:
 						list5 += "**Trap 10**\n Has Broken.\n_ _\n"
@@ -11961,7 +11962,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 11**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap11difficulty, trap11, int(trap11enemygold), int(trap11xpgain))
-				if chance <= 20 and chance >=5:
+				if chance <= 19 and chance >= 6:
 					userinfo["trap11"] -= 1
 					if userinfo["trap11"] == 0:
 						list5 += "**Trap 11**\n Has Broken.\n_ _\n"
@@ -11984,7 +11985,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 12**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap12difficulty, trap12, int(trap12enemygold), int(trap12xpgain))
-				if chance <= 20 and chance >=5:	
+				if chance <= 19 and chance >= 6:	
 					userinfo["trap12"] -= 1
 					if userinfo["trap12"] == 0:
 						list5 += "**Trap 12**\n Has Broken.\n_ _\n"
@@ -12007,7 +12008,7 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list3 += "**Trap 13**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap13difficulty, trap13, int(trap13enemygold), int(trap13xpgain))
-				if chance <= 20 and chance >=5:					
+				if chance <= 19 and chance >= 6:					
 					userinfo["trap13"] -= 1
 					if userinfo["trap13"] == 0:
 						list5 += "**Trap 13**\n Has Broken.\n_ _\n"
@@ -12039,7 +12040,7 @@ class traps(commands.Cog):
 			list4 += "_ _\n"
 			list5 += "_ _\n"
 
-
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		
 			em = discord.Embed(color=discord.Colour(0xffffff))
 			em.set_author(name="{}'s Traps".format(userinfo["name"]), icon_url=user.avatar_url)
@@ -12091,7 +12092,7 @@ class traps(commands.Cog):
 
 			userinfo["gold"] += totalgold
 			userinfo["exp"] += totalexp
-
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))

@@ -14,7 +14,7 @@ class autorest(commands.Cog):
 	async def rest_add_hp(self):
 		while self is self.bot.get_cog("autorest"):
 			users = db.users.count()
-			message = '-help', users
+			message = "-help | " + str(round(users)) + " Users"
 			activity = discord.Game(name=message)
 			await self.bot.change_presence(status=discord.Status.online, activity=activity)
 

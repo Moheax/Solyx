@@ -93,8 +93,8 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="2 - 12", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="Chain-mail is made from mesh, a cluster of linked metal rings. it's sturdiness and high density blocks the worst of big blows. Popular among new adventurers and beginning knights because it is fairly easy to obtain. However the metal is rather heavy to wear.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Barbaric" or topic == "barbaric" or  topic == "Barbaric Armor" or topic == "barbaric armor":
@@ -103,11 +103,11 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
 			embed.add_field(name="**Defense**", value="5 - 7", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="Barbaric armor consists mostly of dried and toughened leathery skin of various creatures. Sewn together by steel-thread, it's more comfortable to move around in than metal but blocks less impact. Often found in cities where hunters bring in the hides and artisans craft them into wearable items.", inline=False)
+			embed.set_footer(text="Submitted by AceTheBearg223#4562\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
-		elif topic == "Pit fighter" or topic == "pit fighter" or topic == "Pit fighter Armor" or topic == "pit fighter armor":
+		elif topic == "Pit Fighter" or topic == "pit fighter" or topic == "Pit fighter Armor" or topic == "pit fighter armor":
 			embed=discord.Embed(title="**Pit fighter**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
@@ -760,8 +760,8 @@ class wiki(commands.Cog):
 
 			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
 
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="One of the greatest knights of mankind.\nThe Death knight sought to be the strongest of all. He failed and died in the war over the lost city, between humans and dragons. Because of his strength the victorious elder dragon decided to revive his body and has appointed him to guard the Lost city.", inline=False)
+			embed.set_footer(text="Submitted by カエル #6854\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 			
 		elif topic == "Frost Dragon" or topic == "frost dragon":

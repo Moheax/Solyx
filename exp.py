@@ -116,7 +116,7 @@ class exp(commands.Cog):
 			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 				userinfo["lvl"] = userinfo["lvl"] + 1
-				userinfo["health"] = 100
+				userinfo["health"] = userinfo["MaxHealth"]
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 				await ctx.send(embed=em)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -124,7 +124,7 @@ class exp(commands.Cog):
 				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 					userinfo["lvl"] = userinfo["lvl"] + 1
-					userinfo["health"] = 100
+					userinfo["health"] = userinfo["MaxHealth"]
 					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 					await ctx.send(embed=em)
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -132,7 +132,7 @@ class exp(commands.Cog):
 					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 						userinfo["lvl"] = userinfo["lvl"] + 1
-						userinfo["health"] = 100
+						userinfo["health"] = userinfo["MaxHealth"]
 						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 						await ctx.send(embed=em)
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
@@ -140,7 +140,7 @@ class exp(commands.Cog):
 						if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 							userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 							userinfo["lvl"] = userinfo["lvl"] + 1
-							userinfo["health"] = 100
+							userinfo["health"] = userinfo["MaxHealth"]
 							em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 							await ctx.send(embed=em)
 				
