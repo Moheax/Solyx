@@ -11731,8 +11731,10 @@ class traps(commands.Cog):
 				chance = random.randint(1, 100)
 				if chance >= 20:
 					list += "**Trap 1**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap1difficulty, trap1, int(trap1enemygold), int(trap1xpgain))
-				if chance <= 19 and chance >=6:
+
+				elif chance <= 19 and chance >=6:
 					userinfo["trap1"] -= 1
+
 					if userinfo["trap1"] == 0:
 						list2 += "**Trap 1**\n Has Broken.\n_ _\n"
 						trap1enemygold = 0
@@ -11742,15 +11744,19 @@ class traps(commands.Cog):
 						list1 += "**Trap 1**\n Has failed.\n_ _\n"
 						trap1enemygold = 0
 						trap1xpgain = 0 
-				if chance <= 5 :
+
+				elif chance <= 5 :
 					list2 += "**Trap 1**\n Has Broken.\n_ _\n"
 					chance = random.randint(1, 100)
-					if chance <=5:
-						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap1"] == 0
+					userinfo["trap1"] = 0
 					trap1enemygold = 0
 					trap1xpgain = 0
+
+					if chance <=5:
+						await ctx.send("Your trap has been broken by a bear!")
+
 				pass
+
 			if userinfo["trap2"] >= 0 and userinfo["trap"] >= 2:
 				chance = random.randint(1, 100)
 				if chance >= 20:
@@ -11770,7 +11776,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap2"] == 0
+					userinfo["trap2"] = 0
 					trap2enemygold = 0
 					trap2xpgain = 0
 				pass
@@ -11793,7 +11799,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap3"] == 0
+					userinfo["trap3"] = 0
 					trap3enemygold = 0
 					trap3xpgain = 0
 				pass
@@ -11816,7 +11822,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap4"] == 0
+					userinfo["trap4"] = 0
 					trap4enemygold = 0
 					trap4xpgain = 0
 				pass
@@ -11862,7 +11868,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap6"] == 0
+					userinfo["trap6"] = 0
 					trap6enemygold = 0
 					trap6xpgain = 0
 				pass
@@ -11885,7 +11891,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap7"] == 0
+					userinfo["trap7"] = 0
 					trap7enemygold = 0
 					trap7xpgain = 0
 				pass
@@ -11908,7 +11914,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap8"] == 0
+					userinfo["trap8"] = 0
 					trap8enemygold = 0
 					trap8xpgain = 0
 				pass
@@ -11931,7 +11937,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap9"] == 0
+					userinfo["trap9"] = 0
 					trap9enemygold = 0
 					trap9xpgain = 0
 				pass
@@ -11954,7 +11960,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap10"] == 0
+					userinfo["trap10"] = 0
 					trap10enemygold = 0
 					trap10xpgain = 0
 				pass
@@ -11977,7 +11983,7 @@ class traps(commands.Cog):
 					chance = random.randint(1, 100)
 					if chance <=5:
 						await ctx.send("Your trap has been broken by a bear!")
-					userinfo["trap11"] == 0
+					userinfo["trap11"] = 0
 					trap11enemygold = 0
 					trap11xpgain = 0
 				pass
@@ -12002,7 +12008,7 @@ class traps(commands.Cog):
 						await ctx.send("Your trap has been broken by a bear!")
 					trap13enemygold = 0
 					trap13xpgain = 0
-					userinfo["trap12"] == 0
+					userinfo["trap12"] = 0
 				pass
 			if userinfo["trap13"] >= 0 and userinfo["trap"] >= 13:
 				chance = random.randint(1, 100)
@@ -12026,7 +12032,7 @@ class traps(commands.Cog):
 						await ctx.send("Your trap has been broken by a bear!")
 					trap13enemygold = 0
 					trap13xpgain = 0
-					userinfo["trap13"] == 0
+					userinfo["trap13"] = 0
 				pass
 
 			#userinfo["trap_block"] = curr_time

@@ -92,7 +92,7 @@ class leaderboard(commands.Cog):
 		users = []
 		user_stat = None
 		title = "Players Leaderboard\n"
-		for userinfo in db.users.find({"lvl" : {"$exists": True}}).sort([("lvl", pymongo.DESCENDING)]).limit(100):
+		for userinfo in db.users.find({"lvl" : {"$exists": True}}).sort([("lvl", pymongo.DESCENDING)]).limit(10):
 			try:
 				users.append((userinfo["name"], userinfo["lvl"]))
 			except:
@@ -100,7 +100,6 @@ class leaderboard(commands.Cog):
 
 		icon_url = self.bot.user.avatar_url
 		
-		print(users)
 
 		msg = ""
 		rank = 1
@@ -109,23 +108,23 @@ class leaderboard(commands.Cog):
 		special_labels = ["🟃", "🟇", "🟍"]
 
 		for single_user in users:
-			print(single_user)
+			
 			if rank-1 < len(special_labels):
 				label = special_labels[rank-1]
 			else:
 				label = default_label
 
-			if 'None' in single_user[1]:
-				msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[1],20), str(single_user[0]))
+			if not single_user[1]:
+				msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[0],0), str(single_user[0]))
 				rank += 1
 			else:
 				
 				guildtag = guildinfo["tag"]
 				if not 'None' in guildinfo["tag"]:
-					msg += u'{:<2}{:<2}|   [{}] **{:<22}** `Level: {}`\n'.format(rank, label, guildtag, self._truncate_text(single_user[1],20), str(single_user[2]))
+					msg += u'{:<2}{:<2}| **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[0],10), str(single_user[1]))
 					rank += 1
 				else:
-					msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[1],20), str(single_user[2]))
+					msg += u'{:<2}{:<2}|   **{:<22}** `Level: {}`\n'.format(rank, label, self._truncate_text(single_user[0],10), str(single_user[1]))
 					rank += 1
 
 		em = discord.Embed(colour=discord.Colour(0xeb3f21))
@@ -134,11 +133,13 @@ class leaderboard(commands.Cog):
 		em.set_footer(text="Your rank: {}".format(await self._find_user_rank(ctx.message.author)))
 		try:
 			await ctx.send(embed=em)
-		except:
+		except Exception as e:
+			print(e)
 			try:
 				await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 				return
-			except:
+			except Exception as e:
+				print(e)
 				return
 
 
