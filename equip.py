@@ -10,7 +10,7 @@ from time import time
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
-
+from utils.checks import staff, developer, owner
 
 
 
@@ -23,6 +23,7 @@ class equip(commands.Cog):
 
 	@commands.group(name="equip", pass_context=True, no_pm=True)
 	@commands.cooldown(2, 5, commands.BucketType.user)
+	
 	async def _equip(self, ctx):
 		server = ctx.guild
 		channel = ctx.channel
@@ -45,6 +46,418 @@ class equip(commands.Cog):
 			except:
 				return
 		return
+	
+	@_equip.command(name="neck",aliases=["necklace"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_neck(self, ctx, number:int):
+		"""Equip something for your neck!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "neck":
+			if userinfo["neck"] == "None":
+				userinfo["neck"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["neck"])
+				userinfo["neck"] = "None"
+				userinfo["neck"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Necklace Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+
+	@_equip.command(name="head", aliases=["helmet"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_head(self, ctx, number:int):
+		"""Equip something for your head!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "head":
+			if userinfo["head"] == "None":
+				userinfo["head"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["head"])
+				userinfo["head"] = "None"
+				userinfo["head"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Helmet Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+
+	
+	@_equip.command(name="body",  aliases=["chest", "chestplate"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_body(self, ctx, number:int):
+		"""Equip a shirt!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "body":
+			if userinfo["body"] == "None":
+				userinfo["body"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["body"])
+				userinfo["body"] = "None"
+				userinfo["body"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Body armor equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+		
+
+	@_equip.command(name="legs", aliases=["leggings", "pants"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_legs(self, ctx, number:int):
+		"""Equip something on your legs!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "legs":
+			if userinfo["legs"] == "None":
+				userinfo["legs"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["legs"])
+				userinfo["legs"] = "None"
+				userinfo["legs"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Legs equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+
+		
+	@_equip.command(name="feet", aliases=["boots", "shoes"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_feet(self, ctx, number:int):
+		"""Equip feet!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "feet":
+			if userinfo["feet"] == "None":
+				userinfo["feet"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["feet"])
+				userinfo["feet"] = "None"
+				userinfo["feet"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Shoes Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+	
+	@_equip.command(name="finger", aliases=["ring", "hand"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	@commands.check(developer)
+	async def _equip_finger(self, ctx, number:int):
+		"""Equip a ring on your finger!"""
+
+
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		if number not in range(1, 26): # Max
+			return await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["itemnotexist"]["translation"])
+
+
+		try:
+			item = userinfo["inventory"][number-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No item in this slot...**")
+			return
+
+		type = item["type"]
+
+
+		if type == "finger":
+			if userinfo["finger"] == "None":
+				userinfo["finger"] = item
+				userinfo["inventory"].remove(item)
+			else:
+				userinfo["inventory"].append(userinfo["finger"])
+				userinfo["finger"] = "None"
+				userinfo["finger"] = item
+				userinfo["inventory"].remove(item)
+
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Ring Equipped:", description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
+		else:
+			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["cantarmorequip"]["translation"], color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			return
+
 
 	@_equip.command(name="weapon", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)

@@ -214,6 +214,35 @@ class misc(commands.Cog):
 		await test1.start()
 		test2 = threading.Thread(target=thread2)
 		await test2.start()
+
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def random(self, ctx, number:int):
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has chosen a random number")
+
+		randomnum = random.randint(1, number)
+
+		await ctx.send("The random number is {}".format(randomnum))
+
+
 def setup(bot):
 	n = misc(bot)
 	bot.add_cog(n)

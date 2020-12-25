@@ -5594,35 +5594,8 @@ class fight(commands.Cog):
 			youdef += random.randint(5, 10)
 		elif userinfo["class"] == "Knight":
 			youdef += random.randint(8, 15)
-
-# - - Common Armor - -
-#		if userinfo["wearing"] == "Chainmail Armor":
-#			youdef += random.randint(2, 12)
-#		elif userinfo["wearing"] == "Barbaric Armor":
-#			youdef += random.randint(5, 7)
-#		elif userinfo["wearing"] == "Pit fighter Armor":
-#			youdef += random.randint(4, 9)
-#		elif userinfo["wearing"] == "Banded Armor":
-#			youdef += random.randint(1, 10)
-#		elif userinfo["wearing"] == "Leather Armor":
-#			youdef += random.randint(3, 8)
-# - - Rare Armor - -
-#		elif userinfo["wearing"] == "Iron Armor":
-#			youdef += random.randint(14, 16)
-#		elif userinfo["wearing"] == "Branded Metal Armor":
-#			youdef += random.randint(13, 17)
-#		elif userinfo["wearing"] == "Wolf Fur":
-#			youdef += random.randint(1, 24)
-#		elif userinfo["wearing"] == "Enchanted Steel Armor":
-#			youdef += random.randint(12, 17)
-# - - Legendary Armor - -
-#		elif userinfo["wearing"] == "Bane Of The Goblin Lord":
-#			youdef += random.randint(20, 25)
-#		elif userinfo["wearing"] == "Nightstalker Mantle":
-#			youdef += random.randint(15, 28)
-#		elif userinfo["wearing"] == "Hephaestus Armor":
-#			youdef += random.randint(19, 26)
-
+		elif userinfo["class"] == "Grand Paladin":
+			youdef += random.randint(11, 20)
 		try:
 			mindef = userinfo["wearing"]["stats_min"]
 			maxdef = userinfo["wearing"]["stats_max"]
@@ -5692,11 +5665,11 @@ class fight(commands.Cog):
 		skillmsg = await ctx.send(embed=em)
 		monstercolor=discord.Colour(0xffffff)
 
-		if userinfo["Stunned"] >= 0:
+		if userinfo["Stunned"] > 0:
 			userhealth = userinfo["health"]
-			# user dmg 
-			userhealth = userhealth - enemydmg
+			enemydmg = 0
 			enemyhp = enemyinfo["health"]
+			enemyhp -= youdmg
 			# If enemydmg is lower then 0 its 0
 			if enemydmg < 0:
 				enemydmg = 0
@@ -5711,12 +5684,31 @@ class fight(commands.Cog):
 			#if item has no image none gets added.
 			if not userinfo["equip"]["image"] == "None":
 				em4.set_thumbnail(url=userinfo["equip"]["image"])
-			try:
-				await ctx.send(content="<:Solyx:560809141766193152> | It's your turn to fight, <@{}>!".format(enemyid))
-			except:
-				pass
+	
 
+			enemyinfo["Stunned"] = enemyinfo["Stunned"] - 1
+			if enemyinfo["Stunned"] <= 0:
+				enemyinfo["Stunned"] = 0
 
+			userinfo["Stunned"] = userinfo["Stunned"] - 1
+			if userinfo["stunned"] <= 0:
+				userinfo["Stunned"] = 0
+			
+			userinfo["pvpcooldown1"] = userinfo["pvpcooldown1"] - 1
+			if userinfo["pvpcooldown1"] <= 0:
+				userinfo["pvpcooldown1"] = 0
+
+			userinfo["pvpcooldown2"] = userinfo["pvpcooldown2"] -1
+			if userinfo["pvpcooldown2"] <= 0:
+				userinfo["pvpcooldown2"] = 0
+
+			enemyinfo["pvpcooldown1"] = enemyinfo["pvpcooldown1"] - 1
+			if enemyinfo["pvpcooldown1"] <= 0:
+				enemyinfo["pvpcooldown1"] = 0
+
+			enemyinfo["pvpcooldown2"] = enemyinfo["pvpcooldown2"] -1
+			if enemyinfo["pvpcooldown2"] <= 0:
+				enemyinfo["pvpcooldown2"] = 0
 
 			timestamp = round(time())
 			enemybattleinfo["battle_turn"] = "True"
@@ -5769,6 +5761,7 @@ class fight(commands.Cog):
 			if enemyinfo["Stunned"] > 0:
 				enemydmg = 0
 				enemyhp = enemyinfo["health"]
+				enemyhp -= youdmg
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
@@ -8509,7 +8502,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				userinfo["pvpcooldown2"] = userinfo["pvpcooldown2"]+ 1 
+				userinfo["pvpcooldown2"] = userinfo["pvpcooldown2"] + 1 
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["pvpcooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -8526,7 +8519,7 @@ class fight(commands.Cog):
 
 
 		#IF SELECTED A SKILL, FIGHT
-
+		
 
 			if enemyhp <= 0 and userhealth <= 0:
 				em = discord.Embed(description=":skull: You both died!", color=discord.Colour(0x000000))
@@ -8594,6 +8587,12 @@ class fight(commands.Cog):
 			else:
 				try:
 					await ctx.send(content="<:Solyx:560809141766193152> | It's your turn to fight, <@{}>!".format(enemyid))
+					enemyinfo["Stunned"] = enemyinfo["Stunned"] - 1
+					userinfo["Stunned"] = userinfo["Stunned"] - 1
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					db.users.replace_one({ "_id": enemyid }, enemyinfo, upsert=True)
+					db.battles.replace_one({ "_id": user.id }, battleinfo, upsert=True)
+					db.battles.replace_one({ "_id": enemyid }, enemybattleinfo, upsert=True)
 				except:
 					pass
 

@@ -313,6 +313,12 @@ class titles(commands.Cog):
 				
 			if "Storyteller" in _titles :
 				list6 += "Storyteller\n"
+
+			if "Ho ho ho" in _titles :
+				list6 += "Ho ho ho\n"
+
+			if "Santa's Helper" in _titles :
+				list6 += "Santa's Helper\n"
 				
 			if "Monster Slayer" in _titles :
 				list7 += "Monster Slayer\n"

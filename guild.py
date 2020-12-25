@@ -10,6 +10,9 @@ from utils import checks
 import asyncio
 from utils.dataIO import fileIO
 
+intents = discord.Intents.default()
+intents.members = True
+
 class guild(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -219,17 +222,11 @@ class guild(commands.Cog):
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 		
 		try: 
-			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** {}\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner.mention, len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** <@{}>\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner_id, guild.member_count, guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
-			await ctx.send(embed=em)
-		except:
-			try:
-				em = discord.Embed(title="<:ShieldBug:649157223905492992>Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** Error\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], len(guild.members), guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
-				em.set_thumbnail(url=guild.icon_url)
-				await ctx.send(embed=em)
-				return
-			except:
-				return
+		except Exception as e:
+			print(e)
+			return
 		try:
 			await ctx.send(embed=em)
 		except:

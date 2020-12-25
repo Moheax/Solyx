@@ -46,6 +46,7 @@ class giveaway(commands.Cog):
 
 	@giveaway.command(name="create", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.check(developer)
 	async def create(self, ctx, channelid, gtime, prizeamount:int, prize:str, winners:int):
 		"""Create a give away"""
 		user = ctx.message.author
@@ -126,15 +127,56 @@ class giveaway(commands.Cog):
 				users.pop(users.index(self.bot.user))
 	
 		for i in range(winners):
+
+			
 			if not users:
-				await gchannel.send("No more winners can be choosen")
+				await gchannel.send("No more winners can be chosen")
 				return
 			winner = random.choice(users)
 			await gchannel.send("Congratulations {} you won {} {}".format(winner.mention, prizeamount, prize))
 			users.pop(users.index(winner))
 
+	
+			userinfo = db.users.find_one({ "_id": winner.id })
+			
+			if prize == "<:Wood:573574660185260042>":
+				userinfo["wood"] += prizeamount
 
-		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has started a giveaway")
+			if prize == "<:Stone:573574662525550593>":
+				userinfo["stone"] += prizeamount
+
+			if prize == "<:Metal:573574661108006915>":
+				userinfo["metal"] += prizeamount
+
+			if prize == "<:Planks:781000876218515487>":
+				userinfo["planks"] += prizeamount
+
+			if prize == "<:Bricks:781000834452029461>":
+				userinfo["bricks"] += prizeamount
+
+			if prize == "<:IronPlate:781003461524717598>":
+				userinfo["iron_plates"] += prizeamount
+
+			if prize == "<:HealingPotion:573577125064605706>":
+				userinfo["hp_potions"] += prizeamount
+
+			if prize == "<:ExpBottle:770044187348566046>":
+				userinfo["exp_potions"] += prizeamount
+
+			if prize == "<:Gold:639484869809930251>":
+				userinfo["gold"] += prizeamount
+
+			if prize == "<:Key:573780034355986432>":
+				userinfo["keys"] += prizeamount
+
+			if prize == "<:Crate:639425690072252426>":
+				userinfo["lootbag"] += prizeamount
+
+			db.users.replace_one({ "_id": winner.id }, userinfo, upsert=True)
+					
+			await asyncio.sleep(0.5)
+
+		
 		
 
 	

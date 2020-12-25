@@ -17,7 +17,13 @@ class status(commands.Cog):
 		super().__init__()
 		self.bot = bot
 
-				
+	
+		
+
+
+
+
+
 # - - - User info - - - WORKS
 
 	@commands.command(pass_context=True, aliases=["stats"], no_pm=True)
@@ -51,6 +57,14 @@ class status(commands.Cog):
 			if userinfo["questprogress"] >= 1:
 				await ctx.send("Quest Updated! Type **{}quests** To check quest progress!".format(ctx.prefix))
 			pass
+
+
+
+
+
+
+
+
 		if userinfo["role"] == "Developer":
 
 			maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
@@ -72,18 +86,60 @@ class status(commands.Cog):
 				item = ""
 				item2 = ""
 
-			if not userinfo["wearing"] == "None":
-				armorequipped = userinfo["wearing"]["name"]
-				item3 = userinfo["wearing"]["stats_min"]
-				item4 = userinfo["wearing"]["stats_max"]
+			if not userinfo["neck"] == "None":
+				neckequipped = userinfo["neck"]["name"]
+				neckstats1 = userinfo["neck"]["stats_min"]
+				neckstats2 = userinfo["neck"]["stats_max"]
 			else:
-				armorequipped = "None"
-				item3 = ""
-				item4 = ""
-
+				neckequipped = "None"
+				neckstats3 = ""
+				neckstats4 = ""
 			
-
+			if not userinfo["head"] == "None":
+				headequipped = userinfo["head"]["name"]
+				headstats1 = userinfo["head"]["stats_min"]
+				headstats2 = userinfo["head"]["stats_max"]
+			else:
+				headequipped = "None"
+				headstats3 = ""
+				headstats4 = ""
 			
+			if not userinfo["body"] == "None":
+				bodyequipped = userinfo["body"]["name"]
+				bodystats1 = userinfo["body"]["stats_min"]
+				bodystats2 = userinfo["body"]["stats_max"]
+			else:
+				bodyequipped = "None"
+				bodystats3 = ""
+				bodystats4 = ""
+			
+			if not userinfo["finger"] == "None":
+				fingerequipped = userinfo["finger"]["name"]
+				fingerstats1 = userinfo["finger"]["stats_min"]
+				fingerstats2 = userinfo["finger"]["stats_max"]
+			else:
+				fingerequipped = "None"
+				fingerstats3 = ""
+				fingerstats4 = ""
+
+			if not userinfo["legs"] == "None":
+				legsequipped = userinfo["legs"]["name"]
+				legsstats1 = userinfo["legs"]["stats_min"]
+				legsstats2 = userinfo["legs"]["stats_max"]
+			else:
+				legsequipped = "None"
+				legsstats3 = ""
+				legsstats4 = ""
+
+			if not userinfo["feet"] == "None":
+				feetequipped = userinfo["feet"]["name"]
+				feetstats1 = userinfo["feet"]["stats_min"]
+				feetstats2 = userinfo["feet"]["stats_max"]
+			else:
+				feetequipped = "None"
+				feetstats3 = ""
+				feetstats4 = ""
+
 			try:
 				icon = ""
 				Class = userinfo["class"]
@@ -146,7 +202,8 @@ class status(commands.Cog):
 				pass
 
 			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
-			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
+			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n <:Shield:573576333863682064>**Head:** *{}*\n <:Shield:573576333863682064>**Stats:** {} - {}\n\n<:Shield:573576333863682064>**Neck:** *{}*\n <:Shield:573576333863682064>**Stats:** {} - {}\n\n <:Shield:573576333863682064>**Body:** *{}*\n <:Shield:573576333863682064>**Stats:** {} - {}\n\n <:Shield:573576333863682064>**finger:** *{}*\n <:Shield:573576333863682064>**Stats:** {} - {}\n\n <:Shield:573576333863682064>**Legs:** *{}*\n <:Shield:573576333863682064>**Stats:** {} - {}\n\n <:Shield:573576333863682064>**feet:** *{}*\n :<:Shield:573576333863682064>**Stats:** {} - {}\n".format(weaponequipped, item, item2, headequipped, headstats1, headstats2, neckequipped, neckstats1, neckstats2, bodyequipped, bodystats1, bodystats2, fingerequipped, fingerstats1, fingerstats2, legsequipped, legsstats1, legsstats2, feetequipped, feetstats1, feetstats2 ), inline=False)
+			
 			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["deaths"]), inline=False)
 			em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
@@ -158,6 +215,20 @@ class status(commands.Cog):
 					return
 				except:
 					return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		else:
 			
 			maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
