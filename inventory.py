@@ -133,6 +133,23 @@ class inventory(commands.Cog):
 						if type == "armor":
 							list1 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
 						
+						if type == "head":
+							list1 += "**{}** - {} -  **{}** - **{}** hat - **{}-{}**:military_helmet:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "neck":
+							list1 += "**{}** - {} -  **{}** - **{}** necklace - **{}-{}**:prayer_beads:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "body":
+							list1 += "**{}** - {} -  **{}** - **{}** shirt - **{}-{}**:shirt:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "finger":
+							list1 += "**{}** - {} -  **{}** - **{}** ring - **{}-{}**:ring:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "legs":
+							list1 += "**{}** - {} -  **{}** - **{}** pants - **{}-{}**:jeans:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "feet":
+							list1 += "**{}** - {} -  **{}** - **{}** shoes - **{}-{}**:boot:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
 
 					if i >= 13:			
 						if type == "sword":
@@ -155,6 +172,24 @@ class inventory(commands.Cog):
 
 						if type == "armor":
 							list2 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "head":
+							list2 += "**{}** - {} -  **{}** - **{}** hat - **{}-{}**:military_helmet:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
+
+						if type == "neck":
+							list2 += "**{}** - {} -  **{}** - **{}** necklace - **{}-{}**:prayer_beads:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
+
+						if type == "body":
+							list2 += "**{}** - {} -  **{}** - **{}** shirt - **{}-{}**:shirt:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
+
+						if type == "finger":
+							list2 += "**{}** - {} -  **{}** - **{}** ring - **{}-{}**:ring:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
+
+						if type == "legs":
+							list2 += "**{}** - {} -  **{}** - **{}** pants - **{}-{}**:jeans:\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["stats_min"], item["stats_max"])
+
+						if type == "feet":
+							list2 += "**{}** - {} -  **{}** - **{}** shoes - **{}-{}**:boot:\n".format(i + 1, item["refinement"], item["name"], item["rarity"],  item["stats_min"], item["stats_max"])
 				except:
 					pass
 				#msg += "{} >\n".format(i)

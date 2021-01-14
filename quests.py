@@ -2786,7 +2786,7 @@ class quests(commands.Cog):
 
             elif userinfo["questname"] == "Fire Golem I":
                 em = discord.Embed(title="Fire Golem I",
-                                   description="**Objective**\nSlay 10 Fire Golem's \nType {}Fight".format(ctx.prefix),
+                                   description="**Objective**\nSlay 5 Fire Golem's \nType {}Fight".format(ctx.prefix),
                                    color=discord.Colour(0xffffff))
                 em.add_field(name="Progress", value="{}/5 Slain".format(userinfo["questprogress"]), inline=False)
                 em.set_thumbnail(url=user.avatar_url)

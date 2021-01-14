@@ -168,9 +168,12 @@ class vote(commands.Cog):
 					await self.vote_reminder(ctx, msg, user)
 				except:
 					pass
-
+			voteinfo = db.users.find_one({ "_id": 387317544228487168 })
+			voteinfo["solyxvotes"] = voteinfo["solyxvotes"] + 1
+			total_votes = voteinfo["solyxvotes"]
+			db.users.replace_one({"_id": 387317544228487168}, voteinfo, upsert=True)
 			# Solyx server message
-			em = discord.Embed(title="🎉 {} has voted 🎉".format(user.name), description="{} has voted for Solyx!\n**Server:** {}\n".format(user.mention, server.name), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="🎉 {} has voted 🎉".format(user.name), description="{} has voted for Solyx!\n**Server:** {}\n **Total Votes: **{}".format(user.mention, server.name, int(total_votes)), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=user.avatar_url)
 			em.set_footer(text="{}".format(user.id))
 			logchannel = self.bot.get_channel(561200838790479873)

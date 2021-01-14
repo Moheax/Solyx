@@ -203,7 +203,7 @@ class statistics(commands.Cog):
 	@commands.Cog.listener()
 	async def on_command(self, ctx_command):
 		
-		self.counter["commands"] += 1
+		self.counter["commands"] += 2
 		
 	@commands.Cog.listener()		
 	async def on_message(self, message):

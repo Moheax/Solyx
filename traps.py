@@ -11730,6 +11730,7 @@ class traps(commands.Cog):
 			if userinfo["trap1"] >= 0 and userinfo["trap"] >= 1:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 1**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap1difficulty, trap1, int(trap1enemygold), int(trap1xpgain))
 
 				elif chance <= 19 and chance >=6:
@@ -11760,6 +11761,7 @@ class traps(commands.Cog):
 			if userinfo["trap2"] >= 0 and userinfo["trap"] >= 2:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 2**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap2difficulty, trap2, int(trap2enemygold), int(trap2xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap2"] -= 1
@@ -11783,6 +11785,7 @@ class traps(commands.Cog):
 			if userinfo["trap3"] >= 0 and userinfo["trap"] >= 3:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 3**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap3difficulty, trap3, int(trap3enemygold), int(trap3xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap3"] -= 1
@@ -11806,6 +11809,7 @@ class traps(commands.Cog):
 			if userinfo["trap4"] >= 0 and userinfo["trap"] >= 4:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 4**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap4difficulty, trap4, int(trap4enemygold), int(trap4xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap4"] -= 1
@@ -11829,6 +11833,7 @@ class traps(commands.Cog):
 			if userinfo["trap5"] >= 0 and userinfo["trap"] >= 5:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 5**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap5difficulty, trap5, int(trap5enemygold), int(trap5xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap5"] -= 1
@@ -11852,6 +11857,7 @@ class traps(commands.Cog):
 			if userinfo["trap6"] >= 0 and userinfo["trap"] >= 6:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 6**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap6difficulty, trap6, int(trap6enemygold), int(trap6xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap6"] -= 1
@@ -11875,6 +11881,7 @@ class traps(commands.Cog):
 			if userinfo["trap7"] >= 0 and userinfo["trap"] >= 7:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list += "**Trap 7**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap7difficulty, trap7, int(trap7enemygold), int(trap7xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap7"] -= 1
@@ -11898,6 +11905,7 @@ class traps(commands.Cog):
 			if userinfo["trap8"] >= 0 and userinfo["trap"] >= 8:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 8**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap8difficulty, trap8, int(trap8enemygold), int(trap8xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap8"] -= 1
@@ -11921,6 +11929,7 @@ class traps(commands.Cog):
 			if userinfo["trap9"] >= 0 and userinfo["trap"] >= 9:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 9**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap9difficulty, trap9, int(trap9enemygold), int(trap9xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap9"] -= 1
@@ -11944,6 +11953,7 @@ class traps(commands.Cog):
 			if userinfo["trap10"] >= 0 and userinfo["trap"] >= 10:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 10**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap10difficulty, trap10, int(trap10enemygold), int(trap10xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap10"] -= 1
@@ -11967,6 +11977,7 @@ class traps(commands.Cog):
 			if userinfo["trap11"] >= 0 and userinfo["trap"] >= 11:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 11**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap11difficulty, trap11, int(trap11enemygold), int(trap11xpgain))
 				if chance <= 19 and chance >= 6:
 					userinfo["trap11"] -= 1
@@ -11990,6 +12001,7 @@ class traps(commands.Cog):
 			if userinfo["trap12"] >= 0 and userinfo["trap"] >= 12:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 12**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap12difficulty, trap12, int(trap12enemygold), int(trap12xpgain))
 				if chance <= 19 and chance >= 6:	
 					userinfo["trap12"] -= 1
@@ -12013,6 +12025,7 @@ class traps(commands.Cog):
 			if userinfo["trap13"] >= 0 and userinfo["trap"] >= 13:
 				chance = random.randint(1, 100)
 				if chance >= 20:
+					userinfo["TrapKills"] = userinfo["TrapKills"] + 1
 					list3 += "**Trap 13**\n{} **{}**\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**\n_ _\n".format(trap13difficulty, trap13, int(trap13enemygold), int(trap13xpgain))
 				if chance <= 19 and chance >= 6:					
 					userinfo["trap13"] -= 1
@@ -12453,7 +12466,7 @@ class traps(commands.Cog):
 			pass
 		try:
 			if userinfo["trap"] >= 5:
-				if userinfo["tra5"] <= 0:
+				if userinfo["trap5"] <= 0:
 					em.add_field(name="Trap 5",  value="**Broken!**")
 				else:
 					em.add_field(name="Trap 5", value="{} / 10".format(trap5durability))
@@ -12461,7 +12474,7 @@ class traps(commands.Cog):
 			pass
 		try:
 			if userinfo["trap"] >= 6:
-				if userinfo["tra6p6"] <= 0:
+				if userinfo["trap6"] <= 0:
 					em.add_field(name="Trap 6",  value="**Broken!**")
 				else:
 					em.add_field(name="Trap 6", value="{} / 10".format(trap6durability))
