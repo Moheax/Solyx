@@ -111,6 +111,3 @@ def setup(bot):
 	c = friends(bot)
 	bot.add_cog(c)
 
-
-
-

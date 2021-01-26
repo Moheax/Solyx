@@ -150,7 +150,7 @@ class friends(commands.Cog):
 			await ctx.send(embed=em)
 			return
 		
-		if userinfo["in_party"] == True:
+		if userinfo["in_party"] == "True":
 			
 			em = discord.Embed(title="Party invite", description="User can't is already in a party.", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
@@ -182,13 +182,13 @@ class friends(commands.Cog):
 			userinfo["party_amount"] += 1
 			newpartyuser = authorinfo["_id"]
 			userinfo["party_list"].append(newpartyuser)
-			userinfo["in_party"] = True
+			userinfo["in_party"] = "True"
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 			authorinfo["party_amount"] += 1
 			newpartyauthor = userinfo["_id"]
 			authorinfo["party_list"].append(newpartyauthor)
-			authorinfo["in_party"] = True
+			authorinfo["in_party"] = "True"
 			db.users.replace_one({ "_id": author.id }, authorinfo, upsert=True)
 
 			em = discord.Embed(title="Party Invite Accepted", description="{} has joined the party!".format(user.mention), color=discord.Colour(0xffffff))
