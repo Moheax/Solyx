@@ -92,7 +92,7 @@ class friends(commands.Cog):
 			
 		em = discord.Embed(description=friend_list_1, color=discord.Colour(0xffffff))
 		em.set_author(name="{}'s Friend List\n{}/{} Friends".format(userinfo["name"], userinfo["friend_amount"], userinfo["friend_max_amount"]), icon_url=user.avatar_url)
-		em.set_footer(text="You can get more friend Slots by leveling up!")
+		em.set_footer(text="You can get more friend slots by leveling up!")
 		try:
 			await ctx.send(embed=em)
 		except Exception as e:
@@ -141,12 +141,13 @@ class friends(commands.Cog):
 			
 			em = discord.Embed(title="Friend invite", description="You can't add more friends, Level up to get more friends or remove a friend.", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
-		
+			return
+
 		if userinfo["friend_amount"] + 1 == userinfo["friend_max_amount"]:
 			
 			em = discord.Embed(title="Friend invite", description="User can't add more friends, They have to level up to get more friends or remove a friend.", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
-
+			return
 
 	    # CHECK IF USERS AND AUTHOR ARE ALREADY FRIENDS
 
@@ -181,14 +182,79 @@ class friends(commands.Cog):
 			authorinfo["friend_list"].append(newfriendauthor)
 			db.users.replace_one({ "_id": author.id }, authorinfo, upsert=True)
 
-			em = discord.Embed(title="Friend Invite Accepted", description="{} and {} are now Friends!!".format(user.mention, author.mention), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Friend Invite Accepted", description="{} and {} are now Friends!".format(user.mention, author.mention), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 			
 
 		elif answer1 in ["n", "no", "N", "No"]:
-			await ctx.send("<:CrossShield:560804112548233217> **| Friend Request Denieid.**")
+			await ctx.send("<:CrossShield:560804112548233217> **| Friend Request Denied.**")
 			return
+
+
+
+
+	@_friends.group(name="remove", pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def _remove(self, ctx, user: discord.Member):
+		"""Remove a friend"""
+
+		languageinfo = db.servers.find_one({ "_id": ctx.guild.id })
+		language = languageinfo["language"]
+
+		author = ctx.author
+
+		# INVITER
+		authorinfo = db.users.find_one({ "_id": author.id })
+
+		# USER
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		# CHECK IF USERS REMOVES ITSELF AS FRIEND
+		if authorinfo["_id"] == userinfo["_id"]:
+			await ctx.send("<:Solyx:560809141766193152> **| You can't remove yourself as friend.**")
+			return
+
+		# CHECK IF USERS EXIST
+		if authorinfo["race"] == "None" or authorinfo["class"] == "None":
+			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+	    # CHECK IF USERS AND AUTHOR ARE ALREADY FRIENDS
+
+		if not user.id in authorinfo["friend_list"]:
+			em = discord.Embed(title="Friend invite", description="You are not friends with this user.", color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+
+		guild = ctx.guild
+		channel = ctx.channel
+		guildcolor = ctx.author.color
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to remove a friend")
+
+
+		userinfo["friend_amount"] -= 1
+		removedfrienduser = authorinfo["_id"]
+		userinfo["friend_list"].remove(removedfrienduser)
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		authorinfo["friend_amount"] -= 1
+		removefriendauthor = userinfo["_id"]
+		authorinfo["friend_list"].remove(removefriendauthor)
+		db.users.replace_one({ "_id": author.id }, authorinfo, upsert=True)
+
+		em = discord.Embed(title="Friend Removed", description="{} and {} are no longer Friends. ;-;".format(user.mention, author.mention), color=discord.Colour(0xffffff))
+		await ctx.send(embed=em)
+
+		
 
 	async def check_answer(self, ctx, valid_options):
 			def pred(m):
