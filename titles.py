@@ -87,32 +87,36 @@ class titles(commands.Cog):
 			except:
 				try:
 					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-					return
+					pass
 				except:
-					return
+					pass
 		else:
+			
 			choices.append(inv_list)
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["select"]["title"]["translation"], color=discord.Colour(0xffffff))
-			em.add_field(name="Titles:", value="\n{}".format("\n".join(inv_list)))
-			em.set_footer(text=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["select"]["footer"]["translation"])
 			try:
-				await ctx.send(embed=em)
-			except:
+				em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["select"]["title"]["translation"], color=discord.Colour(0xffffff))
+				em.add_field(name="Titles:", value="\n{}".format("\n".join(inv_list)))
+				em.set_footer(text=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["select"]["footer"]["translation"])
 				try:
-					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-					return
+					await ctx.send(embed=em)
 				except:
-					return
-			answer1 = await self.check_answer(ctx, inv_list)
-			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["selected"]["translation"], description="{}".format(answer1), color=discord.Colour(0xffffff))
-			try:
-				await ctx.send(embed=em)
-			except:
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						pass
+					except:
+						pass
+				answer1 = await self.check_answer(ctx, inv_list)
+				em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["title"]["selected"]["translation"], description="{}".format(answer1), color=discord.Colour(0xffffff))
 				try:
-					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-					return
+					await ctx.send(embed=em)
 				except:
-					return
+					try:
+						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+						pass
+					except:
+						pass
+			except:
+				pass
 			userinfo["title"] = answer1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 	async def check_answer(self, ctx, valid_options):
@@ -313,12 +317,12 @@ class titles(commands.Cog):
 				
 			if "Storyteller" in _titles :
 				list6 += "Storyteller\n"
+			
+			if "Santa's Helper" in _titles :
+				list6 += "Santa's Helper\n"
 
 			if "Ho ho ho" in _titles :
 				list6 += "Ho ho ho\n"
-
-			if "Santa's Helper" in _titles :
-				list6 += "Santa's Helper\n"
 				
 			if "Monster Slayer" in _titles :
 				list7 += "Monster Slayer\n"
@@ -467,7 +471,7 @@ class titles(commands.Cog):
 		
 
 
-		em = discord.Embed(title="{}'s Titles, {} / 83 Aquired!".format(user.name, titlesinfo["titles_amount"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(title="{}'s Titles, {} / 85 Aquired!".format(user.name, titlesinfo["titles_amount"]), color=discord.Colour(0xffffff))
 		
 		
 		try:
@@ -534,6 +538,42 @@ class titles(commands.Cog):
 				return
 			except:
 				return
+
+	@title.command(name="flex", pass_context=True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	async def _flex(self, ctx):
+		"""Flex!!"""
+
+	
+
+		user = ctx.message.author
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has Flexed")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+
+		titlesinfo = db.titles.find_one({ "_id": user.id })
+
+
+		em = discord.Embed(title="{} ".format(userinfo["name"]),description="**Title:** {}\n**Kills:** {}".format(userinfo["title"], userinfo["enemieskilled"]), color=discord.Colour(0xff0000))
+		await ctx.send(embed=em)
+
+		
 
 def setup(bot):
 	c = titles(bot)

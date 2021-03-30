@@ -84,15 +84,18 @@ class friends(commands.Cog):
 
 			friend_name = friend_info["name"]
 			friend_level = friend_info["lvl"]
+			friend_class = friend_info["class"]
 		
-			flist = ("{}. **{}**: {}<:Magic:560844225839890459>\n".format(i + 1, friend_name, friend_level))
+			flist = ("{}. **{}**: {}<:Magic:560844225839890459> Class: **{}**\n".format(i + 1, friend_name, friend_level, friend_class))
 
 			friend_list_1 +=  flist
-		
+			print(friend_id)
+			print(friend_name)
+			print(friend_level)
 			
 		em = discord.Embed(description=friend_list_1, color=discord.Colour(0xffffff))
 		em.set_author(name="{}'s Friend List\n{}/{} Friends".format(userinfo["name"], userinfo["friend_amount"], userinfo["friend_max_amount"]), icon_url=user.avatar_url)
-		em.set_footer(text="You can get more friend slots by leveling up!")
+		em.set_footer(text="You can get more friend Slots by leveling up!")
 		try:
 			await ctx.send(embed=em)
 		except Exception as e:
@@ -141,13 +144,12 @@ class friends(commands.Cog):
 			
 			em = discord.Embed(title="Friend invite", description="You can't add more friends, Level up to get more friends or remove a friend.", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
-			return
-
+		
 		if userinfo["friend_amount"] + 1 == userinfo["friend_max_amount"]:
 			
 			em = discord.Embed(title="Friend invite", description="User can't add more friends, They have to level up to get more friends or remove a friend.", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
-			return
+
 
 	    # CHECK IF USERS AND AUTHOR ARE ALREADY FRIENDS
 
@@ -182,16 +184,14 @@ class friends(commands.Cog):
 			authorinfo["friend_list"].append(newfriendauthor)
 			db.users.replace_one({ "_id": author.id }, authorinfo, upsert=True)
 
-			em = discord.Embed(title="Friend Invite Accepted", description="{} and {} are now Friends!".format(user.mention, author.mention), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Friend Invite Accepted", description="{} and {} are now Friends!!".format(user.mention, author.mention), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 
 			
 
 		elif answer1 in ["n", "no", "N", "No"]:
-			await ctx.send("<:CrossShield:560804112548233217> **| Friend Request Denied.**")
+			await ctx.send("<:CrossShield:560804112548233217> **| Friend Request Denieid.**")
 			return
-
-
 
 
 	@_friends.group(name="remove", pass_context=True, no_pm=True)
@@ -254,7 +254,7 @@ class friends(commands.Cog):
 		em = discord.Embed(title="Friend Removed", description="{} and {} are no longer Friends. ;-;".format(user.mention, author.mention), color=discord.Colour(0xffffff))
 		await ctx.send(embed=em)
 
-		
+
 
 	async def check_answer(self, ctx, valid_options):
 			def pred(m):

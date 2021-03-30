@@ -36,7 +36,7 @@ class command(commands.Cog):
 			em = embed.add_field(name="🇪 Economy", value="Buying, selling, gold, ...", inline=False)
 			em = embed.add_field(name="🇫 Guilds", value="Guild related commands", inline=False)
 			em = embed.add_field(name="🇬 Battles", value="1v1 battles commands", inline=False)
-			em = embed.add_field(name="🇭 Party", value="Coming soon", inline=False)
+			em = embed.add_field(name="🇭 Social", value="Friends", inline=False)
 			em = embed.add_field(name="🇮 Admin Commands", value="Server administration commands", inline=False)
 			em = embed.add_field(name=":regional_indicator_j:  Miscellaneous Commands", value="Miscellaneous commands", inline=False)
 			em = embed.set_footer(text="Type | -commands <letter> |  to go to that command page!")
@@ -153,8 +153,8 @@ class command(commands.Cog):
 		elif topic == "H" or topic == "h":
 
 			e = discord.Embed(color=discord.Colour(0xffffff))
-			e.set_author(name="Party", icon_url=user.avatar_url)
-			e.add_field(name="Soon...", value="This is still in development", inline=True)
+			e.set_author(name="Friends", icon_url=user.avatar_url)
+			e.add_field(name="{}friends".format(ctx.prefix), value="add or remove friend, check your friends list.", inline=True)
 			await ctx.send(embed=e)	
 			return
 

@@ -44,13 +44,14 @@ class updates(commands.Cog):
 		
 		em = discord.Embed(color=discord.Colour(0xffffff))
 		em.set_author(name="Solyx latest updates!", icon_url=user.avatar_url)
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Fixed crates now it will always open the correct amount.",inline=False)	
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Added 5% chance for easter egg on broken trap.",inline=False)	
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Added -trap status to see the durability of your traps.",inline=False)	
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Fixed that broken traps now show up as broken...",inline=False)	
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Fixed when traps fail or break recources don't get added.",inline=False)	
-		em.add_field(name="\n_ _\n**\u27a4** 30 Nov by TheMaksoo".format(ctx.prefix), value="Fixed spelling mistakes in cooldown and in traps.",inline=False)	
-
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Friend list capacity now updates!.",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="We added Friends to solyx. [-f].",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Fixed wrong amount in fire golem kill quest.",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Trap kills now have their own statistic.",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Fixed Traps status finnaly.",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Fixed wrong amount in fire golem kill quest.",inline=False)	
+		em.add_field(name="\n_ _\n**\u27a4** 29 Jan by TheMaksoo".format(ctx.prefix), value="Finnaly fixed leaderboard.",inline=False)	
+		
 
 		await ctx.send(embed=em)
 

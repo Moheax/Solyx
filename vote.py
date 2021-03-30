@@ -294,7 +294,7 @@ async def votes_webhook():
 
 
 if __name__ == "__main__":
-	app.run(host="83.82.139.228", port=int(8084), debug=False)
+	app.run(host="83.82.139.228", port=int(8080), debug=False)
 
 def setup(bot):
 	global logger

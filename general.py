@@ -375,6 +375,7 @@ class general(commands.Cog):
 		total_modules = len(modules)
 		embed=discord.Embed(title=f"Solyx dashboard | Cogs ({total_modules})", colour=discord.Colour(0xfffffc))
 		embed.add_field(name=f"✅ Loaded ({len(loaded)})", value=", ".join(loaded) if loaded != [] else "None", inline=False)
+		
 		embed.add_field(name=f"⛔ Unloaded ({len(unloaded)})", value="\n".join(unloaded) if unloaded != [] else "None", inline=False)
 		try:
 			await ctx.send(embed=embed)

@@ -341,7 +341,7 @@ class status(commands.Cog):
 				except:
 					pass
 
-				em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
+				em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n\n**Pet:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], userinfo["equipped_pet"][0]["name"]), color=discord.Colour(0xffffff))
 				em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n:crossed_swords: **Bonus Damage:** {}-{}\n\n <:Shield:573576333863682064>**Total defense:** *{} - {}*\n ".format(weaponequipped, item, item2, damage_bonus_min, damage_bonus_max, total_defense_min, total_defense_max ), inline=False)
 				em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 				em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
@@ -357,118 +357,110 @@ class status(commands.Cog):
 			except:
 					
 				maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
-				if not userinfo["guild"] == "None":
-					try:
-						guildid = userinfo["guild"]
-						userguild = self.bot.get_guild(guildid)
-					except:
-						userguild = guild
-				else:
+			if not userinfo["guild"] == "None":
+				try:
+					guildid = userinfo["guild"]
+					userguild = self.bot.get_guild(guildid)
+				except:
 					userguild = guild
+			else:
+				userguild = guild
 
-				if not userinfo["equip"] == "None":
-					weaponequipped = userinfo["equip"]["name"]
-					item = userinfo["equip"]["stats_min"]
-					item2 = userinfo["equip"]["stats_max"]
-				else:
-					weaponequipped = "None"
-					item = ""
-					item2 = ""
+			if not userinfo["equip"] == "None":
+				weaponequipped = userinfo["equip"]["name"]
+				item = userinfo["equip"]["stats_min"]
+				item2 = userinfo["equip"]["stats_max"]
+			else:
+				weaponequipped = "None"
+				item = ""
+				item2 = ""
 
-				if not userinfo["wearing"] == "None":
-					armorequipped = userinfo["wearing"]["name"]
-					item3 = userinfo["wearing"]["stats_min"]
-					item4 = userinfo["wearing"]["stats_max"]
-				else:
-					armorequipped = "None"
-					item3 = ""
-					item4 = ""
-
-			
-
-			
-				try:
-					icon = ""
-					Class = userinfo["class"]
-					if Class == "Mage":
-						icon = "<:Mage:752633441626882058> "
-					if Class == "Elementalist":
-						icon = "<:Elementalist:752638205584474164> "
-					if Class == "Necromancer":
-						icon = "<:Necromancer:752638205832069191> "
-					if Class == "Developed Necromancer":
-						icon = "<:Necromancer:752638205832069191> "
-					if Class == "Adequate Elementalist":
-						icon = "<:Elementalist:752638205584474164> "
-					if Class == "Paladin":
-						icon = "<:Paladin:752638205869949168> "
-					if Class == "Samurai":
-						icon = "<:Samurai:752638205920018603> "
-					if Class == "Knight":
-						icon = "<:Knight:752633441362903120> "
-					if Class == "Master Samurai":
-						icon = "<:Samurai:752638205920018603> "
-					if Class == "Grand Paladin":
-						icon = "<:Paladin:752638205869949168> "
-					if Class == "Thief":
-						icon = "<:Thief:752633441811693638> "
-					if Class == "Mesmer":
-						icon = "<:Mesmer:752638205697851413> "
-					if Class == "Rogue":
-						icon = "<:Rogue:752638205928538252> "
-					if Class == "High Rogue":
-						icon = "<:Rogue:752638205928538252> "
-					if Class == "Adept Mesmer":
-						icon = "<:Mesmer:752638205697851413> "
-					if Class == "Archer":
-						icon = "<:Archer:752633441282949222> "
-					if Class == "Ranger":
-						icon = "<:Ranger:752638206285185116> "
-					if Class == "Assassin":
-						icon = "<:Assassin:639473417791209472> "
-					if Class == "Night Assassin":
-						icon = "<:Assassin:639473417791209472> "
-					if Class == "Skilled Ranger":
-						icon = "<:Ranger:752638206285185116> "
-				except:
-					pass
+			if not userinfo["wearing"] == "None":
+				armorequipped = userinfo["wearing"]["name"]
+				item3 = userinfo["wearing"]["stats_min"]
+				item4 = userinfo["wearing"]["stats_max"]
+			else:
+				armorequipped = "None"
+				item3 = ""
+				item4 = ""
 
 			
-				try:
-					Race = ""
-					Race = userinfo["race"]
-					if Race == "Elf":
-						ricon = "<:Elf:639474564023189554> "
-					if Race == "Human":
-						ricon = "<:Human:639474561355874304> "
-					if Race == "Orc":
-						ricon = "<:Orc:639474558109483028> "
-					if Race == "Demon":
-						ricon = "<:Demon:639474562463170590> "
-				except:
-					pass
-				em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
-				em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n:crossed_swords: **Bonus Damage:** {}-{}\n\n <:Shield:573576333863682064>**Total defense:** *{} - {}*\n ".format(weaponequipped, item, item2, damage_bonus_min, damage_bonus_max, total_defense_min, total_defense_max ), inline=False)
-				em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
-				em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
-				em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
-				try:
-					await ctx.send(embed=em)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-						return
-					except:
-						return
+
+			
+			try:
+				icon = ""
+				Class = userinfo["class"]
+				if Class == "Mage":
+					icon = "<:Mage:752633441626882058> "
+				if Class == "Elementalist":
+					icon = "<:Elementalist:752638205584474164> "
+				if Class == "Necromancer":
+					icon = "<:Necromancer:752638205832069191> "
+				if Class == "Developed Necromancer":
+					icon = "<:Necromancer:752638205832069191> "
+				if Class == "Adequate Elementalist":
+					icon = "<:Elementalist:752638205584474164> "
+				if Class == "Paladin":
+					icon = "<:Paladin:752638205869949168> "
+				if Class == "Samurai":
+					icon = "<:Samurai:752638205920018603> "
+				if Class == "Knight":
+					icon = "<:Knight:752633441362903120> "
+				if Class == "Master Samurai":
+					icon = "<:Samurai:752638205920018603> "
+				if Class == "Grand Paladin":
+					icon = "<:Paladin:752638205869949168> "
+				if Class == "Thief":
+					icon = "<:Thief:752633441811693638> "
+				if Class == "Mesmer":
+					icon = "<:Mesmer:752638205697851413> "
+				if Class == "Rogue":
+					icon = "<:Rogue:752638205928538252> "
+				if Class == "High Rogue":
+					icon = "<:Rogue:752638205928538252> "
+				if Class == "Adept Mesmer":
+					icon = "<:Mesmer:752638205697851413> "
+				if Class == "Archer":
+					icon = "<:Archer:752633441282949222> "
+				if Class == "Ranger":
+					icon = "<:Ranger:752638206285185116> "
+				if Class == "Assassin":
+					icon = "<:Assassin:639473417791209472> "
+				if Class == "Night Assassin":
+					icon = "<:Assassin:639473417791209472> "
+				if Class == "Skilled Ranger":
+					icon = "<:Ranger:752638206285185116> "
+			except:
 				pass
 
+			
+			try:
+				Race = ""
+				Race = userinfo["race"]
+				if Race == "Elf":
+					ricon = "<:Elf:639474564023189554> "
+				if Race == "Human":
+					ricon = "<:Human:639474561355874304> "
+				if Race == "Orc":
+					ricon = "<:Orc:639474558109483028> "
+				if Race == "Demon":
+					ricon = "<:Demon:639474562463170590> "
+			except:
+				pass
 
-
-
-
-
-
-
+			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
+			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
+			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
+			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
+			em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except:
+					return
 
 
 
@@ -606,7 +598,8 @@ class status(commands.Cog):
 			return
 
 		
-		em = discord.Embed(description="**Golden Temple.**\n**Rachi:** {}\n**Debin:** {}\n**Oofer:** {}\n**Wyvern:** {}\n**Fire Golem:** {}\n".format(userinfo["Rachikilled"], userinfo["Debinkilled"], userinfo["Ooferkilled"], userinfo["Wyvernkilled"], userinfo["FireGolemkilled"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(color=discord.Colour(0xffffff))
+		em.add_field(name="**Golden Temple.**", value="**Rachi:** {}\n**Debin:** {}\n**Oofer:** {}\n**Wyvern:** {}\n**Fire Golem:** {}".format(userinfo["Rachikilled"], userinfo["Debinkilled"], userinfo["Ooferkilled"], userinfo["Wyvernkilled"], userinfo["FireGolemkilled"]), inline=False)
 		em.add_field(name="**Saker Keep**", value="**Draugr:** {}\n**Stalker:** {}\n**Souleater:** {}\n**The Corrupted:** {}".format(userinfo["Draugrkilled"], userinfo["Stalkerkilled"], userinfo["Souleaterkilled"], userinfo["TheCorruptedkilled"]), inline=False)
 		em.add_field(name="**The Forest**", value="**Wolf:** {}\n**Goblin:** {}\n**Zombie:** {}\n**Phantasm:** {}".format(userinfo["Wolfkilled"], userinfo["Goblinkilled"], userinfo["Zombiekilled"], userinfo["Phantasmkilled"]), inline=False)
 		em.add_field(name="**Ebony Mountains**", value="**Elder Dragon:** {}\n**Hades:** {}\n**Ebony Guardian:** {}\n**The Accursed:** {}".format(userinfo["ElderDragonkilled"], userinfo["Hadeskilled"], userinfo["EbonyGuardiankilled"], userinfo["TheAccursedkilled"]), inline=False)

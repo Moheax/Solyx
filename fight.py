@@ -141,7 +141,36 @@ class fight(commands.Cog):
 				print(e)
 				return
 
+		try:
+			creationchannel = self.bot.get_channel(818858244625793107)
 
+			Humans =  db.users.count({"race":"Human"})
+			Demons =  db.users.count({"race":"Demon"})
+			Elfs =  db.users.count({"race":"Elf"})
+			Orcs =  db.users.count({"race":"Orc"})
+
+			total= Humans + Demons + Elfs + Orcs
+
+			color = 0xffffff
+			embed = discord.Embed(title="New user created.", colour=color)
+			embed.add_field(name="Name:", value="{}\n{}".format(user.mention, userinfo["name"]), inline=False)
+			embed.add_field(name="Class", value=userinfo["class"], inline=False)
+			embed.add_field(name="Race", value=userinfo["race"], inline=False)
+			embed.add_field(name="Account number", value=total, inline=False)
+			try:
+				
+				await creationchannel.send(embed=embed)
+			except Exception as e:
+				print(e)
+		
+				try:
+					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+					return
+				except Exception as e:
+					print(e)
+					return
+		except:
+			pass
 		guild = ctx.guild
 
 		channel = ctx.message.channel
@@ -202,6 +231,37 @@ class fight(commands.Cog):
 			
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
+		if userinfo["lvl"] >= 10 and userinfo["friend_max_amount"] <= 15:
+			userinfo["friend_max_amount"] = 15
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		if userinfo["lvl"] >= 25 and userinfo["friend_max_amount"] <= 20:
+			userinfo["friend_max_amount"] = 15
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		if userinfo["lvl"] >= 50 and userinfo["friend_max_amount"] <= 25:
+			userinfo["friend_max_amount"] = 25
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		if userinfo["lvl"] >= 75 and userinfo["friend_max_amount"] <= 30:
+			userinfo["friend_max_amount"] = 30
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		if userinfo["lvl"] >= 100 and userinfo["friend_max_amount"] <= 35:
+			userinfo["friend_max_amount"] = 35
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+		if userinfo["lvl"] >= 125 and userinfo["friend_max_amount"] <= 40:
+			userinfo["friend_max_amount"] = 40
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			
+		if userinfo["lvl"] >= 150 and userinfo["friend_max_amount"] <= 40:
+			userinfo["friend_max_amount"] = 45
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			
+		if userinfo["lvl"] >= 175 and userinfo["friend_max_amount"] <= 45:
+			userinfo["friend_max_amount"] = 50
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 
 		if userinfo["lvl"] >= 10 and userinfo["MaxHealth"] >= 102:
@@ -5067,9 +5127,113 @@ class fight(commands.Cog):
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		elif enemyhp <= 0:
-			em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["enemydied"]["translation"].format(userinfo["name"], userinfo["selected_enemy"], userinfo["name"], int(enemygold), userinfo["name"], xpgain), color=discord.Colour(0x00ff00))
-			await ctx.send(embed=em)
+			
 
+			try: 
+				goose_bonus_text = "" 
+				for i in userinfo["pet_list"]:
+					petinfo = i
+					pet_level = petinfo["level"]
+					pet_type = petinfo["type"]
+
+					if pet_type == "Goose":
+						if pet_level <= 10:
+							enemygold = enemygold + (int((enemygold / 100) * 5))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 5% Goose gold bonus."
+						elif pet_level <= 20:
+							enemygold = enemygold + (int((enemygold / 100) * 10))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 10% Goose gold bonus."
+						elif pet_level <= 30:
+							enemygold = enemygold + (int((enemygold / 100) * 15))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 15% Goose gold bonus."
+						elif pet_level <= 40:
+							enemygold = enemygold + (int((enemygold / 100) * 20))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 20% Goose gold bonus."
+						elif pet_level <= 50:
+							enemygold = enemygold + (int((enemygold / 100) * 25))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 25% Goose gold bonus."
+						elif pet_level >= 51:
+							enemygold = enemygold + (int((enemygold / 100) * 30))
+							goose_bonus_text = "\n<:Gold:639484869809930251> 30% Golden Goose gold bonus."
+			except:
+				pass
+					
+
+			if userinfo["party"] != "None":
+				partyinfo = db.party.find_one({ "_id": userinfo["party"] })
+				i = 1
+				total_shared_gold = 0
+				total_shared_xp = 0
+				flist = " " 
+				party_reward_list = " " 
+				for i in range(partyinfo["amount"]):
+					
+					shared_gold = 0
+					shared_xpgain = 0
+					friend_id = partyinfo["members"][i]
+					friend_info = db.users.find_one({ "_id": friend_id })
+		
+					if friend_info["role"] == "Player":
+						shared_gold = (int((enemygold / 100) * 10))
+						shared_xpgain = (int((xpgain / 100) * 10))
+
+					if friend_info["role"] == "Developer":
+						shared_gold = (int((enemygold / 100) * 10))
+						shared_xpgain = (int((xpgain / 100) * 10))
+
+					if friend_info["role"] == "patreon1":
+						shared_gold = (int((enemygold / 100) * 15))
+						shared_xpgain = (int((xpgain / 100) * 15))
+
+					if friend_info["role"] == "patreon2":
+						shared_gold = (int((enemygold / 100) * 20))
+						shared_xpgain = (int((xpgain / 100) * 20))
+
+					if friend_info["role"] == "patreon3":
+						shared_gold = (int((enemygold / 100) * 25))
+						shared_xpgain = (int((xpgain / 100) * 25))
+
+					if friend_info["role"] == "patreon4":
+						shared_gold = (int((enemygold / 100) * 30))
+						shared_xpgain = (int((xpgain / 100) * 30))
+
+					
+
+					friend_info["gold"] = friend_info["gold"] + shared_gold
+					friend_info["exp"] = friend_info["exp"] + shared_xpgain
+					
+				
+
+					flist = ("**{}**: <:Gold:639484869809930251>{}  Shared gold, :sparkles: {} Shared Exp\n".format(friend_info["name"], int(shared_gold), int(shared_xpgain)))
+
+					party_reward_list +=  flist
+					
+					if friend_info["exp"] >= 100 + ((friend_info["lvl"] + 1) * 3.5):
+						friend_info["exp"] = friend_info["exp"] - (100 + ((friend_info["lvl"] + 1) * 3.5))
+						friend_info["lvl"] = friend_info["lvl"] + 1
+						friend_info["health"] = friend_info["MaxHealth"]
+						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(friend_info["name"]), color=discord.Colour(0xffd700))
+						await ctx.send(embed=em)	
+					
+						db.users.replace_one({ "_id": friend_id }, friend_info, upsert=True)
+
+
+					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
+						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
+						userinfo["lvl"] = userinfo["lvl"] + 1
+						userinfo["health"] = userinfo["MaxHealth"]
+						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
+						await ctx.send(embed=em)
+
+				try:
+					em2 = discord.Embed(description=":dagger:{} Killed the {}\n<:PvP:573580993055686657>The Party gets \n {}".format(userinfo["name"], userinfo["selected_enemy"], party_reward_list), color=discord.Colour(0x00ff00))
+					em2.set_footer(text="Want more shared bonus? become a patreon!")
+					await ctx.send(embed=em2)
+				except Exception as e: 
+					print(e)
+					pass
+
+			
 			if userinfo["Buff1"] == "Corrupt":
 				userinfo["Buff1"] = "None"
 				userinfo["Buff1Time"] = 0
@@ -5161,7 +5325,20 @@ class fight(commands.Cog):
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
+				if userinfo["role"] == "Developer":
+					pet_spawn = 99 #random.randint(99, 99)
 
+					if pet_spawn == 99:
+
+						if userinfo["pet_stage"] == "Golden Goose":
+							em = discord.Embed(title="A pet!",description="a tameable pet has spawned!, its a goose.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em.set_image(url="")
+							await ctx.send(embed=em)
+							userinfo["pet_find"] = "Golden Goose"
+							userinfo["pet_stage"] = "Fox"
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+								
+						
 				if userinfo["questname"] == "Fire Golem I":
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
@@ -5246,6 +5423,19 @@ class fight(commands.Cog):
 				except:
 					pass
 
+				if userinfo["role"] == "Developer":
+					pet_spawn = 99 #random.randint(99, 99)
+
+					if pet_spawn == 99:
+
+						if userinfo["pet_stage"] == "Fox":
+							em = discord.Embed(title="A pet!",description="a tameable pet has spawned!, its a fox.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em.set_image(url="")
+							await ctx.send(embed=em)
+							userinfo["pet_find"] = "Fox"
+							userinfo["pet_stage"] = "Polar Bear"
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				
 			elif userinfo["selected_enemy"] == "The Corrupted":
 				try:
 					userinfo["TheCorruptedkilled"] = userinfo["TheCorruptedkilled"] + 1
@@ -5260,12 +5450,42 @@ class fight(commands.Cog):
 						await ctx.send("Quest Updated!")
 					pass
 
+				if userinfo["role"] == "Developer":
+					pet_spawn = 99 #random.randint(99, 99)
+
+					if pet_spawn == 99:
+
+
+						if userinfo["pet_stage"] == "Polar Bear":
+							em = discord.Embed(title="A pet!",description="a tameable pet has spawned!, its a polar bear.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em.set_image(url="")
+							await ctx.send(embed=em)
+							userinfo["pet_find"] = "Polar Bear"
+							userinfo["pet_stage"] = "Small Cerberus"
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+						
+
 			elif userinfo["selected_enemy"] == "The Accursed":
 				try:
 					userinfo["TheAccursedkilled"] = userinfo["TheAccursedkilled"] + 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
+
+			
+				if userinfo["role"] == "Developer":
+					pet_spawn = 99 #random.randint(99, 99)
+
+					if pet_spawn == 99:
+			
+						if userinfo["pet_stage"] == "Small Cerberus":
+							em = discord.Embed(title="A pet!",description="a tameable pet has spawned!, its a small cerberus.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em.set_image(url="")
+							await ctx.send(embed=em)
+							userinfo["pet_find"] = "Small Cerberus"
+							userinfo["pet_stage"] = "None"
+							db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 			elif userinfo["selected_enemy"] == "Elder Dragon":
 				try:
@@ -5399,6 +5619,10 @@ class fight(commands.Cog):
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				except:
 					pass
+			
+			em = discord.Embed(description=(":dagger: {} killed the {}\n<:GoldBars:573781770709893130> {} gained {} gold{}\n:sparkles: {} gained {} experience").format(userinfo["name"], userinfo["selected_enemy"], userinfo["name"], int(enemygold), goose_bonus_text, userinfo["name"], xpgain), color=discord.Colour(0x00ff00))
+			await ctx.send(embed=em)
+
 
 			userinfo["selected_enemy"] = "None"
 			userinfo["enemydifficulty"] = "None"
@@ -5417,6 +5641,7 @@ class fight(commands.Cog):
 				await ctx.send(embed=em)
 				userinfo["keys"] = userinfo["keys"] + 1
 
+			
 			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
