@@ -1,4 +1,4 @@
-from cogs.rpgutils.defaults import locationdata, monsterdata, itemdata, skilldata
+from rpgutils.defaults import locationdata, monsterdata, itemdata, skilldata
 
 try:
 	import pymongo
