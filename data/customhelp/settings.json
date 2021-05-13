@@ -1,0 +1,24 @@
+{
+    "amount" : 5,
+    "embedAuthor" : false,
+    "embedColor" : "0xffffff",
+    "embedFooter" : "",
+    "embedTitle" : "**Solyx**",
+    "embedToggle" : true,
+    "helpMessage": [
+        "Fun & Addicting Discord RPG focused on activity!",
+        "",
+        "**\u27a4 Type -begin to begin!**",
+        "**\u27a4 Type -fight to start your first fight!**",
+        "**\u27a4 Type -wiki to Search the Wiki!**",
+ 	"**\u27a4 Type -updates to check the recent updates!**",
+        "**\u27a4** [**Support Server**](https://discord.gg/CVxzCKj) \nFollow the Updates channel in the support server,\nto get the updates in your own server! ",
+        "**\u27a4** [**Invite Solyx**](https://discord.com/oauth2/authorize?client_id=495928914045304847&permissions=378944&redirect_uri=https%3A%2F%2Fsolyxbot.webflow.io%2F&scope=bot) -invite",
+        "**\u27a4** [**Commands**](https://solyxbot.webflow.io/commands) -commands",
+        "**\u27a4** [**Website**](https://solyxbot.webflow.io/) -website",
+        "**\u27a4** [**Donate**](https://donatebot.io/checkout/559328647639728128) -donate",
+ 	"**\u27a4** [**patreon**](https://www.patreon.com/Solyx?fan_landing=true) -patreon",
+	"**\u27a4** [**Merch**](https://teespring.com/stores/solyx-2)"
+    ],
+    "helpPrivate" : true
+}

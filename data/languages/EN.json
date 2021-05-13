@@ -101,6 +101,9 @@
 			"opening": {
 				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} opens a crate..."
 			},
+			"opening2": {
+				"translation": "<:Crate:639425690072252426><:Key:573780034355986432> {} is opening  {} crates..."
+			},
 			"legendary": {
 				"title": {
 					"translation": ":sparkles: LEGENDARY! :sparkles:"
@@ -136,31 +139,37 @@
 		},
 		"equip": {
 			"itemnotexist": {
-				"translation": "<:Solyx:560809141766193152> **| That item doesn't exist!**"
+				"translation": "<:Solyx:560809141766193152><:ShieldCross:560804112548233217> **| That item doesn't exist!**"
 			},
 			"noiteminslot": {
-				"translation": "<:Solyx:560809141766193152> **| No item in this slot...**"
+				"translation": "<:Solyx:560809141766193152><:ShieldCross:560804112548233217> **| No item in this slot...**"
 			},
 			"cantsword": {
-				"translation": "The {} class can't equip swords."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip swords."
 			},
 			"cantbow": {
-				"translation": "The {} class can't equip bows."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip bows."
 			},
 			"cantstaff": {
-				"translation": "The {} class can't equip staffs."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip staffs."
 			},
 			"cantmace": {
-				"translation": "The {} class can't equip maces."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip maces."
 			},
 			"cantdagger": {
-				"translation": "The {} class can't equip daggers."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip daggers."
 			},
 			"cantgun": {
-				"translation": "The {} class can't equip guns."
+				"translation": "<:ShieldCross:560804112548233217> The {} class can't equip guns."
+			},
+			"cantarmor": {
+				"translation": "<:ShieldCross:560804112548233217> You cant equip armor as a weapon."
+			},
+			"cantarmorequip": {
+				"translation": "<:ShieldCross:560804112548233217> You cant equip weapons as a armor."
 			},
 			"equipped": {
-				"translation": "Item Equipped:"
+				"translation": "<:ShieldCheck:560804135545602078> Item Equipped:"
 			}
 		},
 		"reforge": {
@@ -175,7 +184,7 @@
 					"translation": "Are you sure you want to reforge this item?"
 				},
 				"description": {
-					"translation": "**Name:** {}\n**Rarity:** {}\n**Refinement:** {}\n**Type:** {}\n**Stats:** {}-{}\n**This will cost {}**<:Gold:639484869809930251>"
+					"translation": "**Name:** {}\n**Rarity:** {}\n**Type:** {}\n\n**Current Refinement Status:** {} **\nNew Refinement Status:** {}\n\n**Current Stats:** {}-{}\n **New Stats: **{}-{}\n\n**This will cost:**\n<:Gold:639484869809930251> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n\n Type `Yes` to start reforging!"
 				}
 			}
 		},
@@ -206,7 +215,7 @@
 					"translation": "You can vote for me by clicking [here](https://top.gg/bot/495928914045304847/vote)!"
 				},
 				"footer": {
-					"translation": "Use {}vote again to claim your reward."
+					"translation": "Rewards can take between 10 to 40 seconds to register.\nDon't play until rewards have been given!"
 				}
 			},
 			"cooldown": {
@@ -223,13 +232,24 @@
 				"translation": "<:Solyx:560809141766193152> | You can't heal in battle!"
 			},
 			"fullhp": {
-				"translation": "<:Solyx:560809141766193152> | You already have 100 HP!"
+				"translation": "<:Solyx:560809141766193152> | You already have {}HP!"
 			},
 			"healed": {
 				"translation": "You used a health potion"
 			},
 			"nopotions": {
 				"translation": "<:Solyx:560809141766193152> | You don't have any healing potions!"
+			}
+		},
+		"exp": {
+			"inbattle": {
+				"translation": "<:Solyx:560809141766193152> | You can't use Experience potions in battle!"
+			},
+			"expused": {
+				"translation": "You used a Experience potion<:ExpBottle:770044187348566046>"
+			},
+			"nopotions": {
+				"translation": "<:Solyx:560809141766193152> | You don't have any Experience potions!<:ExpBottle:770044187348566046>"
 			}
 		},
 		"health": {
@@ -247,6 +267,17 @@
 			},
 			"bought": {
 				"translation": "You bought {}<:HealingPotion:573577125064605706> for {}<:Gold:639484869809930251>"
+			}
+		},
+		"Exp": {
+			"negative": {
+				"translation": "You can't buy negative amounts!"
+			},
+			"needgold": {
+				"translation": "You need {} more <:Gold:639484869809930251> for {}<:ExpBottle:770044187348566046>"
+			},
+			"bought": {
+				"translation": "You bought {}<:ExpBottle:770044187348566046> for {}<:Gold:639484869809930251>"
 			}
 		},
 		"title": {
@@ -447,7 +478,7 @@
 				}
 			},
 			"notselling": {
-				"translation": "<:Solyx:560809141766193152>  | Alright, I will keep your item up for sale!"
+				"translation": "<:Solyx:560809141766193152>  | Alright, Item wont be put up for sale."
 			}
 		}
 	},
