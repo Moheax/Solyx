@@ -126,7 +126,10 @@ class image(commands.Cog):
 			f.write(image)
 
 		bg_image = Image.open('data/RPG/{}_temp_profile_bg.png'.format(user.id)).convert('RGBA')
-		profile_image = Image.open('data/RPG/{}_temp_profile_profile.png'.format(user.id)).convert('RGBA')
+		try:
+			profile_image = Image.open('data/RPG/{}_temp_profile_profile.png'.format(user.id)).convert('RGBA')
+		except:
+			profile_image = Image.open('data/RPG/Solyx.png').convert('RGBA')
 
 		# set canvas
 		bg_color = (255,255,255,0)
@@ -548,34 +551,7 @@ class image(commands.Cog):
 				return rank
 			rank+=1
 
-	async def _guild_mission_check(self, user, server, mission, add):
-		userinfo = db.users.find_one({ "_id": user.id })
-		guildinfo = db.servers.find_one({ "_id": server.id })
 
-		if server == "None":
-			return
-
-		if mission == "Check-in 10 times":
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
-				db.servers.replace_one({ "_id": server.id }, guildinfo, upsert=True)
-				return
-			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + server.id)
-				return
-
-		elif mission == "Donate 35000 gold to your guild":
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
-				db.servers.replace_one({ "_id": server.id }, guildinfo, upsert=True)
-				return
-			except:
-				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + server.id)
-				return
-
-		else:
-			print(user.name + " (" + user.id + ") from guild with leader id " + server.id + "managed to check a non-existing mission!")
-			return
 def setup(bot):
 	n = image(bot)
 	bot.add_cog(n)

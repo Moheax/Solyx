@@ -204,7 +204,7 @@ class give(commands.Cog):
 		else:
 			userinfo["lootbag"] = userinfo["lootbag"] + amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-			em = discord.Embed(title="Done", description="Gave {} {} <:Lootbag:573575192224464919>".format(user.mention, amount), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Done", description="Gave {} {} <:Crate:639425690072252426>".format(user.mention, amount), color=discord.Colour(0xffffff))
 			em.set_footer(text="{} | {}".format(user.name, user.id))
 			await ctx.send(embed=em)
 

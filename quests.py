@@ -25,6 +25,10 @@ class quests(commands.Cog):
             return
             # await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
 
+
+    # custom quests
+
+
     @commands.command(pass_context=True, aliases=["quest"], no_pm=True)
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def quests(self, ctx):

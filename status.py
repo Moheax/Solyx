@@ -6,11 +6,9 @@ import asyncio
 import random
 from random import choice as randchoice
 from time import time
-
-from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
-
+from utils.dataIO import fileIO
 
 class status(commands.Cog):
 	def __init__(self, bot):
@@ -448,7 +446,7 @@ class status(commands.Cog):
 			except:
 				pass
 
-			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID**: {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id), color=discord.Colour(0xffffff))
 			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
 			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
@@ -558,7 +556,7 @@ class status(commands.Cog):
 			except:
 				pass
 
-			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id), color=discord.Colour(0xffffff))
 			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
 			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
