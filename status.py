@@ -9,6 +9,7 @@ from time import time
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
 from utils.dataIO import fileIO
+from cogs.quests import _quest_check
 
 class status(commands.Cog):
 	def __init__(self, bot):
@@ -189,7 +190,7 @@ class status(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated! Type **{}quests** To check quest progress!".format(ctx.prefix))
+				await _quest_check(self, ctx, user)
 			pass
 
 

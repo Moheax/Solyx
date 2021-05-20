@@ -10,7 +10,7 @@ from utils.checks import staff, developer, owner
 # from cogs.economy import NoAccount
 from utils.db import db
 from utils.dataIO import fileIO
-
+from cogs.levelup import _level_up_check_user
 class traps(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -12111,72 +12111,10 @@ class traps(commands.Cog):
 
 			userinfo["gold"] += totalgold
 			userinfo["exp"] += totalexp
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-
-			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-				userinfo["lvl"] = userinfo["lvl"] + 1
-				userinfo["health"] = userinfo["MaxHealth"]
-				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				await ctx.send(embed=em)
-
-				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-					userinfo["lvl"] = userinfo["lvl"] + 1
-					userinfo["health"] = userinfo["MaxHealth"]
-					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-					await ctx.send(embed=em)
-
-					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-						userinfo["lvl"] = userinfo["lvl"] + 1
-						userinfo["health"] = userinfo["MaxHealth"]
-						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-						await ctx.send(embed=em)
-
-						if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-							userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-							userinfo["lvl"] = userinfo["lvl"] + 1
-							userinfo["health"] = userinfo["MaxHealth"]
-							em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-							await ctx.send(embed=em)
-
-							if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-								userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-								userinfo["lvl"] = userinfo["lvl"] + 1
-								userinfo["health"] = userinfo["MaxHealth"]
-								em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-								await ctx.send(embed=em)
-
-								if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-									userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-									userinfo["lvl"] = userinfo["lvl"] + 1
-									userinfo["health"] = userinfo["MaxHealth"]
-									em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-									await ctx.send(embed=em)
-
-									if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-										userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-										userinfo["lvl"] = userinfo["lvl"] + 1
-										userinfo["health"] = userinfo["MaxHealth"]
-										em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-										await ctx.send(embed=em)
-
-										if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-											userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-											userinfo["lvl"] = userinfo["lvl"] + 1
-											userinfo["health"] = userinfo["MaxHealth"]
-											em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-											await ctx.send(embed=em)
-
-											if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-												userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-												userinfo["lvl"] = userinfo["lvl"] + 1
-												userinfo["health"] = userinfo["MaxHealth"]
-												em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-												await ctx.send(embed=em)
 			userinfo["trap_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+			await self._level_up_check_user(ctx, user)
 			
 		else:
 			# calulate time left

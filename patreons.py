@@ -39,7 +39,7 @@ class patreons(commands.Cog):
 	
 		embed=discord.Embed(title="Solyx Patreon list!", color=discord.Colour(0xffffff))
 		
-		embed.add_field(name="Mythical Patreon ", value="<@397057043728695297>\n\n_ _", inline=False)
+		embed.add_field(name="Mythical Patreon ", value="Become the first!\n\n_ _", inline=False)
 		embed.add_field(name="Legendary Patreon", value="Become the first!\n\n_ _", inline=False)			
 		embed.add_field(name="Rare Patreon", value="Become the first!\n\n_ _", inline=False)
 		embed.add_field(name="Common Patreon", value="Become the first!\n\n_ _", inline=False)

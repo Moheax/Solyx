@@ -947,7 +947,81 @@ class guild(commands.Cog):
 		if guildid == "None":
 			return
 
-		if mission == "Donate 35000 gold to your guild":
+		if guildinfo["mission"] == "Donate 35000 gold to your guild" and mission == "Donate 35000 gold to your guild" :
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Collect 200 wood" and mission == "Collect 200 wood":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Collect 120 metal" and mission == "Collect 120 metal":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Collect 160 stone" and mission == "Collect 160 stone":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Check-in 10 times" and mission == "Check-in 10 times":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Kill 100 Oofers" and mission == "Kill 100 Oofers":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Kill 100 Goblins" and mission == "Kill 100 Goblins":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				return
+
+		elif guildinfo["mission"] == "Open 250 Lootbags" and mission == "Open 250 Lootbags":
+			try:
+				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
+				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
+				return
+			except:
+				print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guildid)
+				returnmtitle = "Loot Collector"
+			mdescription = guildinfo["mission"]
+			mprogress = guildinfo["missionprogress"]
+
+		if mission == "Donate 35000 gold to your guild" and mission == "Donate 35000 gold to your guild":
 			try:
 				guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
 				db.servers.replace_one({ "_id": guildid }, guildinfo, upsert=True)
