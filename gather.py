@@ -10,6 +10,7 @@ from utils.checks import staff, developer, owner
 # from cogs.economy import NoAccount
 from utils.db import db
 from utils.dataIO import fileIO
+from cogs.guild import _guild_mission_check
 
 # All the positive ones and their rewards!
 fishables = {
@@ -182,29 +183,20 @@ class gather(commands.Cog):
 
 		if delta >= cooldowntime and delta > 0:
 
-			try: 
-				if guildinfo["mission"] == "Collect 120 metal":
-					if not guildinfo["mission"] == "Collect 120 metal":
-						pass
-				try:
-					guildinfo["missionprogress"] = guildinfo["missionprogress"] + mined_metal
-					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-					pass
-				except:
-					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-					pass
-
-				if guildinfo["mission"] == "Collect 160 Stone":
-					if not guildinfo["mission"] == "Collect 160 Stone":
-						pass	
-				try:
-					guildinfo["missionprogress"] = guildinfo["missionprogress"] + mined_rock
-					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-					pass
-				except:
-					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-					pass
+			try:
+				mission = "Collect 160 stone"
+				add = mined_rock
+				await _guild_mission_check(self, user, mission, guild, add)
 			except:
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
+				pass
+
+			try:
+				mission = "Collect 120 metal"
+				add = mined_metal
+				await _guild_mission_check(self, user, mission, guild, add)
+			except:
+				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
 
 			if userinfo["questname"] == "Gathering Metal I":
@@ -313,16 +305,8 @@ class gather(commands.Cog):
 		if delta >= cooldowntime and delta > 0:
 
 			try:
-				if guildinfo["mission"] == "Collect 200 wood":
-					if not guildinfo["mission"] == "Collect 200 wood":
-						pass
-				try:
-					guildinfo["missionprogress"] = guildinfo["missionprogress"] + chopped
-					db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-					pass
-				except:
-					print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-					pass
+				add = chopped
+				await _guild_mission_check(self, user, mission, guild, add)
 			except:
 				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
@@ -351,50 +335,6 @@ class gather(commands.Cog):
 					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 				except:
 					return
-
-	async def _guild_mission_check(self, user, guild, mission, chopped, mined_metal, mined_rock):
-		guild = ctx.guild
-		guildinfo = db.servers.find_one({ "_id": guild.id })
-
-		if guild == "None":
-			return
-
-		if mission == "Collect 200 wood":
-			if not guildinfo["mission"] == "Collect 200 wood":
-				return
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + chopped
-				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-				return
-			except:
-				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-				return
-
-		elif mission == "Collect 120 metal":
-			if not guildinfo["mission"] == "Collect 120 metal":
-				return
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + mined_metal
-				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-				return
-			except:
-				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-				return
-
-		elif mission == "Collect 160 Stone":
-			if not guildinfo["mission"] == "Collect 160 Stone":
-				return	
-			try:
-				guildinfo["missionprogress"] = guildinfo["missionprogress"] + mined_rock
-				db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-				return
-			except:
-				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-				return
-
-		else:
-			print(user.name + " (" + user.id + ") from guild with leader id " + guild.id + "managed to check a non-existing mission!")
-			return
 
 def setup(bot):
 	n = gather(bot)
