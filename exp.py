@@ -10,7 +10,7 @@ from time import time
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
-
+from cogs.levelup import _level_up_check_user
 
 
 class exp(commands.Cog):
@@ -113,36 +113,7 @@ class exp(commands.Cog):
 			for i in range(amount):
 				gain = gain + random.randint(40, 75)		
 			userinfo["exp"] = userinfo["exp"] + gain
-			if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-				userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-				userinfo["lvl"] = userinfo["lvl"] + 1
-				userinfo["health"] = userinfo["MaxHealth"]
-				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-				await ctx.send(embed=em)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				await asyncio.sleep(0.3)
-				if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-					userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-					userinfo["lvl"] = userinfo["lvl"] + 1
-					userinfo["health"] = userinfo["MaxHealth"]
-					em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-					await ctx.send(embed=em)
-					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-					await asyncio.sleep(0.3)
-					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-						userinfo["lvl"] = userinfo["lvl"] + 1
-						userinfo["health"] = userinfo["MaxHealth"]
-						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-						await ctx.send(embed=em)
-						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-						await asyncio.sleep(0.3)
-						if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
-							userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
-							userinfo["lvl"] = userinfo["lvl"] + 1
-							userinfo["health"] = userinfo["MaxHealth"]
-							em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
-							await ctx.send(embed=em)
+			await _level_up_check_user(self, ctx, user)
 				
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			userinfo["exp_potions"] = userinfo["exp_potions"] - amount
