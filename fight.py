@@ -10,40 +10,7 @@ from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata
 from cogs.levelup import _level_up_check_user
-
-async def _guild_mission_check(user, guild, mission, add):
-
-	guildinfo = db.servers.find_one({"_id": guild.id})
-
-	if guild == "None":
-		return
-
-	if mission == "Kill 400 Oofers":
-		if not guildinfo["mission"] == "Kill 400 Oofers":
-			return
-		try:
-			guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
-			db.servers.replace_one({"_id": guild.id}, guildinfo, upsert=True)
-			return
-		except:
-			print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-			return
-
-	elif mission == "Kill 100 Goblins":
-		if not guildinfo["mission"] == "Kill 100 Goblins":
-			return
-		try:
-			guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
-			db.servers.replace_one({"_id": guild.id}, guildinfo, upsert=True)
-			return
-		except:
-			print("Error while trying to log guild mission" + mission + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
-			return
-
-	else:
-		print(user.name + " (" + user.id + ") from guild with leader id " + guild.id + "managed to check a non-existing mission!")
-		return
-
+from cogs.guild import _guild_mission_check
 
 async def _heal_reaction(user, msg):
 	userinfo = db.users.find_one({"_id": user.id})
@@ -3932,7 +3899,8 @@ class fight(commands.Cog):
 			if userinfo["selected_enemy"] == "Oofer":
 				try:
 					mission = "Kill 100 Oofers"
-					await _guild_mission_check(user, guild, mission, 1)
+					add = 1
+					await _guild_mission_check(self, user, mission, guild, add)
 				except:
 					
 					pass
@@ -3947,9 +3915,10 @@ class fight(commands.Cog):
 			elif userinfo["selected_enemy"] == "Goblin":
 				try:
 					mission = "Kill 100 Goblins"
-					await _guild_mission_check(user, guild, mission, 1)
+					add = 1
+					await _guild_mission_check(self, user, mission, guild, add)
 				except:
-					print("Error while trying to check '" + mission + "' mission for " + user.name + " (" + user.id + ")")
+					print("Error while trying to check '" + mission + "' mission")
 					pass
 
 
