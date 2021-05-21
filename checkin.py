@@ -11,6 +11,7 @@ from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
 from cogs.guild import _guild_mission_check
+from cogs.quests import _quest_check
 
 class checkin(commands.Cog):
 	def __init__(self, bot):
@@ -47,7 +48,7 @@ class checkin(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		#GUILD BOOST
