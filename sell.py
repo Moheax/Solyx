@@ -11,7 +11,7 @@ from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
 
-
+from cogs.quests import _quest_check
 
 
 class sell(commands.Cog): 
@@ -78,7 +78,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(2, 6)
@@ -137,7 +137,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(2, 6)
@@ -197,7 +197,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(2, 6)
@@ -257,7 +257,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(2, 6)
@@ -318,7 +318,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(5, 10)
@@ -380,7 +380,7 @@ class sell(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			gain = amount * random.randint(5, 10)

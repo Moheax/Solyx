@@ -10,7 +10,7 @@ from time import time
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
-
+from cogs.quests import _quest_check
 
 
 class health(commands.Cog):
@@ -56,7 +56,7 @@ class health(commands.Cog):
 				userinfo["questpart"] = userinfo["questpart"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 1:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 
 			gain = random.randint(25, 55)
 			userinfo["health"] = userinfo["health"] + gain
@@ -183,7 +183,7 @@ class health(commands.Cog):
 				userinfo["questpart"] = userinfo["questpart"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			userinfo["gold"] = userinfo["gold"] - Sum

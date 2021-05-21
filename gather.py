@@ -11,6 +11,7 @@ from utils.checks import staff, developer, owner
 from utils.db import db
 from utils.dataIO import fileIO
 from cogs.guild import _guild_mission_check
+from cogs.quests import _quest_check
 
 # All the positive ones and their rewards!
 fishables = {
@@ -83,7 +84,7 @@ class gather(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			if userinfo["questprogress"] >= 5:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 	
 
@@ -203,14 +204,14 @@ class gather(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + mined_metal
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 2:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 	
 			if userinfo["questname"] == "Gathering Stone I":
 				userinfo["questprogress"] = userinfo["questprogress"] + mined_rock
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			userinfo["metal"] = userinfo["metal"] + mined_metal
@@ -305,6 +306,7 @@ class gather(commands.Cog):
 		if delta >= cooldowntime and delta > 0:
 
 			try:
+				mission = "Collect 200 wood"
 				add = chopped
 				await _guild_mission_check(self, user, mission, guild, add)
 			except:
@@ -315,7 +317,7 @@ class gather(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + chopped
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			userinfo["wood"] = userinfo["wood"] + chopped

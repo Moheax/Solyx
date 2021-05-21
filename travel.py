@@ -132,7 +132,7 @@ class travel(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 1:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["location"] == "Saker Keep":

@@ -10,6 +10,7 @@ from utils.checks import staff, developer, owner
 # from cogs.economy import NoAccount
 from utils.db import db
 from utils.dataIO import fileIO
+from cogs.quests import _quest_check
 
 class craft(commands.Cog):
 	def __init__(self, bot):

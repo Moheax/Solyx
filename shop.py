@@ -21,6 +21,7 @@ try:
 	import scipy.cluster
 except:
 	pass
+from cogs.quests import _quest_check
 #         weapons_list = ["hp","Hp", "Calcite Staff", "Glyphic Bow", "Abaddon Dagger", "Sclerite Sword", "Iron Greatsword", "Rusted Short Sword", "Staff of Milos", "Obsidian Longbow", "Verdant Bow", "Oblivion", "Reinforced Crossbow", "Etched Long Bow", "Mithril Sword", "Spiked Mace", "Curved Dagger", "Tomb of Water", "Rusted Crossbow", "Makeshift Short Bow", "Iron Mace", "Iron Claws", "Concealed Blade", "Tomb of Fire", "Scroll of Blizzards"]
 
 class shop(commands.Cog):
@@ -99,7 +100,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -120,7 +121,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -141,7 +142,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -162,7 +163,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -183,7 +184,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -204,7 +205,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -225,7 +226,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -246,7 +247,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -267,7 +268,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -288,7 +289,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -309,7 +310,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -330,7 +331,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -351,7 +352,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -372,7 +373,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -393,7 +394,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -414,7 +415,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -435,7 +436,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -456,7 +457,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -477,7 +478,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -498,7 +499,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -519,7 +520,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -540,7 +541,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -565,7 +566,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -586,7 +587,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -607,7 +608,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -628,7 +629,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -649,7 +650,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -670,7 +671,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -691,7 +692,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -712,7 +713,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -733,7 +734,7 @@ class shop(commands.Cog):
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await ctx.send("Quest Updated!")
+							await _quest_check(self, ctx, user)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -845,7 +846,7 @@ class shop(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 1:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 			itemname = item["name"]
 			itemrarity = item["rarity"]
@@ -1192,7 +1193,7 @@ class shop(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		Class = userinfo["class"]
@@ -1257,7 +1258,7 @@ class shop(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		Class = userinfo["class"]

@@ -9,6 +9,7 @@ from utils.defaults import guilddata
 from utils import checks
 import asyncio
 from utils.dataIO import fileIO
+from cogs.quests import _quest_check
 
 intents = discord.Intents.default()
 intents.members = True
@@ -153,7 +154,7 @@ class guild(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		guildinfo = db.servers.find_one({ "_id": guild.id })
@@ -202,7 +203,7 @@ class guild(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if guildinfo["title"] == "None" and guildinfo["bonus"] >= 10:
@@ -502,7 +503,7 @@ class guild(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 
@@ -852,7 +853,7 @@ class guild(commands.Cog):
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if amount <= 0:
@@ -883,14 +884,8 @@ class guild(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1000:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
-
-
-		if guildinfo["mission"] == "Donate 35000 gold to your guild":
-			guildinfo["missionprogress"] = guildinfo["missionprogress"] + amount
-			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
-
 
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -912,6 +907,9 @@ class guild(commands.Cog):
 		em = discord.Embed(title="You donated {} gold to your guild".format(amount), description="+{} guild boost!".format(finalamt), color=discord.Colour(0xffffff))
 		em.set_thumbnail(url=guild.icon_url)
 		try:
+			mission = "Donate 35000 gold to your guild"
+			add = amount
+			await _guild_mission_check(self, user, mission, guild, add)
 			await ctx.send(embed=em)
 		except:
 			try:
@@ -919,7 +917,7 @@ class guild(commands.Cog):
 				return
 			except:
 				return
-		await _guild_mission_check(self, ctx, user)
+		
 	"""@guild.group(name="settings", pass_context=True)
 	async def guild_settings(self, ctx):
 		user = ctx.message.author
@@ -1077,7 +1075,6 @@ async def _guild_mission_check(self, user, mission, guild, add):
 
 	elif guildinfo["mission"] == "Kill 100 Goblins" and mission == "Kill 100 Goblins":
 		try:
-			print("hi2")
 			guildinfo["missionprogress"] = guildinfo["missionprogress"] + add
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 			return

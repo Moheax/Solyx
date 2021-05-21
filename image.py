@@ -18,7 +18,7 @@ from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
 
 from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
-
+from cogs.quests import _quest_check
 
 class image(commands.Cog):
 	def __init__(self, bot):
@@ -47,7 +47,7 @@ class image(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1		
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		await self.draw_profile(user)

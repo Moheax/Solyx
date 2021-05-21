@@ -11,6 +11,7 @@ from utils.db import db
 from utils.defaults import userdata
 from cogs.levelup import _level_up_check_user
 from cogs.guild import _guild_mission_check
+from cogs.quests import _quest_check
 
 async def _heal_reaction(user, msg):
 	userinfo = db.users.find_one({"_id": user.id})
@@ -104,14 +105,14 @@ class fight(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if userinfo["questname"] == "Fight I":
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 25:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if userinfo["health"] <= 0:
@@ -3909,7 +3910,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Goblin":
@@ -3933,7 +3934,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 					
 			elif userinfo["selected_enemy"] == "Draugr":
@@ -3947,7 +3948,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Debin":
@@ -3961,7 +3962,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Stalker":
@@ -3975,7 +3976,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 
@@ -4004,7 +4005,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 5:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Wyvern":
@@ -4018,14 +4019,14 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 				elif userinfo["questname"] == "On the hunt!" and userinfo["enemydifficulty"] == "Rare":
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Oofer":
@@ -4039,7 +4040,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Souleater":
@@ -4053,7 +4054,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 10:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 			elif userinfo["selected_enemy"] == "Wolf":
@@ -4109,7 +4110,7 @@ class fight(commands.Cog):
 					userinfo["questprogress"] = userinfo["questprogress"] + 1
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 5:
-						await ctx.send("Quest Updated!")
+						await _quest_check(self, ctx, user)
 					pass
 
 				if userinfo["role"] == "Developer":
@@ -4309,9 +4310,10 @@ class fight(commands.Cog):
 			
 			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
 		db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-
-		await _level_up_check_user(self, ctx, user)
-
+		try:
+			await _level_up_check_user(self, ctx, user)
+		except:
+			return
 		
 
 

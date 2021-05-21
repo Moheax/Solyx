@@ -20,7 +20,7 @@ try:
 	import scipy.cluster
 except:
 	pass
-
+from cogs.quests import _quest_check
 
 class wiki(commands.Cog):
 	def __init__(self, bot):
@@ -39,7 +39,7 @@ class wiki(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1		
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if topic == None:

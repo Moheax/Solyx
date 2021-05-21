@@ -158,7 +158,7 @@ class market(commands.Cog):
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await ctx.send("Quest Updated!")
+				await _quest_check(self, ctx, user)
 			pass
 
 		if item["rarity"] == "Basic":
@@ -526,7 +526,7 @@ class market(commands.Cog):
 				userinfo["questpart"] = userinfo["questpart"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			userinfo["gold"] = userinfo["gold"] - Sum

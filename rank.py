@@ -19,6 +19,7 @@ from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
 
 from PIL import Image, ImageDraw, ImageFont, ImageColor, ImageOps, ImageFilter
+from cogs.quests import _quest_check
 
 class rank(commands.Cog):
 	def __init__(self, bot):

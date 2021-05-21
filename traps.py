@@ -11,6 +11,8 @@ from utils.checks import staff, developer, owner
 from utils.db import db
 from utils.dataIO import fileIO
 from cogs.levelup import _level_up_check_user
+from cogs.quests import _quest_check
+
 class traps(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
@@ -12114,7 +12116,7 @@ class traps(commands.Cog):
 			userinfo["trap_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-			await self._level_up_check_user(ctx, user)
+			await _level_up_check_user(self, ctx, user)
 			
 		else:
 			# calulate time left

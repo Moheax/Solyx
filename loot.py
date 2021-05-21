@@ -10,7 +10,7 @@ from time import time
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
-
+from cogs.quests import _quest_check
 
 
 
@@ -83,7 +83,7 @@ class loot(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -1100,7 +1100,7 @@ class loot(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -2127,7 +2127,7 @@ class loot(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -3153,7 +3153,7 @@ class loot(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -4495,7 +4495,7 @@ class loot(commands.Cog):
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await ctx.send("Quest Updated!")
+					await _quest_check(self, ctx, user)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:

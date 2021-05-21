@@ -110,54 +110,32 @@ async def _quest_check(self, ctx, user):
     userinfo = db.users.find_one({"_id": user.id})
     titlesinfo = db.titles.find_one({"_id": user.id})
 
+    # done
     if userinfo["questname"] == "Basic A" and userinfo["questprogress"] >= 1:
         oldquest = "Basic A"
 
         expgain = 20
 
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience".format(
-                                oldquest, expgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
         newquest = "Basic B"
         userinfo["questname"] = newquest
         userinfo["questscompleted"].append(oldquest)
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open your Inventory!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await _level_up_check_user(self, ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n\n".format(oldquest, expgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open your Inventory!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Basic B" and userinfo["questprogress"] >= 1:
         oldquest = "Basic B"
 
         expgain = 20
         goldgain = 20
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Basic C"
         userinfo["questname"] = newquest
@@ -165,32 +143,21 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Start your first fight!".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Start your first fight!".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-
+        
         return
-
+    # done
     elif userinfo["questname"] == "Basic C" and userinfo["questprogress"] >= 1:
         oldquest = "Basic C"
 
         expgain = 25
         goldgain = 25
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Gathering Wood I"
         userinfo["questname"] = newquest
@@ -198,32 +165,20 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Wood!".format(
-                                newquest), color=discord.Colour(0xffffff))
+        
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Wood!".format(newquest), inline=False)
         await ctx.send(embed=em)
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
-
+    # done
     elif userinfo["questname"] == "Gathering Wood I" and userinfo["questprogress"] >= 5:
         oldquest = "Gathering Wood I"
 
         expgain = 30
         goldgain = 30
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Gathering Stone I"
         userinfo["questname"] = newquest
@@ -231,32 +186,20 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Stone!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 5 Stone!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        return
+    # done
     elif userinfo["questname"] == "Gathering Stone I" and userinfo["questprogress"] >= 5:
         oldquest = "Gathering Stone I"
 
         expgain = 30
         goldgain = 30
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Gathering Metal I"
         userinfo["questname"] = newquest
@@ -264,32 +207,20 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 2 Metal!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Gather 2 Metal!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        return
+    # DOESNT AUTO UPDATE
     elif userinfo["questname"] == "Gathering Metal I" and userinfo["questprogress"] >= 2:
         oldquest = "Gathering Metal I"
 
         expgain = 30
         goldgain = 30
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Gathering Fish I"
         userinfo["questname"] = newquest
@@ -297,32 +228,21 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fish 5 times!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fish 5 times!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Gathering Fish I" and userinfo["questprogress"] >= 5:
         oldquest = "Gathering Fish I"
 
         expgain = 30
         goldgain = 30
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(
-                                oldquest, expgain, goldgain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Wood Trader I"
         userinfo["questname"] = newquest
@@ -330,33 +250,22 @@ async def _quest_check(self, ctx, user):
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Wood!".format(
-                                newquest), color=discord.Colour(0xffffff))  # MAKE WOOD TRADER I 
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Wood!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Wood Trader I" and userinfo["questprogress"] >= 10:
         oldquest = "Wood Trader I"
 
         expgain = 35
         goldgain = 35
         crategain = 1
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(
-                                oldquest, expgain, goldgain, crategain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Stone Trader I"
         userinfo["questname"] = newquest
@@ -365,33 +274,22 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Stone!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Stone!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Stone Trader I" and userinfo["questprogress"] >= 10:
         oldquest = "Stone Trader I"
 
         expgain = 35
         goldgain = 35
         crategain = 1
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(
-                                oldquest, expgain, goldgain, crategain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Metal Trader I"
         userinfo["questname"] = newquest
@@ -400,33 +298,22 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 5 Metal!".format(
-                                newquest), color=discord.Colour(0xffffff))
+ 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 5 Metal!".format(newquest), inline=False)
         await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Metal Trader I" and userinfo["questprogress"] >= 5:
         oldquest = "Metal Trader I"
 
         expgain = 35
         goldgain = 35
         crategain = 1
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(
-                                oldquest, expgain, goldgain, crategain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Health acquisition"
         userinfo["questname"] = newquest
@@ -435,33 +322,22 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nBuy 5 Hp potions!\nUse 1 Hp potions".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nBuy 5 Hp potions!\nUse 1 Hp potions".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Health acquisition" and userinfo["questpart"] == 2 and userinfo["questprogress"] >= 1:
         oldquest = "Health acquisition"
 
         expgain = 40
         goldgain = 40
         crategain = 2
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates".format(
-                                oldquest, expgain, goldgain, crategain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Unboxing I"
         userinfo["questname"] = newquest
@@ -471,33 +347,22 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open 10 crates".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open 10 crates".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Unboxing I" and userinfo["questprogress"] >= 10:
         oldquest = "Unboxing I"
 
         expgain = 45
         goldgain = 45
         crategain = 5
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates".format(
-                                oldquest, expgain, goldgain, crategain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Daily I"
         userinfo["questname"] = newquest
@@ -507,14 +372,16 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTry and collect your daily reward!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTry and collect your daily reward!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Daily I" and userinfo["questprogress"] >= 1:
         oldquest = "Daily I"
 
@@ -522,19 +389,6 @@ async def _quest_check(self, ctx, user):
         goldgain = 45
         crategain = 2
         keygain = 2
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(
-                                oldquest, expgain, goldgain, crategain, keygain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Equip"
         userinfo["questname"] = newquest
@@ -545,13 +399,16 @@ async def _quest_check(self, ctx, user):
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Equip a weapon.".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(oldquest, expgain, goldgain, crategain, keygain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Equip a weapon.".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
+    # done
     elif userinfo["questname"] == "Equip" and userinfo["questpart"] == 2 and userinfo["questprogress"] >= 1:
         oldquest = "Equip"
 
@@ -559,19 +416,6 @@ async def _quest_check(self, ctx, user):
         goldgain = 50
         crategain = 3
         keygain = 3
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(
-                                oldquest, expgain, goldgain, crategain, keygain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Vote I"
         userinfo["questname"] = newquest
@@ -582,14 +426,16 @@ async def _quest_check(self, ctx, user):
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Vote for solyx to get extra rewards!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(oldquest, expgain, goldgain, crategain, keygain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nVote for solyx to get extra rewards!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Vote I" and userinfo["questprogress"] >= 1:
         oldquest = "Vote I"
 
@@ -597,19 +443,6 @@ async def _quest_check(self, ctx, user):
         goldgain = 55
         crategain = 3
         keygain = 3
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(
-                                oldquest, expgain, goldgain, crategain, keygain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Fight I"
         userinfo["questname"] = newquest
@@ -620,14 +453,16 @@ async def _quest_check(self, ctx, user):
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fight 25 times.".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(oldquest, expgain, goldgain, crategain, keygain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Fight 25 times.".format(newquest), inline=False)
+        await ctx.send(embed=em)
+       
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Fight I" and userinfo["questprogress"] >= 25:
         oldquest = "Fight I"
 
@@ -635,19 +470,6 @@ async def _quest_check(self, ctx, user):
         goldgain = 60
         crategain = 3
         keygain = 3
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(
-                                oldquest, expgain, goldgain, crategain, keygain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Wiki Check"
         userinfo["questname"] = newquest
@@ -658,14 +480,16 @@ async def _quest_check(self, ctx, user):
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Discover the usefulness of wiki!".format(
-                                newquest), color=discord.Colour(0xffffff))
+ 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(oldquest, expgain, goldgain, crategain, keygain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nDiscover the usefulness of wiki!".format(newquest), inline=False)
         await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Wiki Check" and userinfo["questprogress"] >= 1:
         oldquest = "Wiki Check"
 
@@ -673,19 +497,6 @@ async def _quest_check(self, ctx, user):
         goldgain = 60
         crategain = 4
         keygain = 4
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(
-                                oldquest, expgain, goldgain, crategain, keygain), color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Shop I"
         userinfo["questname"] = newquest
@@ -696,14 +507,16 @@ async def _quest_check(self, ctx, user):
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Visit the shop and buy weapon and armor!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys".format(oldquest, expgain, goldgain, crategain, keygain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Visit the shop and buy weapon and armor!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Shop I" and userinfo["questpart"] == 4 and userinfo["questprogress"] >= 1:
         oldquest = "Shop I"
 
@@ -712,20 +525,6 @@ async def _quest_check(self, ctx, user):
         crategain = 4
         keygain = 4
         hpgain = 1
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Check Profile"
         userinfo["questname"] = newquest
@@ -737,14 +536,16 @@ async def _quest_check(self, ctx, user):
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at your visual profile!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTake a look at your visual profile!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Check Profile" and userinfo["questprogress"] >= 1:
         oldquest = "Check Profile"
 
@@ -753,20 +554,6 @@ async def _quest_check(self, ctx, user):
         crategain = 4
         keygain = 4
         hpgain = 2
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Leaderboard"
         userinfo["questname"] = newquest
@@ -778,14 +565,16 @@ async def _quest_check(self, ctx, user):
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Check out the leaderboard!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nCheck out the leaderboard!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Leaderboard" and userinfo["questprogress"] >= 1:
         oldquest = "Leaderboard"
 
@@ -794,20 +583,6 @@ async def _quest_check(self, ctx, user):
         crategain = 4
         keygain = 4
         hpgain = 2
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Guild I"
         userinfo["questname"] = newquest
@@ -819,15 +594,16 @@ async def _quest_check(self, ctx, user):
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Represent a guild\nCheck guild info\nCheck guild mission\nCheck guild donate function.".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Represent a guild\nCheck guild info\nCheck guild mission\nCheck guild donate function.".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+
         return
-
-
+    # done
     elif userinfo["questname"] == "Guild I" and userinfo["questpart"] == 4 and userinfo["questprogress"] >= 1:
         oldquest = "Guild I"
 
@@ -836,20 +612,6 @@ async def _quest_check(self, ctx, user):
         crategain = 5
         keygain = 5
         hpgain = 3
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Shop II"
         userinfo["questname"] = newquest
@@ -861,14 +623,16 @@ async def _quest_check(self, ctx, user):
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Try and sell a item in the Shop".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Try and sell a item in the Shop.".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Shop II" and userinfo["questprogress"] >= 1:
         oldquest = "Shop II"
 
@@ -878,20 +642,6 @@ async def _quest_check(self, ctx, user):
         keygain = 5
         hpgain = 3
         exppgain = 1
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Market I"
         userinfo["questname"] = newquest
@@ -904,14 +654,15 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at the market!".format(
-                                newquest), color=discord.Colour(0xffffff))
+        
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Take a look at the market!".format(newquest), inline=False)
         await ctx.send(embed=em)
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
-
+    # done
     elif userinfo["questname"] == "Market I" and userinfo["questprogress"] >= 1:
         oldquest = "Market I"
 
@@ -921,20 +672,6 @@ async def _quest_check(self, ctx, user):
         keygain = 5
         hpgain = 4
         exppgain = 2
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Guild II"
         userinfo["questname"] = newquest
@@ -947,14 +684,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Donate 1000g to your guild!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Donate 1000g to your guild!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Guild II" and userinfo["questprogress"] >= 1000:
         oldquest = "Guild II"
 
@@ -964,20 +703,6 @@ async def _quest_check(self, ctx, user):
         keygain = 6
         hpgain = 5
         exppgain = 3
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Rachi I"
         userinfo["questname"] = newquest
@@ -990,14 +715,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Rachi's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Rachi's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Rachi I" and userinfo["questprogress"] >= 10:
         oldquest = "Rachi I"
 
@@ -1007,20 +734,6 @@ async def _quest_check(self, ctx, user):
         keygain = 6
         hpgain = 5
         exppgain = 4
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Debin I"
         userinfo["questname"] = newquest
@@ -1033,14 +746,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Debin's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Debin's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Debin I" and userinfo["questprogress"] >= 10:
         oldquest = "Debin I"
 
@@ -1050,20 +765,6 @@ async def _quest_check(self, ctx, user):
         keygain = 6
         hpgain = 5
         exppgain = 4
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Oofer I"
         userinfo["questname"] = newquest
@@ -1076,14 +777,17 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Oofer's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Oofer's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Oofer I" and userinfo["questprogress"] >= 10:
         oldquest = "Oofer I"
 
@@ -1093,20 +797,6 @@ async def _quest_check(self, ctx, user):
         keygain = 6
         hpgain = 5
         exppgain = 4
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Wyvern I"
         userinfo["questname"] = newquest
@@ -1119,14 +809,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Wyvern's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Wyvern's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Wyvern I" and userinfo["questprogress"] >= 10:
         oldquest = "Wyvern I"
 
@@ -1136,20 +828,6 @@ async def _quest_check(self, ctx, user):
         keygain = 6
         hpgain = 5
         exppgain = 4
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Fire Golem I"
         userinfo["questname"] = newquest
@@ -1162,14 +840,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 5 Fire Golem's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n  Slay 5 Fire Golem's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Fire Golem I" and userinfo["questprogress"] >= 5:
         oldquest = "Fire Golem I"
 
@@ -1179,20 +859,6 @@ async def _quest_check(self, ctx, user):
         keygain = 7
         hpgain = 6
         exppgain = 5
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Travel I"
         userinfo["questname"] = newquest
@@ -1205,14 +871,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nTravel to Saker Keep!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Travel to Saker Keep!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Travel I" and userinfo["questprogress"] >= 1:
         oldquest = "Travel I"
 
@@ -1222,20 +890,6 @@ async def _quest_check(self, ctx, user):
         keygain = 7
         hpgain = 6
         exppgain = 6
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Draugr I"
         userinfo["questname"] = newquest
@@ -1248,14 +902,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Draugr's!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Draugr's!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Draugr I" and userinfo["questprogress"] >= 10:
         oldquest = "Draugr I"
 
@@ -1265,20 +921,6 @@ async def _quest_check(self, ctx, user):
         keygain = 8
         hpgain = 7
         exppgain = 7
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Stalker I"
         userinfo["questname"] = newquest
@@ -1291,15 +933,17 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Stalker's!".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Stalker's!".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
 
-
+    # done
     elif userinfo["questname"] == "Stalker I" and userinfo["questprogress"] >= 10:
         oldquest = "Stalker I"
 
@@ -1309,20 +953,6 @@ async def _quest_check(self, ctx, user):
         keygain = 8
         hpgain = 7
         exppgain = 7
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Souleater I"
         userinfo["questname"] = newquest
@@ -1335,15 +965,17 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Souleater's!".format(
-                                newquest), color=discord.Colour(0xffffff))
+ 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Souleater's!".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
 
-
+    # done
     elif userinfo["questname"] == "Souleater I" and userinfo["questprogress"] >= 10:
         oldquest = "Souleater I"
 
@@ -1353,20 +985,6 @@ async def _quest_check(self, ctx, user):
         keygain = 8
         hpgain = 7
         exppgain = 7
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "The Corrupted I"
         userinfo["questname"] = newquest
@@ -1379,15 +997,17 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n**Objective**\nSlay 10 Corrupted's!".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Corrupted's!".format(newquest), inline=False)
         await ctx.send(embed=em)
+
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
 
-
+    # done
     elif userinfo["questname"] == "The Corrupted I" and userinfo["questprogress"] >= 5:
         oldquest = "The Corrupted I"
 
@@ -1397,20 +1017,6 @@ async def _quest_check(self, ctx, user):
         keygain = 8
         hpgain = 7
         exppgain = 7
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Reforge I"
         userinfo["questname"] = newquest
@@ -1423,14 +1029,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nReforge a item!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Reforge a item!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "Reforge I" and userinfo["questprogress"] >= 1:
         oldquest = "Reforge I"
 
@@ -1440,20 +1048,6 @@ async def _quest_check(self, ctx, user):
         keygain = 9
         hpgain = 8
         exppgain = 8
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Support Server"
         userinfo["questname"] = newquest
@@ -1466,14 +1060,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nJoin the support server to stay  up-to-date with updates\n and if necessary some support!!\nJoin [here](https://discord.gg/9b3KkJvJea)".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Join the support server to stay  up-to-date with updates\n and if necessary some support!!\nJoin [here](https://discord.gg/9b3KkJvJea)".format(newquest), inline=False)
+        await ctx.send(embed=em)
+        
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # UNSURE IF CHECKED OR NOT.
     elif userinfo["questname"] == "Support Server" and userinfo["questprogress"] >= 1:
         oldquest = "Support Server"
 
@@ -1483,20 +1079,6 @@ async def _quest_check(self, ctx, user):
         keygain = 10
         hpgain = 9
         exppgain = 9
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "On the hunt!"
         userinfo["questname"] = newquest
@@ -1509,14 +1091,16 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nHunt down a Rare Wyvern\n They have been spotted in the golden temple!".format(
-                                newquest), color=discord.Colour(0xffffff))
-        await ctx.send(embed=em)
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
-        return
 
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Hunt down a Rare Wyvern\n They have been spotted in the golden temple!".format(newquest), inline=False)
+        await ctx.send(embed=em)
+
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+        
+        return
+    # done
     elif userinfo["questname"] == "On the hunt!" and userinfo["questprogress"] >= 1:
         oldquest = "On the hunt!"
 
@@ -1526,20 +1110,6 @@ async def _quest_check(self, ctx, user):
         keygain = 10
         hpgain = 10
         exppgain = 10
-
-        em = discord.Embed(title="Quest Completed",
-                            description="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(
-                                oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),
-                            color=discord.Colour(0xffffff))
-        try:
-            await ctx.send(embed=em)
-        except:
-            try:
-                await ctx.send(
-                    fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                return
-            except:
-                return
 
         newquest = "Claim your loot!"
         userinfo["questname"] = newquest
@@ -1552,14 +1122,18 @@ async def _quest_check(self, ctx, user):
         userinfo["keys"] = userinfo["keys"] + keygain
         userinfo["hp_potions"] = userinfo["hp_potions"] + hpgain
         userinfo["exp_potions"] = userinfo["exp_potions"] + exppgain
-        em = discord.Embed(title="New Quest!",
-                            description=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\nOpen 10 lootbags\n you earned it!".format(
-                                newquest), color=discord.Colour(0xffffff))
+
+        em = discord.Embed(color=discord.Colour(0xffffff))
+        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Open 10 lootbags\n you earned it!".format(newquest), inline=False)
         await ctx.send(embed=em)
         db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        await self._level_up_check_user(ctx, user)
+        
         return
-
+    try:
+        await _level_up_check_user(self, ctx, user)
+    except:
+        pass
 
     # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
