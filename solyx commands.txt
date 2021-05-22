@@ -1,0 +1,311 @@
+commands
+
+admin.py
+#staff	-staffcommands
+#staff	-announce
+#staff	-guildlock
+#staff	-say
+#staff	-send
+
+battle.py
+	-Battle
+	-battle invite
+	-battle fight
+	-battle quit
+
+begin.py
+	-begin / start
+
+botstats.py
+#staff	-botstats // MAINTENANCE
+#staff	-toggle // NO RESPONSE
+#staff	-message // NO RESPONSE
+#staff	-timeout // NO RESPONSE
+
+buildings.py
+
+	-build
+	-build camp
+	-build sawmill // double msg..
+	-build  masonry 
+	-build  smeltery
+	-camp
+
+checkin.py
+	-checkin / login / dialy
+
+commands.py
+	-commands
+
+commandsearch.py
+	-commandsearch / coms // ERROR 
+
+cooldowns.py
+	-cooldowns
+
+craft.py
+	-craft
+	-craft axe
+	-craft pickaxe
+	-craft saw
+	-craft chisel
+	-craft hammer
+
+customhelp.py
+#staff	-sethelp
+#staff	-sethelp embedauthor
+#staff	-sethelp embedtoggle
+#staff	-sethelp privateset
+#staff	-sethelp setmsg
+#staff	-sethelp settitle
+#staff	-sethelp setfooter
+#staff	-sethelp set color
+
+	-help
+
+dashboard.py
+	-dashboard
+	-online
+
+equip.py
+	-equip
+#test	-equip neck / necklace
+#test	-equip head / helmet
+#test	-equip body / chest / chestplate
+#test	-equip legs / leggins / pants
+#test	-equip feet / boots / shoes
+#test	-equip finger / ring / hand 
+	-equip weapon
+	-equip armor
+
+exp.py
+	-exp
+	-exp buy
+
+fight.py
+	-fight
+
+friends.py
+	-friends / friend
+	-friends list
+	-friends add / invite
+	-friends remove
+
+gather.py
+	-fish
+	-chop
+	-mine
+
+general.py
+	-ping
+	
+#staff	-shutdown
+#staff	-py
+#staff	-sudo
+#server	-leave
+#server	-serverprefix
+#staff	-stream
+#staff	-blacklist
+#staff	-blacklist add
+#staff	-ban (blacklist add)
+#staff	-blacklist remove
+#staff	-unban (blacklist remove)
+#staff	-blacklist list
+#staff	-cogs
+#staff	-load
+#staff	-unload
+#staff	-reload
+#staff	-rawreload
+#staff	-rawload
+
+give.py
+#staff	-give
+#staff	-give role
+#staff	-give crate
+#staff	-give gold / money
+#staff	-give key / keys
+#staff	-give wood
+#staff	-give stone
+#staff	-give metal
+#staff	-give planks
+#staff	-give bricks
+#staff	-give iron_plates
+#staff	-give hp / potion
+#staff	-give level / lvl 
+#staff	-give title
+#staff	-give race
+#staff	-give exp / exp potions
+#staff	-give class
+#staff	-give patreon
+#staff	-give item
+
+giveaway.py
+#staff	-giveaway
+#staff	-giveaway create
+	
+guild.py
+	-guild
+	-guild represent
+	-guild info
+#leader	-guild promote
+#leader	-guild demote
+#leader	-guild tag
+	-guild leaders
+	-guild mission
+	-guild donate
+
+health.py
+	-heal
+	-health
+	-health buy
+
+image.py
+	-profile
+
+inventory.py
+	-inv / inventory
+
+leaderboards.py
+	-leaderboard / top
+	-leaderboard players / users / user
+	-leaderboards guilds / guild
+
+links.py
+	-donate
+	-invite / server
+	-website
+	-botstats
+	-support
+
+log.py
+#leader	-ignore
+#leader	-ignore add
+#leader	-ignore remove
+
+loot.py
+	-crate / lootbag / lb / chest / open
+
+market.py
+	-market
+	-market sell
+	-market buy
+	-buy
+	-buy item
+	-market list
+	-buy hp
+	-buy exp
+	
+materials.py
+	-saw
+	-masonry
+	-smelt
+
+misc.py
+#staff	-clear
+#staff	-boop
+#staff	-bap
+#staff	-solyxshutdown
+#staff	-steal
+#staff	-users
+#staff	-shards
+#staff	-totalusers
+#staff	-cooldown
+#staff	-thread
+	-random
+	-filesize
+#staff	-staff
+
+party.py
+	-party
+	-party create
+	-party list
+	-party add
+	-party leave
+	-party kick
+	-party disband
+	-party title
+
+patreons.py
+	-patreon
+	-claim
+
+pets.py
+	-pets
+	-pets list
+	-pets tame
+	-pets name
+	-pets equip
+
+quests.py
+	-quests
+
+rank.py
+	-rank
+
+refore.py
+	-reforge
+
+sell.py	
+	-sell
+	-sell wood
+	-sell wood all
+	-sell stone
+	-sell stone all
+	-sell metal
+	-sell metal all
+
+shop.py
+	-shop
+	-shop buy
+	-shop sell
+	-shop weapons
+	-shop armor 
+	  
+statistics.py
+	-information
+	-statistics
+
+status.py
+	-equipment
+	-status
+	-mstats
+
+titles.py
+	-title
+	-title select
+	-title list
+	-title flex
+
+trader.py
+	-trader
+	-trader find
+	-trader inv
+	-trader buy
+
+traps.py
+	-traps / trap
+	-traps build
+	-traps check
+	-traps repair
+	-traps status
+
+travel.py
+	-travel
+
+tutorial.py
+	-tutorial
+
+updates.py
+	-updates
+	-updates add
+
+vote.py
+	-vote
+#staff	-webhook
+
+wiki.py
+	-wiki
+
+210 total commands.
+55 different user commands 
+156 total user accasible commands.
