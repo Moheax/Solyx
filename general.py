@@ -26,7 +26,6 @@ class general(commands.Cog):
 		self.bot.remove_command("help")
 		self.logger = logging.getLogger('solyx.general')
 		self.session = aiohttp.ClientSession(loop=self.bot.loop)
-
 	
 	@commands.command()
 	@commands.cooldown(1, 5, commands.BucketType.user)

@@ -18,7 +18,7 @@ class friends(commands.Cog):
 		self.bot = bot
 
 
-	@commands.group(name="friends", aliases=["f", "friend"], pass_context=True, no_pm=True, hidden=True)
+	@commands.group(name="friends", aliases=["friend"], pass_context=True, no_pm=True, hidden=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _friends(self, ctx):
 		"""Friends!"""
