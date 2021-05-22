@@ -20,7 +20,7 @@ import string
 import operator
 import textwrap
 
-
+from cogs.quests import _quest_check
 
 class market(commands.Cog): 
 	def __init__(self, bot):

@@ -22,6 +22,7 @@ try:
 except:
 	pass
 from cogs.quests import _quest_check
+
 #         weapons_list = ["hp","Hp", "Calcite Staff", "Glyphic Bow", "Abaddon Dagger", "Sclerite Sword", "Iron Greatsword", "Rusted Short Sword", "Staff of Milos", "Obsidian Longbow", "Verdant Bow", "Oblivion", "Reinforced Crossbow", "Etched Long Bow", "Mithril Sword", "Spiked Mace", "Curved Dagger", "Tomb of Water", "Rusted Crossbow", "Makeshift Short Bow", "Iron Mace", "Iron Claws", "Concealed Blade", "Tomb of Fire", "Scroll of Blizzards"]
 
 class shop(commands.Cog):

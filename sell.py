@@ -73,13 +73,13 @@ class sell(commands.Cog):
 			await ctx.send("?")
 			return
 		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
-
 			if userinfo["questname"] == "Wood Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
 					await _quest_check(self, ctx, user)
 				pass
+			
 
 			gain = amount * random.randint(2, 6)
 			userinfo["gold"] = userinfo["gold"] + gain
@@ -192,10 +192,9 @@ class sell(commands.Cog):
 			await ctx.send("?")
 			return
 		if userinfo["stone"] > 0 and userinfo["stone"] >= amount:
-
 			if userinfo["questname"] == "Stone Trader I":
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
 					await _quest_check(self, ctx, user)
 				pass
@@ -258,6 +257,7 @@ class sell(commands.Cog):
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
 					await _quest_check(self, ctx, user)
+
 				pass
 
 			gain = amount * random.randint(2, 6)
@@ -379,7 +379,7 @@ class sell(commands.Cog):
 			if userinfo["questname"] == "Metal Trader I":
 				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 10:
+				if userinfo["questprogress"] >= 5:
 					await _quest_check(self, ctx, user)
 				pass
 

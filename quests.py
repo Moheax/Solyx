@@ -95,20 +95,8 @@ class quests(commands.Cog):
         # Noble Contractor 150
 
 async def _quest_check(self, ctx, user):
-    
-    guild = ctx.guild
 
-    channel = ctx.message.channel
-
-    user = ctx.message.author
-
-    now = datetime.datetime.now()
-
-    current_time = now.strftime("%H:%M:%S")
-
-    user = ctx.message.author
     userinfo = db.users.find_one({"_id": user.id})
-    titlesinfo = db.titles.find_one({"_id": user.id})
 
     # done
     if userinfo["questname"] == "Basic A" and userinfo["questprogress"] >= 1:
@@ -243,20 +231,19 @@ async def _quest_check(self, ctx, user):
 
         expgain = 30
         goldgain = 30
-
+        
         newquest = "Wood Trader I"
         userinfo["questname"] = newquest
         userinfo["questscompleted"].append(oldquest)
         userinfo["questprogress"] = 0
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
         em = discord.Embed(color=discord.Colour(0xffffff))
         em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold".format(oldquest, expgain, goldgain),  inline=False)
         em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Wood!".format(newquest), inline=False)
         await ctx.send(embed=em)
-
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
         
         return
     # done
@@ -274,13 +261,11 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
-
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
         em = discord.Embed(color=discord.Colour(0xffffff))
         em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
         em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 10 Stone!".format(newquest), inline=False)
         await ctx.send(embed=em)
-
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
         
         return
     # done
@@ -290,7 +275,7 @@ async def _quest_check(self, ctx, user):
         expgain = 35
         goldgain = 35
         crategain = 1
-
+        
         newquest = "Metal Trader I"
         userinfo["questname"] = newquest
         userinfo["questscompleted"].append(oldquest)
@@ -298,14 +283,11 @@ async def _quest_check(self, ctx, user):
         userinfo["exp"] = userinfo["exp"] + expgain
         userinfo["gold"] = userinfo["gold"] + goldgain
         userinfo["lootbag"] = userinfo["lootbag"] + crategain
- 
+        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
         em = discord.Embed(color=discord.Colour(0xffffff))
         em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crate".format(oldquest, expgain, goldgain, crategain),  inline=False)
         em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Sell 5 Metal!".format(newquest), inline=False)
         await ctx.send(embed=em)
-
-        db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-        
         return
     # done
     elif userinfo["questname"] == "Metal Trader I" and userinfo["questprogress"] >= 5:

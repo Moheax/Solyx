@@ -49,7 +49,7 @@ class gather(commands.Cog):
 
 
 	@commands.command(pass_context=True, no_pm=True)
-	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.cooldown(1, 1, commands.BucketType.user)
 	async def fish(self, ctx):
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
@@ -82,7 +82,7 @@ class gather(commands.Cog):
 
 		if userinfo["questname"] == "Gathering Fish I":
 			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 			if userinfo["questprogress"] >= 5:
 				await _quest_check(self, ctx, user)
 			pass
@@ -103,7 +103,6 @@ class gather(commands.Cog):
 		else:
 			return
 		db.users.replace_one({ "_id": user.id }, userinfo)
-
 
 
 	@commands.command(pass_context=True, no_pm=True)
