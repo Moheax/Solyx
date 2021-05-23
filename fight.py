@@ -3987,17 +3987,15 @@ class fight(commands.Cog):
 				except:
 					pass
 				if userinfo["role"] == "Developer":
-					pet_spawn = 99
-					# random.randint(99, 99)
+					pet_spawn = random.randint(1, 100)
 
-					if pet_spawn == 99:
-
+					if pet_spawn >= 90:
+						
 						if userinfo["pet_stage"] == "Golden Goose":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a goose.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a goose.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
 							em.set_image(url="")
 							await ctx.send(embed=em)
 							userinfo["pet_find"] = "Golden Goose"
-							userinfo["pet_stage"] = "Fox"
 							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 								
 						
@@ -4086,17 +4084,16 @@ class fight(commands.Cog):
 					pass
 
 				if userinfo["role"] == "Developer":
-					pet_spawn = 99
-					# random.randint(99, 99)
+					pet_spawn = random.randint(1, 100)
 
-					if pet_spawn == 99:
+					if pet_spawn >= 90:
 
 						if userinfo["pet_stage"] == "Fox":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a fox.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a fox.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
 							em.set_image(url="")
 							await ctx.send(embed=em)
 							userinfo["pet_find"] = "Fox"
-							userinfo["pet_stage"] = "Polar Bear"
+							
 							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 				
 			elif userinfo["selected_enemy"] == "The Corrupted":
@@ -4114,11 +4111,9 @@ class fight(commands.Cog):
 					pass
 
 				if userinfo["role"] == "Developer":
-					pet_spawn = 99
-					# random.randint(99, 99)
+					pet_spawn = random.randint(1, 100)
 
-					if pet_spawn == 99:
-
+					if pet_spawn >= 90:
 
 						if userinfo["pet_stage"] == "Polar Bear":
 							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a polar bear.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
@@ -4139,10 +4134,9 @@ class fight(commands.Cog):
 
 			
 				if userinfo["role"] == "Developer":
-					pet_spawn = 99
-					# random.randint(99, 99)
+					pet_spawn = random.randint(1, 100)
 
-					if pet_spawn == 99:
+					if pet_spawn >= 90:
 			
 						if userinfo["pet_stage"] == "Small Cerberus":
 							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a small cerberus.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
