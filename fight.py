@@ -829,8 +829,10 @@ class fight(commands.Cog):
 		mindmg = userinfo["equip"]["stats_min"]
 		maxdmg = userinfo["equip"]["stats_max"]
 		youdmg = random.randint(mindmg, maxdmg)
-
-
+		polar_bear_bonus = 0
+		polar_bear_bonus_text = ""
+		small_cerberus_bonus = 0
+		small_cerberus_bonus_text = ""
 		# YOUR PROTECTION IS BASED ON THE ARMOR YOURE HOLDING
 		youdef = 0
 
@@ -848,13 +850,50 @@ class fight(commands.Cog):
 		except:
 			pass
 
+		for i in userinfo["pet_list"]:
+			petinfo = i
+			pet_name = petinfo["name"]
+			pet_level = petinfo["level"]
+			pet_type = petinfo["type"]
+			if pet_type == "Polar Bear":
+				if pet_level <= 10:
+					polar_bear_bonus = (int((youdmg / 100) * 5))
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+				elif pet_level <= 20:
+					polar_bear_bonus = (int((youdmg / 100) * 10))						
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+				elif pet_level <= 30:
+					polar_bear_bonus = (int((youdmg / 100) * 15))							
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+				elif pet_level <= 40:
+					polar_bear_bonus = (int((youdmg / 100) * 20))							
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+				elif pet_level <= 50:
+					polar_bear_bonus = (int((youdmg / 100) * 25))
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+				elif pet_level >= 51:
+					polar_bear_bonus = (int((youdmg / 100) * 30))
+					polar_bear_bonus_text = "\n{} hits for {}.".format(pet_name, polar_bear_bonus)
+			
+			if pet_type == "Small Cerberus":
+				if pet_level <= 10:
+					small_cerberus_bonus = (int((youdef / 100) * 5))
+				elif pet_level <= 20:
+					small_cerberus_bonus = (int((youdef / 100) * 10))						
+				elif pet_level <= 30:
+					small_cerberus_bonus = (int((youdef / 100) * 15))							
+				elif pet_level <= 40:
+					small_cerberus_bonus = (int((youdef / 100) * 20))							
+				elif pet_level <= 50:
+					small_cerberus_bonus = (int((youdef / 100) * 25))
+				elif pet_level >= 51:
+					small_cerberus_bonus = (int((youdef / 100) * 30))
+
+			youdef + small_cerberus_bonus
 		# ENEMY DAMAGE BASED ON ENEMY GROUPS
 		enemydmg = 0
 		enemygold = random.randint(30, 60)
 		xpgain = random.randint(10, 15)
-
-	
-
 		guild = ctx.guild
 		guildinfo = db.servers.find_one({"_id": guild.id})
 		effectiveguildbonus = guildinfo["bonus"]
@@ -876,51 +915,6 @@ class fight(commands.Cog):
 			enemygold = random.randint(10, 30) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(5, 25)
-			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg += random.randint(5, 10)
-				enemygold = random.randint(10, 30) + effectiveguildbonus
-				goldlost = (int(enemygold * 2))
-				xpgain = random.randint(5, 25)
-
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			if userinfo["enemydifficulty"] == "Rare":
-				enemydmg += random.randint(5, 10)
-				enemygold = random.randint(10, 30) + effectiveguildbonus
-				goldlost = (int(enemygold * 2))
-				xpgain = random.randint(5, 25)
-
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			if userinfo["enemydifficulty"] == "Legendary":
-				enemydmg += random.randint(5, 10)
-				enemygold = random.randint(10, 30) + effectiveguildbonus
-				goldlost = (int(enemygold * 2))
-				xpgain = random.randint(5, 25)
-
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))	
-
-			if userinfo["enemydifficulty"] == "Mythical":
-				enemydmg += random.randint(5, 10)
-				enemygold = random.randint(10, 30) + effectiveguildbonus
-				goldlost = (int(enemygold * 2))
-				xpgain = random.randint(5, 25)
-
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 
 		# GOLDEN TEMPLE
 		elif userinfo["selected_enemy"] == "Wyvern":
@@ -929,61 +923,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(10, 30)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
-
 		# GOLDEN TEMPLE
 		elif userinfo["selected_enemy"] == "Fire Golem":
 			enemydmg += random.randint(20, 30)
 			enemygold = random.randint(25, 50) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(20, 40)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# SAKER KEEP
 		elif userinfo["selected_enemy"] == "Draugr" or userinfo["selected_enemy"] == "Stalker":
@@ -992,30 +937,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(15, 35)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# SAKER KEEP
 		elif userinfo["selected_enemy"] == "Souleater":
 			enemydmg += random.randint(20, 25)
@@ -1023,30 +944,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(20, 40)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# SAKER KEEP
 		elif userinfo["selected_enemy"] == "The Corrupted":
 			enemydmg += random.randint(30, 40)
@@ -1054,60 +951,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(30, 50)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# THE FOREST
 		elif userinfo["selected_enemy"] == "Wolf" or userinfo["selected_enemy"] == "Goblin":
 			enemydmg += random.randint(25, 30)
 			enemygold = random.randint(30, 50) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(25, 45)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# THE FOREST
 		elif userinfo["selected_enemy"] == "Zombie":
@@ -1116,60 +965,12 @@ class fight(commands.Cog):
 			goldlost = (int((int(enemygold * 2))))
 			xpgain = random.randint(30, 50)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# THE FOREST
 		elif userinfo["selected_enemy"] == "Phantasm":
 			enemydmg += random.randint(40, 50)
 			enemygold = random.randint(45, 65) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(40, 60)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# EBONY MOUNTAINS
 		elif userinfo["selected_enemy"] == "Elder Dragon" or userinfo["selected_enemy"] == "Hades":
@@ -1178,60 +979,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(35, 55)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			if userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 			# EBONY MOUNTAINS
 		elif userinfo["selected_enemy"] == "Ebony Guardian":
 			enemydmg += random.randint(40, 45)
 			enemygold = random.randint(45, 65) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(40, 60)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# EBONY MOUNTAINS
 		elif userinfo["selected_enemy"] == "The Accursed":
@@ -1240,30 +993,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(50, 70)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# TOWNSHIP OF ARKINA
 		elif userinfo["selected_enemy"] == "Ettin" or userinfo["selected_enemy"] == "Dormammu":
 			enemydmg += random.randint(45, 50)
@@ -1271,30 +1000,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(45, 65)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# TOWNSHIP OF ARKINA
 		elif userinfo["selected_enemy"] == "Harpy":
 			enemydmg += random.randint(50, 55)
@@ -1302,30 +1007,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(50, 70)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# TOWNSHIP OF ARKINA
 		elif userinfo["selected_enemy"] == "The Nameless King":
 			enemydmg += random.randint(60, 70)
@@ -1333,30 +1014,6 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(60, 80)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# ZULANTHU
 		elif userinfo["selected_enemy"] == "Deathclaw" or userinfo["selected_enemy"] == "Saurian":
 			enemydmg += random.randint(55, 65)
@@ -1364,60 +1021,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(55, 75)
 			
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# ZULANTHU
 		elif userinfo["selected_enemy"] == "Largos":
 			enemydmg += random.randint(60, 70)
 			enemygold = random.randint(65, 85) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(60, 80)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# ZULANTHU
 		elif userinfo["selected_enemy"] == "The Venomous":
@@ -1426,60 +1035,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(70, 90)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# LOST CITY
 		elif userinfo["selected_enemy"] == "Skeleton" or userinfo["selected_enemy"] == "Lizardmen":
 			enemydmg += random.randint(65, 75)
 			enemygold = random.randint(70, 90) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(65, 85)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# LOST CITY
 		elif userinfo["selected_enemy"] == "Giant":
@@ -1488,60 +1049,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(70, 90)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# LOST CITY
 		elif userinfo["selected_enemy"] == "Death Knight": 
 			enemydmg += random.randint(80, 90)
 			enemygold = random.randint(85, 105) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(80, 100)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# DRENHEIM
 		elif userinfo["selected_enemy"] == "Ice Wolves" or userinfo["selected_enemy"] == "Frost Goblin":
@@ -1550,60 +1063,12 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(75, 95)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
-
 		# DRENHEIM
 		elif userinfo["selected_enemy"] == "Frost Orc":
 			enemydmg += random.randint(80, 90)
 			enemygold = random.randint(85, 105) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(80, 100)
-
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
-
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
-
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
-
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
 
 		# DRENHEIM
 		elif userinfo["selected_enemy"] == "Frost Dragon":
@@ -1612,31 +1077,30 @@ class fight(commands.Cog):
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(90, 110)
 
-			if userinfo["enemydifficulty"] == "Uncommon":
-				enemydmg = (int((enemydmg / 100) * 120))
-				enemygold = (int((enemygold / 100) * 120))
-				goldlost = (int((goldlost / 100) * 120))
-				xpgain = (int((xpgain / 100) * 120))
 
-			elif userinfo["enemydifficulty"] == "Rare":
-				enemydmg = (int((enemydmg / 100) * 130))
-				enemygold = (int((enemygold / 100) * 130))
-				goldlost = (int((goldlost / 100) * 130))
-				xpgain = (int((xpgain / 100) * 130))
+		if userinfo["enemydifficulty"] == "Uncommon":
+			enemydmg = (int((enemydmg / 100) * 120))
+			enemygold = (int((enemygold / 100) * 120))
+			goldlost = (int((goldlost / 100) * 120))
+			xpgain = (int((xpgain / 100) * 120))
 
-			elif userinfo["enemydifficulty"] == "Legendary":
-				enemydmg = (int((enemydmg / 100) * 140))
-				enemygold = (int((enemygold / 100) * 140))
-				goldlost = (int((goldlost / 100) * 140))
-				xpgain = (int((xpgain / 100) * 140))
+		elif userinfo["enemydifficulty"] == "Rare":
+			enemydmg = (int((enemydmg / 100) * 130))
+			enemygold = (int((enemygold / 100) * 130))
+			goldlost = (int((goldlost / 100) * 130))
+			xpgain = (int((xpgain / 100) * 130))
 
-			elif userinfo["enemydifficulty"] == "Mythical":
-				enemydmg = (int((enemydmg / 100) * 150))
-				enemygold = (int((enemygold / 100) * 150))
-				goldlost = (int((goldlost / 100) * 150))
-				xpgain = (int((xpgain / 100) * 150))
+		elif userinfo["enemydifficulty"] == "Legendary":
+			enemydmg = (int((enemydmg / 100) * 140))
+			enemygold = (int((enemygold / 100) * 140))
+			goldlost = (int((goldlost / 100) * 140))
+			xpgain = (int((xpgain / 100) * 140))
 
-		
+		elif userinfo["enemydifficulty"] == "Mythical":
+			enemydmg = (int((enemydmg / 100) * 150))
+			enemygold = (int((enemygold / 100) * 150))
+			goldlost = (int((goldlost / 100) * 150))
+			xpgain = (int((xpgain / 100) * 150))
 
 		elif userinfo["selected_enemy"] == "None":
 			return 
@@ -1649,13 +1113,26 @@ class fight(commands.Cog):
 		options = []
 
 		all_skills = [
-			"Swing", "Stab", "Shoot",
-			"Cast", "Parry", "Distort",
-			"Reap", "Overload", "Fusillade",
-			"Protrude", "Strike", "Corrupt",
-			"Rupture", "Warp", "Arise",
-			"Surge", "Slice", "Blockade",
-			"Sneak", "Snipe"
+			"Shoot", # archer, assassin, ranger, night assassin, skilled ranger
+			"Swing", # knight, samurai, paladin, master samurai, grand paladin
+			"Cast", # cast, necromancer, elementalist, developed necromancer, adequate elementalist
+			"Stab", # thief, rogue, mesmer, high rogue, adept mesmer
+			"Corrupt", # assassin, night assassin
+			"Strike", # ranger, skilled ranger
+			"Protrude", # samurai, master samurai
+			"Fusillade", # paladin, grand paladin
+			"Reap", # necromancer, developed necromancer
+			"Overload", # elementalist, adequate elementalist
+			"Parry", # rogue, high rogue
+			"Distort", # mesmer, adept mesmer
+			"Sneak", # night assassin
+			"Slice", # master samurai
+			"Blockade", # grand paladin
+			"Snipe", # skilled ranger
+			"Arise", # developed necromancer
+			"Surge", # adequate elementalist
+			"Rupture", # high rogue
+			"Warp" # adept mesmer
 		]
 
 		for skill in all_skills:
@@ -1691,71 +1168,48 @@ class fight(commands.Cog):
 		if userinfo["enemydifficulty"] == "Mythical":
 			monstercolor = discord.Colour(0xe57744)
 
+		# DEFINE REOCCUREING DEFINITIONS
+
+		
+		# If enemy stunned no dmg
+		if userinfo["EnemyStun"] > 0:
+			enemydmg = 0
+
+		# Users HP
+		userhealth = userinfo["health"]
+
+		# Users Defense
+		enemydmg -= youdef
+
+		# Enemy HP
+		enemyhp = userinfo["enemyhp"]
+
+		# Lootbag chance.
+		lootbag = random.randint(1, 100)
+
+		# If UserHealth is More then Maxhealth its Maxhealth
+		if userhealth >= userinfo["MaxHealth"]:
+			userhealth = userinfo["MaxHealth"]
+
+		# If enemydmg is lower then 0 its 0
+		if enemydmg < 0:
+			enemydmg = 0
+
 		# DEFINE WHAT SKILL WE SELECTED
 		# Done
 		if answer2 == "cast" or answer2 == "Cast":
-			
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
 			# Move user makes
 			move = "Cast"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
-			if userinfo["EnemyStun"] > 0:
-				
-				enemyhp = userinfo["enemyhp"]
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
-
-				
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-
-			elif userinfo["Buff1"] == "Surge":
-				
-				enemyhp = userinfo["enemyhp"]
-				# user dmg 
-				userhealth = userhealth - enemydmg
-
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
-				
+			if userinfo["Buff1"] == "Surge":
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+
+				# Users HP after dmg taken.
+				userhealth = userhealth - enemydmg
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1770,29 +1224,22 @@ class fight(commands.Cog):
 						return
 
 			elif userinfo["Buff1"] == "Arise" and userinfo["Buff1Time"] > 0:
-				
-				enemyhp = userinfo["enemyhp"]
 				hit = int((youdmg / 100) * 25)
-				
+
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - totaldmg - youdmg		
+				enemyhp = enemyhp - totaldmg - youdmg - polar_bear_bonus	
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
+
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
 
-			
-				# Set skill cooldown.
-				
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n** {} uses {} and hits {} for {} damage.\n The army of skeletons attacks.\nDealing {} damage each\nDealing a total of {} damage.\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], youdmg, hit, totaldmg, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n** {} uses {} and hits {} for {} damage.\n The army of skeletons attacks.\nDealing {} damage each\nDealing a total of {} damage.{}\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], youdmg, hit, totaldmg, polar_bear_bonus_text, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -1803,24 +1250,21 @@ class fight(commands.Cog):
 						return
 					except:
 						return
-			else: 
-				
-				userhealth = userinfo["health"]
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+			else: 				
 				# Users HP after dmg taken.
 				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
-				
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
+
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
+
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, polar_bear_bonus_text,  userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1836,51 +1280,20 @@ class fight(commands.Cog):
 
 		# Done
 		elif answer2 == "shoot" or answer2 == "Shoot":
-			
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
 			# Move user makes
 			move = "Shoot"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-			# Actual fight msg.
 
 			# stunned and buff
 			if userinfo["Buff1"] == "Corrupt" and userinfo["Buff1Time"] > 0 and userinfo["EnemyStun"] > 0:
 				youdmg = int((youdmg / 100) * 130)
-				enemydmg = 0
-
-				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
-				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				
+				# Enemys Hp after Dmg
+				enemyhp = userinfo["enemyhp"] - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} Has been corrupted for {} turns.**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["selected_enemy"], userinfo["Buff1Time"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} Has been corrupted for {} turns.**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["selected_enemy"], userinfo["Buff1Time"], userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1893,32 +1306,13 @@ class fight(commands.Cog):
 						return
 					except:
 						return
-			# stunned
-			elif userinfo["EnemyStun"] > 0:
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-
 			# Buffs
 			elif userinfo["Buff1"] == "Corrupt":
 				youdmg = int((youdmg / 100) * 130)
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = userinfo["enemyhp"] - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1926,7 +1320,7 @@ class fight(commands.Cog):
 				if userhealth < 0:
 					userhealth = 0
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has corrupted {} for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has corrupted {} for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1943,14 +1337,14 @@ class fight(commands.Cog):
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1967,51 +1361,14 @@ class fight(commands.Cog):
 
 		# Done
 		elif answer2 == "swing" or answer2 == "Swing":
-			
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
 			# Move user makes
 			move = "Swing"
-			# Users HP
-			userhealth = userinfo["health"]
-			
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-	
-			enemyhp = userinfo["enemyhp"]
 			# Acutal fight msg.
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
 			if userinfo["Buff1"] == "Blockade":
-				
-				
 				# debuff
 				youdmg = int((youdmg / 100) * 85)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg 
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# Users Defense
 				youdef = youdef * 2
 				enemydmg -= youdef	
@@ -2029,7 +1386,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense. {} uses {} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n {} uses {} hits {} for {} damage{}\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2041,13 +1398,12 @@ class fight(commands.Cog):
 					except:
 						return
 			elif userinfo["Buff1"] == "Slice":
-
 				enemyhp = userinfo["enemyhp"]
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
+				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
 				# user dmg 
 				userhealth = userhealth - enemydmg
 				# If enemydmg is lower then 0 its 0
@@ -2061,7 +1417,7 @@ class fight(commands.Cog):
 					userhealth = 0
 
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2075,15 +1431,12 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				# Users Defense
-				enemydmg -= youdef	
+
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
+
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2093,7 +1446,7 @@ class fight(commands.Cog):
 				# If UserHealth is More then Maxhealth its Maxhealth
 				if userhealth >= userinfo["MaxHealth"]:
 					userhealth = userinfo["MaxHealth"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2110,42 +1463,22 @@ class fight(commands.Cog):
 
 		# Done
 		elif answer2 == "stab" or answer2 == "Stab":
-
-
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
 			# Move user makes
 			move = "Stab"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			
-
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
 	
 			# Acutal fight msg.
 			if userinfo["EnemyStun"] > 0:
 				# Users HP after dmg taken.
 				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2160,18 +1493,12 @@ class fight(commands.Cog):
 						return
 			# Buffs
 			elif userinfo["Buff1"] == "Rupture":
-
-				enemyhp = userinfo["enemyhp"]
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
-				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
+				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
 				# user dmg 
 				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -2180,7 +1507,7 @@ class fight(commands.Cog):
 					userhealth = 0
 
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2195,11 +1522,9 @@ class fight(commands.Cog):
 						return
 			
 			# Warp Buff
-
 			elif userinfo["Buff1"] == "Warp" and userinfo["Buff1Time"] > 0:
-
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				enemydmg = int((enemyhp / 100) * 40)
 				# user dmg 
 				userhealth = userhealth - enemydmg
@@ -2209,9 +1534,7 @@ class fight(commands.Cog):
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
-				# set skill cooldown
-				userinfo["SkillCooldown1"] = 3
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, But {} has warp debuff.\n the enemy damage is lowered by 60%**\n**{} hits {} for {} damage\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"],  userinfo["name"], userinfo["selected_enemy"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, But {} has warp debuff.\n the enemy damage is lowered by 60%**\n**{} hits {} for {} damage{}\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2224,16 +1547,16 @@ class fight(commands.Cog):
 						return
 			else:
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2250,57 +1573,22 @@ class fight(commands.Cog):
 		# Done
 		elif answer2 == "parry" or answer2 == "Parry":
 			# Stun the enemy for 1 turn. 3 turns cooldown.
-
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Parry"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
-
 			if userinfo["Buff1"] == "Rupture" and userinfo["SkillCooldown1"] == 0:
-
-				enemydmg = 0
-
-				youdmg = 0
 				userinfo["EnemyStun"] = 2
 				userinfo["SkillCooldown1"] = 4
 				stun = 1
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
-				# user dmg 
-				userhealth = userhealth - enemydmg
-
+				enemyhp = enemyhp - bleeding - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn\n {} Has bleeding effect for {} turns.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn\n {} Has bleeding effect for {} turn(s).\nBleeding does {} damage{}**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["selected_enemy"], bufftime, bleeding, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2318,8 +1606,11 @@ class fight(commands.Cog):
 				userinfo["EnemyStun"] = 2
 				userinfo["SkillCooldown1"] = 4
 				stun = 1
-				
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				enemyhp = enemyhp - polar_bear_bonus
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], stun,polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2332,25 +1623,19 @@ class fight(commands.Cog):
 						return
 
 			elif userinfo["Buff1"] == "Rupture":
-
-				enemydmg = 0
-
-				youdmg = 0
+				
 				userinfo["EnemyStun"] = 2
 				userinfo["SkillCooldown1"] = 4
 				stun = 1
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
-				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-
+				enemyhp = enemyhp - bleeding - polar_bear_bonus
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn\n {} Has bleeding effect for {} turns.**\n**\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turn\n {} Has bleeding effect for {} turn(s).{}**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], stun, polar_bear_bonus_text, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2381,61 +1666,23 @@ class fight(commands.Cog):
 		# Done
 		elif answer2 == "distort" or answer2 == "Distort":
 			# Distorts the enemy for 50% less dmg. 2 turns cooldown.
-			
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Distort"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-			
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
+			if userinfo["Buff1"] == "Warp" and userinfo["Buff1Time"] > 0:
 
-				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
+				# Users HP after dmg taken.
+				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
-
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns Distort had no use.**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-			elif userinfo["Buff1"] == "Warp" and userinfo["Buff1Time"] > 0:
-
-				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
 				# set skill cooldown
 				userinfo["SkillCooldown1"] = 3
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, But {} has warp debuff.\n the enemy damage is 0.**\n**{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"],  userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, But {} has warp debuff.\n the enemy damage is 0.**\n**{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"],  userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2449,14 +1696,19 @@ class fight(commands.Cog):
 
 			elif userinfo["SkillCooldown1"] == 0:
 				enemydmg = int((enemydmg / 100) * 50)
-
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				# If enemyhealth is lower then 0 its 0
+				if enemyhp < 0:
+					enemyhp = 0
 				# set skill cooldown
 				userinfo["SkillCooldown1"] = 3
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, halving the damage**\n**{} hits {} for {} damage**\n**{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], enemydmg,  userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, halving the damage**\n**{} hits {} for {} damage**\n**{} hits {} for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], enemydmg,  userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2486,67 +1738,31 @@ class fight(commands.Cog):
 		# Done
 		elif answer2 == "reap" or answer2 == "Reap":
 			# Reaps the enemy of 30% their Hp and adds it to their own health!
-
 			# Move user makes
 			move = "Reap"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-			
-			
-			if userinfo["EnemyStun"] > 0:
-
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-			elif userinfo["Buff1"] == "Arise" and userinfo["Buff1Time"] > 0 and userinfo["SkillCooldown1"] == 0:
+			if userinfo["Buff1"] == "Arise" and userinfo["Buff1Time"] > 0 and userinfo["SkillCooldown1"] == 0:
 				# takes 30% of enemyhp 
 				reap = int((enemyhp / 100) * 30)
-				# Fixs enemy hp
-				enemyhp = enemyhp - reap
 
 				hit = int((youdmg / 100) * 25)
-				
 
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - totaldmg - youdmg
+				enemyhp = enemyhp - reap - totaldmg - polar_bear_bonus
 				# Adds 25% enemy hp to user
 				userhealth += reap
 				if userhealth >= userinfo["MaxHealth"]:
 					userhealth = userinfo["MaxHealth"]
-			
+				userhealth -= enemydmg
+				# If User health is lower then 0 its 0
+				if userhealth < 0:
+					userhealth = 0
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 3
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and 30% of {} Health.\n{} Hp healed! The army of skeletons attacks.\nDealing {} damage each\nDealing a total of {} damage.\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], reap, hit, totaldmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and 30% of {} Health.\n{} Hp healed! \nThe army of skeletons attacks.\nDealing {} damage each\nDealing a total of {} damage.\n**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], reap, hit, totaldmg, polar_bear_bonus, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2562,7 +1778,7 @@ class fight(commands.Cog):
 				# takes 30% of enemyhp 
 				reap = int((enemyhp / 100) * 30)
 				# Fixs enemy hp
-				enemyhp = enemyhp - reap
+				enemyhp = enemyhp - reap - polar_bear_bonus
 				if enemyhp < 0:
 					enemyhp = 0
 				# Adds 25% enemy hp to user
@@ -2571,7 +1787,7 @@ class fight(commands.Cog):
 					userhealth = userinfo["MaxHealth"]
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 3
-				em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Reaps 30% of {} Health.\n{} Hp healed!**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], reap, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em3 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Reaps 30% of {} Health.\n{} Hp healed!**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], reap, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em3.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2602,56 +1818,14 @@ class fight(commands.Cog):
 		# Done
 		elif answer2 == "overload" or answer2 == "Overload":
 			# Overload Causes to deal 40% extra dmg to enemies but damages the user 50% of overload damage.
-
 			# Move user makes
-			move = "overload"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-			
-		
-
-		
-			if userinfo["EnemyStun"] > 0:
-				# If User health is lower then 0 its 0
-				if userhealth < 0:
-					userhealth = 0
-				# If enemyhealth is lower then 0 its 0
-				if enemyhp < 0:
-					enemyhp = 0
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-
-			
-			elif userinfo["Buff1"] == "Surge":
+			move = "overload"		
+			if userinfo["Buff1"] == "Surge":
 
 				enemyhp = userinfo["enemyhp"]
 				# user dmg 
 				userhealth = userhealth - enemydmg
-
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				enemyhp -= polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2659,7 +1833,7 @@ class fight(commands.Cog):
 				if enemyhp < 0:
 					enemyhp = 0
 				
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2675,19 +1849,10 @@ class fight(commands.Cog):
 
 			elif userinfo["SkillCooldown1"] == 0:
 				overloaddmg = int((youdmg / 100) * 40)
-				
-				
 				overloadselfdmg = int((overloaddmg / 100) * 50)
-				
-
 				youdmg += overloaddmg
-				enemydmg += overloadselfdmg
 				userhealth = userhealth - enemydmg - overloadselfdmg 
-				enemyhp = userinfo["enemyhp"] - youdmg
-
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2696,7 +1861,7 @@ class fight(commands.Cog):
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 2
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage\nBut also deals {} self damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} overloads {} for {} damage\nBut also deals {} self damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, overloadselfdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2724,52 +1889,17 @@ class fight(commands.Cog):
 		# done
 		elif answer2 == "fusillade" or answer2 == "Fusillade":
 			# Fusillade deals a series hits 3x 50% original damage doing 150% dmg total
-
-
 			# Move user makes
 			move = "fusillade"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-			
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0
-
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
 			if userinfo["Buff1"] == "Blockade":
-				
 				# debuff
 				youdmg = int((youdmg / 100) * 85)
 				hit = int((youdmg / 100) * 50)
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit
-				enemyhp = enemyhp - totaldmg
-				# Users Defense
-				youdef = youdef * 2
-				enemydmg -= youdef	
-				
+				enemyhp = enemyhp - totaldmg - polar_bear_bonus
+				# Users Defense (first already did this now agiann for the X2 bonus)
+				enemydmg -= youdef
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
@@ -2783,7 +1913,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n{} hits {} for {} damage**\n**{} uses {} and does a series of hits.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n{} hits {} for {} damage**\n**{} uses {} and does a series of hits.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2797,16 +1927,11 @@ class fight(commands.Cog):
 
 			elif userinfo["SkillCooldown1"] == 0:
 				hit = int((youdmg / 100) * 50)
-				
-
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit
-				enemyhp = enemyhp - totaldmg
+				enemyhp = enemyhp - totaldmg - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2815,7 +1940,7 @@ class fight(commands.Cog):
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 4
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and does a series of hits.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and does a series of hits.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2825,8 +1950,7 @@ class fight(commands.Cog):
 						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
 						return
 					except:
-						return
-			
+						return	
 			else:
 				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
@@ -2844,49 +1968,17 @@ class fight(commands.Cog):
 # done
 		elif answer2 == "protrude" or answer2 == "Protrude":
 			# Protrude Deals a critical strike to the enemy core dealing 140% damage.
-
 			# Move user makes
 			move = "Protrude"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-			
-			if userinfo["EnemyStun"] > 0:
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-			elif userinfo["Buff1"] == "Slice":
-
+			if userinfo["Buff1"] == "Slice":
 				enemyhp = userinfo["enemyhp"]
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				youdmg = int((youdmg / 100) * 140)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
+				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -2895,7 +1987,7 @@ class fight(commands.Cog):
 					userhealth = 0
 
 				bufftime = userinfo["Buff1Time"]
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {}  and has a Critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage\n {} Has bleeding effect for {} turns.**\n**{} uses {} and has a Critical hit! for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], bufftime, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				# if item has no image none gets added.
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2913,12 +2005,9 @@ class fight(commands.Cog):
 				youdmg = int((youdmg / 100) * 140)
 				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2927,7 +2016,7 @@ class fight(commands.Cog):
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 3
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and has a Critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and has a Critical hit!\n for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -2952,48 +2041,24 @@ class fight(commands.Cog):
 					except:
 						return	
 
-# done
+		# done
 		elif answer2 == "strike" or answer2 == "Strike":
 			# Strike Deals a critical hit to the knee immobilizing them for 2 turns while dealing 50% damage. has a 6 turn cooldown.
-
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Strike"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown1"] == 0:
 				youdmg = int((youdmg / 100) * 50)
 				userinfo["EnemyStun"] = 3
-				
 				stun = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 6
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turns\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and stuns {} for {} turns\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], stun, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3019,52 +2084,24 @@ class fight(commands.Cog):
 					except:
 						return
 
-# done
+		# done
 		elif answer2 == "corrupt" or answer2 == "Corrupt":
 			# Corrupts the enemy for 2 turns taking 30% damage extra, or ends when enemy dies. 4 turn cooldown.
-
 			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Corrupt"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown1"] == 0:
 				# add buff and timer
 				userinfo["Buff1"] = "Corrupt"
 				userinfo["Buff1Time"] = 2
-				# Corrupt dmg
-				
+				# Corrupt dmg	
 				youdmg = int((youdmg / 100) * 130)
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -3073,7 +2110,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown1"] = 4
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and corrupts {} for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and corrupts {} for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3103,50 +2140,21 @@ class fight(commands.Cog):
 
 		elif answer2 == "Rupture" or answer2 == "rupture":
 			# Rupture the enemy's artery 2 turns dealing 25% current hp bleeding dmg.  4 turn cooldown.
-
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Rupture"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown2"] == 0:
 				# add buff and timer
 				userinfo["Buff1"] = "Rupture"
 				userinfo["Buff1Time"] = 2
-			
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# Bleeding time
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
+				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -3155,7 +2163,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 4
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Ruptures {} artery\n causing bleeding effect for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Ruptures {} artery\n causing bleeding effect for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3184,44 +2192,18 @@ class fight(commands.Cog):
 
 		elif answer2 == "Warp" or answer2 == "warp":
 			# Warp the enemy's attacks for 2 turns dealing 60% Less damage.  5 turn cooldown.
-
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Warp"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown2"] == 0:
 				# add buff and timer
 				userinfo["Buff1"] = "Warp"
 				userinfo["Buff1Time"] = 2
-			
 				enemydmg = int((enemydmg / 100) * 60)
-
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = userinfo["enemyhp"] - youdmg
-				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg 
-				# user dmg 
-				userhealth = userhealth - enemydmg
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -3230,7 +2212,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, Warping {} Attack dealing 60% less damage**\n**{} hits {} for {} damage**\n**{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["selected_enemy"], userinfo["name"], enemydmg,  userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {}, Warping {} Attack dealing 60% less damage**\n**{} hits {} for {} damage**\n**{} hits {} for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"], move, userinfo["selected_enemy"], userinfo["selected_enemy"], userinfo["name"], enemydmg,  userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3259,48 +2241,16 @@ class fight(commands.Cog):
 
 		elif answer2 == "Arise" or answer2 == "arise":
 			# Arise A small army of 5 Skeletons dealing 30% your dmg for 2 turns, Has a 5 turn cooldown 
-
-
 			# Move user makes
 			move = "Arise"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			
-			if userinfo["EnemyStun"] > 0:
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-			
-			elif userinfo["SkillCooldown2"] == 0:
+			if userinfo["SkillCooldown2"] == 0:
 				hit = int((youdmg / 100) * 25)
-				
-
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - totaldmg - youdmg
+				enemyhp = enemyhp - totaldmg - youdmg - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
@@ -3315,7 +2265,7 @@ class fight(commands.Cog):
 				userinfo["Buff1Time"] = 2
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 8
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and Raises a small army of skeletons!.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.\n{} hits {} for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} uses {} and Raises a small army of skeletons!.**\n**Dealing {} damage each**\n**Dealing a total of {} damage.\n{} hits {} for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], move, hit, totaldmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3344,50 +2294,12 @@ class fight(commands.Cog):
 
 		elif answer2 == "Surge" or answer2 == "surge":
 			# Surge Causes the user to get a massice power surge dealing 3 times normal damage but stunning themself after the attack for 1 turn.
-
 			# Move user makes
-			move = "Surge"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-			
-			if userinfo["EnemyStun"] > 0:
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has been stunned for {} turns**\n**{} uses {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["EnemyStun"], userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
-				# if item has no image none gets added.
-				if not userinfo["equip"]["image"] == "None":
-					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				# Tries to send msg.
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
-			
-			elif userinfo["SkillCooldown2"] == 0:
-				
-				
-
+			move = "Surge"		
+			if userinfo["SkillCooldown2"] == 0:
 				youdmg = youdmg * 3
-			
-				userhealth = userhealth - enemydmg 
-				enemyhp = userinfo["enemyhp"] - youdmg
-
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				userhealth -= enemydmg 
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -3398,7 +2310,7 @@ class fight(commands.Cog):
 				userinfo["SkillCooldown2"] = 4
 				userinfo["Buff1"] = "Surge"
 				userinfo["Buff1Time"] = 2
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} gains a power surge and triples their damage.\n total damage {}Hp\nBut stun yourself for 1 turn.**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], youdmg,   userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} hits {} for {} damage**\n**{} gains a power surge and triples their damage.\n total damage {}Hp\nBut stun yourself for 1 turn.**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3428,32 +2340,8 @@ class fight(commands.Cog):
 
 		elif answer2 == "Slice" or answer2 == "slice":
 			# SLice causes 2 round bleeding effect(25% current health), 30% increased damage 4 turn cooldown.
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Slice"
-			# Users HP
-			userhealth = userinfo["health"]
-			# Users Defense
-			enemydmg -= youdef	
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown2"] == 0:
 				# add buff and timer
@@ -3466,13 +2354,9 @@ class fight(commands.Cog):
 				# Bleeding time
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding
-				
-				# If enemydmg is lower then 0 its 0
-				if enemydmg < 0:
-					enemydmg = 0
+				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -3481,7 +2365,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 4
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Slices {}\n causing bleeding effect for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Slices {}\n causing bleeding effect for {} turns\n{} hits {} for {} damage\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], bufftime, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3511,31 +2395,8 @@ class fight(commands.Cog):
 
 		elif answer2 == "Blockade" or answer2 == "blockade":
 			# Blockade Dubbles your armor for 2 turns! dealing 15% less damage. 5 turn cooldown.
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Blockade"
-			# Users HP
-			userhealth = userinfo["health"]
-			
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
 			# Acutal fight msg.
 			if userinfo["SkillCooldown2"] == 0:
 				# add buff and timer
@@ -3544,16 +2405,15 @@ class fight(commands.Cog):
 				# debuff
 				youdmg = int((youdmg / 100) * 85)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg 
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# Users Defense
-				youdef = youdef * 2
 				enemydmg -= youdef	
 				
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -3562,7 +2422,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Dubbles their defense for 2 turns.\n{} hits {} for {} damage\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and Dubbles their defense for 2 turns.\n{} hits {} for {} damage\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["name"], userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3591,39 +2451,14 @@ class fight(commands.Cog):
 
 		elif answer2 == "Sneak" or answer2 == "sneak":
 			# Sneak around your enemy and delivering a critical hit dealing 150% and not taking any dmg! 4 turn cooldown.
-			# If enemy stunned no dmg
-			if userinfo["EnemyStun"] > 0:
-				enemydmg = 0 
 			# Move user makes
 			move = "Sneak"
-			# Users HP
-			userhealth = userinfo["health"]
-			
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If enemydmg is lower then 0 its 0
-			if enemydmg < 0:
-				enemydmg = 0
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-
 			if userinfo["SkillCooldown2"] == 0:
 				youdmg = int((youdmg / 100) * 150)
-				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -3632,7 +2467,7 @@ class fight(commands.Cog):
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 4
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and comes out the shadows.\nYou deal a critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and comes out the shadows.\nYou deal a critical hit! for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3661,31 +2496,10 @@ class fight(commands.Cog):
 			# Snipe your enemy from afer taking no damage but headshotting the enemy dealing 250% of your base dmg. 6 turn cooldown.
 			# Move user makes
 			move = "Snipe"
-			# Users HP
-			userhealth = userinfo["health"]
-			
-			# Enemy Hp
-			enemyhp = userinfo["enemyhp"]
-			# Lootbag chance.
-			lootbag = random.randint(1, 30)
-			# If User health is lower then 0 its 0
-			if userhealth < 0:
-				userhealth = 0
-			# If enemyhealth is lower then 0 its 0
-			if enemyhp < 0:
-				enemyhp = 0
-			# If UserHealth is More then Maxhealth its Maxhealth
-			if userhealth >= userinfo["MaxHealth"]:
-				userhealth = userinfo["MaxHealth"]
-
-
 			if userinfo["SkillCooldown2"] == 0:
 				youdmg = int((youdmg / 100) * 250)
-				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg
-				
-
+				enemyhp = enemyhp - youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -3694,7 +2508,7 @@ class fight(commands.Cog):
 					enemyhp = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and headshots {}.\nYou deal a critical hit! for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and headshots {}.\nYou deal a critical hit! for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -3719,9 +2533,6 @@ class fight(commands.Cog):
 					except:
 						return	
 
-
-
-
 		elif answer2 == "heal" or answer2 == "Heal":
 			battleinfo = db.battles.find_one({"_id": user.id})
 			if battleinfo["battle_active"] == "True":
@@ -3730,7 +2541,6 @@ class fight(commands.Cog):
 			else:
 				await _heal_reaction(user, skillmsg)
 				return
-
 		else:
 			return
 
@@ -3790,34 +2600,76 @@ class fight(commands.Cog):
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 		elif enemyhp <= 0:
-			
+			lootbag_chance = 3
 
-			try: 
-				goose_bonus_text = "" 
+			try:
+				pterodactyl_bonus = 0
+				pterodactyl_bonus_text = ""
+				goose_bonus_text = ""
+				goose_bonus = 0
 				for i in userinfo["pet_list"]:
 					petinfo = i
 					pet_level = petinfo["level"]
 					pet_type = petinfo["type"]
-
 					if pet_type == "Goose":
 						if pet_level <= 10:
-							enemygold = enemygold + (int((enemygold / 100) * 5))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 5% Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 5))
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
 						elif pet_level <= 20:
-							enemygold = enemygold + (int((enemygold / 100) * 10))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 10% Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 10))						
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
 						elif pet_level <= 30:
-							enemygold = enemygold + (int((enemygold / 100) * 15))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 15% Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 15))							
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
 						elif pet_level <= 40:
-							enemygold = enemygold + (int((enemygold / 100) * 20))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 20% Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 20))							
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
 						elif pet_level <= 50:
-							enemygold = enemygold + (int((enemygold / 100) * 25))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 25% Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 25))
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
 						elif pet_level >= 51:
-							enemygold = enemygold + (int((enemygold / 100) * 30))
-							goose_bonus_text = "\n<:Gold:639484869809930251> 30% Golden Goose gold bonus."
+							goose_bonus = (int((enemygold / 100) * 30))
+							goose_bonus_text = "\n<:Gold:639484869809930251> +{} pet bonus.".format(goose_bonus)
+
+					if pet_type == "Pterodactyl":
+						if pet_level <= 10:
+							pterodactyl_bonus = (int((xpgain / 100) * 2.5))
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+						elif pet_level <= 20:
+							pterodactyl_bonus = (int((xpgain / 100) * 5))						
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+						elif pet_level <= 30:
+							pterodactyl_bonus = (int((xpgain / 100) * 7.5))							
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+						elif pet_level <= 40:
+							pterodactyl_bonus = (int((xpgain / 100) * 10))							
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+						elif pet_level <= 50:
+							pterodactyl_bonus = (int((xpgain / 100) * 12.5))
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+						elif pet_level >= 51:
+							pterodactyl_bonus = (int((xpgain / 100) * 15))
+							pterodactyl_bonus_text = "\n:sparkles: +{} pet bonus.".format(pterodactyl_bonus)
+
+					if pet_type == "Fox":
+						if pet_level <= 10:
+							lootbag_chance = 8
+							fox_bonus_text = "\n:sparkles: +5% pet bonus chance."
+						elif pet_level <= 20:
+							lootbag_chance = 13
+							fox_bonus_text = "\n:sparkles: +10% pet bonus chance."
+						elif pet_level <= 30:
+							lootbag_chance = 18
+							fox_bonus_text = "\n:sparkles: +15% pet bonus chance."
+						elif pet_level <= 40:	
+							lootbag_chance = 23
+							fox_bonus_text = "\n:sparkles: +20% pet bonus chance."
+						elif pet_level <= 50:
+							lootbag_chance = 28
+							fox_bonus_text = "\n:sparkles: +25% pet bonus chance."
+						elif pet_level >= 51:
+							lootbag_chance = 33
+							fox_bonus_text = "\n:sparkles: +30% pet bonus chance."
 			except:
 				pass
 					
@@ -3886,7 +2738,6 @@ class fight(commands.Cog):
 
 				try:
 					em2 = discord.Embed(description=":dagger:{} Killed the {}\n<:PvP:573580993055686657>The Party gets \n {}".format(userinfo["name"], userinfo["selected_enemy"], party_reward_list), color=discord.Colour(0x00ff00))
-					em2.set_footer(text="Want more shared bonus? become a patreon!")
 					await ctx.send(embed=em2)
 				except Exception as e: 
 					print(e)
@@ -3986,17 +2837,14 @@ class fight(commands.Cog):
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 				except:
 					pass
-				if userinfo["role"] == "Developer":
-					pet_spawn = random.randint(1, 100)
-
-					if pet_spawn >= 90:
-						
-						if userinfo["pet_stage"] == "Golden Goose":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a goose.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
-							em.set_image(url="")
-							await ctx.send(embed=em)
-							userinfo["pet_find"] = "Golden Goose"
-							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				pet_spawn = random.randint(1, 100)
+				if pet_spawn >= 90:
+					if userinfo["pet_stage"] == "Golden Goose":
+						em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a goose.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
+						em.set_image(url="")
+						await ctx.send(embed=em)
+						userinfo["pet_find"] = "Golden Goose"
+						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 								
 						
 				if userinfo["questname"] == "Fire Golem I":
@@ -4082,19 +2930,15 @@ class fight(commands.Cog):
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 				except:
 					pass
-
-				if userinfo["role"] == "Developer":
-					pet_spawn = random.randint(1, 100)
-
-					if pet_spawn >= 90:
-
-						if userinfo["pet_stage"] == "Fox":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a fox.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
-							em.set_image(url="")
-							await ctx.send(embed=em)
-							userinfo["pet_find"] = "Fox"
-							
-							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				pet_spawn = random.randint(1, 100)
+				if pet_spawn >= 90:
+					if userinfo["pet_stage"] == "Fox":
+						em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a fox.\n to tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xff0000))
+						em.set_image(url="")
+						await ctx.send(embed=em)
+						userinfo["pet_find"] = "Fox"
+						
+						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 				
 			elif userinfo["selected_enemy"] == "The Corrupted":
 				try:
@@ -4109,19 +2953,15 @@ class fight(commands.Cog):
 					if userinfo["questprogress"] >= 5:
 						await _quest_check(self, ctx, user)
 					pass
-
-				if userinfo["role"] == "Developer":
-					pet_spawn = random.randint(1, 100)
-
-					if pet_spawn >= 90:
-
-						if userinfo["pet_stage"] == "Polar Bear":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a polar bear.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
-							em.set_image(url="")
-							await ctx.send(embed=em)
-							userinfo["pet_find"] = "Polar Bear"
-							userinfo["pet_stage"] = "Small Cerberus"
-							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				pet_spawn = random.randint(1, 100)
+				if pet_spawn >= 90:
+					if userinfo["pet_stage"] == "Polar Bear":
+						em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a polar bear.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+						em.set_image(url="")
+						await ctx.send(embed=em)
+						userinfo["pet_find"] = "Polar Bear"
+						userinfo["pet_stage"] = "Small Cerberus"
+						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 						
 
@@ -4131,20 +2971,15 @@ class fight(commands.Cog):
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 				except:
 					pass
-
-			
-				if userinfo["role"] == "Developer":
-					pet_spawn = random.randint(1, 100)
-
-					if pet_spawn >= 90:
-			
-						if userinfo["pet_stage"] == "Small Cerberus":
-							em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a small cerberus.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
-							em.set_image(url="")
-							await ctx.send(embed=em)
-							userinfo["pet_find"] = "Small Cerberus"
-							userinfo["pet_stage"] = "None"
-							db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				pet_spawn = random.randint(1, 100)
+				if pet_spawn >= 90:
+					if userinfo["pet_stage"] == "Small Cerberus":
+						em = discord.Embed(title="A pet!", description="a tameable pet has spawned!, its a small cerberus.\n to tame it type {}pet tame".format(ctx.prefix), color=discord.Colour(0xff0000))
+						em.set_image(url="")
+						await ctx.send(embed=em)
+						userinfo["pet_find"] = "Small Cerberus"
+						userinfo["pet_stage"] = "None"
+						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 			elif userinfo["selected_enemy"] == "Elder Dragon":
 				try:
@@ -4279,27 +3114,28 @@ class fight(commands.Cog):
 				except:
 					pass
 			
-			em = discord.Embed(description=":dagger: {} killed the {}\n<:GoldBars:573781770709893130> {} gained {} gold{}\n:sparkles: {} gained {} experience".format(userinfo["name"], userinfo["selected_enemy"], userinfo["name"], int(enemygold), goose_bonus_text, userinfo["name"], xpgain), color=discord.Colour(0x00ff00))
-			em.set_footer(text="want more benefits, become a patreon!")
+			em = discord.Embed(description=":dagger: {} killed the {}\n<:GoldBars:573781770709893130> {} gained {} gold{}\n:sparkles: {} gained {} experience{}".format(userinfo["name"], userinfo["selected_enemy"], userinfo["name"], int(enemygold), goose_bonus_text, userinfo["name"], xpgain, pterodactyl_bonus_text), color=discord.Colour(0x00ff00))
 			await ctx.send(embed=em)	
 
 
 			userinfo["selected_enemy"] = "None"
 			userinfo["enemydifficulty"] = "None"
-			userinfo["gold"] = userinfo["gold"] + int(enemygold)
-			userinfo["exp"] = userinfo["exp"] + xpgain
+			userinfo["gold"] = userinfo["gold"] + int(enemygold + goose_bonus)
+			userinfo["exp"] = userinfo["exp"] + int(xpgain + pterodactyl_bonus)
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-
-			if lootbag == 2:
-				userinfo = db.users.find_one({"_id": user.id})
-				em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["crate"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-				userinfo["lootbag"] = userinfo["lootbag"] + 1
-			elif lootbag == 1:
-				userinfo = db.users.find_one({"_id": user.id})
-				em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["key"]["translation"].format(userinfo["name"]), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-				userinfo["keys"] = userinfo["keys"] + 1
+			
+			if lootbag <= lootbag_chance:
+				chance2 = random.randint(1, 100)
+				if chance2 >= 50:
+					userinfo = db.users.find_one({"_id": user.id})
+					em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["crate"]["translation"].format(userinfo["name"], fox_bonus_text), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+					userinfo["lootbag"] = userinfo["lootbag"] + 1
+				else:
+					userinfo = db.users.find_one({"_id": user.id})
+					em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["key"]["translation"].format(userinfo["name"], fox_bonus_text), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+					userinfo["keys"] = userinfo["keys"] + 1
 
 			
 			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
