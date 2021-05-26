@@ -195,6 +195,7 @@ class misc(commands.Cog):
 			userinfo["trader_block"] = 0
 		except:
 			pass
+		userinfo["health"] = userinfo["MaxHealth"]
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Deny Cooldown Complete", description="Cooldowns removed.",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
@@ -335,7 +336,17 @@ class misc(commands.Cog):
 		em = discord.Embed(title="Solyx staff list.", description="AceTheBearg223#4562\nTheMaksoo#1212\n\nTwannie#8493\nFailed#4444",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
-		
+
+	@commands.command(pass_context=True, no_pm=True)	
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.check(developer)
+	async def test(self, ctx):
+		monstercolor = discord.Colour(0xffffff)
+		fight_msg = "Test\nuwuwu"
+		name_msg = ""
+		em = discord.Embed(color=monstercolor)
+		em.add_field(name=name_msg, value=fight_msg, inline=False)
+		await ctx.send(embed=em)
 
 def setup(bot):
 	n = misc(bot)

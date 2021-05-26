@@ -18,7 +18,7 @@ class friends(commands.Cog):
 		self.bot = bot
 
 
-	@commands.group(name="pet", aliases=["pets", "companion"], pass_context=True, no_pm=True, hidden=True)
+	@commands.group(name="pets", aliases=["pet", "companion"], pass_context=True, no_pm=True, hidden=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _pets(self, ctx):
 		"""Pets!"""
@@ -239,7 +239,7 @@ class friends(commands.Cog):
 		petinfo["name"] = name
 
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title="Pet named",description="You have named your Goose!\nit will now be known as  {}".format(petinfo["name"]), color=discord.Colour(0xff0000))
+		em = discord.Embed(title="Pet named",description="You have named your {}!\nit will now be known as  {}".format(petinfo["type"], petinfo["name"]), color=discord.Colour(0xff0000))
 		em.set_image(url="")
 		await ctx.send(embed=em)
 
@@ -404,11 +404,7 @@ class friends(commands.Cog):
 			em = discord.Embed(title="OH NO!", description="You have no pet feed.\n", color=discord.Colour(0xffd700))
 			await ctx.send(embed=em)
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
-		print(pet_name)
-		print(petinfo["level"])
-		print(petinfo["xp"])
-		print(petinfo)
-		
+
 		
 
 		

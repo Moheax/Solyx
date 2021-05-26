@@ -115,7 +115,6 @@ class exp(commands.Cog):
 			userinfo["exp"] = userinfo["exp"] + gain
 			await _level_up_check_user(self, ctx, user)
 				
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			userinfo["exp_potions"] = userinfo["exp_potions"] - amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["exp"]["expused"]["translation"], description="+{} Exp!".format(gain), color=discord.Colour(0xffffff))

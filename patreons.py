@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 import discord
 import random
 import time
@@ -93,7 +94,7 @@ class patreons(commands.Cog):
 				except:
 					pass
 
-				if userinfo["role"] == "patreon1" or userinfo["role"] == "Developer":
+				if userinfo["role"] == "patreon1":
 					list1= ""
 					list2= ""
 					if "Common Supporter" in _titles :
@@ -104,7 +105,6 @@ class patreons(commands.Cog):
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
 							titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-							db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
 							em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
 							try:
 								await user.send(embed=em)
@@ -140,7 +140,7 @@ class patreons(commands.Cog):
 					embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573784881012932618.png?v=1")
 					await ctx.send(embed=embed)
 
-					userinfo["gold"] += 52500
+					userinfo["gold"] += 2500
 					userinfo["lootbag"] += 15
 					userinfo["keys"] += 15
 					userinfo["hp_potions"] += 15
@@ -159,7 +159,6 @@ class patreons(commands.Cog):
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
 							titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-							db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
 							em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
 							try:
 								await user.send(embed=em)
@@ -216,12 +215,29 @@ class patreons(commands.Cog):
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
 							titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-							db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
 							em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
 							try:
 								await user.send(embed=em)
 							except:
 								await ctx.send(embed=em)
+
+					for i in userinfo["pet_list"]:
+						petinfo = i
+						pet_type = petinfo["type"]
+						if pet_type == "Goose":
+							pass
+						if pet_type == "Fox":
+							pass
+						if pet_type == "Polar Bear":
+							pass
+						if pet_type == 	"Small Cerberus":
+							pass
+						if pet_type == "Pterodactyl":
+							list1 += "Pterodactyl pet | <:ShieldCheck:560804135545602078> already claimed.\n"
+						else:
+							list1 += "You have recieved a Pterodactyl pet!\n"
+							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
+							break
 
 					list1 += "Open 4 crates at the same time!\n"
 					list1 += "Use 4 Exp potions at the same time!\n"
@@ -267,7 +283,7 @@ class patreons(commands.Cog):
 					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 
-				if userinfo["role"] == "patreon4":
+				if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
 					list1= ""
 					list2= ""
 					if "Mythical Supporter" in _titles :
@@ -278,12 +294,29 @@ class patreons(commands.Cog):
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
 							titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-							db.titles.replace_one({ "_id": user.id }, titlesinfo, upsert=True)
 							em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
 							try:
 								await user.send(embed=em)
 							except:
 								await ctx.send(embed=em)
+
+					for i in userinfo["pet_list"]:
+						petinfo = i
+						pet_type = petinfo["type"]
+						if pet_type == "Goose":
+							pass
+						if pet_type == "Fox":
+							pass
+						if pet_type == "Polar Bear":
+							pass
+						if pet_type == 	"Small Cerberus":
+							pass
+						if pet_type == "Pterodactyl":
+							list1 += "Pterodactyl pet | <:ShieldCheck:560804135545602078> already claimed.\n"
+						else:
+							list1 += "You have recieved a Pterodactyl pet!\n"
+							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
+							break
 
 					list1 += "Open 5 crates at the same time!\n"
 					list1 += "Use 5 Exp potions at the same time!\n"

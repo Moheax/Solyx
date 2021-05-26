@@ -74,7 +74,7 @@ class sell(commands.Cog):
 			return
 		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
 			if userinfo["questname"] == "Wood Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				userinfo["questprogress"] = userinfo["questprogress"] + amount
 				db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
 					await _quest_check(self, ctx, user)

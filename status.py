@@ -193,15 +193,9 @@ class status(commands.Cog):
 				await _quest_check(self, ctx, user)
 			pass
 
-
-
-
-
-
-
-
 		if userinfo["role"] == "Developer":
 			try:
+				awdjn
 				maxexp = 100 + ((userinfo["lvl"] + 1) * 3.5)
 				if not userinfo["guild"] == "None":
 					try:
@@ -339,9 +333,41 @@ class status(commands.Cog):
 						ricon = "<:Demon:639474562463170590> "
 				except:
 					pass
+				small_cerberus_bonus_text = ""
+				for i in userinfo["pet_list"]:
+					petinfo = i
+					pet_level = petinfo["level"]
+					pet_type = petinfo["type"]
+
+					
+					if pet_type == "Small Cerberus":
+						if pet_level <= 10:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 5))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 5))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+						elif pet_level <= 20:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 10))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 10))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)				
+						elif pet_level <= 30:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 15))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 15))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+						elif pet_level <= 40:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 20))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 20))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+						elif pet_level <= 50:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 25))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 25))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+						elif pet_level >= 51:
+							small_cerberus_bonus_min = (int((total_defense_min / 100) * 30))
+							small_cerberus_bonus_max = (int((total_defense_max / 100) * 30))
+							small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
 
 				em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n\n**Pet:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], userinfo["equipped_pet"][0]["name"]), color=discord.Colour(0xffffff))
-				em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n:crossed_swords: **Bonus Damage:** {}-{}\n\n <:Shield:573576333863682064>**Total defense:** *{} - {}*\n ".format(weaponequipped, item, item2, damage_bonus_min, damage_bonus_max, total_defense_min, total_defense_max ), inline=False)
+				em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n:crossed_swords: **Bonus Damage:** {}-{}\n\n <:Shield:573576333863682064>**Total defense:** *{} - {}*\n{}".format(weaponequipped, item, item2, damage_bonus_min, damage_bonus_max, total_defense_min, total_defense_max, small_cerberus_bonus_text), inline=False)
 				em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 				em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
 				em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
@@ -383,9 +409,6 @@ class status(commands.Cog):
 				item3 = ""
 				item4 = ""
 
-			
-
-			
 			try:
 				icon = ""
 				Class = userinfo["class"]
@@ -447,8 +470,56 @@ class status(commands.Cog):
 			except:
 				pass
 
-			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID**: {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id), color=discord.Colour(0xffffff))
-			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
+			small_cerberus_bonus_text = ""
+			for i in userinfo["pet_list"]:
+				petinfo = i
+				pet_level = petinfo["level"]
+				pet_type = petinfo["type"]
+
+				
+				if pet_type == "Small Cerberus":
+					if pet_level <= 10:
+						small_cerberus_bonus_min = (int((item3 / 100) * 5))
+						small_cerberus_bonus_max = (int((item4 / 100) * 5))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 20:
+						small_cerberus_bonus_min = (int((item3 / 100) * 10))
+						small_cerberus_bonus_max = (int((item4 / 100) * 10))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)				
+					elif pet_level <= 30:
+						small_cerberus_bonus_min = (int((item3 / 100) * 15))
+						small_cerberus_bonus_max = (int((item4 / 100) * 15))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 40:
+						small_cerberus_bonus_min = (int((item3 / 100) * 20))
+						small_cerberus_bonus_max = (int((item4 / 100) * 20))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 50:
+						small_cerberus_bonus_min = (int((item3 / 100) * 25))
+						small_cerberus_bonus_max = (int((item4 / 100) * 25))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level >= 51:
+						small_cerberus_bonus_min = (int((item3 / 100) * 30))
+						small_cerberus_bonus_max = (int((item4 / 100) * 30))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+			pet_name = ""
+			type = ""
+			for i in userinfo["equipped_pet"]:
+				petinfo = i
+				pet_type = petinfo["type"]
+				if pet_type == "Goose":
+					type = ":swan:"
+				if pet_type == "Fox":
+					type = ":fox:"
+				if pet_type == "Polar Bear":
+					type = ":polar_bear:"
+				if pet_type == "Small Cerberus":
+					type = ":dog:"
+				if pet_type == "Pterodactyl":
+					type = ":bat:"
+				pet_name = "{}".format(petinfo["name"])
+			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID:** {}\n{} **Pet:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id, type, pet_name), color=discord.Colour(0xffffff))
+			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4, small_cerberus_bonus_text), inline=False)
 			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
 			em.set_author(name="{}'s Statistics".format(userinfo["name"]), icon_url=user.avatar_url)
@@ -557,7 +628,54 @@ class status(commands.Cog):
 			except:
 				pass
 
-			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id), color=discord.Colour(0xffffff))
+			for i in userinfo["pet_list"]:
+				petinfo = i
+				pet_level = petinfo["level"]
+				pet_type = petinfo["type"]
+
+				small_cerberus_bonus_text = ""
+				if pet_type == "Small Cerberus":
+					if pet_level <= 10:
+						small_cerberus_bonus_min = (int((item3 / 100) * 5))
+						small_cerberus_bonus_max = (int((item4 / 100) * 5))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 20:
+						small_cerberus_bonus_min = (int((item3 / 100) * 10))
+						small_cerberus_bonus_max = (int((item4 / 100) * 10))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)				
+					elif pet_level <= 30:
+						small_cerberus_bonus_min = (int((item3 / 100) * 15))
+						small_cerberus_bonus_max = (int((item4 / 100) * 15))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 40:
+						small_cerberus_bonus_min = (int((item3 / 100) * 20))
+						small_cerberus_bonus_max = (int((item4 / 100) * 20))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level <= 50:
+						small_cerberus_bonus_min = (int((item3 / 100) * 25))
+						small_cerberus_bonus_max = (int((item4 / 100) * 25))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+					elif pet_level >= 51:
+						small_cerberus_bonus_min = (int((item3 / 100) * 30))
+						small_cerberus_bonus_max = (int((item4 / 100) * 30))
+						small_cerberus_bonus_text = "\n<:Shield:573576333863682064> **Armor pet bonus:** {}-{}.".format(small_cerberus_bonus_min, small_cerberus_bonus_max)
+			pet_name = ""
+			type = ""
+			for i in userinfo["equipped_pet"]:
+				petinfo = i
+				pet_type = petinfo["type"]
+				if pet_type == "Goose":
+					type = ":swan:"
+				if pet_type == "Fox":
+					type = ":fox:"
+				if pet_type == "Polar Bear":
+					type = ":polar_bear:"
+				if pet_type == "Small Cerberus":
+					type = ":dog:"
+				if pet_type == "Pterodactyl":
+					type = ":bat:"
+				pet_name = "{}".format(petinfo["name"])
+			em = discord.Embed(description="**Name:** {}\n{}**Race:** {}\n{}**Class:** {}\n:scroll: **Title:** {}\n<:Guild:560844076967002112> **Guild:** {}\n\n<:Magic:560844225839890459> **Level:** {}\n<:Experience:560809103346368522> **Exp:** {} / {}\n<:HealthHeart:560845406750375937> **Health:** {} / {}\n :id: **Market ID:** {}\n{} **Pet:** {}".format(userinfo["name"], ricon, userinfo["race"], icon, userinfo["class"], userinfo["title"], userguild.name, userinfo["lvl"], userinfo["exp"], maxexp, userinfo["health"], userinfo["MaxHealth"], user.id, type, pet_name), color=discord.Colour(0xffffff))
 			em.add_field(name="Equipment", value=":crossed_swords: **Weapon:** {}\n:crossed_swords: **Weapon Damage:** {}-{}\n\n<:Shield:573576333863682064> **Armor:** {}\n<:Shield:573576333863682064> **Armor Defense:** {}-{}\n".format(weaponequipped, item, item2, armorequipped, item3, item4), inline=False)
 			em.add_field(name="Tools", value="<:Axe:573574740220969007> **Axe level:** {}\n<:Pickaxe:573574740640530471> **Pickaxe level:** {}\n**Saw level:** {}\n**Chisel level:** {}\n**Hammer level:** {}".format(userinfo["axelvl"], userinfo["pickaxelvl"], userinfo["sawlvl"], userinfo["chisellvl"], userinfo["hammerlvl"]), inline=False)
 			em.add_field(name="History", value="<:PvP:573580993055686657> **Kills:** {}\n:mouse_trap: **Trap Kills:** {}\n<:Skull:560844645991710740> **Deaths:** {}".format(userinfo["enemieskilled"], userinfo["TrapKills"], userinfo["deaths"]), inline=False)
