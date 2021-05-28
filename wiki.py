@@ -36,11 +36,11 @@ class wiki(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		if userinfo["questname"] == "Wiki Check" :
-			userinfo["questprogress"] = userinfo["questprogress"] + 1		
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1		
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		if topic == None:
 			embed=discord.Embed(color=discord.Colour(0xffffff))
@@ -77,8 +77,8 @@ class wiki(commands.Cog):
 		elif topic == "2" or topic =="page 2" or topic == "page 2/4" or topic =="2/4":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 2/3".format(ctx.prefix, ctx.prefix), inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Armor", value="Chainmail, Barbaric, Pit Fighter, Banded, Leather, Iron, Branded Metal,        Wolf Fur, Enchanted Steel, Bane Of The Goblin Lord, Nighstalker Mantle, Hephaestus Armor, Robe of the Ancient", inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Bosses", value="Phantasm, Fire Golem, The Corrupted, The Accursed, The Nameless King, The Venomous, Death Knight, Frost Dragon", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Armor", value="Chainmail, Barbaric, Pit Fighter, Banded, Leather, Iron, Branded Metal, Wolf Fur, Enchanted Steel, Bane of the Goblin Lord, Nighstalker Mantle, Hephaestus Armor, Robe of the Ancient", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Bosses", value="Fire Golem, The Corrupted, Phantasm, The Accursed, The Nameless King, The Venomous, Death Knight, Frost Dragon", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Classes", value="Archer, Knight, Mage, Thief, Assassin, Ranger, Samurai, Paladin, Necromancer, Elementalist, Rogue, Mesmer", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Daily", value="Daily/Checkin, Vote", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Equip", value="Weapons, armor", inline=False)			
@@ -88,7 +88,7 @@ class wiki(commands.Cog):
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 		elif topic == "Chainmail" or topic == "chainmail" or topic == "Chainmail Armor" or topic == "chainmail armor":
-			embed=discord.Embed(title="**Chainmail Armor**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Chainmail Armor**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
@@ -98,7 +98,7 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 			
 		elif topic == "Barbaric" or topic == "barbaric" or  topic == "Barbaric Armor" or topic == "barbaric armor":
-			embed=discord.Embed(title="**Barbaric Armor**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Barbaric Armor**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Common", inline=False)
@@ -158,7 +158,7 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 			
 		elif topic == "Wolf Fur" or topic == "wolf fur" or  topic == "Wolf Fur Armor" or topic == "wolf fur armor":
-			embed=discord.Embed(title="**Wolf Fur**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Wolf Fur**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Armor", inline=False)
 			embed.add_field(name="**Rarity**", value="Rare", inline=False)
