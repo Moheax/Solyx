@@ -98,9 +98,9 @@ class patreons(commands.Cog):
 					list1= ""
 					list2= ""
 					if "Common Supporter" in _titles :
-						list1 += "Common supporter Title | <:ShieldCheck:560804135545602078> already claimed.\n"
+						list1 += "Common supporter Title already claimed.\n"
 					else:
-						list1 += "Common supporter Title claimed!\n"
+						list1 += "<:ShieldCheck:560804135545602078> | Common supporter Title claimed!\n"
 						newtitle = "Common Supporter"
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
@@ -152,9 +152,9 @@ class patreons(commands.Cog):
 					list1= ""
 					list2= ""
 					if "Rare Supporter" in _titles :
-						list1 += "Rare supporter Title | <:ShieldCheck:560804135545602078> already claimed.\n"
+						list1 += "Rare supporter Title already claimed.\n"
 					else:
-						list1 += "Rare supporter Title claimed!\n"
+						list1 += "<:ShieldCheck:560804135545602078> | Rare supporter Title claimed!\n"
 						newtitle = "Rare Supporter"
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
@@ -208,9 +208,9 @@ class patreons(commands.Cog):
 					list1= ""
 					list2= ""
 					if "Legendary Supporter" in _titles :
-						list1 += "Legendary supporter Title | <:ShieldCheck:560804135545602078> already claimed.\n"
+						list1 += "Legendary supporter Title already claimed.\n"
 					else:
-						list1 += "Legendary supporter Title claimed!\n"
+						list1 += "<:ShieldCheck:560804135545602078> | Legendary supporter Title claimed!\n"
 						newtitle = "Legendary Supporter"
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
@@ -221,24 +221,44 @@ class patreons(commands.Cog):
 							except:
 								await ctx.send(embed=em)
 
+					pet = False
 					for i in userinfo["pet_list"]:
 						petinfo = i
 						pet_type = petinfo["type"]
-						if pet_type == "Goose":
-							pass
-						if pet_type == "Fox":
-							pass
-						if pet_type == "Polar Bear":
-							pass
-						if pet_type == 	"Small Cerberus":
-							pass
-						if pet_type == "Pterodactyl":
-							list1 += "Pterodactyl pet | <:ShieldCheck:560804135545602078> already claimed.\n"
-						else:
-							list1 += "You have recieved a Pterodactyl pet!\n"
+						
+						if not pet_type == "Pterodactyl" and not pet_type == "Goose" and not pet_type == "Fox" and not pet_type == "Polar Bear" and not pet_type == "Small Cerberus":
+							pet = True
+							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
 							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
+							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
+								newtitle = "Dino-Bird trainer"
+								if not newtitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(newtitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+									try:
+										await user.send(embed=em)
+									except:
+										await ctx.send(embed=em)
+							pet = True
+							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
+							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
+							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
+								newtitle = "Dino-Bird trainer"
+								if not newtitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(newtitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+									try:
+										await user.send(embed=em)
+									except:
+										await ctx.send(embed=em)
+						
 							break
-
+					if pet == False:	
+						list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
 					list1 += "Open 4 crates at the same time!\n"
 					list1 += "Use 4 Exp potions at the same time!\n"
 					list1 += "Sell 4 items at a time (not needing to be level 100+)!\n"
@@ -287,9 +307,9 @@ class patreons(commands.Cog):
 					list1= ""
 					list2= ""
 					if "Mythical Supporter" in _titles :
-						list1 += "Mythical supporter Title | <:ShieldCheck:560804135545602078> already claimed.\n"
+						list1 += "Mythical supporter Title already claimed.\n"
 					else:
-						list1 += "Mythical supporter Title claimed!\n"
+						list1 += "<:ShieldCheck:560804135545602078> | Mythical supporter Title claimed!\n"
 						newtitle = "Mythical Supporter"
 						if not newtitle in titlesinfo["titles_list"]:
 							titlesinfo["titles_list"].append(newtitle)
@@ -299,24 +319,29 @@ class patreons(commands.Cog):
 								await user.send(embed=em)
 							except:
 								await ctx.send(embed=em)
-
+					pet = False
 					for i in userinfo["pet_list"]:
 						petinfo = i
 						pet_type = petinfo["type"]
-						if pet_type == "Goose":
-							pass
-						if pet_type == "Fox":
-							pass
-						if pet_type == "Polar Bear":
-							pass
-						if pet_type == 	"Small Cerberus":
-							pass
-						if pet_type == "Pterodactyl":
-							list1 += "Pterodactyl pet | <:ShieldCheck:560804135545602078> already claimed.\n"
-						else:
-							list1 += "You have recieved a Pterodactyl pet!\n"
+						
+						if not pet_type == "Goose" and not pet_type == "Fox" and not pet_type == "Polar Bear" and not pet_type == "Small Cerberus" and not pet_type == "Pterodactyl":
+							pet == True
+							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
 							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
+							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
+								newtitle = "Dino-Bird trainer"
+								if not newtitle in titlesinfo["titles_list"]:
+									titlesinfo["titles_list"].append(newtitle)
+									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
+									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+									try:
+										await user.send(embed=em)
+									except:
+										await ctx.send(embed=em)
 							break
+					if pet == False:	
+						list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
 
 					list1 += "Open 5 crates at the same time!\n"
 					list1 += "Use 5 Exp potions at the same time!\n"

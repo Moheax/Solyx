@@ -80,10 +80,10 @@ class loot(commands.Cog):
 				return
 
 			if userinfo["questname"] == "Unboxing I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -1097,10 +1097,10 @@ class loot(commands.Cog):
 				return
 
 			if userinfo["questname"] == "Unboxing I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -2124,10 +2124,10 @@ class loot(commands.Cog):
 				return
 
 			if userinfo["questname"] == "Unboxing I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -3150,10 +3150,10 @@ class loot(commands.Cog):
 				return
 
 			if userinfo["questname"] == "Unboxing I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
@@ -4492,10 +4492,10 @@ class loot(commands.Cog):
 				return
 			
 			if userinfo["questname"] == "Unboxing I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:

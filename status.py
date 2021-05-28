@@ -187,11 +187,11 @@ class status(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Basic A":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		if userinfo["role"] == "Developer":
 			try:

@@ -102,17 +102,18 @@ class fight(commands.Cog):
 			userinfo["hammerlvl"] = 1
 
 		if userinfo["questname"] == "Basic C":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1
+			
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
+
 		if userinfo["questname"] == "Fight I":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1
+			
 			if userinfo["questprogress"] >= 25:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		if userinfo["health"] <= 0:
@@ -1205,7 +1206,7 @@ class fight(commands.Cog):
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**you have been stunned for 1 turn**\n**{} Hits {} and hits for {} damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -1228,9 +1229,9 @@ class fight(commands.Cog):
 
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - totaldmg - youdmg - polar_bear_bonus	
+				enemyhp -= totaldmg - youdmg - polar_bear_bonus	
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
@@ -1254,7 +1255,7 @@ class fight(commands.Cog):
 				# Users HP after dmg taken.
 				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
@@ -1310,7 +1311,7 @@ class fight(commands.Cog):
 			elif userinfo["Buff1"] == "Corrupt":
 				youdmg = int((youdmg / 100) * 130)
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
 				enemyhp = userinfo["enemyhp"] - youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
@@ -1335,9 +1336,9 @@ class fight(commands.Cog):
 						return
 			else:
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1368,7 +1369,7 @@ class fight(commands.Cog):
 				# debuff
 				youdmg = int((youdmg / 100) * 85)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# Users Defense
 				youdef = youdef * 2
 				enemydmg -= youdef	
@@ -1377,7 +1378,7 @@ class fight(commands.Cog):
 				if enemydmg < 0:
 					enemydmg = 0
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1386,7 +1387,7 @@ class fight(commands.Cog):
 					userhealth = 0
 				# Set skill cooldown.
 				userinfo["SkillCooldown2"] = 5
-				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n {} uses {} hits {} for {} damage{}\n{} Hits {} for {} Damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
+				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} Has the blockade buff doubling defense.\n {} uses {} hits {} for {} damage{}\n{} Hits {} for {} Damage**\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"], userinfo["name"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], userinfo["name"], enemydmg, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
 				try:
@@ -1403,9 +1404,9 @@ class fight(commands.Cog):
 				bleeding = int((enemyhp / 100) * 25)
 				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
+				enemyhp -= youdmg - bleeding - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
@@ -1433,9 +1434,9 @@ class fight(commands.Cog):
 			else:
 
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
@@ -1469,9 +1470,9 @@ class fight(commands.Cog):
 			# Acutal fight msg.
 			if userinfo["EnemyStun"] > 0:
 				# Users HP after dmg taken.
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1496,9 +1497,9 @@ class fight(commands.Cog):
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
+				enemyhp -= youdmg - bleeding - polar_bear_bonus
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1524,10 +1525,10 @@ class fight(commands.Cog):
 			# Warp Buff
 			elif userinfo["Buff1"] == "Warp" and userinfo["Buff1Time"] > 0:
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				enemydmg = int((enemyhp / 100) * 40)
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1549,7 +1550,7 @@ class fight(commands.Cog):
 				# Users HP after dmg taken.
 				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg
+				enemyhp -= youdmg
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -1583,7 +1584,7 @@ class fight(commands.Cog):
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# deals dmg to enemy
-				enemyhp = enemyhp - bleeding - polar_bear_bonus
+				enemyhp -= bleeding - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1606,7 +1607,7 @@ class fight(commands.Cog):
 				userinfo["EnemyStun"] = 2
 				userinfo["SkillCooldown1"] = 4
 				stun = 1
-				enemyhp = enemyhp - polar_bear_bonus
+				enemyhp -= polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1630,7 +1631,7 @@ class fight(commands.Cog):
 				# Bleeding dmg
 				bleeding = int((enemyhp / 100) * 25)
 				# deals dmg to enemy
-				enemyhp = enemyhp - bleeding - polar_bear_bonus
+				enemyhp -= bleeding - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1650,7 +1651,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1671,7 +1672,7 @@ class fight(commands.Cog):
 			if userinfo["Buff1"] == "Warp" and userinfo["Buff1Time"] > 0:
 
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1702,7 +1703,7 @@ class fight(commands.Cog):
 				if userhealth < 0:
 					userhealth = 0
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1721,7 +1722,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1748,7 +1749,7 @@ class fight(commands.Cog):
 
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - reap - totaldmg - polar_bear_bonus
+				enemyhp -= reap - totaldmg - polar_bear_bonus
 				# Adds 25% enemy hp to user
 				userhealth += reap
 				if userhealth >= userinfo["MaxHealth"]:
@@ -1778,7 +1779,7 @@ class fight(commands.Cog):
 				# takes 30% of enemyhp 
 				reap = int((enemyhp / 100) * 30)
 				# Fixs enemy hp
-				enemyhp = enemyhp - reap - polar_bear_bonus
+				enemyhp -= reap - polar_bear_bonus
 				if enemyhp < 0:
 					enemyhp = 0
 				# Adds 25% enemy hp to user
@@ -1800,7 +1801,7 @@ class fight(commands.Cog):
 						return
 						
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				if userinfo["Buff1"] == "Arise" and userinfo["Buff1Time"] > 0:
 					userinfo["Buff1Time"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
@@ -1824,7 +1825,7 @@ class fight(commands.Cog):
 
 				enemyhp = userinfo["enemyhp"]
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				enemyhp -= polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
@@ -1851,8 +1852,8 @@ class fight(commands.Cog):
 				overloaddmg = int((youdmg / 100) * 40)
 				overloadselfdmg = int((overloaddmg / 100) * 50)
 				youdmg += overloaddmg
-				userhealth = userhealth - enemydmg - overloadselfdmg 
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				userhealth -= enemydmg - overloadselfdmg 
+				enemyhp -= youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -1874,7 +1875,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1897,14 +1898,14 @@ class fight(commands.Cog):
 				hit = int((youdmg / 100) * 50)
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit
-				enemyhp = enemyhp - totaldmg - polar_bear_bonus
+				enemyhp -= totaldmg - polar_bear_bonus
 				# Users Defense (first already did this now agiann for the X2 bonus)
 				enemydmg -= youdef
 				# If enemydmg is lower then 0 its 0
 				if enemydmg < 0:
 					enemydmg = 0
 				# user dmg 
-				userhealth = userhealth - enemydmg
+				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -1929,7 +1930,7 @@ class fight(commands.Cog):
 				hit = int((youdmg / 100) * 50)
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit
-				enemyhp = enemyhp - totaldmg - polar_bear_bonus
+				enemyhp -= totaldmg - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
@@ -1952,7 +1953,7 @@ class fight(commands.Cog):
 					except:
 						return	
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -1976,7 +1977,7 @@ class fight(commands.Cog):
 				bleeding = int((enemyhp / 100) * 25)
 				youdmg = int((youdmg / 100) * 140)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
+				enemyhp -= youdmg - bleeding - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
@@ -2005,7 +2006,7 @@ class fight(commands.Cog):
 				youdmg = int((youdmg / 100) * 140)
 				
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
@@ -2028,7 +2029,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2052,7 +2053,7 @@ class fight(commands.Cog):
 				userinfo["EnemyStun"] = 3
 				stun = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -2071,7 +2072,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2099,7 +2100,7 @@ class fight(commands.Cog):
 				youdmg = int((youdmg / 100) * 130)
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
@@ -2123,7 +2124,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] + 1 
+				userinfo["SkillCooldown1"] += 1
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown1"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2152,7 +2153,7 @@ class fight(commands.Cog):
 				# Bleeding time
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
+				enemyhp -= youdmg - bleeding - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
@@ -2176,7 +2177,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2203,7 +2204,7 @@ class fight(commands.Cog):
 				# Users HP after dmg taken.
 				userhealth -= enemydmg
 				# Enemys Hp after userdmg
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If enemyhealth is lower then 0 its 0
 				if enemyhp < 0:
 					enemyhp = 0
@@ -2224,7 +2225,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2248,7 +2249,7 @@ class fight(commands.Cog):
 				hit = int((youdmg / 100) * 25)
 				# deals dmg to enemy
 				totaldmg = hit + hit + hit + hit + hit
-				enemyhp = enemyhp - totaldmg - youdmg - polar_bear_bonus
+				enemyhp -= totaldmg - youdmg - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If enemydmg is lower then 0 its 0
@@ -2277,7 +2278,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2299,7 +2300,7 @@ class fight(commands.Cog):
 			if userinfo["SkillCooldown2"] == 0:
 				youdmg = youdmg * 3
 				userhealth -= enemydmg 
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2323,7 +2324,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2354,7 +2355,7 @@ class fight(commands.Cog):
 				# Bleeding time
 				bufftime = 2
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - bleeding - polar_bear_bonus
+				enemyhp -= youdmg - bleeding - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If enemyhealth is lower then 0 its 0
@@ -2378,7 +2379,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2405,7 +2406,7 @@ class fight(commands.Cog):
 				# debuff
 				youdmg = int((youdmg / 100) * 85)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# Users Defense
 				enemydmg -= youdef	
 				
@@ -2435,7 +2436,7 @@ class fight(commands.Cog):
 						return
 
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				userinfo["Buff1Time"] = userinfo["Buff1Time"] + 1
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
@@ -2456,7 +2457,7 @@ class fight(commands.Cog):
 			if userinfo["SkillCooldown2"] == 0:
 				youdmg = int((youdmg / 100) * 150)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# user dmg 
 				userhealth -= enemydmg
 				# If User health is lower then 0 its 0
@@ -2479,7 +2480,7 @@ class fight(commands.Cog):
 					except:
 						return
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
@@ -2499,7 +2500,7 @@ class fight(commands.Cog):
 			if userinfo["SkillCooldown2"] == 0:
 				youdmg = int((youdmg / 100) * 250)
 				# deals dmg to enemy
-				enemyhp = enemyhp - youdmg - polar_bear_bonus
+				enemyhp -= youdmg - polar_bear_bonus
 				# If User health is lower then 0 its 0
 				if userhealth < 0:
 					userhealth = 0
@@ -2511,27 +2512,13 @@ class fight(commands.Cog):
 				em4 = discord.Embed(description="{} has {} HP\n{} has {} HP\n\n**{} uses {} and headshots {}.\nYou deal a critical hit! for {} damage**{}\n\n{} has {} HP left\n{} has {} HP left".format(userinfo["selected_enemy"], userinfo["enemyhp"], userinfo["name"], userinfo["health"],  userinfo["name"], move, userinfo["selected_enemy"], youdmg, polar_bear_bonus_text, userinfo["selected_enemy"], enemyhp, userinfo["name"], userhealth), color=monstercolor)
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return
+				await skillmsg.edit(embed=em4)
 			else:
-				userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] + 1 
+				userinfo["SkillCooldown2"] += 1 
 				em4 = discord.Embed(description="**Skill:**\n**{}** is on a **{} turn** cooldown.".format(move, userinfo["SkillCooldown2"]), color=discord.Colour(0xffffff))
 				if not userinfo["equip"]["image"] == "None":
 					em4.set_thumbnail(url=userinfo["equip"]["image"])
-				try:
-					await skillmsg.edit(embed=em4)
-				except:
-					try:
-						await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
-						return
-					except:
-						return	
+				await skillmsg.edit(embed=em4)
 
 		elif answer2 == "heal" or answer2 == "Heal":
 			battleinfo = db.battles.find_one({"_id": user.id})
@@ -2547,17 +2534,17 @@ class fight(commands.Cog):
 		await asyncio.sleep(0.4)
 		if userhealth >= userinfo["MaxHealth"]:
 			userhealth = userinfo["MaxHealth"]
-		userinfo["EnemyStun"] = userinfo["EnemyStun"] - 1
+		userinfo["EnemyStun"] -= 1
 		if userinfo["EnemyStun"] <= 0:
 			userinfo["EnemyStun"] = 0
-		userinfo["SkillCooldown1"] = userinfo["SkillCooldown1"] - 1
+		userinfo["SkillCooldown1"] -= 1
 		if userinfo["SkillCooldown1"] <= 0:
 			userinfo["SkillCooldown1"] = 0
-		userinfo["SkillCooldown2"] = userinfo["SkillCooldown2"] - 1
+		userinfo["SkillCooldown2"] -= 1
 		if userinfo["SkillCooldown2"] <= 0:
 			userinfo["SkillCooldown2"] = 0
 		if not userinfo["Buff1"] == "None":
-			userinfo["Buff1Time"] = userinfo["Buff1Time"] - 1
+			userinfo["Buff1Time"] -= 1 
 		if userinfo["Buff1Time"] <= 0:
 			userinfo["Buff1"] = "None"
 			userinfo["Buff1Time"] = 0
@@ -2568,7 +2555,7 @@ class fight(commands.Cog):
 		if enemyhp <= 0 and userhealth <= 0:
 			em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["bothdied"]["translation"].format(userinfo["name"], goldlost), color=discord.Colour(0x000000))
 			await ctx.send(embed=em)
-			userinfo["gold"] = userinfo["gold"] - goldlost
+			userinfo["gold"] -= goldlost
 			if userinfo["gold"] < 0:
 				userinfo["gold"] = 0
 			if userinfo["health"] < 0:
@@ -2579,14 +2566,13 @@ class fight(commands.Cog):
 			userinfo["health"] = 0
 			userinfo["selected_enemy"] = "None"
 			userinfo["enemydifficulty"] = "None"
-			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
-			userinfo["deaths"] = userinfo["deaths"] + 1
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+			userinfo["enemieskilled"] += 1
+			userinfo["deaths"] += 1
 
 		elif userhealth <= 0:
 			em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["playerdied"]["translation"].format(userinfo["selected_enemy"], userinfo["name"], userinfo["name"], goldlost), color=discord.Colour(0xff0000))
 			await ctx.send(embed=em)
-			userinfo["gold"] = userinfo["gold"] - goldlost
+			userinfo["gold"] -= goldlost
 			if userinfo["gold"] < 0:
 				userinfo["gold"] = 0
 			if userinfo["health"] < 0:
@@ -2596,12 +2582,10 @@ class fight(commands.Cog):
 				userinfo["Buff1Time"] = 0
 			userinfo["selected_enemy"] = "None"
 			userinfo["enemydifficulty"] = "None"
-			userinfo["deaths"] = userinfo["deaths"] + 1
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+			userinfo["deaths"] += 1
 
 		elif enemyhp <= 0:
 			lootbag_chance = 3
-
 			try:
 				pterodactyl_bonus = 0
 				pterodactyl_bonus_text = ""
@@ -2674,7 +2658,6 @@ class fight(commands.Cog):
 			except:
 				pass
 					
-
 			if userinfo["party"] != "None":
 				partyinfo = db.party.find_one({"_id": userinfo["party"]})
 				party_reward_list = " " 
@@ -2709,15 +2692,10 @@ class fight(commands.Cog):
 						shared_gold = (int((enemygold / 100) * 30))
 						shared_xpgain = (int((xpgain / 100) * 30))
 
-					
-
-					friend_info["gold"] = friend_info["gold"] + shared_gold
-					friend_info["exp"] = friend_info["exp"] + shared_xpgain
-					
+					friend_info["gold"] += shared_gold
+					friend_info["exp"] += shared_xpgain
 				
-
 					flist = ("**{}**: <:Gold:639484869809930251>{}  Shared gold, :sparkles: {} Shared Exp\n".format(friend_info["name"], int(shared_gold), int(shared_xpgain)))
-
 					party_reward_list += flist
 					
 					if friend_info["exp"] >= 100 + ((friend_info["lvl"] + 1) * 3.5):
@@ -2726,16 +2704,15 @@ class fight(commands.Cog):
 						friend_info["health"] = friend_info["MaxHealth"]
 						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(friend_info["name"]), color=discord.Colour(0xffd700))
 						await ctx.send(embed=em)	
-					
-						db.users.replace_one({"_id": friend_id}, friend_info, upsert=True)
-
-
+				
 					if userinfo["exp"] >= 100 + ((userinfo["lvl"] + 1) * 3.5):
 						userinfo["exp"] = userinfo["exp"] - (100 + ((userinfo["lvl"] + 1) * 3.5))
 						userinfo["lvl"] = userinfo["lvl"] + 1
 						userinfo["health"] = userinfo["MaxHealth"]
 						em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(userinfo["name"]), color=discord.Colour(0xffd700))
 						await ctx.send(embed=em)
+						
+					db.users.replace_one({"_id": friend_id}, friend_info, upsert=True)
 
 				try:
 					em2 = discord.Embed(description=":dagger:{} Killed the {}\n<:PvP:573580993055686657>The Party gets \n {}".format(userinfo["name"], userinfo["selected_enemy"], party_reward_list), color=discord.Colour(0x00ff00))
@@ -2754,15 +2731,13 @@ class fight(commands.Cog):
 					mission = "Kill 100 Oofers"
 					add = 1
 					await _guild_mission_check(self, user, mission, guild, add)
-				except:
-					
+				except:		
 					pass
 
 				if userinfo["questname"] == "Oofer I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Goblin":
@@ -2774,70 +2749,46 @@ class fight(commands.Cog):
 					print("Error while trying to check '" + mission + "' mission")
 					pass
 
-
 			elif userinfo["selected_enemy"] == "Rachi":
-				try:
-					userinfo["Rachikilled"] = userinfo["Rachikilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Rachikilled"] += 1
 
 				if userinfo["questname"] == "Rachi I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 					
 			elif userinfo["selected_enemy"] == "Draugr":
-				try:
-					userinfo["Draugrkilled"] = userinfo["Draugrkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Draugrkilled"] += 1
 
 				if userinfo["questname"] == "Draugr I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Debin":
-				try:
-					userinfo["Debinkilled"] = userinfo["Debinkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Debinkilled"] += 1
 
 				if userinfo["questname"] == "Debin I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Stalker":
-				try:
-					userinfo["Stalkerkilled"] = userinfo["Stalkerkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Stalkerkilled"] += 1
 
 				if userinfo["questname"] == "Stalker I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 
 			elif userinfo["selected_enemy"] == "Fire Golem":
-				try:
-					userinfo["FireGolemkilled"] = userinfo["FireGolemkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["FireGolemkilled"] += 1
+
 				pet_spawn = random.randint(1, 100)
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Golden Goose":
@@ -2845,92 +2796,58 @@ class fight(commands.Cog):
 						em.set_image(url="")
 						await ctx.send(embed=em)
 						userinfo["pet_find"] = "Golden Goose"
-						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-								
 						
 				if userinfo["questname"] == "Fire Golem I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 5:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Wyvern":
-				try:
-					userinfo["Wyvernkilled"] = userinfo["Wyvernkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Wyvernkilled"] += 1
+				
 				if userinfo["questname"] == "Wyvern I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				elif userinfo["questname"] == "On the hunt!" and userinfo["enemydifficulty"] == "Rare":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Oofer":
-				try:
-					userinfo["Ooferkilled"] = userinfo["Ooferkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Ooferkilled"]  += 1
 
 				if userinfo["questname"] == "Oofer I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Souleater":
-				try:
-					userinfo["Souleaterkilled"] = userinfo["Souleaterkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Souleaterkilled"] += 1
 
 				if userinfo["questname"] == "Souleater I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 10:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 			elif userinfo["selected_enemy"] == "Wolf":
-				try:
-					userinfo["Wolfkilled"] = userinfo["Wolfkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Wolfkilled"] += 1
 
 			elif userinfo["selected_enemy"] == "Goblin":
-				try:
-					userinfo["Goblinkilled"] = userinfo["Goblinkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Goblinkilled"] += 1
 
 			elif userinfo["selected_enemy"] == "Zombie":
-				try:
-					userinfo["Zombiekilled"] = userinfo["Zombiekilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Zombiekilled"] += 1
 
 			elif userinfo["selected_enemy"] == "Phantasm":
-				try:
-					userinfo["Phantasmkilled"] = userinfo["Phantasmkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["Phantasmkilled"] += 1
+
 				pet_spawn = random.randint(1, 100)
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Fox":
@@ -2938,22 +2855,16 @@ class fight(commands.Cog):
 						em.set_image(url="")
 						await ctx.send(embed=em)
 						userinfo["pet_find"] = "Fox"
-						
-						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				
+
 			elif userinfo["selected_enemy"] == "The Corrupted":
-				try:
-					userinfo["TheCorruptedkilled"] = userinfo["TheCorruptedkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["TheCorruptedkilled"] += 1
 
 				if userinfo["questname"] == "The Corrupted I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
+					userinfo["questprogress"] += 1
 					if userinfo["questprogress"] >= 5:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
+
 				pet_spawn = random.randint(1, 100)
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Polar Bear":
@@ -2962,16 +2873,10 @@ class fight(commands.Cog):
 						await ctx.send(embed=em)
 						userinfo["pet_find"] = "Polar Bear"
 						userinfo["pet_stage"] = "Small Cerberus"
-						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-
-						
 
 			elif userinfo["selected_enemy"] == "The Accursed":
-				try:
-					userinfo["TheAccursedkilled"] = userinfo["TheAccursedkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["TheAccursedkilled"] += 1
+
 				pet_spawn = random.randint(1, 100)
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Small Cerberus":
@@ -2980,166 +2885,66 @@ class fight(commands.Cog):
 						await ctx.send(embed=em)
 						userinfo["pet_find"] = "Small Cerberus"
 						userinfo["pet_stage"] = "None"
-						db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 
 			elif userinfo["selected_enemy"] == "Elder Dragon":
-				try:
-					userinfo["ElderDragonkilled"] = userinfo["ElderDragonkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["ElderDragonkilled"] += 1
 			elif userinfo["selected_enemy"] == "Hades":
-				try:
-					userinfo["Hadeskilled"] = userinfo["Hadeskilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Hadeskilled"] += 1
 			elif userinfo["selected_enemy"] == "Ebony Guardian":
-				try:
-					userinfo["EbonyGuardiankilled"] = userinfo["EbonyGuardiankilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["EbonyGuardiankilled"] += 1
 			elif userinfo["selected_enemy"] == "Harpy":
-				try:
-					userinfo["Harpykilled"] = userinfo["Harpykilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Harpykilled"] += 1
 			elif userinfo["selected_enemy"] == "Dormammu":
-				try:
-					userinfo["Dormammukilled"] = userinfo["Dormammukilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Dormammukilled"] += 1
 			elif userinfo["selected_enemy"] == "Ettin":
-				try:
-					userinfo["Ettinkilled"] = userinfo["Ettinkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Ettinkilled"] += 1
 			elif userinfo["selected_enemy"] == "The Nameless King":
-				try:
-					userinfo["TheNamelessKingkilled"] = userinfo["TheNamelessKingkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["TheNamelessKingkilled"] += 1
 			elif userinfo["selected_enemy"] == "Largos":
-				try:
-					userinfo["Largoskilled"] = userinfo["Largoskilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
-			elif userinfo["selected_enemy"] == "Death Claw":
-				try:
-					userinfo["Deathclawilled"] = userinfo["Deathclawilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Largoskilled"] += 1
+			elif userinfo["selected_enemy"] == "Deathclaw":
+				userinfo["Deathclawkilled"] += 1
 			elif userinfo["selected_enemy"] == "Saurian":
-				try:
-					userinfo["Sauriankilled"] = userinfo["Sauriankilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Sauriankilled"] += 1
 			elif userinfo["selected_enemy"] == "The venemous":
-				try:
-					userinfo["TheVenomouskilled"] = userinfo["TheVenomouskilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["TheVenomouskilled"] += 1
 			elif userinfo["selected_enemy"] == "Skeleton":
-				try:
-					userinfo["Skeletonkilled"] = userinfo["Skeletonkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Skeletonkilled"] += 1
 			elif userinfo["selected_enemy"] == "Lizardmen":
-				try:
-					userinfo["Lizardmenkilled"] = userinfo["Lizardmenkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Lizardmenkilled"] += 1
 			elif userinfo["selected_enemy"] == "Giant":
-				try:
-					userinfo["Giantkilled"] = userinfo["Giantkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["Giantkilled"] += 1
 			elif userinfo["selected_enemy"] == "Death Knight":
-				try:
-					userinfo["DeathKnightkilled"] = userinfo["DeathKnightkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["DeathKnightkilled"] += 1
 			elif userinfo["selected_enemy"] == "Ice Wolves":
-				try:
-					userinfo["IceWolveskilled"] = userinfo["IceWolveskilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["IceWolveskilled"] += 1
 			elif userinfo["selected_enemy"] == "Frost Orc":
-				try:
-					userinfo["FrostOrckilled"] = userinfo["FrostOrckilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["FrostOrckilled"] += 1
 			elif userinfo["selected_enemy"] == "Frost Goblin":
-				try:
-					userinfo["FrostGoblinkilled"] = userinfo["FrostGoblinkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
-
+				userinfo["FrostGoblinkilled"] += 1
 			elif userinfo["selected_enemy"] == "Frost Dragon":
-				try:
-					userinfo["FrostDragonkilled"] = userinfo["FrostDragonkilled"] + 1
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-				except:
-					pass
+				userinfo["FrostDragonkilled"] += 1
 			
 			em = discord.Embed(description=":dagger: {} killed the {}\n<:GoldBars:573781770709893130> {} gained {} gold{}\n:sparkles: {} gained {} experience{}".format(userinfo["name"], userinfo["selected_enemy"], userinfo["name"], int(enemygold), goose_bonus_text, userinfo["name"], xpgain, pterodactyl_bonus_text), color=discord.Colour(0x00ff00))
 			await ctx.send(embed=em)	
 
-
 			userinfo["selected_enemy"] = "None"
 			userinfo["enemydifficulty"] = "None"
-			userinfo["gold"] = userinfo["gold"] + int(enemygold + goose_bonus)
-			userinfo["exp"] = userinfo["exp"] + int(xpgain + pterodactyl_bonus)
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-			
+			userinfo["gold"] += int(enemygold + goose_bonus)
+			userinfo["exp"]+= int(xpgain + pterodactyl_bonus)	
 			if lootbag <= lootbag_chance:
 				chance2 = random.randint(1, 100)
 				if chance2 >= 50:
-					userinfo = db.users.find_one({"_id": user.id})
 					em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["crate"]["translation"].format(userinfo["name"], fox_bonus_text), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
-					userinfo["lootbag"] = userinfo["lootbag"] + 1
-				else:
-					userinfo = db.users.find_one({"_id": user.id})
+					userinfo["lootbag"] += 1
+				else:			
 					em = discord.Embed(description=fileIO(f"data/languages/{language}.json", "load")["fight"]["key"]["translation"].format(userinfo["name"], fox_bonus_text), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
-					userinfo["keys"] = userinfo["keys"] + 1
+					userinfo["keys"] += 1
 
 			
-			userinfo["enemieskilled"] = userinfo["enemieskilled"] + 1
+			userinfo["enemieskilled"] += 1
 		db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 		try:
 			await _level_up_check_user(self, ctx, user)

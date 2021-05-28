@@ -36,11 +36,11 @@ class leaderboard(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		if userinfo["questname"] == "Leaderboard" :
-			userinfo["questprogress"] = userinfo["questprogress"] + 1		
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1		
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		msg = ""
 		if ctx.invoked_subcommand is None:
@@ -79,9 +79,15 @@ class leaderboard(commands.Cog):
 
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has check user leaderboard")
 
-		em1 = discord.Embed(description="Gathering leaderboard info <:Solyx:560809141766193152>", color=discord.Colour(0xffffff))
+		em1 = discord.Embed(description="<a:Solyxloadside:783364003367485460> Gathering leaderboard info <:Solyx:560809141766193152>", color=discord.Colour(0xffffff))
 		
-					
+		if userinfo["questname"] == "Leaderboard" :
+			userinfo["questprogress"] += 1		
+			if userinfo["questprogress"] >= 1:
+				await _quest_check(self, ctx, user, userinfo)
+			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+
 		try:
 			await ctx.send(embed=em1)
 		except:

@@ -85,10 +85,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -164,10 +164,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -243,10 +243,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -322,10 +322,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -401,10 +401,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -480,10 +480,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -559,10 +559,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -637,10 +637,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -715,10 +715,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -793,10 +793,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):
@@ -871,10 +871,10 @@ class reforge(commands.Cog):
 			if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
 				if userinfo["questname"] == "Reforge I":
-					userinfo["questprogress"] = userinfo["questprogress"] + 1
+					userinfo["questprogress"] += 1
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 					if userinfo["questprogress"] >= 1:
-						await _quest_check(self, ctx, user)
+						await _quest_check(self, ctx, user, userinfo)
 					pass
 
 				if not int(userinfo["gold"]) >= int(cost):

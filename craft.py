@@ -348,7 +348,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -443,7 +443,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 
 						userinfo["gold"] = userinfo["gold"] - cost
@@ -540,7 +540,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -648,7 +648,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -756,7 +756,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -864,7 +864,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your axe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -1208,7 +1208,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -1304,7 +1304,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 
 						userinfo["gold"] = userinfo["gold"] - cost
@@ -1402,7 +1402,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -1510,7 +1510,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -1618,7 +1618,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -1726,7 +1726,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your pickaxe!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2071,7 +2071,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2167,7 +2167,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 
 						userinfo["gold"] = userinfo["gold"] - cost
@@ -2265,7 +2265,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2373,7 +2373,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2481,7 +2481,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2589,7 +2589,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your saw!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -2934,7 +2934,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3030,7 +3030,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 
 						userinfo["gold"] = userinfo["gold"] - cost
@@ -3128,7 +3128,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3236,7 +3236,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3344,7 +3344,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3452,7 +3452,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your chisel!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3797,7 +3797,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -3893,7 +3893,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 
 						userinfo["gold"] = userinfo["gold"] - cost
@@ -3991,7 +3991,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -4099,7 +4099,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -4207,7 +4207,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood
@@ -4315,7 +4315,7 @@ class craft(commands.Cog):
 
 						if not int(userinfo["iron_plates"]) >= int(iron_plates):
 							needediron_plates = int(iron_plates) - int(userinfo["iron_plates"])
-							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(neededbricks))
+							await ctx.send("<:Solyx:560809141766193152> **| You need {} more iron plates to upgrade your hammer!**".format(needediron_plates))
 							return
 						userinfo["gold"] = userinfo["gold"] - cost
 						userinfo["wood"] = userinfo["wood"] - wood

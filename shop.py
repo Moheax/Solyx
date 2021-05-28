@@ -29,6 +29,37 @@ class shop(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+
+	async def check_answer(self, ctx, valid_options):
+		def pred(m):
+			return m.author == ctx.author and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
+	async def check_answer_other_user(self, ctx, user, valid_options):
+		def pred(m):
+			return m.author == user and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
+
+
 	@commands.group(name="shop", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 1, commands.BucketType.user)
 	async def shop(self, ctx):
@@ -97,11 +128,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -118,11 +149,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -139,11 +170,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -160,11 +191,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -181,11 +212,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -202,11 +233,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -214,7 +245,7 @@ class shop(commands.Cog):
 					em = discord.Embed(description="You bought the item for {} gold.".format(cost), color=discord.Colour(0xffffff))
 					await ctx.send(embed=em)
 
-			elif item == "Etched Longbow" or item == "etched longbow":
+			elif item == "Etched Longbow" or item == "etched longbow" or item == "Etched Long Bow" or item == "etched long bow":
 				itemobj = {"name": "Etched Longbow", "type": "bow", "rarity": "Rare", "stats_min": 2, "stats_max": 25, "refinement": "Normal", "description": "?!", "image": "https://i.imgur.com/VvYc9zY.png"}
 				cost = 7000
 				value = cost - userinfo["gold"]
@@ -223,11 +254,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -244,11 +275,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -265,11 +296,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -286,11 +317,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -307,11 +338,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -328,11 +359,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -349,11 +380,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -370,11 +401,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -391,11 +422,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -412,11 +443,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -433,11 +464,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -454,11 +485,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -475,11 +506,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -496,11 +527,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -517,11 +548,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -538,11 +569,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 2:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -563,11 +594,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -584,11 +615,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -605,11 +636,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -626,11 +657,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -647,11 +678,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -668,11 +699,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -689,11 +720,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -710,11 +741,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -731,11 +762,11 @@ class shop(commands.Cog):
 					await ctx.send(embed=em)
 				else:
 					if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 3:
-						userinfo["questprogress"] = userinfo["questprogress"] + 1
+						userinfo["questprogress"] += 1
 						userinfo["questpart"] = userinfo["questpart"] + 1
 						db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 						if userinfo["questprogress"] >= 1:
-							await _quest_check(self, ctx, user)
+							await _quest_check(self, ctx, user, userinfo)
 						pass
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["inventory"].append(itemobj)
@@ -844,17 +875,16 @@ class shop(commands.Cog):
 			number -= x
 
 			if userinfo["questname"] == "Shop II":
-				userinfo["questprogress"] = userinfo["questprogress"] + 1
+				userinfo["questprogress"] += 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 1:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 			itemname = item["name"]
 			itemrarity = item["rarity"]
 
 			if itemname == "Sclerite Sword":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -862,8 +892,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Iron Greatsword" :
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -871,8 +900,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Abaddon Dagger":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -880,8 +908,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Rusted Short Sword":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -889,8 +916,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Verdant Bow":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -898,8 +924,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Obsidian Longbow":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -907,8 +932,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Etched Longbow":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -916,8 +940,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Reinforced Crossbow":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -925,8 +948,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Mithril Sword":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -934,8 +956,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Spiked Mace":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -943,8 +964,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Curved Dagger":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -952,8 +972,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Tomb of Water":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -961,8 +980,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Makeshift Shortbow":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -970,8 +988,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Iron Mace":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -979,8 +996,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Iron Claws":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -988,8 +1004,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Concealed Blade":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -997,8 +1012,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Tomb of Fire":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1006,8 +1020,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Scroll of Blizzards":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1015,8 +1028,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Glyphic Bow":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1024,8 +1036,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Oblivion":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 700		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1033,8 +1044,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Staff of Milos":
-				cost = 400
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1042,93 +1052,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Calcite Staff":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-
-
-	# - - - - - Armor - - - - -
-
-			elif itemname == "Leather Armor":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Banded Armor":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Wolf Fur":
-				cost = 700
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Pit Fighter Armor":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Chainmail Armor":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Enchanted Steel Armor":
-				cost = 700
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Barbaric Armor":
-				cost = 400
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Branded Metal Armor":
-				cost = 700
-				value = cost + userinfo["gold"]
-				userinfo["gold"] = userinfo["gold"] + cost
-				userinfo["inventory"].remove(item)
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
-				await ctx.send(embed=em)
-
-			elif itemname == "Iron Armor":
-				cost = 700
-				value = cost + userinfo["gold"]
+				cost = 400		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1136,8 +1060,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Starter Bow":
-				cost = 200
-				value = cost + userinfo["gold"]
+				cost = 200		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1145,8 +1068,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Starter Sword":
-				cost = 200
-				value = cost + userinfo["gold"]
+				cost = 200		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1154,8 +1076,7 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Starter Staff":
-				cost = 200
-				value = cost + userinfo["gold"]
+				cost = 200		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1163,17 +1084,375 @@ class shop(commands.Cog):
 				await ctx.send(embed=em)
 
 			elif itemname == "Starter Dagger":
-				cost = 200
-				value = cost + userinfo["gold"]
+				cost = 200		
 				userinfo["gold"] = userinfo["gold"] + cost
 				userinfo["inventory"].remove(item)
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
 
-			if itemrarity == "Legendary":
-				em = discord.Embed(description="<:ShieldCross:560804112548233217> **You cant sell legendary items\n<:Legendary:639425368167809065> {} is a legendary item.**".format(itemname), color=discord.Colour(0xffffff))
+			elif itemname == "Excalibur":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+			elif itemname == "Twilight":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Devil's Kiss":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Hawkeye":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Solarflare":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Thunderguard":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Doomblade":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Deathraze":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Soulreaper":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+	# - - - - - Armor - - - - -
+
+			elif itemname == "Leather Armor":
+				cost = 400		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
 				await ctx.send(embed=em)
+
+			elif itemname == "Banded Armor":
+				cost = 400		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Wolf Fur":
+				cost = 700		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Pit Fighter Armor":
+				cost = 400		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Chainmail Armor":
+				cost = 400		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Enchanted Steel Armor":
+				cost = 700		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Barbaric Armor":
+				cost = 400		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Branded Metal Armor":
+				cost = 700		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Iron Armor":
+				cost = 700		
+				userinfo["gold"] = userinfo["gold"] + cost
+				userinfo["inventory"].remove(item)
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+				em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+				await ctx.send(embed=em)
+
+			elif itemname == "Nightstalker Mantle":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+			elif itemname == "Bane Of The Goblin Lord":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+						
+			elif itemname == "Hephaestus Armor":
+				try:
+					em = discord.Embed(description="**Are you sure you want to Sell {}?\nThis is a legendary item!**".format(item["name"]), color=discord.Colour(0xffffff))
+					em.set_footer(text="Type yes to sell it to the shopkeeper!")
+					await ctx.send(embed=em)
+				except:
+					pass
+				answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J"])
+				if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":		
+					cost = 1100
+					
+					userinfo["gold"] = userinfo["gold"] + cost
+					userinfo["inventory"].remove(item)
+					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+					em = discord.Embed(description="You sold {} for {} gold.".format(itemname, cost), color=discord.Colour(0xffffff))
+					await ctx.send(embed=em)
+				else:
+					try:
+						em = discord.Embed(description="**You declined to sell {}.**".format(itemname), color=discord.Colour(0xffffff))
+						await ctx.send(embed=em)
+						return
+					except:
+						return
+
+
 
 			
 				
@@ -1190,11 +1469,11 @@ class shop(commands.Cog):
 
 
 		if userinfo["questname"] == "Shop I" and userinfo["questpart"] == 0:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		Class = userinfo["class"]
@@ -1255,11 +1534,11 @@ class shop(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 
 		if userinfo["questname"] == "Shop I"  and userinfo["questpart"] == 1:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		Class = userinfo["class"]

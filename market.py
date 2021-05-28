@@ -27,20 +27,33 @@ class market(commands.Cog):
 		self.bot = bot
 
 	async def check_answer(self, ctx, valid_options):
-
-		answer = await self.bot.wait_for_message(author=ctx.message.author, channel=ctx.message.channel)
+		def pred(m):
+			return m.author == ctx.author and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
 
 		if answer.content.lower() in valid_options:
 			return answer.content
-
 		elif answer.content in valid_options:
 			return answer.content
-
 		elif answer.content.upper() in valid_options:
 			return answer.content
-
 		else:
 			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
+	async def check_answer_other_user(self, ctx, user, valid_options):
+		def pred(m):
+			return m.author == user and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
 
 	@commands.group(pass_context = True, aliases=["auction"], no_pm=True, invoke_without_command=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -155,11 +168,11 @@ class market(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Market I":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		if item["rarity"] == "Basic":
 			if price < 1000:
@@ -522,11 +535,11 @@ class market(commands.Cog):
 					return
 		else:
 			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 0:
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				userinfo["questpart"] = userinfo["questpart"] + 1
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			userinfo["gold"] = userinfo["gold"] - Sum

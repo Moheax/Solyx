@@ -43,12 +43,21 @@ class image(commands.Cog):
 			return
 
 
+		em1 = discord.Embed(description="<a:Solyxloadside:783364003367485460> Gathering profile image! <:Solyx:560809141766193152>", color=discord.Colour(0xffffff)) 
+		try:
+			await ctx.send(embed=em1)
+		except:
+			try:
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["editmsgfail"]["translation"])
+				return
+			except:
+				return
 		if userinfo["questname"] == "Check Profile" :
-			userinfo["questprogress"] = userinfo["questprogress"] + 1		
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += 1		
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		await self.draw_profile(user)
 		try:

@@ -150,11 +150,11 @@ class guild(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 0:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		guildinfo = db.servers.find_one({ "_id": guild.id })
@@ -199,11 +199,11 @@ class guild(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 1:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		if guildinfo["title"] == "None" and guildinfo["bonus"] >= 10:
@@ -499,11 +499,11 @@ class guild(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 2:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 
@@ -849,12 +849,13 @@ class guild(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 3:
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		if amount <= 0:
 			em = discord.Embed(description="You can't donate negative amounts!", color=discord.Colour(0xffffff))
@@ -881,11 +882,12 @@ class guild(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Guild II":
-			userinfo["questprogress"] = userinfo["questprogress"] + amount
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+			userinfo["questprogress"] += amount
+			
 			if userinfo["questprogress"] >= 1000:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -1096,6 +1098,7 @@ async def _guild_mission_check(self, user, mission, guild, add):
 			return
 		except:
 			return
+	
 
 	else:
 		return

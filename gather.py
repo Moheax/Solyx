@@ -81,10 +81,10 @@ class gather(commands.Cog):
 			return
 
 		if userinfo["questname"] == "Gathering Fish I":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
 			if userinfo["questprogress"] >= 5:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 	
 
@@ -200,18 +200,24 @@ class gather(commands.Cog):
 				pass
 
 			if userinfo["questname"] == "Gathering Metal I":
-				userinfo["questprogress"] = userinfo["questprogress"] + mined_metal
+				userinfo["questprogress"] += mined_metal
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 2:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
+					userinfo["questname"] = "Gathering Fish I"
 				pass
-	
+			
 			if userinfo["questname"] == "Gathering Stone I":
-				userinfo["questprogress"] = userinfo["questprogress"] + mined_rock
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				userinfo["questprogress"] += mined_rock
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
+					userinfo["questname"] = "Gathering Metal I"
 				pass
+
+			
+	
+			
 
 			userinfo["metal"] = userinfo["metal"] + mined_metal
 			userinfo["stone"] = userinfo["stone"] + mined_rock
@@ -313,10 +319,10 @@ class gather(commands.Cog):
 				pass
 		
 			if userinfo["questname"] == "Gathering Wood I":
-				userinfo["questprogress"] = userinfo["questprogress"] + chopped
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+				userinfo["questprogress"] += chopped
 				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
+					userinfo["questname"] = "Gathering Stone I"
 				pass
 
 			userinfo["wood"] = userinfo["wood"] + chopped

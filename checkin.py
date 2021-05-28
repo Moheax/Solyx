@@ -45,10 +45,10 @@ class checkin(commands.Cog):
 
 		
 		if userinfo["questname"] == "Daily I":
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		#GUILD BOOST

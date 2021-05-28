@@ -74,16 +74,16 @@ class sell(commands.Cog):
 			return
 		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
 			if userinfo["questname"] == "Wood Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({"_id": user.id}, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 			
 
 			gain = amount * random.randint(2, 6)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["wood"] = userinfo["wood"] - amount
+			userinfo["gold"] += gain
+			userinfo["wood"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["wood"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["wood"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:
@@ -134,15 +134,15 @@ class sell(commands.Cog):
 		if userinfo["wood"] > 0 and userinfo["wood"] >= amount:
 
 			if userinfo["questname"] == "Wood Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			gain = amount * random.randint(2, 6)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["wood"] = userinfo["wood"] - amount
+			userinfo["gold"] += gain
+			userinfo["wood"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["wood"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["wood"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:
@@ -193,15 +193,15 @@ class sell(commands.Cog):
 			return
 		if userinfo["stone"] > 0 and userinfo["stone"] >= amount:
 			if userinfo["questname"] == "Stone Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				if userinfo["questprogress"] >= 10:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			gain = amount * random.randint(2, 6)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["stone"] = userinfo["stone"] - amount
+			userinfo["gold"] += gain
+			userinfo["stone"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["stone"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["stone"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:
@@ -253,7 +253,7 @@ class sell(commands.Cog):
 		if userinfo["stone"] > 0 and userinfo["stone"] >= amount:
 
 			if userinfo["questname"] == "Stone Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 10:
 					await _quest_check(self, ctx, user)
@@ -261,8 +261,8 @@ class sell(commands.Cog):
 				pass
 
 			gain = amount * random.randint(2, 6)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["stone"] = userinfo["stone"] - amount
+			userinfo["gold"] += gain
+			userinfo["stone"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["stone"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["stone"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:
@@ -315,15 +315,15 @@ class sell(commands.Cog):
 		if userinfo["metal"] > 0 and userinfo["metal"] >= amount:
 
 			if userinfo["questname"] == "Metal Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			gain = amount * random.randint(5, 10)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["metal"] = userinfo["metal"] - amount
+			userinfo["gold"] += gain
+			userinfo["metal"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["metal"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["metal"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:
@@ -377,15 +377,15 @@ class sell(commands.Cog):
 		if userinfo["metal"] > 0 and userinfo["metal"] >= amount:
 
 			if userinfo["questname"] == "Metal Trader I":
-				userinfo["questprogress"] = userinfo["questprogress"] + amount
+				userinfo["questprogress"] += amount
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user)
+					await _quest_check(self, ctx, user, userinfo)
 				pass
 
 			gain = amount * random.randint(5, 10)
-			userinfo["gold"] = userinfo["gold"] + gain
-			userinfo["metal"] = userinfo["metal"] - amount
+			userinfo["gold"] += gain
+			userinfo["metal"] -= amount
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["metal"]["sold"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["sell"]["metal"]["sold"]["description"]["translation"].format(amount, gain), color=discord.Colour(0xffffff))
 			try:

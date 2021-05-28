@@ -543,11 +543,12 @@ class equip(commands.Cog):
 				return
 
 		if userinfo["questname"] == "Equip" :
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
+			message = "\nQuest updated, Now equip armor!"
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		if userinfo["equip"] == "None":
@@ -560,7 +561,7 @@ class equip(commands.Cog):
 			userinfo["inventory"].remove(item)
 		
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}".format(item["name"]), color=discord.Colour(0xffffff))
+		em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["equip"]["equipped"]["translation"], description="{}{}".format(item["name"], message), color=discord.Colour(0xffffff))
 		try:
 			await ctx.send(embed=em)
 		except:
@@ -613,11 +614,11 @@ class equip(commands.Cog):
 
 		
 		if userinfo["questname"] == "Equip"and userinfo["questpart"] == 1 :
-			userinfo["questprogress"] = userinfo["questprogress"] + 1
+			userinfo["questprogress"] += 1
 			userinfo["questpart"] = userinfo["questpart"] + 1
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user)
+				await _quest_check(self, ctx, user, userinfo)
 			pass
 
 		if type == "armor":

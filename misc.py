@@ -12,12 +12,18 @@ from utils.db import db
 from utils.dataIO import fileIO
 import textwrap
 import threading
+import os
 
 
 class misc(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
+	@commands.command()
+	@commands.check(developer)
+	async def launch(self, ctx):
+		ctx.send("Starting giveaway bot.")
+		os.startfile(r"C:\Users\Gebruiker\Documents\Nova\Solyx\rewrite\solyxgiveawaybot\launch.bat")
 		
 
 	@commands.command(pass_context=True, no_pm=True)
@@ -340,12 +346,23 @@ class misc(commands.Cog):
 	@commands.command(pass_context=True, no_pm=True)	
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	@commands.check(developer)
-	async def test(self, ctx):
-		monstercolor = discord.Colour(0xffffff)
-		fight_msg = "Test\nuwuwu"
-		name_msg = ""
-		em = discord.Embed(color=monstercolor)
-		em.add_field(name=name_msg, value=fight_msg, inline=False)
+	async def setquestp(self, ctx, progress:int):
+		user = ctx.author
+		userinfo = db.users.find_one({ "_id": user.id })
+		userinfo["questprogress"] = progress
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		em = discord.Embed(title="Quest progress.", description="quest progress has been updated!",color=discord.Colour(0xffffff))	
+		await ctx.send(embed=em)
+	
+	@commands.command(pass_context=True, no_pm=True)	
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	@commands.check(developer)
+	async def setquest(self, ctx, quest:str):
+		user = ctx.author
+		userinfo = db.users.find_one({ "_id": user.id })
+		userinfo["questname"] = quest
+		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+		em = discord.Embed(title="Quest.", description="current quest has been changed!",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
 def setup(bot):

@@ -187,7 +187,7 @@ class titles(commands.Cog):
 		list7 = ""
 		list8 = ""
 		list9 = ""
-
+		list10 = ""
 		try:
 			if "Beginner" in _titles :
 				list1 += "Beginner\n"
@@ -441,6 +441,21 @@ class titles(commands.Cog):
 			if "Frost Dragon Killer" in _titles :
 				list9 += "Frost Dragon Killer\n"
 
+			if "Goose catcher" in _titles :
+				list10 += "Goose catcher\n"
+
+			if "Fox tracker" in _titles :
+				list10 += "Fox tracker\n"
+
+			if "Bear friend" in _titles :
+				list10 += "Bear friend\n"
+
+			if "Strange dog keeper" in _titles :
+				list10 += "Strange dog keeper\n"
+
+			if "Dino-Bird trainer" in _titles :
+				list10 += "Dino-Bird trainer\n"
+
 			
 		
 		
@@ -468,10 +483,11 @@ class titles(commands.Cog):
 		list7 += "_ _\n"
 		list8 += "_ _\n"
 		list9 += "_ _\n"
-		
+		list10 += "_ _\n"
 
 
-		em = discord.Embed(title="{}'s Titles, {} / 85 Aquired!".format(user.name, titlesinfo["titles_amount"]), color=discord.Colour(0xffffff))
+
+		em = discord.Embed(title="{}'s Titles, {} / 89 Aquired!".format(user.name, titlesinfo["titles_amount"]), color=discord.Colour(0xffffff))
 		
 		
 		try:
@@ -489,11 +505,12 @@ class titles(commands.Cog):
 		except:
 			pass
 
+		
+
 		try:
-			em.add_field(name="Level titles", value=list1)
+			em.add_field(name="Pet titles", value=list10)
 		except:
 			pass
-
 
 		try:
 			em.add_field(name="Event titles", value=list6)
@@ -514,6 +531,11 @@ class titles(commands.Cog):
 			pass
 
 		try:
+			em2.add_field(name="Level titles", value=list1)
+		except:
+			pass
+
+		try:
 			em2.add_field(name="Boss kill titles", value=list9)
 		except:
 			pass
@@ -522,6 +544,7 @@ class titles(commands.Cog):
 			em2.add_field(name="Kill count titles", value=list7)
 		except:
 			pass
+		
 
 
 
