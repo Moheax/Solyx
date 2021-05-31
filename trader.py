@@ -246,7 +246,7 @@ class trader(commands.Cog):
 			m, s = divmod(seconds, 60)
 			
 
-			em = discord.Embed(title=title, description=list1 + "\nTraders profit:<:Gold:639484869809930251>" + str(round(userinfo["trader_profit"])) + "\n trader will stay for another " + str(round(m)) + " Minutes and " + str(round(s)) + " Seconds", color=discord.Colour(0xffffff))
+			em = discord.Embed(title=title, description=list1 + "\nTraders profit: <:Gold:639484869809930251>" + str(round(userinfo["trader_profit"])) + "\n trader will stay for another " + str(round(m)) + " Minutes and " + str(round(s)) + " Seconds", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 		else:
 			em = discord.Embed(title="No trader!", description="type `{}trader find` to find a trader to trade with!".format(ctx.prefix), color=discord.Colour(0xffffff))
