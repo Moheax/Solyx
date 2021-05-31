@@ -403,6 +403,29 @@ class give(commands.Cog):
 			em = discord.Embed(title="iron plates given: {}".format(amount), description="{} ({}) got {} iron plates from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
 			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/560809103346368522.png")
 			await self.bot.get_channel(643899016156938260).send(embed=em)
+
+	@_give.command(name="pet_food", pass_context=True)
+	@commands.check(developer)
+	async def give_pet_food(self, ctx, user: discord.Member, amount: int):
+		author = ctx.message.author
+		authorinfo = db.users.find_one({ "_id": author.id })
+		if not authorinfo["role"] in ["Developer", "Staff"]:
+			return
+
+		userinfo = db.users.find_one({ "_id": user.id })
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send("That user doesn't play yet... D:")
+			return
+		else:
+			userinfo["pet_food"] = userinfo["pet_food"] + amount
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+			em = discord.Embed(title="Done", description="Gave {} {} pet food".format(user.mention, amount), color=discord.Colour(0xffffff))
+			em.set_footer(text="{} | {}".format(user.name, user.id))
+			await ctx.send(embed=em)
+
+			em = discord.Embed(title="pet_food given: {}".format(amount), description="{} ({}) got {} pet_food from {} ({})!".format(user.mention, user.id, amount, author.mention, author.id), color=discord.Colour(0xff0000))
+			em.set_thumbnail(url="https://cdn.discordapp.com/emojis/849024713995845723.png?v=1")
+			await self.bot.get_channel(643899016156938260).send(embed=em)
 	
 	@_give.command(name="hp", pass_context=True, aliases=["potion"])
 	@commands.check(developer)
