@@ -98,8 +98,6 @@ class giveaway(commands.Cog):
 
 		c_id = channelid[2:-1]
 
-		
-
 
 		gchannel = self.bot.get_channel(int(c_id))
 
@@ -141,6 +139,7 @@ class giveaway(commands.Cog):
 
 	
 			userinfo = db.users.find_one({ "_id": winner.id })
+			print(userinfo)
 			
 			if prize == "<:Wood:573574660185260042>":
 				userinfo["wood"] += prizeamount
@@ -175,26 +174,18 @@ class giveaway(commands.Cog):
 			if prize == "<:Crate:639425690072252426>":
 				userinfo["lootbag"] += prizeamount
 
+			if prize == "<:petfood:849020620934873139>":
+				userinfo["pet_food"] += prizeamount
+
+			if prize == "<:ANGERY:641748074942693376>":
+				userinfo["pet_food"] += prizeamount
+
 			db.users.replace_one({ "_id": winner.id }, userinfo, upsert=True)
 					
 			await asyncio.sleep(0.5)
-		
-		else:
-			
+		else:	
 			pass
 		
-
-		
-
-		
-		
-
-	
-
-
-
-
-
 def setup(bot):
 	n = giveaway(bot)
 	bot.add_cog(n)
