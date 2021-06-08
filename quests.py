@@ -813,26 +813,6 @@ class quests(commands.Cog):
                 except:
                     return
 
-        elif userinfo["questname"] == "Support Server":
-            em = discord.Embed(title="Support Server",
-                                description="**Objective**\nJoin the support server [here](https://discord.gg/9b3KkJvJea).".format(
-                                    ctx.prefix), color=discord.Colour(0xffffff))
-            em.add_field(name="Progress",
-                            value="If you want to join its free! :P\n You can leave after!\nQuest done!".format(
-                                userinfo["questprogress"]), inline=False)
-            em.set_thumbnail(url=user.avatar_url)
-            userinfo["questprogress"] += 1
-            
-            try:
-                await ctx.send(embed=em)
-            except:
-                try:
-                    await ctx.send(
-                        fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
-                    return
-                except:
-                    return
-
         elif userinfo["questname"] == "On the hunt!":
             em = discord.Embed(title="On the hunt!",
                                 description="**Objective**\nHunt down a Rare Wyvern\n They have been spotted in the golden temple!\ntype {}travel 1 to go to the golden temple.".format(
@@ -1748,7 +1728,7 @@ async def _quest_check(self, ctx, user, userinfo):
 
         em = discord.Embed(color=discord.Colour(0xffffff))
         em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
-        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 10 Corrupted's!".format(newquest), inline=False)
+        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Slay 5 Corrupted's!".format(newquest), inline=False)
         await ctx.send(embed=em)
 
         
@@ -1790,37 +1770,6 @@ async def _quest_check(self, ctx, user, userinfo):
     elif userinfo["questname"] == "Reforge I" and userinfo["questprogress"] >= 1:
         oldquest = "Reforge I"
 
-        expgain = 135
-        goldgain = 135
-        crategain = 9
-        keygain = 9
-        hpgain = 8
-        exppgain = 8
-
-        newquest = "Support Server"
-        userinfo["questname"] = newquest
-        userinfo["questscompleted"].append(oldquest)
-        userinfo["questprogress"] = 0
-        userinfo["questpart"] = 0
-        userinfo["exp"] += expgain
-        userinfo["gold"] += goldgain
-        userinfo["lootbag"] +=crategain
-        userinfo["keys"] += keygain
-        userinfo["hp_potions"] += hpgain
-        userinfo["exp_potions"] += exppgain
-
-        em = discord.Embed(color=discord.Colour(0xffffff))
-        em.add_field(name="Quest Completed", value="You completed  **{}**\n\n **Rewards**\n:sparkles: {} Experience\n<:Gold:639484869809930251> {} Gold\n <:Crate:639425690072252426> {} Crates\n<:Key:573780034355986432> {} Keys\n<:HealingPotion:573577125064605706> {} Health potion\n <:ExpBottle:770044187348566046> {} Experience potion".format(oldquest, expgain, goldgain, crategain, keygain, hpgain, exppgain),  inline=False)
-        em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Join the support server to stay  up-to-date with updates\n and if necessary some support!!\nJoin [here](https://discord.gg/9b3KkJvJea)".format(newquest), inline=False)
-        await ctx.send(embed=em)
-        
-        
-        
-        pass
-    # UNSURE IF CHECKED OR NOT.
-    elif userinfo["questname"] == "Support Server" and userinfo["questprogress"] >= 1:
-        oldquest = "Support Server"
-
         expgain = 140
         goldgain = 140
         crategain = 10
@@ -1845,8 +1794,6 @@ async def _quest_check(self, ctx, user, userinfo):
         em.add_field(name="New Quest!", value=":notebook_with_decorative_cover: Your new quest is **{}**\n\n**Objective**\n Hunt down a Rare Wyvern\n They have been spotted in the golden temple!".format(newquest), inline=False)
         await ctx.send(embed=em)
 
-        
-        
         pass
     # done
     elif userinfo["questname"] == "On the hunt!" and userinfo["questprogress"] >= 1:
@@ -1882,15 +1829,6 @@ async def _quest_check(self, ctx, user, userinfo):
         await _level_up_check_user(self, ctx, user)
     except:
         return
-
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    # 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 
 
 def setup(bot):

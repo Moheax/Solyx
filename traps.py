@@ -4959,8 +4959,6 @@ class traps(commands.Cog):
 					
 						trap1enemygold = (int((trap1enemygold / 100) * 150))					
 						trap1xpgain = (int((trap1xpgain / 100) * 150))
-
-
 				# GOLDEN TEMPLE
 				elif trap1 == "Wyvern":
 					trap1enemygold = random.randint(15, 35) + (effectiveguildbonus)				
@@ -4981,7 +4979,6 @@ class traps(commands.Cog):
 					elif trap1diff == "Mythical":				
 						trap1enemygold = (int((trap1enemygold / 100) * 150))			
 						trap1xpgain = (int((trap1xpgain / 100) * 150))
-
 
 				# GOLDEN TEMPLE
 				elif  trap1 == "Fire Golem":
@@ -5161,25 +5158,21 @@ class traps(commands.Cog):
 					if trap1diff == "Uncommon":
 						
 						trap1enemygold = (int((trap1enemygold / 100) * 120))
-						
 						trap1xpgain = (int((trap1xpgain / 100) * 120))
 
 					elif trap1diff == "Rare":
 						
 						trap1enemygold = (int((trap1enemygold / 100) * 130))
-						
 						trap1xpgain = (int((trap1xpgain / 100) * 130))
 
 					elif trap1diff == "Legendary":
 						
 						trap1enemygold = (int((trap1enemygold / 100) * 140))
-						
 						trap1xpgain = (int((trap1xpgain / 100) * 140))
 
 					elif trap1diff == "Mythical":
 						
 						trap1enemygold = (int((trap1enemygold / 100) * 150))
-						
 						trap1xpgain = (int((trap1xpgain / 100) * 150))
 
 				# EBONY MOUNTAINS
@@ -12067,15 +12060,18 @@ class traps(commands.Cog):
 			em.set_author(name="{}'s Traps".format(userinfo["name"]), icon_url=user.avatar_url)
 			try:
 				em.add_field(name="Successful Traps", value=list)
-			except:
+			except Exception as e: 
+				print(e)
 				pass
 			try:
 				em.add_field(name="Failed Traps", value=list1)
-			except:
+			except Exception as e: 
+				print(e)
 				pass
 			try:
 				em.add_field(name="Broken Traps", value=list2)
-			except:
+			except Exception as e: 
+				print(e)
 				pass
 			await ctx.send(embed=em)
 
@@ -12084,15 +12080,18 @@ class traps(commands.Cog):
 				em2.set_author(name="{}'s Traps 2nd page".format(userinfo["name"]), icon_url=user.avatar_url)
 				try:
 					em2.add_field(name="Successful Traps", value=list3)
-				except:
+				except Exception as e: 
+					print(e)
 					pass
 				try:
 					em2.add_field(name="Failed Traps", value=list4)
-				except:
+				except Exception as e: 
+					print(e)
 					pass
 				try:
 					em2.add_field(name="Broken Traps", value=list5)
-				except:
+				except Exception as e: 
+					print(e)
 					pass
 			
 				await ctx.send(embed=em2)
@@ -12106,7 +12105,8 @@ class traps(commands.Cog):
 			em.set_author(name="{}'s total rewards".format(userinfo["name"]), icon_url=user.avatar_url)
 			try:
 				em.add_field(name="You have earned!", value="\n<:Gold:639484869809930251>**{}**\n<:Experience:560809103346368522>**{}**".format(totalgold, totalexp))
-			except:
+			except Exception as e: 
+				print(e)
 				pass
 		
 			await ctx.send(embed=em)

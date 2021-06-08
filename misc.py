@@ -22,9 +22,9 @@ class misc(commands.Cog):
 	@commands.command()
 	@commands.check(developer)
 	async def launch(self, ctx):
-		ctx.send("Starting giveaway bot.")
+		await ctx.send("Starting giveaway bot.")
 		os.startfile(r"C:\Users\Gebruiker\Documents\Nova\Solyx\rewrite\solyxgiveawaybot\launch.bat")
-		
+		await ctx.send("Giveaway bot started up please wait 20 seconds")
 
 	@commands.command(pass_context=True, no_pm=True)
 	@commands.check(developer)
@@ -363,6 +363,30 @@ class misc(commands.Cog):
 		userinfo["questname"] = quest
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Quest.", description="current quest has been changed!",color=discord.Colour(0xffffff))	
+		await ctx.send(embed=em)
+
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def test1(self, ctx):
+		user = ctx.message.author
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		user = ctx.message.author
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+		list = "Hello"
+		em = discord.Embed(description=list, color=0xffffff)
 		await ctx.send(embed=em)
 
 def setup(bot):

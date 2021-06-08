@@ -3467,77 +3467,77 @@ class battle(commands.Cog):
 
 				await self._level_up_check_user(ctx, user)
 
-			@battle.command(name="quit")
-			@commands.guild_only()
-			@commands.cooldown(1, 3, commands.BucketType.user)
-			async def battle_quit(self, ctx):
-				languageinfo = db.servers.find_one({"_id": ctx.guild.id})
-				language = languageinfo["language"]
+	@battle.command(name="quit")
+	@commands.guild_only()
+	@commands.cooldown(1, 3, commands.BucketType.user)
+	async def battle_quit(self, ctx):
+		languageinfo = db.servers.find_one({"_id": ctx.guild.id})
+		language = languageinfo["language"]
 
-				user = ctx.author
-				userinfo = db.users.find_one({"_id": user.id})
-				battleinfo = db.battles.find_one({"_id": user.id})
-				enemyid = battleinfo["battle_enemy"]
-				enemyinfo = db.users.find_one({"_id": enemyid})
-				enemybattleinfo = db.battles.find_one({"_id": enemyid})
-				if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
-					await ctx.send(
-						fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(
-							ctx.prefix))
-					return
+		user = ctx.author
+		userinfo = db.users.find_one({"_id": user.id})
+		battleinfo = db.battles.find_one({"_id": user.id})
+		enemyid = battleinfo["battle_enemy"]
+		enemyinfo = db.users.find_one({"_id": enemyid})
+		enemybattleinfo = db.battles.find_one({"_id": enemyid})
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(
+				fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(
+					ctx.prefix))
+			return
 
-				if userinfo["health"] <= 0:
-					await ctx.send("You cannot quit with 0 HP")
-					return
+		if userinfo["health"] <= 0:
+			await ctx.send("You cannot quit with 0 HP")
+			return
 
-				if battleinfo["battle_active"] == "False":
-					await ctx.send("You are not in a battle!")
-					return
+		if battleinfo["battle_active"] == "False":
+			await ctx.send("You are not in a battle!")
+			return
 
-				if battleinfo["battle_enemy"] == "None":
-					await ctx.send("You are not in a battle!")
-					return
+		if battleinfo["battle_enemy"] == "None":
+			await ctx.send("You are not in a battle!")
+			return
 
-				em = discord.Embed(description="**Are you sure you want to quit this battle?**",
-								color=discord.Colour(0xffffff))
-				em.set_footer(text="Type yes to quit.")
-				await ctx.send(embed=em)
+		em = discord.Embed(description="**Are you sure you want to quit this battle?**",
+						color=discord.Colour(0xffffff))
+		em.set_footer(text="Type yes to quit.")
+		await ctx.send(embed=em)
 
-				answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
+		answer1 = await self.check_answer(ctx, ["yes", "y", "Yes", "Y", "ja", "Ja", "j", "J"])
 
-				if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
+		if answer1 == "y" or answer1 == "Y" or answer1 == "yes" or answer1 == "Yes" or answer1 == "Ja" or answer1 == "ja" or answer1 == "j" or answer1 == "J":
 
-					enemygold = 30  # CHECK THIS - unused
-					xpgain = 15  # CHECK THIS - unused
-					goldlost = 100
+			enemygold = 30  # CHECK THIS - unused
+			xpgain = 15  # CHECK THIS - unused
+			goldlost = 100
 
-					em = discord.Embed(
-						description=":crown: <@{}> **won!** :crown:\n:sparkles: +{} Exp and +{}Gold\n\n{} **Has quit the battle and gets a -{} gold penalty**".format(
-							battleinfo["battle_enemy"], xpgain, enemygold, user.mention, goldlost),
-						color=discord.Colour(0xffdf00))
-					await ctx.send(embed=em)
-					userinfo["gold"] = userinfo["gold"] - goldlost
-					if userinfo["gold"] < 0:
-						userinfo["gold"] = 0
+			em = discord.Embed(
+				description=":crown: <@{}> **won!** :crown:\n:sparkles: +{} Exp and +{}Gold\n\n{} **Has quit the battle and gets a -{} gold penalty**".format(
+					battleinfo["battle_enemy"], xpgain, enemygold, user.mention, goldlost),
+				color=discord.Colour(0xffdf00))
+			await ctx.send(embed=em)
+			userinfo["gold"] = userinfo["gold"] - goldlost
+			if userinfo["gold"] < 0:
+				userinfo["gold"] = 0
 
-					battleinfo["battle_active"] = "False"
-					battleinfo["battle_enemy"] = "None"
-					battleinfo["battle_streak"] = 0
-					battleinfo["battle_losses"] = battleinfo["battle_losses"] + 1
+			battleinfo["battle_active"] = "False"
+			battleinfo["battle_enemy"] = "None"
+			battleinfo["battle_streak"] = 0
+			battleinfo["battle_losses"] = battleinfo["battle_losses"] + 1
 
-					enemybattleinfo["battle_active"] = "False"
-					enemybattleinfo["battle_enemy"] = "None"
-					enemybattleinfo["battle_streak"] = enemybattleinfo["battle_streak"] + 1
-					enemybattleinfo["battle_wins"] = enemybattleinfo["battle_wins"] + 1
-					enemyinfo["exp"] = enemyinfo["exp"] + 15
-					enemyinfo["gold"] = enemyinfo["gold"] + 30
+			enemybattleinfo["battle_active"] = "False"
+			enemybattleinfo["battle_enemy"] = "None"
+			enemybattleinfo["battle_streak"] = enemybattleinfo["battle_streak"] + 1
+			enemybattleinfo["battle_wins"] = enemybattleinfo["battle_wins"] + 1
+			enemyinfo["exp"] = enemyinfo["exp"] + 15
+			enemyinfo["gold"] = enemyinfo["gold"] + 30
 
-					db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-					db.battles.replace_one({"_id": user.id}, battleinfo, upsert=True)
-					db.users.replace_one({"_id": enemyid}, enemyinfo, upsert=True)
-					db.battles.replace_one({"_id": enemyid}, enemybattleinfo, upsert=True)
+			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+			db.battles.replace_one({"_id": user.id}, battleinfo, upsert=True)
+			db.users.replace_one({"_id": enemyid}, enemyinfo, upsert=True)
+			db.battles.replace_one({"_id": enemyid}, enemybattleinfo, upsert=True)
 
-					await self._level_up_check_user(ctx, user)
+			await self._level_up_check_user(ctx, user)
 
 	
 	async def check_answer(self, ctx, valid_options):

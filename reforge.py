@@ -10,6 +10,7 @@ from time import time
 from utils.dataIO import fileIO
 from utils.db import db
 from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
+from cogs.quests import _quest_check
 
 class reforge(commands.Cog):
 	def __init__(self, bot):

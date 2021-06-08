@@ -138,7 +138,7 @@ class friends(commands.Cog):
 			return
 
 		if userinfo["pet_find"] == "None":
-			em = discord.Embed(title="No tameable pet",description="There's no tameable pets nearby fight bosses to find some!", color=discord.Colour(0xff0000))
+			em = discord.Embed(title="No tameable pet",description="There's no tameable pets nearby fight bosses to find some!", color=discord.Colour(0xE0119F))
 			await ctx.send(embed=em)
 
 		elif userinfo["pet_find"] == "Golden Goose":
@@ -147,7 +147,7 @@ class friends(commands.Cog):
 
 			if pet_tame >= 80:
 				
-				em = discord.Embed(title="tameable pet",description="You have tamed the Goose!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have tamed the Goose!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 
@@ -168,7 +168,7 @@ class friends(commands.Cog):
 						except:
 							await ctx.send(embed=em)
 			else:
-				em = discord.Embed(title="tameable pet",description="You have failed to tame the Goose!\n", color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have failed to tame the Goose!\n", color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 				userinfo["pet_find"] = "None"
@@ -181,13 +181,14 @@ class friends(commands.Cog):
 
 			if pet_tame >= 80:
 				
-				em = discord.Embed(title="tameable pet",description="You have tamed a fox!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have tamed a fox!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 
 				userinfo["pet_find"] = "None"
 				userinfo["pet_list"].append({ "name": "Unamed", "type": "Fox", "level": 1, "xp": 0})
 				userinfo["pet_stage"] = "Polar Bear"
+
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 				if not "Fox tracker" in titlesinfo["titles_list"]:
@@ -202,7 +203,7 @@ class friends(commands.Cog):
 						except:
 							await ctx.send(embed=em)
 			else:	
-				em = discord.Embed(title="tameable pet",description="You have failed to tame the Fox!\n", color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have failed to tame the Fox!\n", color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 				userinfo["pet_find"] = "None"
@@ -215,12 +216,13 @@ class friends(commands.Cog):
 
 			if pet_tame >= 80:
 				
-				em = discord.Embed(title="tameable pet",description="You have tamed a polar bear!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have tamed a polar bear!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 
 				userinfo["pet_find"] = "None"
 				userinfo["pet_list"].append({ "name": "Unamed", "type": "Polar Bear", "level": 1, "xp": 0})
+				userinfo["pet_stage"] = "Small Cerberus"
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				
@@ -237,7 +239,7 @@ class friends(commands.Cog):
 							await ctx.send(embed=em)
 			
 			else:	
-				em = discord.Embed(title="tameable pet",description="You have failed to tame the Polar Bear!\n", color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have failed to tame the Polar Bear!\n", color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 				userinfo["pet_find"] = "None"
@@ -249,12 +251,13 @@ class friends(commands.Cog):
 
 			if pet_tame >= 80:
 				
-				em = discord.Embed(title="tameable pet",description="You have tamed a small cerberus!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have tamed a small cerberus!\nCheck it in `{}pet list`\n You can equip it with `{}pet equip [number]`\n You can level your pet by giving it food `{}pet feed [number]`".format(ctx.prefix, ctx.prefix, ctx.prefix), color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 
 				userinfo["pet_find"] = "None"
 				userinfo["pet_list"].append({ "name": "Unamed", "type": "Small Cerberus", "level": 1, "xp": 0})
+				userinfo["pet_stage"] = "None"
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 				
@@ -271,7 +274,7 @@ class friends(commands.Cog):
 							await ctx.send(embed=em)
 			
 			else:	
-				em = discord.Embed(title="tameable pet",description="You have failed to tame the Small Cerberus!\n", color=discord.Colour(0xff0000))
+				em = discord.Embed(title="Tameable pet",description="You have failed to tame the Small Cerberus!\n", color=discord.Colour(0xE0119F))
 				em.set_image(url="")
 				await ctx.send(embed=em)
 				userinfo["pet_find"] = "None"
@@ -317,7 +320,7 @@ class friends(commands.Cog):
 		petinfo["name"] = name
 
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		em = discord.Embed(title="Pet named",description="You have named your {}!\nit will now be known as  {}".format(petinfo["type"], petinfo["name"]), color=discord.Colour(0xff0000))
+		em = discord.Embed(title="Pet named",description="You have named your {}!\nit will now be known as  {}".format(petinfo["type"], petinfo["name"]), color=discord.Colour(0xE0119F))
 		em.set_image(url="")
 		await ctx.send(embed=em)
 
@@ -426,7 +429,7 @@ class friends(commands.Cog):
 	@_pets.group(name="feed", aliases=["eat"], pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
 	async def _feed(self, ctx, pet:int):
-		"""give them food to level up!"""
+		"""give them food to level up!\n(obtainable in support server lotteries)"""
 
 
 		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
@@ -444,7 +447,7 @@ class friends(commands.Cog):
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to unequip a pet")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to feed their pet")
 
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
@@ -460,16 +463,20 @@ class friends(commands.Cog):
 			return
 			
 		pet_name = petinfo["name"]
-		pet_level = petinfo["level"]
-		pet_xp = petinfo["level"]
-		
-		if userinfo["pet_food"] >= 1:
-			gain = random.randint(10, 15)
-			petinfo["xp"] = petinfo["xp"] + gain
 	
-			userinfo["pet_food"] = userinfo["pet_food"] - 1
+		print(userinfo["pet_food"])
 
-			em = discord.Embed(title="**{} gained {} exp!** <:Experience:560809103346368522>".format(pet_name, gain), color=discord.Colour(0xffd700))
+		if userinfo["pet_food"] == 0:
+			em = discord.Embed(title="OH NO!", description="You have no pet food.\n", color=discord.Colour(0xffd700))
+			await ctx.send(embed=em)
+
+		if userinfo["pet_food"] >= 1:
+			
+			gain = random.randint(10, 15)
+			petinfo["xp"] += gain
+			userinfo["pet_food"] -= 1
+
+			em = discord.Embed(title="Pet fed!", description="**{} gained {} exp!** <:Experience:560809103346368522>".format(petinfo["name"], gain), color=discord.Colour(0xffd700))
 			await ctx.send(embed=em)
 
 			if petinfo["xp"] >= 100 + ((petinfo["level"] + 1) * 3.5):
@@ -478,12 +485,49 @@ class friends(commands.Cog):
 			
 				em = discord.Embed(title=":tada: **{} gained a level!** :tada:".format(pet_name), color=discord.Colour(0xffd700))
 				await ctx.send(embed=em)
-		else:
-			em = discord.Embed(title="OH NO!", description="You have no pet feed.\n", color=discord.Colour(0xffd700))
-			await ctx.send(embed=em)
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)	
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		
+		
+	@_pets.group(name="pat", aliases=["pet"], pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def _pat(self, ctx, pet:int):
+		"""pat your pet uwu!"""
+		languageinfo = db.servers.find_one({ "_id": ctx.message.guild.id })
+		language = languageinfo["language"]
+
+		user = ctx.message.author
+		
+		guild = ctx.guild
+
+		channel = ctx.message.channel
+
+		userinfo = db.users.find_one({ "_id": user.id })
+
+		now = datetime.datetime.now()
+
+		current_time = now.strftime("%H:%M:%S")
+
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has patted their pet uwu")
+
+		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
+			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
+			return
+
+		if userinfo and userinfo["blacklisted"] == "True":
+			return
+
+		try:
+			petinfo = userinfo["pet_list"][pet-1]
+		except:
+			await ctx.send("<:Solyx:560809141766193152> **| No pet in this slot...**")
+			return
+			
+		pet_name = petinfo["name"]
+	
+		em = discord.Embed(title="You patted {} look how cuteee, your friendship level has increased!".format(pet_name), color=discord.Colour(0xffd700))
+		await ctx.send(embed=em)
+
 
 		
 	async def check_answer(self, ctx, valid_options):
