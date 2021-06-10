@@ -609,7 +609,7 @@ class fight(commands.Cog):
 		all_skills = [
 			"Shoot", # archer, assassin, ranger, night assassin, skilled ranger
 			"Swing", # knight, samurai, paladin, master samurai, grand paladin
-			"Cast", # cast, necromancer, elementalist, developed necromancer, adequate elementalist
+			"Cast", # mage, necromancer, elementalist, developed necromancer, adequate elementalist
 			"Stab", # thief, rogue, mesmer, high rogue, adept mesmer
 			"Corrupt", # assassin, night assassin
 			"Strike", # ranger, skilled ranger
@@ -742,7 +742,7 @@ class fight(commands.Cog):
 					youdmg = int((youdmg / 100) * 130)
 					list += "**{} Has been corrupted for {} turns.\n{} dealing {} damage.**".format(enemyname, userinfo["Buff1Time"], arrow, youdmg)
 					if userinfo["Buff1"] == "Corrupt" and userinfo["EnemyStun"] > 0:
-						list += "**{} Has been stunned for {} turns**\n**{} Has been corrupted for {} turns.\n{} dealing {} damage.**".format(enemyname, userinfo["EnemyStun"], enemyname, userinfo["Buff1Time"], arrow, youdmg)
+						list += "**{} Has been stunned for {} turns.**\n**{} Has been corrupted for {} turns.\n{} dealing {} damage.**".format(enemyname, userinfo["EnemyStun"], enemyname, userinfo["Buff1Time"], arrow, youdmg)
 				else:
 					list += "**{} dealing {} damage.**".format(arrow, youdmg)
 			
@@ -765,9 +765,9 @@ class fight(commands.Cog):
 			elif answer2 == "stab" or answer2 == "Stab":
 				stab = randchoice(["You hit a quick stab", "You quickly hit their weakspot"])
 				if userinfo["lvl"] >= 30:
-					stab = randchoice(["You stab a weakspot", "You deal a precise stab"])
+					stab = randchoice(["You stab a weak spot", "You deal a precise stab"])
 				if userinfo["lvl"] >= 90:
-					stab = randchoice(["You critically stab a weakspot", "You deal a deadly stab"])
+					stab = randchoice(["You critically stab a weak spot", "You deal a deadly stab"])
 				if userinfo["EnemyStun"] > 0:
 					list += "**{} is stunned and can't attack.\n{} dealing {} damage.**".format(enemydmg, stab, youdmg)
 				elif userinfo["Buff1"] == "Rupture":
@@ -800,7 +800,8 @@ class fight(commands.Cog):
 
 			elif answer2 == "reap" or answer2 == "Reap":
 				reap = int((enemyhp / 100) * 30)
-				list += randchoice(["**You reap 30% of {}'s health and add it to yourself.\n healing for {} hp.**".format(enemyname, reap),"**You reap {} hp from the enemy to heal yourself.**".format(reap)])
+				userinfo["SkillCooldown1"] = 3
+				list += randchoice(["**You reap 30% of {}'s health and add it to your own health.\n healing for {} hp.**".format(enemyname, reap),"**You reap {} hp from the enemy to heal yourself.**".format(reap)])
 				if userinfo["Buff1"] == "Arise":
 					hit = int((youdmg / 100) * 25)
 					totaldmg = hit + hit + hit + hit + hit
@@ -831,6 +832,7 @@ class fight(commands.Cog):
 			elif answer2 == "protrude" or answer2 == "Protrude":
 				youdmg = int((youdmg / 100) * 140)
 				combo = randchoice(["You hit the enemy on a critical spot.", "You stab the enemy on a critical spot.", "You pierce the enemy on a critical spot."])
+				userinfo["SkillCooldown1"] = 3
 				if userinfo["Buff1"] == "Slice":
 					bleeding = int((enemyhp / 100) * 25)
 					list += "**{} is still bleeding and losing health.\nTaking {} bleeding damage\n{}\n Dealing {} damage.**".format(enemyname, bleeding, combo, youdmg)
@@ -841,14 +843,14 @@ class fight(commands.Cog):
 				youdmg = int((youdmg / 100) * 50)
 				userinfo["EnemyStun"] = 3.
 				userinfo["SkillCooldown1"] = 6
-				list += randchoice(["**You strike a blunt blow to the head immobilizing the enemy for 2 turns,\nbut dealing less damage.\nYou deal {} damage.**".format(youdmg), "**You strike a heavy hit to the chest stunning the enemy for 2 turns.\nYou deal {} damage.**".format(youdmg), "**You strike a fierce blow to the knee making the enemy incapable of moving for 2 turns.\nbut dealing less damage.\nYou deal {} damage.**".format(youdmg)])
+				list += randchoice(["**You strike a blunt blow to the head immobilizing the enemy for 2 turns,\nbut dealing less damage.\nYou deal {} damage.**".format(youdmg), "**You strike a heavy hit to the chest stunning the enemy for 2 turns.\nYou deal {} damage.**".format(youdmg), "**You strike a fierce blow to the knee making the enemy incapable of moving for 2 turns.\nBut dealing less damage.\nYou deal {} damage.**".format(youdmg)])
 
 			elif answer2 == "corrupt" or answer2 == "Corrupt":
 				userinfo["Buff1"] = "Corrupt"
 				userinfo["Buff1Time"] = 2
 				userinfo["SkillCooldown1"] = 4	
 				youdmg = int((youdmg / 100) * 130)
-				list += randchoice(["**You corrupt the enemies body making them more vulnerable\nYou deal {} damage.**".format(youdmg), "**You corrupt the enemies mind making them defend less against your attacks\nYou deal {} damage.**".format(youdmg), "**You corrupt the enemies soul they become more fragile \nYou deal {} damage.**".format(youdmg)])
+				list += randchoice(["**You corrupt the enemies body making them more vulnerable\nYou deal {} damage.**".format(youdmg), "**You corrupt the enemy's mind, making them defend less against your attacks\nYou deal {} damage.**".format(youdmg), "**You corrupt the enemy's soul and they become more fragile \nYou deal {} damage.**".format(youdmg)])
 
 			elif answer2 == "Rupture" or answer2 == "rupture":
 				userinfo["Buff1"] = "Rupture"
@@ -896,13 +898,14 @@ class fight(commands.Cog):
 
 			elif answer2 == "Sneak" or answer2 == "sneak":
 				youdmg = int((youdmg / 100) * 150)
+				enemydmg = 0
 				userinfo["SkillCooldown2"] = 4
 				list += randchoice(["**You come out the shadows and surprise {}.\nYou deal a critical strike to them!\nYou deal {} damage.**".format(enemyname, youdmg), "**You ambush {} and attack them with a critical hit!\nYou deal {} damage.**".format(enemyname, youdmg), "**You emerge from the darkness..\n Taking the enemy by surprise and dealing a critical hit.\nYou deal {} damage.**".format(youdmg)])
 
 			elif answer2 == "Snipe" or answer2 == "snipe":
 				youdmg = int((youdmg / 100) * 250)
 				userinfo["SkillCooldown2"] = 5
-				list += randchoice(["**You come out the shadows and shoot your shot at {}.\nYou land a headshot!\nYou deal {} damage.**".format(enemyname, youdmg), "**You hide and snipe {} BOOM! Headshot.\nYou deal {} damage.**".format(enemyname, youdmg), "**You confuse the enemy and hit them from behind\nLucky headshot!\nYou deal {} damage.**".format(youdmg)])
+				list += randchoice(["**You come out of the shadows and shoot your shot at {}.\nYou land a headshot!\nYou deal {} damage.**".format(enemyname, youdmg), "**You hide and snipe {} BOOM! Headshot.\nYou deal {} damage.**".format(enemyname, youdmg), "**You confuse the enemy and hit them from behind\nLucky headshot!\nYou deal {} damage.**".format(youdmg)])
 
 			elif answer2 == "heal" or answer2 == "Heal":
 				battleinfo = db.battles.find_one({"_id": user.id})
