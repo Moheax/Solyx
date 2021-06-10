@@ -187,10 +187,10 @@ class fight(commands.Cog):
 			elif 90 >= difficulty >= 70:
 				difficulty = "<:Rare:573784880815538186> Rare " 
 				userinfo["enemydifficulty"] = "Rare"
-			elif 70 >= difficulty >= 50:
+			elif 70 >= difficulty >= 40:
 				difficulty = "<:Uncommon:641361853817159685> Uncommon "
 				userinfo["enemydifficulty"] = "Uncommon"
-			elif 50 >= difficulty >= 0:
+			elif 40 >= difficulty >= 0:
 				difficulty = "<:Common:573784881012932618> Common " 
 				userinfo["enemydifficulty"] = "Common"	
 			else:
@@ -2740,8 +2740,6 @@ class fight(commands.Cog):
 			elif userinfo["selected_enemy"] == "Fire Golem":
 				userinfo["FireGolemkilled"] += 1
 				pet_spawn = random.randint(1, 100)
-				if userinfo["role"] == "Developer":
-					pet_spawn = 95
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Golden Goose":
 						em = discord.Embed(title="A pet!", description="A tameable pet has spawned! It's a goose.\nTo tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xbb4424))
@@ -2792,8 +2790,6 @@ class fight(commands.Cog):
 			elif userinfo["selected_enemy"] == "Phantasm":
 				userinfo["Phantasmkilled"] += 1
 				pet_spawn = random.randint(1, 100)
-				if userinfo["role"] == "Developer":
-					pet_spawn = 95
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Polar Bear":
 						em = discord.Embed(title="A pet!", description="A tameable pet has spawned! It's a polar bear.\nTo tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xD4D8D7))
@@ -2810,8 +2806,6 @@ class fight(commands.Cog):
 						await _quest_check(self, ctx, user, userinfo)
 					pass
 				pet_spawn = random.randint(1, 100)
-				if userinfo["role"] == "Developer":
-					pet_spawn = 95
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Fox":
 						em = discord.Embed(title="A pet!", description="A tameable pet has spawned! It's a fox.\nTo tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0x7a2c05))
@@ -2822,8 +2816,6 @@ class fight(commands.Cog):
 			elif userinfo["selected_enemy"] == "The Accursed":
 				userinfo["TheAccursedkilled"] += 1
 				pet_spawn = random.randint(1, 100)
-				if userinfo["role"] == "Developer":
-					pet_spawn = 95
 				if pet_spawn >= 90:
 					if userinfo["pet_stage"] == "Small Cerberus":
 						em = discord.Embed(title="A pet!", description="A tameable pet has spawned! It's a small cerberus.\nTo tame it type `{}pet tame`".format(ctx.prefix), color=discord.Colour(0xcb2004))

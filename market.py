@@ -257,23 +257,32 @@ class market(commands.Cog):
 				return
 			except:
 				return
+	@market.command(pass_context = True, no_pm=True)
+	@commands.cooldown(1, 5, commands.BucketType.user)
+	async def find(self, ctx, userid:int):
+		msg = ''
+		marketinfo = db.market.find_one({"_id": int(userid)})
+		print(marketinfo)
+		if marketinfo["rarity"] == "mythical" or marketinfo["rarity"] == "Mythical":
+			rarity = "<:Mythical:573784881386225694>"
+		elif marketinfo["rarity"] == "legendary" or marketinfo["rarity"] == "Legendary":
+			rarity = "<:Legendary:639425368167809065>"
+		elif marketinfo["rarity"] == "rare" or marketinfo["rarity"] == "Rare":
+			rarity = "<:Rare:573784880815538186>"
+		elif marketinfo["rarity"] == "uncommon" or marketinfo["rarity"] == "Uncommon":
+			rarity = "<:Uncommon:641361853817159685>"
+		elif marketinfo["rarity"] == "common" or marketinfo["rarity"] == "Common":
+			rarity = "<:Common:573784881012932618>"
+		elif marketinfo["rarity"] == "basic" or marketinfo["rarity"] == "Basic":
+			rarity = "<:Basic:641362343338442762>"
 
+		msg += '{}**{} {}** ({}-{}) <:Gold:639484869809930251>{}\n'.format(rarity, marketinfo["refinement"], marketinfo["name"], marketinfo["stats_min"], marketinfo["stats_max"], marketinfo["price"])
+		
+	
+		em = discord.Embed(description=msg, colour=discord.Colour(0xffffff))
+		em.set_author(name="Solyx Market", icon_url = self.bot.user.avatar_url)
 
-
-		userinfo["inventory"].remove(item)
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-		await self._create_item(user.id, item["name"], item["rarity"], item["stats_min"], item["stats_max"], item["refinement"], price, item["type"], item["image"], item["description"])
-		em = discord.Embed(title=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"], description=fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price), color=discord.Colour(0xffffff))
-		try:
-			await ctx.send(embed=em)
-		except:
-			try:
-				msg = fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["title"]["translation"]
-				msg += "\n"
-				msg += fileIO(f"data/languages/{language}.json", "load")["market"]["sell"]["listed"]["description"]["translation"].format(item["refinement"], item["name"], item["rarity"], price)
-				await ctx.send(msg)
-			except:
-				pass
+		await ctx.send(embed = em)
 
 	@market.command(pass_context = True, no_pm=True)
 	@commands.cooldown(1, 5, commands.BucketType.user)
@@ -310,58 +319,72 @@ class market(commands.Cog):
 			return
 
 		marketinfo = db.market.find_one({"_id": int(idmarket)})
-		
+	
 
-		existcheck = db.market.count_documents({"_id": int(idmarket)})
 		seller = idmarket
-		idmarket = int
 
 		if str(idmarket) == str(user.id):
 			await ctx.send("<:Solyx:560809141766193152> **| You can't buy your own items!**")
 			return
 
-		if not userinfo["gold"] >= marketinfo["price"]:
-			neededgold = int(marketinfo["price"]) - int(userinfo["gold"])
-			await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to buy this item!**".format(neededgold))
-			return
 
-		itemobj = {"name": marketinfo["name"], "type": marketinfo["type"], "rarity": marketinfo["rarity"], "stats_min": marketinfo["stats_min"], "stats_max": marketinfo["stats_max"], "refinement": marketinfo["refinement"], "description": marketinfo["description"], "image": marketinfo["image"]}
-		userinfo["inventory"].append(itemobj)
-		userinfo["gold"] = int(userinfo["gold"]) - int(marketinfo["price"])
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-
-		sellerinfo = db.users.find_one({ "_id": int(seller) })
-		
-		sellerinfo["gold"] = sellerinfo["gold"] + int(marketinfo["price"])
-		db.users.replace_one({ "_id": int(seller) }, sellerinfo, upsert=True)
-
-		"""maxamt = db.market.count()
-		if number not in range(1, str(maxamt)): # Max
-			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["itemnotexist"]["translation"])
-			return"""
-
-		em = discord.Embed(title="Item bought:", description="{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]), color=discord.Colour(0xffffff))
-
-		if not marketinfo["image"] == "None":
-			em.set_thumbnail(url=marketinfo["image"])
 		try:
+			em = discord.Embed(description="**Are you sure you want to buy \n{} - {}?**".format(marketinfo["rarity"], marketinfo["name"]), color=discord.Colour(0xffffff))
+			em.set_footer(text="Type yes to buy it!")
 			await ctx.send(embed=em)
-		except:
-			try:
-				await ctx.send("{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]))
-			except:
-				pass
-
-		try:
-			em = discord.Embed(description="{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]), color=discord.Colour(0xffffff))
-			em.set_author(name="Item Sold", icon_url="https://i.imgur.com/p1Clibi.png")
-			if not marketinfo["image"] == "None":
-				em.set_thumbnail(url=marketinfo["image"])
-			await self.bot.send_message(discord.User(id=marketinfo["_id"]), embed=em)
 		except:
 			pass
 
-		db.market.remove({"_id": seller}, 1)
+
+
+		answer = await self.check_answer(ctx, ["yes", "Yes", "y", "Y", "ja", "Ja", "j", "J", "N", "n", "No", "no"])
+		if answer == "n" or answer == "N" or answer == "no" or answer == "No":
+			em = discord.Embed(description="**Okay no problem!**".format(marketinfo["rarity"], marketinfo["name"]), color=discord.Colour(0xffffff))
+			await ctx.send(embed=em)
+			
+		if answer == "y" or answer == "Y" or answer == "yes" or answer == "Yes" or answer == "Ja" or answer == "ja" or answer == "J" or answer == "j":
+			if not userinfo["gold"] >= marketinfo["price"]:
+				neededgold = int(marketinfo["price"]) - int(userinfo["gold"])
+				await ctx.send("<:Solyx:560809141766193152> **| You need {} more gold to buy this item!**".format(neededgold))
+				return
+
+			itemobj = {"name": marketinfo["name"], "type": marketinfo["type"], "rarity": marketinfo["rarity"], "stats_min": marketinfo["stats_min"], "stats_max": marketinfo["stats_max"], "refinement": marketinfo["refinement"], "description": marketinfo["description"], "image": marketinfo["image"]}
+			userinfo["inventory"].append(itemobj)
+			userinfo["gold"] = int(userinfo["gold"]) - int(marketinfo["price"])
+			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
+
+			sellerinfo = db.users.find_one({ "_id": int(seller) })
+			
+			sellerinfo["gold"] = sellerinfo["gold"] + int(marketinfo["price"])
+			db.users.replace_one({ "_id": int(seller) }, sellerinfo, upsert=True)
+
+			"""maxamt = db.market.count()
+			if number not in range(1, str(maxamt)): # Max
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["itemnotexist"]["translation"])
+				return"""
+
+			em = discord.Embed(title="Item bought:", description="{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]), color=discord.Colour(0xffffff))
+
+			if not marketinfo["image"] == "None":
+				em.set_thumbnail(url=marketinfo["image"])
+			try:
+				await ctx.send(embed=em)
+			except:
+				try:
+					await ctx.send("{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]))
+				except:
+					pass
+
+			try:
+				em = discord.Embed(description="{} {} ({}) for {} <:Gold:639484869809930251>".format(marketinfo["refinement"], marketinfo["name"], marketinfo["rarity"], marketinfo["price"]), color=discord.Colour(0xffffff))
+				em.set_author(name="Item Sold", icon_url="https://i.imgur.com/p1Clibi.png")
+				if not marketinfo["image"] == "None":
+					em.set_thumbnail(url=marketinfo["image"])
+				await self.bot.send_message(discord.User(id=marketinfo["_id"]), embed=em)
+			except:
+				pass
+
+			db.market.remove({"_id": seller}, 1)
 
 	@commands.group(name="buy", pass_context=True, no_pm=True)
 	async def normal_buy(self, ctx):
@@ -674,9 +697,21 @@ class market(commands.Cog):
 					"description": description
 				}
 				db.market.insert_one(new_account)
+			else:
+				iteminfo["name"] = itemname
+				iteminfo["rarity"] = rarity
+				iteminfo["stats_min"] = stats_min
+				iteminfo["stats_max"] = stats_max
+				iteminfo["refinement"] = refinement
+				iteminfo["price"] = price
+				iteminfo["type"] = type
+				iteminfo["image"] = image
+				iteminfo["description"] = description
+				db.market.replace_one({ "_id": userid }, iteminfo, upsert=True) 
 
 			iteminfo = db.market.find_one({'_id':userid})
 		except AttributeError as e:
+			print(e)
 			pass
 
 def setup(bot):

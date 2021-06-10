@@ -82,7 +82,7 @@ class wiki(commands.Cog):
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Classes", value="Archer, Knight, Mage, Thief, Assassin, Ranger, Samurai, Paladin, Necromancer, Elementalist, Rogue, Mesmer", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Daily", value="Daily/Checkin, Vote", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Equip", value="Weapons, armor", inline=False)			
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Fighting", value="PVE, PVP", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Fighting", value="PVE, PVP, Spawnrate", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Gathering", value="Chop, Mine, Wood, Stone, Metal, Fish, Planks, Bricks, Iron Plates", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Guild", value="Info, Represent, Mission, Donate, Promote, Demote, Tag", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
@@ -1098,6 +1098,14 @@ class wiki(commands.Cog):
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/573580993055686657.png?v=1")
 			embed.add_field(name="**PvP meaning**", value="short for player versus player.", inline=False)
 			embed.add_field(name="**PvP in Solyx**", value="For now the only pvp fights are with {}battle.".format(ctx.prefix), inline=False)
+			await ctx.send(embed=embed)
+
+		elif topic == "Spawnrate" or topic == "spawnrate":
+			embed=discord.Embed(title="**Spawnrate**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
+			embed.add_field(name="**Difficulty**", value="Mythical: 1%\nLegendary: 9%\nRare: 20%\nUncommon: 30%\nCommon: 40%", inline=False)
+			embed.add_field(name="**Type**", value="Boss: 10%\nStrong monster: 30%\nNormal monster: 60%".format(ctx.prefix), inline=False)
+			embed.add_field(name="**Pets**", value="Spawn rate: 10%\nCatch rate: 20%", inline=False)
+			embed.add_field(name="**Loot**", value="there's 1.5% chance for a lootbag and 1.5% for a key.\nThe Fox pet can increase this percentage.\n\n**At level 0 to 10:** 1.5% -> 4%\n**At level 11 to 20:** 4% -> 6.5%\n**At level 21 to 30:** 6.5% -> 9%\n**At level 31 to 40:** 9% -> 11.5%\n**At level 41 to 50:** 11% -> 14%\n**Level 50+:** 14% -> 16.5%", inline=False)
 			await ctx.send(embed=embed)
 
 		elif topic == "Chop" or topic == "chop":
@@ -3654,7 +3662,7 @@ class wiki(commands.Cog):
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="**Wiki topics**", value="Page 4".format(ctx.prefix, ctx.prefix), inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Weapons", value="Starter Bow, Starter Sword, Starter Staff, Starter Dagger,Iron Claws, Iron Mace, Curved Dagger, Tomb of Water, Spiked Mace, Mithril Sword, Etched Longbow, Verdant Bow, Excalibur, Twilight, Devil's Kiss, Hawkeye, Solarflare, Thunderguard, Doomblade, Deathraze, Soulreaper", inline=False)
-			embed.add_field(name="<:ShieldCheck:560804135545602078>Buildings", value="Camp, Sawmill, Masonry, Smeltery,", inline=False)
+			embed.add_field(name="<:ShieldCheck:560804135545602078>Buildings", value="Camp, Sawmill, Masonry, Smeltery, traps", inline=False)
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
@@ -3900,7 +3908,6 @@ class wiki(commands.Cog):
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
-		
 		elif topic == "Sawmill" or topic == "sawmill":
 			embed=discord.Embed(title="**Sawmill**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url="")
@@ -3927,6 +3934,16 @@ class wiki(commands.Cog):
 			embed.add_field(name="**Type**", value="Work station", inline=False)
 			embed.add_field(name="**For**", value="Needed to make iron plates.", inline=False)
 			embed.add_field(name="**Costs**", value="\n<:Gold:639484869809930251> 10000\n<:Wood:573574660185260042> 150\n<:Stone:573574662525550593> 100\n<:Metal:573574661108006915> 150\n<:PlanksbyMaxie:780992714463510530> 75\n<:BricksbyMaxie:780999521249263616> 100", inline=False)
+			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
+			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
+
+		elif topic == "traps" or topic == "Traps":
+			embed=discord.Embed(title="**Traps**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_thumbnail(url="")
+			embed.add_field(name="**Type**", value="passive Pve building.", inline=False)
+			embed.add_field(name="**For**", value="killing monster gaining gold and exp.", inline=False)
+			embed.add_field(name="**Stats and rules.**", value="Standard 4 traps total.\nIf you are above level 100 you can have 5 traps.\nIf you are above level 200 7 traps.\nTier 1 patreon can have 7 traps total without level requirements.\nTier 2 patreon can have 9 total traps.\nTier 3 can have a total of 11 traps.\nTier 4 patreon can have a total of 13 traps.\n\nTraps get placed in the area you are in, thus the catch are the monster in that areas affecting your spoils.\nThe chances of the difficulty level of the monsters are the same in fight type `-wiki spawnrate` for more info.\nTraps a have a 80% chance of cachting a monster, 15% chance of failing to catch a monster and a 5% chance to break.\nTraps need to be rebuild after 10 uses.\nRebuilding a trap costs 5 wood 5 stone 2 metal and 100 gold each.\nYou can check your traps every hour.\nTier 3 patreon has a 20% cooldown reduction (48 minutes).\nTier 4 patreon has a 50% cooldown recution (30 minutes).\n", inline=False)
 			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
 			embed.set_footer(text="Submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
