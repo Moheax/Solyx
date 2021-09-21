@@ -62,12 +62,6 @@ class vote(commands.Cog):
 			return
 
 
-		if userinfo["questname"] == "Vote I":
-			userinfo["questprogress"] += 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
 
 		# Time left till user can vote again
 		curr_time = time.time()

@@ -220,45 +220,32 @@ class patreons(commands.Cog):
 								await user.send(embed=em)
 							except:
 								await ctx.send(embed=em)
-
-					pet = False
+					pet = True
+					
 					for i in userinfo["pet_list"]:
 						petinfo = i
 						pet_type = petinfo["type"]
 						
-						if not pet_type == "Pterodactyl" and not pet_type == "Goose" and not pet_type == "Fox" and not pet_type == "Polar Bear" and not pet_type == "Small Cerberus":
+						if pet_type == "Goose" or pet_type == "Fox" or pet_type == "Polar Bear" or pet_type == "Small Cerberus":
+							pet = False
+						if pet_type == "Pterodactyl":
+							list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
 							pet = True
-							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
-							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
-							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
-								newtitle = "Dino-Bird trainer"
-								if not newtitle in titlesinfo["titles_list"]:
-									titlesinfo["titles_list"].append(newtitle)
-									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
-									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
-									try:
-										await user.send(embed=em)
-									except:
-										await ctx.send(embed=em)
-							pet = True
-							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
-							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
-							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
-								newtitle = "Dino-Bird trainer"
-								if not newtitle in titlesinfo["titles_list"]:
-									titlesinfo["titles_list"].append(newtitle)
-									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
-									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
-									try:
-										await user.send(embed=em)
-									except:
-										await ctx.send(embed=em)
-						
-							break
-					if pet == False:	
-						list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
+
+					if pet == False:
+						list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
+						userinfo["pet_list"].append({"name": "Un-named", "type": "Pterodactyl", "level": 1, "xp": 0})
+						if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
+							newtitle = "Dino-Bird trainer"
+							if not newtitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(newtitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+								try:
+									await user.send(embed=em)
+								except:
+									await ctx.send(embed=em)
 					list1 += "Open 4 crates at the same time!\n"
 					list1 += "Use 4 Exp potions at the same time!\n"
 					list1 += "Sell 4 items at a time (not needing to be level 100+)!\n"
@@ -319,30 +306,33 @@ class patreons(commands.Cog):
 								await user.send(embed=em)
 							except:
 								await ctx.send(embed=em)
-					pet = False
+					pet = True
+
 					for i in userinfo["pet_list"]:
 						petinfo = i
 						pet_type = petinfo["type"]
 						
-						if not pet_type == "Goose" and not pet_type == "Fox" and not pet_type == "Polar Bear" and not pet_type == "Small Cerberus" and not pet_type == "Pterodactyl":
-							pet == True
-							list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
-							userinfo["pet_list"].append({"name": "Unamed", "type": "Pterodactyl", "level": 1, "xp": 0})
-							if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
-								newtitle = "Dino-Bird trainer"
-								if not newtitle in titlesinfo["titles_list"]:
-									titlesinfo["titles_list"].append(newtitle)
-									titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
-									db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
-									em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
-									try:
-										await user.send(embed=em)
-									except:
-										await ctx.send(embed=em)
-							break
-					if pet == False:	
-						list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
-
+						if pet_type == "Goose" or pet_type == "Fox" or pet_type == "Polar Bear" or pet_type == "Small Cerberus":
+							pet = False
+						if pet_type == "Pterodactyl":
+							list1 += "Pterodactyl pet already claimed.\nPet title already claimed.\n"
+							pet = True
+							
+					if pet == False:
+						list1 += " <:ShieldCheck:560804135545602078> | You have recieved a Pterodactyl pet!\n <:ShieldCheck:560804135545602078> | You recieved a new pet title!\n"
+						userinfo["pet_list"].append({"name": "Un-named", "type": "Pterodactyl", "level": 1, "xp": 0})
+						if not "Dino-Bird trainer" in titlesinfo["titles_list"]:
+							newtitle = "Dino-Bird trainer"
+							if not newtitle in titlesinfo["titles_list"]:
+								titlesinfo["titles_list"].append(newtitle)
+								titlesinfo["titles_amount"] = titlesinfo["titles_amount"] + 1
+								db.titles.replace_one({"_id": user.id}, titlesinfo, upsert=True)
+								em = discord.Embed(title="New Title", description=newtitle, color=discord.Colour(0x00ff00))
+								try:
+									await user.send(embed=em)
+								except:
+									await ctx.send(embed=em)
+									
 					list1 += "Open 5 crates at the same time!\n"
 					list1 += "Use 5 Exp potions at the same time!\n"
 					list1 += "Sell 5 items at a time (not needing to be level 100+)!\n"
@@ -397,7 +387,8 @@ class patreons(commands.Cog):
 				
 
 
-		except:
+		except Exception as e: 
+			print(e)	
 			embed=discord.Embed(title="Something went wrong!".format(user.name), color=discord.Colour(0xffffff))
 			embed.set_footer(text="Please try again to claim your rewards!")
 			embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/649157253701566474.png?v=1")

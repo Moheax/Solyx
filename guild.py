@@ -149,13 +149,7 @@ class guild(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 0:
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
+
 
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
@@ -198,14 +192,6 @@ class guild(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 1:
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-
 		if guildinfo["title"] == "None" and guildinfo["bonus"] >= 10:
 			guildinfo["title"] = "Big Boys"
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
@@ -222,12 +208,14 @@ class guild(commands.Cog):
 			guildinfo["title"] = "Real Deal"
 			db.servers.replace_one({ "_id": guild.id }, guildinfo, upsert=True)
 		
+		maxexp = 100 + ((guildinfo["lvl"] + 1) * 3.5)
+
 		try: 
-			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** <@{}>\n**Members:** {}\n**Level:** {}\n**Exp:** {}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner_id, guild.member_count, guildinfo["lvl"], guildinfo["exp"], int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader:** <@{}>\n**Members:** {}\n**Level:** {}\n**Exp:** {}/{}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner_id, guild.member_count, guildinfo["lvl"], guildinfo["exp"], maxexp, int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
 			em.set_thumbnail(url=guild.icon_url)
-		except Exception as e:
-			print(e)
-			return
+		except:
+			em = discord.Embed(title="Guild Information", description="**Name:** {}\n**Tag:** {}\n**Title:** {}\n**Leader: No Data.\nMembers:** {}\n**Level:** {}\n**Exp:** {}/{}\n**Bonus:** {}\n**Health:** {}".format(guildinfo["name"],guildinfo["tag"], guildinfo["title"], guild.owner_id, guild.member_count, guildinfo["lvl"], guildinfo["exp"], maxexp, int(guildinfo["bonus"]), guildinfo["health"]), color=discord.Colour(0xffffff))
+			em.set_thumbnail(url=guild.icon_url)
 		try:
 			await ctx.send(embed=em)
 		except:
@@ -235,7 +223,7 @@ class guild(commands.Cog):
 				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
 				return
 			except:
-				return
+				return 
 
 	@guild.command(name="promote", pass_context=True, no_pm=True)
 	@checks.serverowner_or_permissions(administrator=True)
@@ -497,15 +485,6 @@ class guild(commands.Cog):
 		if (not userinfo) or (userinfo["race"] == "None") or (userinfo["class"] == "None"):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
-
-		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 2:
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-
 
 		if guildinfo["mission"] == "None":
 			guildinfo["mission"] = randommission
@@ -848,14 +827,7 @@ class guild(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
-		if userinfo["questname"] == "Guild I"  and userinfo["questpart"] == 3:
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+	
 
 		if amount <= 0:
 			em = discord.Embed(description="You can't donate negative amounts!", color=discord.Colour(0xffffff))
@@ -881,13 +853,7 @@ class guild(commands.Cog):
 					return
 			return
 
-		if userinfo["questname"] == "Guild II":
-			userinfo["questprogress"] += amount
-			
-			if userinfo["questprogress"] >= 1000:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
+	
 
 		userinfo["gold"] = userinfo["gold"] - amount
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
@@ -958,7 +924,7 @@ class guild(commands.Cog):
 								guildinfo["metal"] = 0
 								guildinfo["wood"] = 0
 								guildinfo["inventory"] = []
-							if guildinfo["lvl"] <= 20:
+							elif guildinfo["lvl"] <= 20:
 								guildinfo["bonus"] -= 2
 								if guildinfo["bonus"] <= 0:
 									guildinfo["bonus"] = 0
@@ -971,7 +937,7 @@ class guild(commands.Cog):
 								guildinfo["metal"] = 0
 								guildinfo["wood"] = 0
 								guildinfo["inventory"] = []
-							if guildinfo["lvl"] <= 30:
+							elif guildinfo["lvl"] <= 30:
 								guildinfo["bonus"] -= 1
 								if guildinfo["bonus"] <= 0:
 									guildinfo["bonus"] = 0
@@ -984,7 +950,7 @@ class guild(commands.Cog):
 								guildinfo["metal"] = 0
 								guildinfo["wood"] = 0
 								guildinfo["inventory"] = []
-							if guildinfo["lvl"] <= 40:
+							elif guildinfo["lvl"] <= 40:
 								guildinfo["bonus"] -= 4
 								if guildinfo["bonus"] <= 0:
 									guildinfo["bonus"] = 0
@@ -997,7 +963,7 @@ class guild(commands.Cog):
 								guildinfo["metal"] = 0
 								guildinfo["wood"] = 0
 								guildinfo["inventory"] = []
-							if guildinfo["lvl"] >= 40:	
+							elif guildinfo["lvl"] >= 40:	
 								guildinfo["bonus"] -= 5
 								if guildinfo["bonus"] <= 0:
 									guildinfo["bonus"] = 0

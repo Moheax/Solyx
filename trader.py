@@ -81,55 +81,55 @@ class trader(commands.Cog):
 
 		Rarity = random.randint(1, 100)
 
-		userinfo["trader_rarity"] = "Common"
-		userinfo["trader_profit"] = 0
+		userinfo["trader"][0]["rarity"] = "Common"
+		
 		if Rarity >= 99:
-			userinfo["trader_rarity"] = "Mythical"
-			userinfo["trader_wood"] = 250
-			userinfo["trader_stone"] = 250
-			userinfo["trader_metal"] = 200
-			userinfo["trader_planks"] = 150
-			userinfo["trader_bricks"] = 150
-			userinfo["trader_iron_plates"] = 100
+			userinfo["trader"][0]["rarity"] = "Mythical"
+			userinfo["trader"][0]["wood"] = 250
+			userinfo["trader"][0]["stone"] = 250
+			userinfo["trader"][0]["metal"] = 200
+			userinfo["trader"][0]["planks"] = 150
+			userinfo["trader"][0]["bricks"] = 150
+			userinfo["trader"][0]["iron_plates"] = 100
 
 		elif Rarity <= 99 and Rarity >= 90:
-			userinfo["trader_rarity"] = "Legendary"
-			userinfo["trader_wood"] = 200
-			userinfo["trader_stone"] = 200
-			userinfo["trader_metal"] = 150
-			userinfo["trader_planks"] = 100
-			userinfo["trader_bricks"] = 100
-			userinfo["trader_iron_plates"] = 0
+			userinfo["trader"][0]["rarity"] = "Legendary"
+			userinfo["trader"][0]["wood"] = 200
+			userinfo["trader"][0]["stone"] = 200
+			userinfo["trader"][0]["metal"] = 150
+			userinfo["trader"][0]["planks"] = 100
+			userinfo["trader"][0]["bricks"] = 100
+			userinfo["trader"][0]["iron_plates"] = 0
 
 		elif Rarity <= 90 and Rarity >= 70:
-			userinfo["trader_rarity"] = "Rare"
-			userinfo["trader_wood"] = 150
-			userinfo["trader_stone"] = 150
-			userinfo["trader_metal"] = 100
-			userinfo["trader_planks"] = 50
-			userinfo["trader_bricks"] = 0
-			userinfo["trader_iron_plates"] = 0
+			userinfo["trader"][0]["rarity"] = "Rare"
+			userinfo["trader"][0]["wood"] = 150
+			userinfo["trader"][0]["stone"] = 150
+			userinfo["trader"][0]["metal"] = 100
+			userinfo["trader"][0]["planks"] = 50
+			userinfo["trader"][0]["bricks"] = 0
+			userinfo["trader"][0]["iron_plates"] = 0
 
 		elif Rarity <= 70 and Rarity >= 50:
-			userinfo["trader_rarity"] = "Uncommon"
-			userinfo["trader_wood"] = 100
-			userinfo["trader_stone"] = 100
-			userinfo["trader_metal"] = 50
-			userinfo["trader_planks"] = 0
-			userinfo["trader_bricks"] = 0
-			userinfo["trader_iron_plates"] = 0
+			userinfo["trader"][0]["rarity"] = "Uncommon"
+			userinfo["trader"][0]["wood"] = 100
+			userinfo["trader"][0]["stone"] = 100
+			userinfo["trader"][0]["metal"] = 50
+			userinfo["trader"][0]["planks"] = 0
+			userinfo["trader"][0]["bricks"] = 0
+			userinfo["trader"][0]["iron_plates"] = 0
 
 		elif Rarity <= 50 and Rarity >= 0:
-			userinfo["trader_rarity"] = "Common"	
-			userinfo["trader_wood"] = 50
-			userinfo["trader_stone"] = 50
-			userinfo["trader_metal"] = 25
-			userinfo["trader_planks"] = 0
-			userinfo["trader_bricks"] = 0
-			userinfo["trader_iron_plates"] = 0
+			userinfo["trader"][0]["rarity"] = "Common"	
+			userinfo["trader"][0]["wood"] = 50
+			userinfo["trader"][0]["stone"] = 50
+			userinfo["trader"][0]["metal"] = 25
+			userinfo["trader"][0]["planks"] = 0
+			userinfo["trader"][0]["bricks"] = 0
+			userinfo["trader"][0]["iron_plates"] = 0
 
 		curr_time = time.time()
-		delta = float(curr_time) - float(userinfo["trader_block"])
+		delta = float(curr_time) - float(userinfo["trader"][0]["block"])
 
 		cooldowntime = 28800
 		
@@ -141,10 +141,10 @@ class trader(commands.Cog):
 
 		if delta >= cooldowntime and delta > 0:
 
-			em = discord.Embed(title="Trader found!", description="You have found a {} Trader!\nThe trader stays for 10 minutes! ".format(userinfo["trader_rarity"]), color=discord.Colour(0xffffff))
+			em = discord.Embed(title="Trader found!", description="You have found a {} Trader!\nThe trader stays for 10 minutes! ".format(userinfo["trader"][0]["rarity"]), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
-			userinfo["trader_time"] = curr_time
-			userinfo["trader_block"] = curr_time
+			userinfo["trader"][0]["time"] = curr_time
+			userinfo["trader"][0]["block"] = curr_time
 
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		else:
@@ -198,55 +198,55 @@ class trader(commands.Cog):
 		
 		title = "trader!" 
 		list1 = ""
-		if userinfo["trader_rarity"] == "Mythical":
+		if userinfo["trader"][0]["rarity"] == "Mythical":
 			title = "<:Mythical:573784881386225694> Mythical trader!"
-			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_wood"])
-			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_stone"])
-			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader_metal"])
-			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_planks"])
-			list1 += "<:BricksbyMaxie:780999521249263616> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_bricks"])
-			list1 += "<:IronPlatebyMaxie:781003325675012146> {}x = 250<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_iron_plates"])			
+			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["wood"])
+			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["stone"])
+			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader"][0]["metal"])
+			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["planks"])
+			list1 += "<:BricksbyMaxie:780999521249263616> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["bricks"])
+			list1 += "<:IronPlatebyMaxie:781003325675012146> {}x = 250<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["iron_plates"])			
 				
-		if userinfo["trader_rarity"] == "Legendary":
+		if userinfo["trader"][0]["rarity"] == "Legendary":
 			title = "<:Legendary:639425368167809065> Legendary trader!" 
-			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_wood"])
-			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_stone"])
-			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader_metal"])
-			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_planks"])
-			list1 += "<:BricksbyMaxie:780999521249263616> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_bricks"])
+			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["wood"])
+			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["stone"])
+			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader"][0]["metal"])
+			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["planks"])
+			list1 += "<:BricksbyMaxie:780999521249263616> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["bricks"])
 
-		if userinfo["trader_rarity"] == "Rare":
+		if userinfo["trader"][0]["rarity"] == "Rare":
 			title = "<:Rare:573784880815538186> Rare trader!" 
-			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_wood"])
-			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_stone"])
-			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader_metal"])
-			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_planks"])
+			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["wood"])
+			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["stone"])
+			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader"][0]["metal"])
+			list1 += "<:PlanksbyMaxie:780992714463510530> {}x = 200<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["planks"])
 
-		if userinfo["trader_rarity"] == "Uncommon":
+		if userinfo["trader"][0]["rarity"] == "Uncommon":
 			title = "<:Uncommon:641361853817159685> Uncommon trader!"
-			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_wood"])
-			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_stone"])
-			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader_metal"])
+			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["wood"])
+			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["stone"])
+			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader"][0]["metal"])
 
-		if userinfo["trader_rarity"] == "Common":
+		if userinfo["trader"][0]["rarity"] == "Common":
 			title = "<:Common:573784881012932618> Common trader!" 
-			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_wood"])
-			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader_stone"])
-			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader_metal"])
+			list1 += "<:Wood:573574660185260042> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["wood"])
+			list1 += "<:Stone:573574662525550593> {}x = 70<:Gold:639484869809930251> Per piece.\n".format(userinfo["trader"][0]["stone"])
+			list1 += "<:Metal:573574661108006915> {}x = 80<:Gold:639484869809930251> Per piece. \n".format(userinfo["trader"][0]["metal"])
 
 
 
 		staytime = 600
 
 		curr_time = time.time()
-		delta = float(curr_time) - float(userinfo["trader_time"])
+		delta = float(curr_time) - float(userinfo["trader"][0]["time"])
 
 		if delta <= staytime and delta > 0:
 			seconds = staytime - delta
 			m, s = divmod(seconds, 60)
 			
 
-			em = discord.Embed(title=title, description=list1 + "\nTraders profit: <:Gold:639484869809930251>" + str(round(userinfo["trader_profit"])) + "\n trader will stay for another " + str(round(m)) + " Minutes and " + str(round(s)) + " Seconds", color=discord.Colour(0xffffff))
+			em = discord.Embed(title=title, description=list1 + "\nTraders profit: <:Gold:639484869809930251>" + str(round(userinfo["trader"][0]["profit"])) + "\n trader will stay for another " + str(round(m)) + " Minutes and " + str(round(s)) + " Seconds", color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 		else:
 			em = discord.Embed(title="No trader!", description="type `{}trader find` to find a trader to trade with!".format(ctx.prefix), color=discord.Colour(0xffffff))
@@ -288,15 +288,15 @@ class trader(commands.Cog):
 		staytime = 600
 
 		curr_time = time.time()
-		delta = float(curr_time) - float(userinfo["trader_time"])
+		delta = float(curr_time) - float(userinfo["trader"][0]["time"])
 
 		if delta <= staytime and delta > 0:
 			seconds = staytime - delta
 			m, s = divmod(seconds, 60)
 			
 		
-			if material == "wood" or material == "Wood" and userinfo["trader_wood"] >= amount:
-				if userinfo["trader_wood"] - amount < 0:
+			if material == "wood" or material == "Wood" and userinfo["trader"][0]["wood"] >= amount:
+				if userinfo["trader"][0]["wood"] - amount < 0:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:Wood:573574660185260042> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
@@ -315,12 +315,12 @@ class trader(commands.Cog):
 
 				userinfo["gold"] = userinfo["gold"] - cost
 				userinfo["wood"] = userinfo["wood"] + amount
-				userinfo["trader_wood"] = userinfo["trader_wood"] - amount
-				userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+				userinfo["trader"][0]["wood"] = userinfo["trader"][0]["wood"] - amount
+				userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="Trade complete!", description="You bought {} <:Wood:573574660185260042> for {} <:Gold:639484869809930251>\nTrader has {} <:Wood:573574660185260042> left\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_wood"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trade complete!", description="You bought {} <:Wood:573574660185260042> for {} <:Gold:639484869809930251>\nTrader has {} <:Wood:573574660185260042> left\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["wood"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 					return
@@ -331,7 +331,7 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if material == "wood" or material == "Wood" and userinfo["trader_wood"] <= amount:
+			if material == "wood" or material == "Wood" and userinfo["trader"][0]["wood"] <= amount:
 				em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:Wood:573574660185260042> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -343,8 +343,8 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if material == "stone" or material == "Stone" and userinfo["trader_stone"] >= amount:
-				if userinfo["trader_stone"] - amount < 0:
+			if material == "stone" or material == "Stone" and userinfo["trader"][0]["stone"] >= amount:
+				if userinfo["trader"][0]["stone"] - amount < 0:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:Stone:573574662525550593> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
@@ -363,12 +363,12 @@ class trader(commands.Cog):
 
 				userinfo["gold"] = userinfo["gold"] - cost
 				userinfo["stone"] = userinfo["stone"] + amount
-				userinfo["trader_stone"] = userinfo["trader_stone"] - amount
-				userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+				userinfo["trader"][0]["stone"] = userinfo["trader"][0]["stone"] - amount
+				userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="Trade complete!", description="You bought {} <:Stone:573574662525550593> for {} <:Gold:639484869809930251>\nTrader has {} <:Stone:573574662525550593> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_stone"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trade complete!", description="You bought {} <:Stone:573574662525550593> for {} <:Gold:639484869809930251>\nTrader has {} <:Stone:573574662525550593> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["stone"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 					return
@@ -379,7 +379,7 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if material == "stone" or material == "Stone" and userinfo["trader_stone"] <= amount:
+			if material == "stone" or material == "Stone" and userinfo["trader"][0]["stone"] <= amount:
 				em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:Stone:573574662525550593> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -391,8 +391,8 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if material == "metal" or material == "Metal" and userinfo["trader_metal"] >= amount:
-				if userinfo["trader_metal"] - amount < 0:
+			if material == "metal" or material == "Metal" and userinfo["trader"][0]["metal"] >= amount:
+				if userinfo["trader"][0]["metal"] - amount < 0:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:Metal:573574661108006915> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
@@ -411,12 +411,12 @@ class trader(commands.Cog):
 
 				userinfo["gold"] = userinfo["gold"] - cost
 				userinfo["metal"] = userinfo["metal"] + amount
-				userinfo["trader_metal"] = userinfo["trader_metal"] - amount
-				userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+				userinfo["trader"][0]["metal"] = userinfo["trader"][0]["metal"] - amount
+				userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 
 				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-				em = discord.Embed(title="Trade complete!", description="You bought {} <:Metal:573574661108006915> for {} <:Gold:639484869809930251>\nTrader has {} <:Metal:573574661108006915> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_metal"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+				em = discord.Embed(title="Trade complete!", description="You bought {} <:Metal:573574661108006915> for {} <:Gold:639484869809930251>\nTrader has {} <:Metal:573574661108006915> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["metal"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
 					return
@@ -427,7 +427,7 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if material == "metal" or material == "Metal" and userinfo["trader_metal"] <= amount:
+			if material == "metal" or material == "Metal" and userinfo["trader"][0]["metal"] <= amount:
 				em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:Metal:573574661108006915> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 				try:
 					await ctx.send(embed=em)
@@ -439,9 +439,9 @@ class trader(commands.Cog):
 					except:
 						return
 
-			if userinfo["trader_rarity"] == "Rare" or userinfo["trader_rarity"] == "Legendary" or userinfo["trader_rarity"] == "Mythical":
-				if material == "planks" or material == "Planks" and userinfo["trader_planks"] >= amount:
-					if userinfo["trader_planks"] - amount < 0:
+			if userinfo["trader"][0]["rarity"] == "Rare" or userinfo["trader"][0]["rarity"] == "Legendary" or userinfo["trader"][0]["rarity"] == "Mythical":
+				if material == "planks" or material == "Planks" and userinfo["trader"][0]["planks"] >= amount:
+					if userinfo["trader"][0]["planks"] - amount < 0:
 						em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:PlanksbyMaxie:780992714463510530> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
@@ -460,12 +460,12 @@ class trader(commands.Cog):
 
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["planks"] = userinfo["planks"] + amount
-					userinfo["trader_planks"] = userinfo["trader_planks"] - amount
-					userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+					userinfo["trader"][0]["planks"] = userinfo["trader"][0]["planks"] - amount
+					userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-					em = discord.Embed(title="Trade complete!", description="You bought {} <:PlanksbyMaxie:780992714463510530> for {} <:Gold:639484869809930251>\nTrader has {} <:PlanksbyMaxie:780992714463510530> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_planks"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+					em = discord.Embed(title="Trade complete!", description="You bought {} <:PlanksbyMaxie:780992714463510530> for {} <:Gold:639484869809930251>\nTrader has {} <:PlanksbyMaxie:780992714463510530> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["planks"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
 						return
@@ -476,7 +476,7 @@ class trader(commands.Cog):
 						except:
 							return
 
-				if material == "planks" or material == "Planks" and userinfo["trader_planks"] <= amount:
+				if material == "planks" or material == "Planks" and userinfo["trader"][0]["planks"] <= amount:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:PlanksbyMaxie:780992714463510530> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
@@ -493,9 +493,9 @@ class trader(commands.Cog):
 
 
 
-			if userinfo["trader_rarity"] == "Legendary" or userinfo["trader_rarity"] == "Mythical":
-				if material == "bricks" or material == "Bricks" and userinfo["trader_bricks"] >= amount:
-					if userinfo["trader_bricks"] - amount < 0:
+			if userinfo["trader"][0]["rarity"] == "Legendary" or userinfo["trader"][0]["rarity"] == "Mythical":
+				if material == "bricks" or material == "Bricks" and userinfo["trader"][0]["bricks"] >= amount:
+					if userinfo["trader"][0]["bricks"] - amount < 0:
 						em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:BricksbyMaxie:780999521249263616> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
@@ -514,12 +514,12 @@ class trader(commands.Cog):
 
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["bricks"] = userinfo["bricks"] + amount
-					userinfo["trader_bricks"] = userinfo["trader_bricks"] - amount
-					userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+					userinfo["trader"][0]["bricks"] = userinfo["trader"][0]["bricks"] - amount
+					userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 					
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-					em = discord.Embed(title="Trade complete!", description="You bought {} <:BricksbyMaxie:780999521249263616> for {} <:Gold:639484869809930251>\nTrader has {} <:BricksbyMaxie:780999521249263616> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_bricks"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+					em = discord.Embed(title="Trade complete!", description="You bought {} <:BricksbyMaxie:780999521249263616> for {} <:Gold:639484869809930251>\nTrader has {} <:BricksbyMaxie:780999521249263616> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["bricks"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
 						return
@@ -530,7 +530,7 @@ class trader(commands.Cog):
 						except:
 							return
 
-				if material == "bricks" or material == "Bricks" and userinfo["trader_bricks"] <= amount:
+				if material == "bricks" or material == "Bricks" and userinfo["trader"][0]["bricks"] <= amount:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:BricksbyMaxie:780999521249263616> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
@@ -546,9 +546,9 @@ class trader(commands.Cog):
 				await ctx.send(embed=em)
 
 
-			if userinfo["trader_rarity"] == "Mythical":
-				if material == "iron_plates" or material == "Iron_plates" or material == "Iron_Plates" or material == "IronPlates" or material == "Ironplates" or material == "ironplates" and userinfo["trader_iron_plates"] >= amount:
-					if userinfo["trader_iron_plates"] - amount < 0:
+			if userinfo["trader"][0]["rarity"] == "Mythical":
+				if material == "iron_plates" or material == "Iron_plates" or material == "Iron_Plates" or material == "IronPlates" or material == "Ironplates" or material == "ironplates" and userinfo["trader"][0]["iron_plates"] >= amount:
+					if userinfo["trader"][0]["iron_plates"] - amount < 0:
 						em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have enough <:IronPlatebyMaxie:781003325675012146> in stock.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 						try:
 							await ctx.send(embed=em)
@@ -567,12 +567,12 @@ class trader(commands.Cog):
 
 					userinfo["gold"] = userinfo["gold"] - cost
 					userinfo["iron_plates"] = userinfo["iron_plates"] + amount
-					userinfo["trader_iron_plates"] = userinfo["trader_iron_plates"] - amount
-					userinfo["trader_profit"] = userinfo["trader_profit"] + cost
+					userinfo["trader"][0]["iron_plates"] = userinfo["trader"][0]["iron_plates"] - amount
+					userinfo["trader"][0]["profit"] = userinfo["trader"][0]["profit"] + cost
 
 					db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
-					em = discord.Embed(title="Trade complete!", description="You bought {} <:IronPlatebyMaxie:781003325675012146> for {} <:Gold:639484869809930251>\nTrader has {} <:IronPlatebyMaxie:781003325675012146> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader_iron_plates"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
+					em = discord.Embed(title="Trade complete!", description="You bought {} <:IronPlatebyMaxie:781003325675012146> for {} <:Gold:639484869809930251>\nTrader has {} <:IronPlatebyMaxie:781003325675012146> left!\n\n trader will stay for another {}  Minutes and {} Seconds".format(amount, cost, userinfo["trader"][0]["iron_plates"], str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)
 						return
@@ -583,7 +583,7 @@ class trader(commands.Cog):
 						except:
 							return
 
-				if material == "iron_plates" or material == "Iron_plates" or material == "Iron_Plates" or material == "IronPlates" or material == "Ironplates" or material == "ironplates" and userinfo["trader_iron_plates"] >= amount:
+				if material == "iron_plates" or material == "Iron_plates" or material == "Iron_Plates" or material == "IronPlates" or material == "Ironplates" or material == "ironplates" and userinfo["trader"][0]["iron_plates"] >= amount:
 					em = discord.Embed(title="Trade incomplete!", description="Trader doesnt have any <:IronPlatebyMaxie:781003325675012146> left.\n\n trader will stay for another {}  Minutes and {} Seconds".format(str(round(m)), str(round(s))), color=discord.Colour(0xffffff))
 					try:
 						await ctx.send(embed=em)

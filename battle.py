@@ -3537,7 +3537,7 @@ class battle(commands.Cog):
 			db.users.replace_one({"_id": enemyid}, enemyinfo, upsert=True)
 			db.battles.replace_one({"_id": enemyid}, enemybattleinfo, upsert=True)
 
-			await self._level_up_check_user(ctx, user)
+			await _level_up_check_user(self, ctx, user)
 
 	
 	async def check_answer(self, ctx, valid_options):

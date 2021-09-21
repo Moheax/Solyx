@@ -36,7 +36,7 @@ class exp(commands.Cog):
 
 		current_time = now.strftime("%H:%M:%S")
 
-		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has healed")
+		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"has used "+ str(amount) +" exp potions!")
 
 
 		battleinfo = db.battles.find_one({ "_id": user.id })
@@ -92,7 +92,7 @@ class exp(commands.Cog):
 				return
 
 
-		if userinfo["role"] == "patreon4" or userinfo["role"] == "Developer":
+		if userinfo["role"] == "patreon4":
 
 			times = amount 
 		
@@ -113,14 +113,15 @@ class exp(commands.Cog):
 			for i in range(amount):
 				gain = gain + random.randint(40, 75)		
 			userinfo["exp"] = userinfo["exp"] + gain
-			await _level_up_check_user(self, ctx, user)
-				
 			userinfo["exp_potions"] = userinfo["exp_potions"] - amount
+			
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["exp"]["expused"]["translation"], description="+{} Exp!".format(gain), color=discord.Colour(0xffffff))
 			try:
+				await _level_up_check_user(self, ctx, user)
 				await ctx.send(embed=em)
-			except:
+			except Exception as e:
+				print(e)
 				try:
 					await ctx.send(fileIO(f"data/languages/EN.json", "load")["general"]["embedpermissions"]["translation"])
 					return
@@ -210,6 +211,34 @@ class exp(commands.Cog):
 					return
 				except:
 					return
+
+	async def check_answer(self, ctx, valid_options):
+		def pred(m):
+			return m.author == ctx.author and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
+
+	async def check_answer_other_user(self, ctx, user, valid_options):
+		def pred(m):
+			return m.author == user and m.channel == ctx.channel
+		answer = await self.bot.wait_for('message', check=pred)
+
+		if answer.content.lower() in valid_options:
+			return answer.content
+		elif answer.content in valid_options:
+			return answer.content
+		elif answer.content.upper() in valid_options:
+			return answer.content
+		else:
+			return #await self.check_answer(ctx, valid_options)  //  This could keep a check loop going
 
 def setup(bot):
 	c = exp(bot)

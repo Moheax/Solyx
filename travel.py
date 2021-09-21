@@ -128,12 +128,6 @@ class travel(commands.Cog):
 
 		elif answer1 == "2":
 
-			if userinfo["questname"] == "Travel I":
-				userinfo["questprogress"] += 1
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 1:
-					await _quest_check(self, ctx, user, userinfo)
-				pass
 
 			if userinfo["location"] == "Saker Keep":
 				em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["travel"]["alreadyat"]["translation"].format(userinfo["location"]), color=discord.Colour(0xffffff))

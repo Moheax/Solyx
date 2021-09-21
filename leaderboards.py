@@ -35,13 +35,6 @@ class leaderboard(commands.Cog):
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 
-		if userinfo["questname"] == "Leaderboard" :
-			userinfo["questprogress"] += 1		
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-
 		msg = ""
 		if ctx.invoked_subcommand is None:
 			for x in ctx.command.all_commands:
@@ -81,12 +74,6 @@ class leaderboard(commands.Cog):
 
 		em1 = discord.Embed(description="<a:Solyxloadside:783364003367485460> Gathering leaderboard info <:Solyx:560809141766193152>", color=discord.Colour(0xffffff))
 		
-		if userinfo["questname"] == "Leaderboard" :
-			userinfo["questprogress"] += 1		
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 
 		try:
 			await ctx.send(embed=em1)

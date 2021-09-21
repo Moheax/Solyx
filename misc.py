@@ -1,3 +1,4 @@
+from logging import getLogRecordFactory
 import discord
 import random
 import time
@@ -79,7 +80,7 @@ class misc(commands.Cog):
 	@commands.check(developer)
 	async def bap(self, ctx):
 		print('boop')
-		em = discord.Embed(title="\n", description="🎉Thank you so much for 470K USERS OML🎉",color=discord.Colour(0xffffff))	
+		em = discord.Embed(title="\n", description="🎉Thank you so much for 480K USERS OMG!🎉",color=discord.Colour(0xffffff))	
 		await ctx.send(embed=em)
 
 	@commands.command(pass_context=True, no_pm=True)
@@ -389,6 +390,36 @@ class misc(commands.Cog):
 		em = discord.Embed(description=list, color=0xffffff)
 		await ctx.send(embed=em)
 
+	
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def error(self, ctx):
+		print("hallo").format
+
+	@commands.command(pass_context=True, no_pm=True)
+	@commands.cooldown(1, 4, commands.BucketType.user)
+	async def stupidcmd(self, ctx):
+
+	
+		for userinfo in db.users.find():
+			try:
+				userinfo["statistics"][0]["monster_kills"].append({"rachi":userinfo["Rachikilled"]})
+				userinfo["Rachikilled"] = 0
+			except:
+				pass
+			user = userinfo["_id"]
+			try:
+				db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
+				db.users.update({"_id":user}, {"$unset": {"Rachikilled":0}} )
+			except:
+				pass
+			print(userinfo["name"])
+			print(userinfo["statistics"][0]["monster_kills"])
+			try:	
+				print(userinfo["Rachikilled"])
+			except:
+				pass
+
 def setup(bot):
 	n = misc(bot)
 	bot.add_cog(n)
@@ -397,3 +428,5 @@ def setup(bot):
 
 
 	
+
+

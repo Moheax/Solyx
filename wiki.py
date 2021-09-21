@@ -34,24 +34,14 @@ class wiki(commands.Cog):
 		user = ctx.author
 
 		userinfo = db.users.find_one({ "_id": user.id })
-
-		if userinfo["questname"] == "Wiki Check" :
-			userinfo["questprogress"] += 1		
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-
 		if topic == None:
 			embed=discord.Embed(color=discord.Colour(0xffffff))
 			embed.add_field(name="<:ShieldCheck:560804135545602078>**Wiki Mainpage**", value="\n\nPage 1/4\n\nWiki usage: {}wiki [page].\n Or\nWiki usage: {}wiki [subject].\n\nEmote Meanings\n <:ShieldCheck:560804135545602078> = Works Completely! \n :book: = Missing Backstory \n <:ShieldBug:649157223905492992> = Working on it!\n <:ShieldBroken:649157253701566474> = Is made but broken...\n <:ShieldCross:560804112548233217> = Hasnt been made yet.\n\n If a item has a :book: emote you can help to submit a backstory if you want!\n\nCurrent pages 1, 2, 3, 4\n\n".format(ctx.prefix, ctx.prefix), inline=False)
-
 			embed.set_footer(text="submitted by ...\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 
 			await ctx.send(embed=embed)
 
 #			abcdefghijklmnopqsrtuvwxyz
-
 #           <:ShieldCheck:560804135545602078> = Works Completely!
 #           <:ShieldBug:649157223905492992> = Working on it!
 #			:book: = Story not been submitted yet.
@@ -76,7 +66,7 @@ class wiki(commands.Cog):
 
 		elif topic == "2" or topic =="page 2" or topic == "page 2/4" or topic =="2/4":
 			embed=discord.Embed(color=discord.Colour(0xffffff))
-			embed.add_field(name="**Wiki topics**", value="Page 2/3".format(ctx.prefix, ctx.prefix), inline=False)
+			embed.add_field(name="**Wiki topics**", value="Page 2/4".format(ctx.prefix, ctx.prefix), inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Armor", value="Chainmail, Barbaric, Pit Fighter, Banded, Leather, Iron, Branded Metal, Wolf Fur, Enchanted Steel, Bane of the Goblin Lord, Nighstalker Mantle, Hephaestus Armor, Robe of the Ancient", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Bosses", value="Fire Golem, The Corrupted, Phantasm, The Accursed, The Nameless King, The Venomous, Death Knight, Frost Dragon", inline=False)
 			embed.add_field(name="<:ShieldCheck:560804135545602078>Classes", value="Archer, Knight, Mage, Thief, Assassin, Ranger, Samurai, Paladin, Necromancer, Elementalist, Rogue, Mesmer", inline=False)
@@ -1607,7 +1597,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Wyvern**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Golden Temple", inline=False)
 
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -1841,7 +1831,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Zombie**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="The Forest", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -2075,7 +2065,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Souleater**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Saker Keep", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -2151,7 +2141,7 @@ class wiki(commands.Cog):
 			MythicalMinExp = (int((minExp / 100) * 150))
 			MythicalMaxExp = (int((maxExp / 100) * 150))
 
-			embed=discord.Embed(title="**Souleater**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Elder Dragon**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
 			embed.add_field(name="**Type**", value="Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
@@ -2309,7 +2299,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Ebony Guardian**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -2387,7 +2377,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Harpy**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Ebony Mountains", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -2621,7 +2611,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Largos**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Zulanthu", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -3011,7 +3001,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**Giant**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Lost City", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -3167,7 +3157,7 @@ class wiki(commands.Cog):
 
 			embed=discord.Embed(title="**frost Orc**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="")
-			embed.add_field(name="**Type**", value="Monster", inline=False)
+			embed.add_field(name="**Type**", value="Strong Monster", inline=False)
 			embed.add_field(name="**Place**", value="Drenheim", inline=False)
 			
 			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
@@ -3527,6 +3517,7 @@ class wiki(commands.Cog):
 			embed.add_field(name="Achievement titles 2", value="21. Monster Slayer - Have a total of 500 Kills.\n22. Monster Hunter - Have a total of 1000 Kills.\n23. Monster Killer - Have a total of 2000 Kills.\n24. Monster Executioner - Have a total of 4000 Kills.\n25. Monster Exterminator - Have a total of 8000 Kills.\n26. Storyteller - Be one of the 3 winners in a story teller event!".format(ctx.prefix), inline=False)
 			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+
 		elif topic == "Monster Titles" or topic == "monster titles":
 			embed=discord.Embed(title="**Monster Titles 1**", description="<:ShieldCheck:560804135545602078>**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_thumbnail(url=user.avatar_url)
@@ -3609,7 +3600,7 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 
 		elif topic == "Lost City" or topic == "lost city":
-			embed=discord.Embed(title="**Lost City**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Lost City**", description="**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/cBo113x.jpg")
 			embed.add_field(name="**Monsters**", value="Skeleton, Lizardmen, Giant", inline=False)
 			embed.add_field(name="**Boss**", value="Death Knight!", inline=False)
@@ -3619,13 +3610,13 @@ class wiki(commands.Cog):
 			await ctx.send(embed=embed)
 
 		elif topic == "Drenheim" or topic == "drenheim":
-			embed=discord.Embed(title="**Drenheim [Coming Soon]**", description="<:ShieldBug:649157223905492992>**Wiki**", color=discord.Colour(0xffffff))
+			embed=discord.Embed(title="**Drenheim**", description="**Wiki**", color=discord.Colour(0xffffff))
 			embed.set_image(url="https://i.imgur.com/AVBSEfQ.jpg")
 			embed.add_field(name="**Monsters**", value="Ice Wolves, Frost Orc, Frost Goblin", inline=False)
 			embed.add_field(name="**Boss**", value="Frost Dragon", inline=False)
 			embed.add_field(name="**Unlock**", value="Level 150", inline=False)
-			embed.add_field(name="Back Story", value="Write and submit your own backstory! The best will be featured!", inline=False)
-			embed.set_footer(text="Submitted by \nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			embed.add_field(name="Back Story", value="Drenheim is one of the coldest places of the lands of Solyx. It gave birth to the Frost Dragons and was a fierce kingdom where dragon knights were trained. Drenheim was built ontop of a mountain. Trees grew and animals lived here but an unknow Ice mage cast a powerful spell long ago called "'"Eternal Frost"'". The spell turned the whole kingdom into ice, including the people of the kingdom.", inline=False)
+			embed.set_footer(text="Submitted by ✓𝐊𝐞𝐧\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
 
 		elif topic == "Havelow" or topic == "havelow":

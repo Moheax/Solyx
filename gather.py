@@ -80,13 +80,15 @@ class gather(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["gather"]["fish"]["notenoughgold"]["translation"])
 			return
 
-		if userinfo["questname"] == "Gathering Fish I":
-			userinfo["questprogress"] += 1
-			db.users.replace_one({"_id": user.id}, userinfo, upsert=True)
-			if userinfo["questprogress"] >= 5:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-	
+		ongoing_quests = userinfo["quests"]["ongoing_quests"]
+		ongoing_quests_number = len(userinfo["quests"]["ongoing_quests"])
+		i = 0
+		for i in range(ongoing_quests_number):
+			if ongoing_quests[i]["name"] == "Tutorial G":
+				questinfo = ongoing_quests[i]	
+				questinfo["progress"] += 1
+				await _quest_check(self, ctx, user, userinfo, questinfo)
+
 
 		all_items = list(fishables.keys()) + list(extras.keys())
 		result = randchoice(all_items)
@@ -182,6 +184,24 @@ class gather(commands.Cog):
 			cooldowntime = 300
 
 		if delta >= cooldowntime and delta > 0:
+			
+			ongoing_quests = userinfo["quests"]["ongoing_quests"]
+			ongoing_quests_number = len(userinfo["quests"]["ongoing_quests"])
+			i = 0
+			for i in range(ongoing_quests_number):
+				if ongoing_quests[i]["name"] == "Tutorial E":
+					questinfo = ongoing_quests[i]	
+					questinfo["progress"] += mined_rock
+					await _quest_check(self, ctx, user, userinfo, questinfo)
+
+			ongoing_quests = userinfo["quests"]["ongoing_quests"]
+			ongoing_quests_number = len(userinfo["quests"]["ongoing_quests"])
+			i = 0
+			for i in range(ongoing_quests_number):
+				if ongoing_quests[i]["name"] == "Tutorial F":
+					questinfo = ongoing_quests[i]	
+					questinfo["progress"] += mined_metal
+					await _quest_check(self, ctx, user, userinfo, questinfo)
 
 			try:
 				mission = "Collect 160 stone"
@@ -198,26 +218,8 @@ class gather(commands.Cog):
 			except:
 				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
-
-			if userinfo["questname"] == "Gathering Metal I":
-				userinfo["questprogress"] += mined_metal
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 2:
-					await _quest_check(self, ctx, user, userinfo)
-					userinfo["questname"] = "Gathering Fish I"
-				pass
 			
-			if userinfo["questname"] == "Gathering Stone I":
-				userinfo["questprogress"] += mined_rock
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user, userinfo)
-					userinfo["questname"] = "Gathering Metal I"
-				pass
-
-			
-	
-			
+		
 
 			userinfo["metal"] = userinfo["metal"] + mined_metal
 			userinfo["stone"] = userinfo["stone"] + mined_rock
@@ -309,6 +311,15 @@ class gather(commands.Cog):
 
 
 		if delta >= cooldowntime and delta > 0:
+			
+			ongoing_quests = userinfo["quests"]["ongoing_quests"]
+			ongoing_quests_number = len(userinfo["quests"]["ongoing_quests"])
+			i = 0
+			for i in range(ongoing_quests_number):
+				if ongoing_quests[i]["name"] == "Tutorial D":
+					questinfo = ongoing_quests[i]	
+					questinfo["progress"] += chopped
+					await _quest_check(self, ctx, user, userinfo, questinfo)
 
 			try:
 				mission = "Collect 200 wood"
@@ -317,14 +328,7 @@ class gather(commands.Cog):
 			except:
 				print("Error while trying to log guild mission" + guildinfo["mission"] + "for: " + user.name + " (" + user.id + ") Guild leader id: " + guild.id)
 				pass
-		
-			if userinfo["questname"] == "Gathering Wood I":
-				userinfo["questprogress"] += chopped
-				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user, userinfo)
-					userinfo["questname"] = "Gathering Stone I"
-				pass
-
+			
 			userinfo["wood"] = userinfo["wood"] + chopped
 			userinfo["chop_block"] = curr_time
 			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)

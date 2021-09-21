@@ -71,8 +71,9 @@ class statistics(commands.Cog):
 		embed = discord.Embed(description="Click [here](https://solyxbot.webflow.io/team) for a detailed documentation.", color=discord.Colour(0xffffff))
 		avatar = self.bot.user.avatar_url if self.bot.user.avatar else self.bot.user.default_avatar_url
 		embed.set_author(name="Solyx Info", icon_url=avatar)
-		embed.add_field(name="Developers", value="`TheMaksoo#1212`", inline=False)
-		embed.add_field(name="Managing assistant", value="`AceTheBearg223#4562`", inline=False)
+		embed.add_field(name="Developer", value="`TheMaksoo#1212`", inline=False)
+		embed.add_field(name="Manager", value="`AceTheBearg223#4562`", inline=False)
+		embed.add_field(name="Staff", value="`Twannie#8493`", inline=False)
 		embed.add_field(name="Library", value="Discord.py", inline=False)
 		try:
 			await ctx.send(embed=embed)

@@ -50,226 +50,235 @@ class inventory(commands.Cog):
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
 
-
-		if userinfo["questname"] == "Basic B":
-			userinfo["questprogress"] += 1
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-
-		if userinfo["role"] == "Developer":
-		
-			if len(userinfo["inventory"]) > 12:
-				extraItems = "\n"
-			else:
-				extraItems = userinfo["inventory"]
-			if userinfo["camp"] == "False":
-				camp = "Not built yet"
-			else:
-				camp = "built!"
-			if userinfo["sawmill"] == "False":
-				sawmill = "Not built yet"
-			else:
-				sawmill = "built!"
-			if userinfo["masonry"] == "False":
-				masonry = "Not built yet"
-			else:
-				masonry = "built!"
-			if userinfo["smeltery"] == "False":
-				smeltery = "Not built yet"
-			else:
-				smeltery = "built!"
-			em = discord.Embed(color=discord.Colour(0xffffff))
-			em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n<:PlanksbyMaxie:780992714463510530> {}\n<:BricksbyMaxie:780999521249263616> {}\n<:IronPlatebyMaxie:781003325675012146> {}\n".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"], userinfo["planks"], userinfo["bricks"], userinfo["iron_plates"]), inline=True)
-			em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n<:ExpBottle:770044187348566046> {}\n<:petfood:849024713995845723> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"], userinfo["exp_potions"], int(userinfo["pet_food"])), inline=True)
-			em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}\n **Traps:** {}".format(camp, sawmill, masonry, smeltery,userinfo["trap"]), inline=True)
-			em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
-			em.set_footer(text="Type | -vote | and vote for extra rewards!")
-			try:
-				await ctx.send(embed=em)
-			except:
-				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
-					return
-				except:
-					return
+		ongoing_quests = userinfo["quests"]["ongoing_quests"]
+		ongoing_quests_number = len(userinfo["quests"]["ongoing_quests"])
+		i = 0
+		for i in range(ongoing_quests_number):
+			if ongoing_quests[i]["name"] == "Tutorial B":
+				questinfo = ongoing_quests[i]	
+				questinfo["progress"] += 1
+				await _quest_check(self, ctx, user, userinfo, questinfo)
 
 
-
-			channel = ctx.message.channel		
 	
-			userinfo = db.users.find_one({'_id':user.id})
-			inventory =	userinfo["inventory"]
+		if len(userinfo["inventory"]) > 12:
+			extraItems = "\n"
+		else:
+			extraItems = userinfo["inventory"]
+		if userinfo["camp"] == "False":
+			camp = "Not built yet"
+		else:
+			camp = "built!"
+		if userinfo["sawmill"] == "False":
+			sawmill = "Not built yet"
+		else:
+			sawmill = "built!"
+		if userinfo["masonry"] == "False":
+			masonry = "Not built yet"
+		else:
+			masonry = "built!"
+		if userinfo["smeltery"] == "False":
+			smeltery = "Not built yet"
+		else:
+			smeltery = "built!"
+		em = discord.Embed(color=discord.Colour(0xffffff))
+		em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n<:PlanksbyMaxie:780992714463510530> {}\n<:BricksbyMaxie:780999521249263616> {}\n<:IronPlatebyMaxie:781003325675012146> {}\n".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"], userinfo["planks"], userinfo["bricks"], userinfo["iron_plates"]), inline=True)
+		em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n<:ExpBottle:770044187348566046> {}\n<:petfood:849024713995845723> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"], userinfo["exp_potions"], int(userinfo["pet_food"])), inline=True)
+		try:
+			if userinfo["toggle"][0]["buildings"] == False:
+				em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}\n **Traps:** {}".format(camp, sawmill, masonry, smeltery,userinfo["trap"]), inline=True)
+			if userinfo["toggle"][0]["buildings"] == True:
+				pass
+		except:
+			em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}\n **Traps:** {}".format(camp, sawmill, masonry, smeltery,userinfo["trap"]), inline=True)
+			pass
+		em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
+		em.set_footer(text="Type | -vote | and vote for extra rewards!")
+		try:
+			await ctx.send(embed=em)
+		except:
+			try:
+				await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
+				return
+			except:
+				return
 
-			list = ""
 
+
+		channel = ctx.message.channel		
+
+		userinfo = db.users.find_one({'_id':user.id})
+		inventory =	userinfo["inventory"]
+
+		list = ""
+
+		for i, x in enumerate(range(0, 26)):
+			try:
+				item = inventory[i]
+				type = item["type"]
+				list +=	"**{}.** ".format( i + 1)
+				if item["rarity"] == "Legendary":
+					list += "- <:Legendary:639425368167809065> "
+				if type == "sword":
+					list += "- **{}** - {} - **{}-{}**<:Sword:573576884688781345>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "bow":
+					list += "- **{}** - {} - **{}-{}**<:Bow:573576981791113218>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "staff":
+					list += "- **{}** - {} - **{}-{}**<:Staff:573578258419810335>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "mace":
+					list += "- **{}** - {} - **{}-{}**<:Mace:761025040145186846>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "dagger":
+					list += "- **{}** - {} - **{}-{}**<:Dagger:761025864422916096>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "gun":
+					list += "- **{}** - {} - **{}-{}**<:Gun:573578066853494830>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "armor":
+					list += "- **{}** - {} - **{}-{}**<:Shield:573576333863682064>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "head":
+					list += "- **{}** - {} - **{}-{}**:military_helmet:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "neck":
+					list += "- **{}** - {} - **{}-{}**:prayer_beads:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "body":
+					list += "- **{}** - {} - **{}-{}**:shirt:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "hand":
+					list += "- **{}** - {} - **{}-{}**:ring:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "legs":
+					list += "- **{}** - {} - **{}-{}**:jeans:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+				if type == "feet":
+					list += "- **{}** - {} - **{}-{}**:boot:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+			except:
+				pass
+			#msg += "{} >\n".format(i)
+		em = embed = discord.Embed(color=discord.Colour(0xffffff))
+		em = embed.description = list
+		em = embed.set_author(name="{}'s inventory".format(user.name))
+		em.set_footer(text="Type | -weapon info [number] | For more info")
+
+		try:
+			try:
+				if userinfo["toggle"][0]["items"] == False:
+					await ctx.channel.send(embed=em)
+				if userinfo["toggle"][0]["items"] == True:
+					pass
+			except:
+				await ctx.channel.send(embed=em)
+				pass
+		except:
 			for i, x in enumerate(range(0, 26)):
 				try:
+					list = ""
+					list1 = ""
 					item = inventory[i]
-					type = item["type"]			
-					if type == "sword":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Sword:573576884688781345>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+					type = item["type"]
+					list +=	"**{}.** ".format( i + 1)
+					if item["rarity"] == "Legendary":
+						list += "- <:Legendary:639425368167809065> "
+					if i <= 12 and i >= 0:			
+						if type == "sword":
+							list1 += "- **{}** - {} - **{}-{}**<:Sword:573576884688781345>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "bow":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Bow:573576981791113218>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "bow":
+							list1 += "- **{}** - {} - **{}-{}**<:Bow:573576981791113218>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "staff":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Staff:573578258419810335>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "staff":
+							list1 += "- **{}** - {} - **{}-{}**<:Staff:573578258419810335>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "mace":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Mace:761025040145186846>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "mace":
+							list1 += "- **{}** - {} - **{}-{}**<:Mace:761025040145186846>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "dagger":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "dagger":
+							list1 += "- **{}** - {} - **{}-{}**<:Dagger:761025864422916096>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "gun":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Gun:573578066853494830>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "gun":
+							list1 += "- **{}** - {} - **{}-{}**<:Gun:573578066853494830>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "armor":
-						list += "**{}.** - **{}** - {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "armor":
+							list1 += "- **{}** - {} - **{}-{}**<:Shield:573576333863682064>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "head":
-						list += "**{}.** - **{}** - {} - **{}-{}**:military_helmet:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "head":
+							list1 += "- **{}** - {} - **{}-{}**:military_helmet:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "neck":
-						list += "**{}.** - **{}** - {} - **{}-{}**:prayer_beads:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "neck":
+							list1 += "- **{}** - {} - **{}-{}**:prayer_beads:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "body":
-						list += "**{}.** - **{}** - {} - **{}-{}**:shirt:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "body":
+							list1 += "- **{}** - {} - **{}-{}**:shirt:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "finger":
-						list += "**{}.** - **{}** - {} - **{}-{}**:ring:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "hand":
+							list1 += "- **{}** - {} - **{}-{}**:ring:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "legs":
-						list += "**{}.** - **{}** - {} - **{}-{}**:jeans:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "legs":
+							list1 += "- **{}** - {} - **{}-{}**:jeans:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 
-					if type == "feet":
-						list += "**{}.** - **{}** - {} - **{}-{}**:boot:\n".format(i + 1, item["name"], item["type"], item["stats_min"], item["stats_max"])
+						if type == "feet":
+							list1 += "- **{}** - {} - **{}-{}**:boot:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+						
+
+					if i >= 13:			
+						if type == "sword":
+							list += "- **{}** - {} - **{}-{}**<:Sword:573576884688781345>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "bow":
+							list += "- **{}** - {} - **{}-{}**<:Bow:573576981791113218>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "staff":
+							list += "- **{}** - {} - **{}-{}**<:Staff:573578258419810335>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "mace":
+							list += "- **{}** - {} - **{}-{}**<:Mace:761025040145186846>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "dagger":
+							list += "- **{}** - {} - **{}-{}**<:Dagger:761025864422916096>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "gun":
+							list += "- **{}** - {} - **{}-{}**<:Gun:573578066853494830>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "armor":
+							list += "- **{}** - {} - **{}-{}**<:Shield:573576333863682064>\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "head":
+							list += "- **{}** - {} - **{}-{}**:military_helmet:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "neck":
+							list += "- **{}** - {} - **{}-{}**:prayer_beads:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "body":
+							list += "- **{}** - {} - **{}-{}**:shirt:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "hand":
+							list += "- **{}** - {} - **{}-{}**:ring:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "legs":
+							list += "- **{}** - {} - **{}-{}**:jeans:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
+
+						if type == "feet":
+							list += "- **{}** - {} - **{}-{}**:boot:\n".format(item["name"], item["type"], item["stats_min"], item["stats_max"])
 				except:
 					pass
 				#msg += "{} >\n".format(i)
 			em = embed = discord.Embed(color=discord.Colour(0xffffff))
 			em = embed.description = list
-			em = embed.set_author(name="{}'s inventory".format(user.name))
-
-			try:
-				 msg = await ctx.channel.send(embed=em)
-
-			except:
-				try:
-					await ctx.channel.send("I cound't send the message.")
-				except:
-					return
-				return
-		else:
-
-			if len(userinfo["inventory"]) > 12:
-				extraItems = "\n"
-			else:
-				extraItems = userinfo["inventory"]
-			if userinfo["camp"] == "False":
-				camp = "Not built yet"
-			else:
-				camp = "built!"
-			if userinfo["sawmill"] == "False":
-				sawmill = "Not built yet"
-			else:
-				sawmill = "built!"
-			if userinfo["masonry"] == "False":
-				masonry = "Not built yet"
-			else:
-				masonry = "built!"
-			if userinfo["smeltery"] == "False":
-				smeltery = "Not built yet"
-			else:
-				smeltery = "built!"
-			em = discord.Embed(color=discord.Colour(0xffffff))
-			em.add_field(name="Supplies", value="<:GoldBars:573781770709893130> {}\n<:Wood:573574660185260042> {}\n<:Stone:573574662525550593> {}\n<:Metal:573574661108006915> {}\n<:PlanksbyMaxie:780992714463510530> {}\n<:BricksbyMaxie:780999521249263616> {}\n<:IronPlatebyMaxie:781003325675012146> {}\n".format(int(userinfo["gold"]), userinfo["wood"], userinfo["stone"], userinfo["metal"], userinfo["planks"], userinfo["bricks"], userinfo["iron_plates"]), inline=True)
-			em.add_field(name="Items", value="<:Key:573780034355986432> {}\n<:Crate:639425690072252426> {}\n<:HealingPotion:573577125064605706> {}\n<:ExpBottle:770044187348566046> {}\n<:petfood:849024713995845723> {}\n".format(userinfo["keys"], userinfo["lootbag"], userinfo["hp_potions"], userinfo["exp_potions"], int(userinfo["pet_food"])), inline=True)
-			em.add_field(name="Buildings", value="**Camp:** {}\n **Sawmill:** {}\n **Masonry:** {}\n **Smeltery:** {}\n **Traps:** {}".format(camp, sawmill, masonry, smeltery,userinfo["trap"]), inline=True)
-			em.set_author(name="{}'s Inventory".format(userinfo["name"]), icon_url=user.avatar_url)
-			em.set_footer(text="Type | -vote | and vote for extra rewards!")
-			try:
-				await ctx.send(embed=em)
-			except:
-				try:
-					await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["embedpermissions"]["translation"])
-					return
-				except:
-					return
-
-
-
-			channel = ctx.message.channel		
-	
-			userinfo = db.users.find_one({'_id':user.id})
-			inventory =	userinfo["inventory"]
-
-			list1 = ""
-			list2 = ""
-
-			for i, x in enumerate(range(0, 26)):
-				try:
-					item = inventory[i]
-					type = item["type"]
-					if i <= 12 and i >= 0:			
-						if type == "sword":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "bow":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "staff":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "mace":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "dagger":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "gun":
-							list1 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "armor":
-							list1 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-						
-
-					if i >= 13:			
-						if type == "sword":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Sword:573576884688781345>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "bow":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Bow:573576981791113218>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "staff":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Staff:573578258419810335>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "mace":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Mace:761025040145186846>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "dagger":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Dagger:761025864422916096>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "gun":
-							list2 += "**{}** - {} - **{}** - **{}** {} - **{}-{}**<:Gun:573578066853494830>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-
-						if type == "armor":
-							list2 += "**{}** - {} -  **{}** - **{}** {} - **{}-{}**<:Shield:573576333863682064>\n".format(i + 1, item["refinement"], item["name"], item["rarity"], item["type"], item["stats_min"], item["stats_max"])
-				except:
-					pass
-				#msg += "{} >\n".format(i)
-			em = embed = discord.Embed(color=discord.Colour(0xffffff))
-			em = embed.description = list1
 			em = embed.set_author(name="{}'s item list 1:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
+			
 
 			em2 = embed = discord.Embed(color=discord.Colour(0xffffff))
-			em2 = embed.description = list2
+			em2 = embed.description = list1
 			em2 = embed.set_author(name="{}'s item list 2:⠀⠀⠀⠀⠀⠀⠀⠀⠀".format(user.name))
+			em2.set_footer(text="Type | -weapon info [number] | For more info")
 			try:
-				 msg = await ctx.channel.send(embed=em)
-				 await ctx.channel.send(embed=em2)
+				await ctx.channel.send(embed=em)
+				await ctx.channel.send(embed=em2)
 			except:
 				try:
 					await ctx.channel.send("I cound't send the message.")

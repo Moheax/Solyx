@@ -100,13 +100,6 @@ class loot(commands.Cog):
 				await ctx.send(embed=em)
 				return
 
-	
-		if userinfo["questname"] == "Unboxing I":
-			userinfo["questprogress"] += amount
-			if userinfo["questprogress"] >= 10:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 
 		if userinfo["lootbag"] == 0 or userinfo["lootbag"] < amount:
 			em = discord.Embed(description=fileIO(f"data/languages/EN.json", "load")["rpg"]["crate"]["nocrates"]["translation"], color=discord.Colour(0xffffff))
@@ -143,13 +136,7 @@ class loot(commands.Cog):
 				return
 			return
 
-		if userinfo["questname"] == "Unboxing I":
-			userinfo["questprogress"] += amount
-			if userinfo["questprogress"] >= 10:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
-
+	
 
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 		try:

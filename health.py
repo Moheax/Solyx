@@ -51,13 +51,7 @@ class health(commands.Cog):
 			return
 		if userinfo["hp_potions"] > 0:
 
-			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 1:
-				userinfo["questprogress"] += 1
-				userinfo["questpart"] = userinfo["questpart"] + 1
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 1:
-					await _quest_check(self, ctx, user, userinfo)
-
+		
 			gain = random.randint(25, 55)
 			userinfo["health"] = userinfo["health"] + gain
 			if userinfo["health"] >= userinfo["MaxHealth"]:
@@ -178,13 +172,7 @@ class health(commands.Cog):
 				except:
 					return
 		else:
-			if userinfo["questname"] == "Health acquisition" and  userinfo["questpart"] == 0:
-				userinfo["questprogress"] += amount
-				userinfo["questpart"] = userinfo["questpart"] + 1
-				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-				if userinfo["questprogress"] >= 5:
-					await _quest_check(self, ctx, user, userinfo)
-				pass
+			
 
 			userinfo["gold"] = userinfo["gold"] - Sum
 			userinfo["hp_potions"] = userinfo["hp_potions"] + int(amount)

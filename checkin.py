@@ -44,13 +44,6 @@ class checkin(commands.Cog):
 
 
 		
-		if userinfo["questname"] == "Daily I":
-			userinfo["questprogress"] += 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-
 		#GUILD BOOST
 		guild = ctx.message.guild
 
@@ -112,6 +105,7 @@ class checkin(commands.Cog):
 		else:
 			em = discord.Embed(title=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["failed"]["title"]["translation"], description=fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["failed"]["description"]["translation"].format(int(h), int(m), int(s)), color=discord.Colour(0xffffff))
 			try:
+				db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
 				await ctx.send(embed=em)
 			except:
 				msg = fileIO(f"data/languages/EN.json", "load")["rpg"]["checkin"]["failed"]["title"]["translation"]

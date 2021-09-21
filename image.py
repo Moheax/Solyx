@@ -52,13 +52,7 @@ class image(commands.Cog):
 				return
 			except:
 				return
-		if userinfo["questname"] == "Check Profile" :
-			userinfo["questprogress"] += 1		
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-
+		
 		await self.draw_profile(user)
 		try:
 			await ctx.trigger_typing()

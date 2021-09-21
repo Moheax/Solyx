@@ -566,9 +566,7 @@ class titles(commands.Cog):
 	@commands.cooldown(1, 5, commands.BucketType.user)
 	async def _flex(self, ctx):
 		"""Flex!!"""
-
-	
-
+		
 		user = ctx.message.author
 		userinfo = db.users.find_one({ "_id": user.id })
 

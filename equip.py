@@ -542,14 +542,6 @@ class equip(commands.Cog):
 				await ctx.send(embed=em)
 				return
 
-		if userinfo["questname"] == "Equip" :
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
 
 		if userinfo["equip"] == "None":
 			userinfo["equip"] = item
@@ -613,13 +605,6 @@ class equip(commands.Cog):
 		type = item["type"]
 
 		
-		if userinfo["questname"] == "Equip"and userinfo["questpart"] == 1 :
-			userinfo["questprogress"] += 1
-			userinfo["questpart"] = userinfo["questpart"] + 1
-			db.users.replace_one({ "_id": user.id }, userinfo, upsert=True) 
-			if userinfo["questprogress"] >= 1:
-				await _quest_check(self, ctx, user, userinfo)
-			pass
 
 		if type == "armor":
 			if userinfo["wearing"] == "None":

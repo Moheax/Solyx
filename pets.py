@@ -9,7 +9,7 @@ from time import time
 
 from utils.dataIO import fileIO
 from utils.db import db
-from utils.defaults import userdata, titledata, raiddata, battledata, guilddata
+
 
 
 
@@ -80,10 +80,13 @@ class friends(commands.Cog):
 		
 		for i in userinfo["pet_list"]:
 			equipped_name = "easter egg"
+			equipped_type = "easter egg"
 			try:
 				equipped_info = userinfo["equipped_pet"][0]
+				equipped_type = equipped_info["type"]
 				equipped_name = equipped_info["name"]
-			except:
+			except Exception as e:
+				print(e)
 				pass
 			petinfo = i
 			pet_name = petinfo["name"]
@@ -91,8 +94,8 @@ class friends(commands.Cog):
 			pet_level = petinfo["level"]
 			pet_xp = petinfo["xp"]
 			maxexp = 100 + ((petinfo["level"] + 1) * 3.5)
-			if pet_name == equipped_name:
-				flist = ("{}. **{}**, Type: {} - Level: {} <:Magic:560844225839890459>,  Exp: {}/{}:sparkles: **Selected!** \n".format(f + 1, equipped_name, pet_type, pet_level, pet_xp, maxexp))
+			if pet_type == equipped_type:
+				flist = ("{}. **{}**, Type: {} - Level: {} <:Magic:560844225839890459>,  Exp: {}/{} :sparkles: **Selected!** \n".format(f + 1, equipped_name, pet_type, pet_level, pet_xp, maxexp))
 			else:
 				flist = ("{}. **{}**, Type: {} - Level: {} <:Magic:560844225839890459>,  Exp: {}/{} :sparkles:\n".format(f + 1, pet_name, pet_type, pet_level, pet_xp, maxexp))
 
@@ -103,7 +106,11 @@ class friends(commands.Cog):
 			
 		em = discord.Embed(description=pet_list, color=discord.Colour(0xffffff))
 		em.set_author(name="{}'s Pets".format(userinfo["name"]), icon_url=user.avatar_url)
-		await ctx.send(embed=em)
+		try:
+			await ctx.send(embed=em)
+		except Exception as e:
+			print(e)
+			pass
 
 	@_pets.group(name="tame", pass_context=True, no_pm=True)
 	@commands.cooldown(1, 4, commands.BucketType.user)
@@ -307,6 +314,7 @@ class friends(commands.Cog):
 			await ctx.send(fileIO(f"data/languages/{language}.json", "load")["general"]["begin"]["translation"].format(ctx.prefix))
 			return
 
+		equipped_petinfo = "Easter Egg"
 		if userinfo and userinfo["blacklisted"] == "True":
 			return
 
@@ -319,12 +327,14 @@ class friends(commands.Cog):
 		try:
 			equipped_petinfo = userinfo["equipped_pet"][0]
 		except:
-			await ctx.send("<:Solyx:560809141766193152> **| No pet in this slot...**")
-			return
-		if equipped_petinfo["name"] == petinfo["name"]:
+			pass
+		try:
 			petinfo["name"] = name
-			equipped_petinfo["name"] = name
-
+			if equipped_petinfo["name"] == petinfo["name"]:				
+				equipped_petinfo["name"] = name
+		except:
+			pass
+		
 		db.users.replace_one({ "_id": user.id }, userinfo, upsert=True)
 		em = discord.Embed(title="Pet named",description="You have named your {}!\nit will now be known as  {}".format(petinfo["type"], petinfo["name"]), color=discord.Colour(0xE0119F))
 		em.set_image(url="")

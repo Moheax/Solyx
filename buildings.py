@@ -146,7 +146,7 @@ class building(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
-		if userinfo["camp"] == "false":
+		if userinfo["camp"] == "False":
 			em = discord.Embed(title="No camp!", description="Build a camp first with {}build camp".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
@@ -235,7 +235,7 @@ class building(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 		
-		if userinfo["camp"] == "false":
+		if userinfo["camp"] == "False":
 			em = discord.Embed(title="No camp!", description="Build a camp first with {}build camp".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
@@ -331,7 +331,7 @@ class building(commands.Cog):
 		userinfo = db.users.find_one({ "_id": user.id })
 		guildinfo = db.servers.find_one({ "_id": guild.id })
 
-		if userinfo["camp"] == "false":
+		if userinfo["camp"] == "False":
 			em = discord.Embed(title="No camp!", description="Build a camp first with {}build camp".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return
@@ -433,7 +433,7 @@ class building(commands.Cog):
 
 		userinfo = db.users.find_one({ "_id": user.id })
 
-		if userinfo["camp"] == "false":
+		if userinfo["camp"] == "False":
 			em = discord.Embed(title="No camp!", description="Build a camp first with {}build camp".format(ctx.prefix), color=discord.Colour(0xffffff))
 			await ctx.send(embed=em)
 			return

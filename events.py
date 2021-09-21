@@ -58,16 +58,16 @@ class events(commands.Cog):
 		print(current_time+" | "+guild.name+" | "+channel.name+" | "+user.name+"#"+user.discriminator,"Has tried to equip armor!")
 
 		eventinfo = db.users.find_one({ "_id": 387317544228487168 })
-		if eventinfo["Gortac"] == True:
-			eventinfo["Gortac"] = False
+		if eventinfo["events"][0]["Gortac"] == True:
+			eventinfo["events"][0]["Gortac"] = False
 			db.users.replace_one({"_id": 387317544228487168}, eventinfo, upsert=True)
 			em = discord.Embed(title="Gortac toggled", description="Gortac the Indestructible. event now disabled.", color=discord.Colour(0xffffff))
 			em.set_footer(text="players can't fight the event boss anymore")
 			await ctx.send(embed=em)
 			return
 
-		elif eventinfo["Gortac"] == False:
-			eventinfo["Gortac"] = True
+		elif eventinfo["events"][0]["Gortac"] == False:
+			eventinfo["events"][0]["Gortac"] = True
 			db.users.replace_one({"_id": 387317544228487168}, eventinfo, upsert=True)
 			em = discord.Embed(title="Gortac toggled", description="Gortac the Indestructible. event now active.", color=discord.Colour(0xffffff))
 			em.set_footer(text="players can now fight the event boss.")
