@@ -174,6 +174,14 @@ class fight(commands.Cog):
 				elif 60 >= chance >= 0:
 					debi = randchoice(["Ice Wolves", "Frost Goblin"])
 
+			elif userinfo["location"] == "Havelow":
+				if chance >= 90:
+					debi = randchoice(["Giant Sand Worm"])
+				elif 90 >= chance >= 60:
+					debi = randchoice(["Anakore"])
+				elif 60 >= chance >= 0:
+					debi = randchoice(["Scorpikis", "Sandcrawler"])
+
 			difficulty = random.randint(1, 100)
 			userinfo["enemydifficulty"] = "Common"
 			if difficulty >= 99:
@@ -279,6 +287,12 @@ class fight(commands.Cog):
 					userinfo["enemyhp"] = random.randint(160, 180)
 				elif userinfo["selected_enemy"] == "Frost Dragon":
 					userinfo["enemyhp"] = random.randint(170, 190)
+				elif userinfo["selected_enemy"] == "Skorpikis" or userinfo["selected_enemy"] == "Sandcrawler":
+					userinfo["enemyhp"] = random.randint(180, 200)
+				elif userinfo["selected_enemy"] == "Anakore":
+					userinfo["enemyhp"] = random.randint(190, 210)
+				elif userinfo["selected_enemy"] == "Giant Sand Worm":
+					userinfo["enemyhp"] = random.randint(200, 220)
 
 				uncommon = (int((userinfo["enemyhp"] / 100) * 20))
 				rare = (int((userinfo["enemyhp"] / 100) * 30))
@@ -553,6 +567,34 @@ class fight(commands.Cog):
 			enemygold = random.randint(95, 115) + effectiveguildbonus
 			goldlost = (int(enemygold * 2))
 			xpgain = random.randint(90, 110)
+
+		elif userinfo["selected_enemy"] == "Skorpikis":
+			attack = randchoice(["sting and", "slash and", "claw and"])
+			enemydmg += random.randint(85, 95)
+			enemygold = random.randint(85, 110) + effectiveguildbonus
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(85, 105)
+
+		elif userinfo["selected_enemy"] == "Sandcrawler":
+			attack = randchoice(["bite and", "slam and", "throw sand and"])
+			enemydmg += random.randint(85, 95)
+			enemygold = random.randint(85, 110) + effectiveguildbonus
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(85, 105)
+
+		elif userinfo["selected_enemy"] == "Anakore":
+			attack = randchoice(["multiattack and", "smite and", " pounce and"])
+			enemydmg += random.randint(90, 100)
+			enemygold = random.randint(90, 115) + effectiveguildbonus
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(95, 105)
+
+		elif userinfo["selected_enemy"] == "Giant Sand Worm":
+			attack = randchoice(["sand Shifter and shakes the whole ground catching you off balance. \nGiant Sand Worm.", "tunneler hiding its position and attack from where you least exspect it.\nGiant Sand Worm", "devour and consumes everything in its way.\nGiant Sand Worm"])
+			enemydmg += random.randint(100, 120)
+			enemygold = random.randint(95, 115) + effectiveguildbonus
+			goldlost = (int(enemygold * 2))
+			xpgain = random.randint(105, 125)
 
 
 		elif userinfo["selected_enemy"] == "Gortac the Indestructible":

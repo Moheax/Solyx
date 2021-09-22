@@ -831,6 +831,84 @@ class wiki(commands.Cog):
 			embed.add_field(name="Back Story", value="The Frost Dragon was said to be a living fossil, a strong type of dragon that a great hero once had slain and put a spell on. This spell caused a never ending life cycle that made the dragon into a bone-like creature, It was once found at the Ebony mountain looking for frozen caves to be its den and the Frost Dragon ended up at ""Drenheim"" known to be the coldest place of Solyx.", inline=False)
 			embed.set_footer(text="Submitted by 𝓗𝓲𝓻𝓸#9377\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
 			await ctx.send(embed=embed)
+
+		elif topic == "Giant Sand Worm" or topic == "giant sand worm":
+			minHp = 200
+			maxHp = 220
+			
+			minDmg = 90
+			maxDmg = 100
+
+			minGold = 95
+			maxGold = 115
+
+			minExp = 90
+			maxExp = 110
+
+			UncommonHpMin = (int((minHp / 100) * 120))
+			UncommonHpMax = (int((maxHp / 100) * 120))
+
+			RareHpMin = (int((minHp / 100) * 130))
+			RareHpMax = (int((maxHp / 100) * 130))
+
+			LegendaryHpMin  = (int((minHp / 100) * 140))
+			LegendaryHpMax  = (int((maxHp / 100) * 140))
+
+			MythicalHpMin = (int((minHp / 100) * 150))
+			MythicalHpMax = (int((maxHp / 100) * 150))
+			
+			UncommonMinDmg = (int((minDmg / 100) * 120))
+			UncommonMaxDmg = (int((maxDmg / 100) * 120))
+
+			RareMinDmg = (int((minDmg / 100) * 130))
+			RareMaxDmg = (int((maxDmg / 100) * 130))
+
+			LegendaryMinDmg  = (int((minDmg / 100) * 140))
+			LegendaryMaxDmg  = (int((maxDmg / 100) * 140))
+
+			MythicalMinDmg = (int((minDmg / 100) * 150))
+			MythicalMaxDmg = (int((maxDmg / 100) * 150))
+
+			UncommonMinGold = (int((minGold / 100) * 120))
+			UncommonMaxGold = (int((maxGold / 100) * 120))
+
+			RareMinGold = (int((minGold / 100) * 130))
+			RareMaxGold = (int((maxGold / 100) * 130))
+
+			LegendaryMinGold  = (int((minGold / 100) * 140))
+			LegendaryMaxGold  = (int((maxGold / 100) * 140))
+
+			MythicalMinGold = (int((minGold / 100) * 150))
+			MythicalMaxGold = (int((maxGold / 100) * 150))
+			
+			UncommonMinExp = (int((minExp / 100) * 120))
+			UncommonMaxExp = (int((maxExp / 100) * 120))
+
+			RareMinExp = (int((minExp / 100) * 130))
+			RareMaxExp = (int((maxExp / 100) * 130))
+
+			LegendaryMinExp  = (int((minExp / 100) * 140))
+			LegendaryMaxExp  = (int((maxExp / 100) * 140))
+
+			MythicalMinExp = (int((minExp / 100) * 150))
+			MythicalMaxExp = (int((maxExp / 100) * 150))
+
+			embed=discord.Embed(title="**Frost Dragon**", description=":book:**Wiki**", color=discord.Colour(0xffffff))
+			embed.set_image(url="https://cdn.wallpapersafari.com/11/55/3hBQ9Z.jpg")
+			embed.add_field(name="**Type**", value="Boss", inline=False)
+			embed.add_field(name="**Place**", value="Drenheim", inline=False)
+			
+			embed.add_field(name="**<:HealthHeart:560845406750375937> Health**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minHp, maxHp, UncommonHpMin, UncommonHpMax, RareHpMin, RareHpMax, LegendaryHpMin, LegendaryHpMax, MythicalHpMin, MythicalHpMax), inline=False)
+
+			embed.add_field(name=":crossed_swords: **Damage**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minDmg, maxDmg, UncommonMinDmg, UncommonMaxDmg, RareMinDmg, RareMaxDmg, LegendaryMinDmg, LegendaryMaxDmg, MythicalMinDmg, MythicalMaxDmg), inline=False)
+
+			embed.add_field(name="<:Gold:639484869809930251> **Gold**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minGold, maxGold, UncommonMinGold, UncommonMaxGold, RareMinGold, RareMaxGold, LegendaryMinGold, LegendaryMaxGold, MythicalMinGold, MythicalMaxGold), inline=False)
+
+			embed.add_field(name="<:Experience:560809103346368522> **Experience**", value="**Common** | {} - {}\n**Uncommon** | {} - {}\n**Rare** | {} - {} \n**Legendary** | {} - {} \n**Mythical** | {} - {}".format(minExp, maxExp, UncommonMinExp, UncommonMaxExp, RareMinExp, RareMaxExp, LegendaryMinExp, LegendaryMaxExp, MythicalMinExp, MythicalMaxExp), inline=False)
+
+			embed.add_field(name="Back Story", value="The Frost Dragon was said to be a living fossil, a strong type of dragon that a great hero once had slain and put a spell on. This spell caused a never ending life cycle that made the dragon into a bone-like creature, It was once found at the Ebony mountain looking for frozen caves to be its den and the Frost Dragon ended up at ""Drenheim"" known to be the coldest place of Solyx.", inline=False)
+			embed.set_footer(text="Submitted by 𝓗𝓲𝓻𝓸#9377\nSubmit your wiki article by sending a dm/message to @TheMaksoo#1212.")
+			await ctx.send(embed=embed)
 			
 		elif topic == "Archer" or topic == "archer" :
 			embed=discord.Embed(title="**Archer**", description="**:book:Wiki**", color=discord.Colour(0xffffff))
